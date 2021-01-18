@@ -20,7 +20,7 @@
 //
 #include "xshortcuts.h"
 
-XShortcuts::XShortcuts(QObject *parent) : QObject(parent)
+XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
 {
 
 }
