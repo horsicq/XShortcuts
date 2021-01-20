@@ -21,13 +21,35 @@
 #ifndef XSHORTCUTS_H
 #define XSHORTCUTS_H
 
-#include <QObject>
+#include <QMap>
+#include <QDir>
+#include <QSettings>
+#include <QApplication>
+#include <QKeySequence>
 
 class XShortcuts : public QObject
 {
     Q_OBJECT
 public:
+    enum ID
+    {
+        ID_ACTION_COPY
+    };
+
     explicit XShortcuts(QObject *pParent=nullptr);
+    void setName(QString sName);
+    void setValueIDs(QList<ID> listValueIDs);
+    void load();
+    void save();
+    QString getApplicationDataPath();
+    static QString idToSettingsString(ID id);
+    static QKeySequence getDefault(ID id);
+
+private:
+    QString g_sName;
+    QString g_sFilePath;
+    QList<ID> g_listValueIDs;
+    QMap<ID,QKeySequence> g_mapValues;
 };
 
 #endif // XSHORTCUTS_H
