@@ -38,7 +38,12 @@ void XShortcuts::setValueIDs(QList<XShortcuts::ID> listValueIDs)
 
 void XShortcuts::load()
 {
-    QSettings settings(g_sFilePath,QSettings::IniFormat);
+    QSettings *pSettings=nullptr;
+
+    if(g_sFilePath!="")
+    {
+        pSettings=new QSettings(g_sFilePath,QSettings::IniFormat);
+    }
 
     int nNumberOfIDs=g_listValueIDs.count();
 
@@ -48,21 +53,36 @@ void XShortcuts::load()
         QString sName=idToSettingsString(id);
         QKeySequence ksDefault=getDefault(id);
 
-        g_mapValues.insert(id,QKeySequence::fromString(settings.value(sName,ksDefault.toString()).toString()));
+        if(pSettings)
+        {
+            g_mapValues.insert(id,QKeySequence::fromString(pSettings->value(sName,ksDefault.toString()).toString()));
+        }
+        else
+        {
+            g_mapValues.insert(id,ksDefault);
+        }
+    }
+
+    if(pSettings)
+    {
+        delete pSettings;
     }
 }
 
 void XShortcuts::save()
 {
-    QSettings settings(g_sFilePath,QSettings::IniFormat);
-
-    int nNumberOfIDs=g_listValueIDs.count();
-
-    for(int i=0;i<nNumberOfIDs;i++)
+    if(g_sFilePath!="")
     {
-        ID id=g_listValueIDs.at(i);
-        QString sName=idToSettingsString(id);
-        settings.setValue(sName,g_mapValues.value(id).toString());
+        QSettings settings(g_sFilePath,QSettings::IniFormat);
+
+        int nNumberOfIDs=g_listValueIDs.count();
+
+        for(int i=0;i<nNumberOfIDs;i++)
+        {
+            ID id=g_listValueIDs.at(i);
+            QString sName=idToSettingsString(id);
+            settings.setValue(sName,g_mapValues.value(id).toString());
+        }
     }
 }
 
@@ -83,7 +103,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:        sResult=QString("Action_Copy");         break;
+        case ID_ACTION_COPY:                sResult=QString("Action_Copy");         break;
     }
 
     return sResult;
@@ -95,7 +115,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:                ksResult=QKeySequence::Copy;           break;
+        case ID_ACTION_COPY:                ksResult=QKeySequence::Copy;            break;
     }
 
     return ksResult;
