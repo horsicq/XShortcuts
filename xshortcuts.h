@@ -33,7 +33,12 @@ class XShortcuts : public QObject
 public:
     enum ID
     {
-        ID_ACTION_COPY
+        ID_ACTION               =0x10000,
+        ID_ACTION_COPY,
+        ID_HEX                  =0x20000,
+        ID_HEX_DUMPTOFILE,
+        ID_DISASM               =0x40000,
+        ID_DISASM_DUMPTOFILE
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
@@ -43,6 +48,7 @@ public:
     void save();
     QString getApplicationDataPath();
     static QString idToSettingsString(ID id);
+    static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
 
 private:

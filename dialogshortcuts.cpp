@@ -32,3 +32,13 @@ DialogShortcuts::~DialogShortcuts()
 {
     delete ui;
 }
+
+void DialogShortcuts::setData(XShortcuts *pShortcuts)
+{
+
+}
+
+void DialogShortcuts::on_comboBoxMode_currentIndexChanged(int nIndex)
+{
+
+}

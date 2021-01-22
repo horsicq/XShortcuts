@@ -103,7 +103,23 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:                sResult=QString("Action_Copy");         break;
+        case ID_ACTION_COPY:                sResult=QString("Action/Copy");         break;
+        case ID_HEX_DUMPTOFILE:             sResult=QString("Hex/DumpToFile");      break;
+        case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");   break;
+    }
+
+    return sResult;
+}
+
+QString XShortcuts::idToString(XShortcuts::ID id)
+{
+    QString sResult=tr("Unknown");
+
+    switch(id)
+    {
+        case ID_ACTION_COPY:                sResult=tr("Copy");                     break;
+        case ID_HEX_DUMPTOFILE:             sResult=tr("Dump to file");             break;
+        case ID_DISASM_DUMPTOFILE:          sResult=tr("Dump to file");             break;
     }
 
     return sResult;
@@ -116,6 +132,8 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     switch(id)
     {
         case ID_ACTION_COPY:                ksResult=QKeySequence::Copy;            break;
+        case ID_HEX_DUMPTOFILE:             ksResult=Qt::CTRL+Qt::Key_D;            break;
+        case ID_DISASM_DUMPTOFILE:          ksResult=Qt::CTRL+Qt::Key_D;            break;
     }
 
     return ksResult;

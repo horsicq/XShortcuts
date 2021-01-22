@@ -22,6 +22,7 @@
 #define DIALOGSHORTCUTS_H
 
 #include <QDialog>
+#include "xshortcuts.h"
 
 namespace Ui {
 class DialogShortcuts;
@@ -35,8 +36,14 @@ public:
     explicit DialogShortcuts(QWidget *pParent=nullptr);
     ~DialogShortcuts();
 
+    void setData(XShortcuts *pShortcuts);
+
+private slots:
+    void on_comboBoxMode_currentIndexChanged(int nIndex);
+
 private:
     Ui::DialogShortcuts *ui;
+    XShortcuts *g_pShortcuts;
 };
 
 #endif // DIALOGSHORTCUTS_H
