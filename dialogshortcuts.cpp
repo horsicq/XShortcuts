@@ -35,10 +35,8 @@ DialogShortcuts::~DialogShortcuts()
 
 void DialogShortcuts::setData(XShortcuts *pShortcuts)
 {
+    g_pShortcuts=pShortcuts;
 
-}
-
-void DialogShortcuts::on_comboBoxMode_currentIndexChanged(int nIndex)
-{
+    // TODO
 
 }

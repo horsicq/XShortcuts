@@ -38,9 +38,6 @@ public:
 
     void setData(XShortcuts *pShortcuts);
 
-private slots:
-    void on_comboBoxMode_currentIndexChanged(int nIndex);
-
 private:
     Ui::DialogShortcuts *ui;
     XShortcuts *g_pShortcuts;

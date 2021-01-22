@@ -37,15 +37,32 @@ public:
         ID_ACTION_COPY,
         ID_HEX                  =0x20000,
         ID_HEX_DUMPTOFILE,
+        ID_HEX_GOTOADDRESS,
+        ID_HEX_SIGNATURE,
+        ID_HEX_FIND,
+        ID_HEX_FINDNEXT,
+        ID_HEX_SELECTALL,
+        ID_HEX_COPYASHEX,
         ID_DISASM               =0x40000,
-        ID_DISASM_DUMPTOFILE
+        ID_DISASM_DUMPTOFILE,
+        ID_DISASM_GOTOADDRESS,
+        ID_DISASM_HEXSIGNATURE,
+        ID_DISASM_SIGNATURE,
+        ID_DISASM_FIND,
+        ID_DISASM_FINDNEXT,
+        ID_DISASM_SELECTALL,
+        ID_DISASM_COPYASHEX,
+        ID_DEBUGGER             =0x80000,
+        ID_DEBUGGER_RUN,
+        ID_DEBUGGER_STEP
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
     void setName(QString sName);
-    void setValueIDs(QList<ID> listValueIDs);
+    void setShortcutsIDs(QList<ID> listValueIDs);
     void load();
     void save();
+    QKeySequence getShortcut(ID id);
     QString getApplicationDataPath();
     static QString idToSettingsString(ID id);
     static QString idToString(ID id);

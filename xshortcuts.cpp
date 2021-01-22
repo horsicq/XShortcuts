@@ -31,7 +31,7 @@ void XShortcuts::setName(QString sName)
     this->g_sFilePath=getApplicationDataPath()+QDir::separator()+QString("%1").arg(sName);
 }
 
-void XShortcuts::setValueIDs(QList<XShortcuts::ID> listValueIDs)
+void XShortcuts::setShortcutsIDs(QList<XShortcuts::ID> listValueIDs)
 {
     this->g_listValueIDs=listValueIDs;
 }
@@ -86,6 +86,17 @@ void XShortcuts::save()
     }
 }
 
+QKeySequence XShortcuts::getShortcut(XShortcuts::ID id)
+{
+    if(!g_mapValues.contains(id))
+    {
+        QString sErrorString=idToSettingsString(id);
+        qDebug(sErrorString.toLatin1().data());
+    }
+
+    return g_mapValues.value(id);
+}
+
 QString XShortcuts::getApplicationDataPath()
 {
     QString sResult;
@@ -105,7 +116,22 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
     {
         case ID_ACTION_COPY:                sResult=QString("Action/Copy");         break;
         case ID_HEX_DUMPTOFILE:             sResult=QString("Hex/DumpToFile");      break;
+        case ID_HEX_GOTOADDRESS:            sResult=QString("Hex/GoToAddress");     break;
+        case ID_HEX_SIGNATURE:              sResult=QString("Hex/Signature");       break;
+        case ID_HEX_FIND:                   sResult=QString("Hex/Find");            break;
+        case ID_HEX_FINDNEXT:               sResult=QString("Hex/FindNext");        break;
+        case ID_HEX_SELECTALL:              sResult=QString("Hex/SelectAll");       break;
+        case ID_HEX_COPYASHEX:              sResult=QString("Hex/CopyAsHex");       break;
         case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");   break;
+        case ID_DISASM_GOTOADDRESS:         sResult=QString("Disasm/GoToAddress");  break;
+        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Disasm/HexSignature"); break;
+        case ID_DISASM_SIGNATURE:           sResult=QString("Disasm/Signature");    break;
+        case ID_DISASM_FIND:                sResult=QString("Disasm/Find");         break;
+        case ID_DISASM_FINDNEXT:            sResult=QString("Disasm/FindNext");     break;
+        case ID_DISASM_SELECTALL:           sResult=QString("Disasm/SelectAll");    break;
+        case ID_DISASM_COPYASHEX:           sResult=QString("Disasm/CopyAsHex");    break;
+        case ID_DEBUGGER_RUN:               sResult=QString("Debugger/Run");        break;
+        case ID_DEBUGGER_STEP:              sResult=QString("Debugger/Step");       break;
     }
 
     return sResult;
@@ -117,9 +143,24 @@ QString XShortcuts::idToString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:                sResult=tr("Copy");                     break;
-        case ID_HEX_DUMPTOFILE:             sResult=tr("Dump to file");             break;
-        case ID_DISASM_DUMPTOFILE:          sResult=tr("Dump to file");             break;
+        case ID_ACTION_COPY:                sResult=tr("Copy");                         break;
+        case ID_HEX_DUMPTOFILE:             sResult=tr("Dump to file");                 break;
+        case ID_HEX_GOTOADDRESS:            sResult=tr("Go to address");                break;
+        case ID_HEX_SIGNATURE:              sResult=tr("Signature");                    break;
+        case ID_HEX_FIND:                   sResult=tr("Find");                         break;
+        case ID_HEX_FINDNEXT:               sResult=tr("Find next");                    break;
+        case ID_HEX_SELECTALL:              sResult=tr("Select all");                   break;
+        case ID_HEX_COPYASHEX:              sResult=tr("Copy as hex");                  break;
+        case ID_DISASM_DUMPTOFILE:          sResult=tr("Dump to file");                 break;
+        case ID_DISASM_GOTOADDRESS:         sResult=tr("Go to address");                break;
+        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Hex ")+tr("Signature");    break;
+        case ID_DISASM_SIGNATURE:           sResult=tr("Signature");                    break;
+        case ID_DISASM_FIND:                sResult=tr("Find");                         break;
+        case ID_DISASM_FINDNEXT:            sResult=tr("Find next");                    break;
+        case ID_DISASM_SELECTALL:           sResult=tr("Select all");                   break;
+        case ID_DISASM_COPYASHEX:           sResult=tr("Copy as hex");                  break;
+        case ID_DEBUGGER_RUN:               sResult=tr("Run");                          break;
+        case ID_DEBUGGER_STEP:              sResult=tr("Step");                         break;
     }
 
     return sResult;
@@ -133,7 +174,22 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     {
         case ID_ACTION_COPY:                ksResult=QKeySequence::Copy;            break;
         case ID_HEX_DUMPTOFILE:             ksResult=Qt::CTRL+Qt::Key_D;            break;
+        case ID_HEX_GOTOADDRESS:            ksResult=Qt::CTRL+Qt::Key_G;            break;
+        case ID_HEX_SIGNATURE:              ksResult=Qt::Key_S;                     break;
+        case ID_HEX_FIND:                   ksResult=QKeySequence::Find;            break;
+        case ID_HEX_FINDNEXT:               ksResult=QKeySequence::FindNext;        break;
+        case ID_HEX_SELECTALL:              ksResult=QKeySequence::SelectAll;       break;
+        case ID_HEX_COPYASHEX:              ksResult=QKeySequence::Copy;            break;
         case ID_DISASM_DUMPTOFILE:          ksResult=Qt::CTRL+Qt::Key_D;            break;
+        case ID_DISASM_GOTOADDRESS:         ksResult=Qt::CTRL+Qt::Key_G;            break;
+        case ID_DISASM_HEXSIGNATURE:        ksResult=Qt::Key_S;                     break;
+        case ID_DISASM_SIGNATURE:           ksResult=Qt::SHIFT+Qt::Key_G;           break;
+        case ID_DISASM_FIND:                ksResult=QKeySequence::Find;            break;
+        case ID_DISASM_FINDNEXT:            ksResult=QKeySequence::FindNext;        break;
+        case ID_DISASM_SELECTALL:           ksResult=QKeySequence::SelectAll;       break;
+        case ID_DISASM_COPYASHEX:           ksResult=QKeySequence::Copy;            break;
+        case ID_DEBUGGER_RUN:               ksResult=Qt::Key_F9;                    break;
+        case ID_DEBUGGER_STEP:              ksResult=Qt::Key_F7;                    break;
     }
 
     return ksResult;
