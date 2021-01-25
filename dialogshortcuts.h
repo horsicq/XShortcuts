@@ -22,6 +22,8 @@
 #define DIALOGSHORTCUTS_H
 
 #include <QDialog>
+#include <QStandardItemModel>
+#include <QSortFilterProxyModel>
 #include "xshortcuts.h"
 
 namespace Ui {
@@ -38,9 +40,13 @@ public:
 
     void setData(XShortcuts *pShortcuts);
 
+private slots:
+    void on_lineEditFilter_textChanged(const QString &sString);
+
 private:
     Ui::DialogShortcuts *ui;
     XShortcuts *g_pShortcuts;
+    QSortFilterProxyModel *g_pFilter;
 };
 
 #endif // DIALOGSHORTCUTS_H

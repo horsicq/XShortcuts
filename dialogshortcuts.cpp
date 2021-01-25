@@ -26,6 +26,8 @@ DialogShortcuts::DialogShortcuts(QWidget *pParent) :
     ui(new Ui::DialogShortcuts)
 {
     ui->setupUi(this);
+
+    g_pFilter=new QSortFilterProxyModel(this);
 }
 
 DialogShortcuts::~DialogShortcuts()
@@ -37,6 +39,43 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 {
     g_pShortcuts=pShortcuts;
 
-    // TODO
+    QList<XShortcuts::ID> listIDs=pShortcuts->getShortcutsIDs();
 
+    int nNumberOfRecords=listIDs.count();
+
+    QStandardItemModel *pModel=new QStandardItemModel(nNumberOfRecords,3);
+    pModel->setHeaderData(0,Qt::Horizontal,tr("Group"));
+    pModel->setHeaderData(1,Qt::Horizontal,tr("Name"));
+    pModel->setHeaderData(2,Qt::Horizontal,tr("Shortcut"));
+
+    for(int i=0;i<nNumberOfRecords;i++)
+    {
+        XShortcuts::ID idShortcut=listIDs.at(i);
+
+        QStandardItem *pTypeGroup=new QStandardItem;
+        pTypeGroup->setText(XShortcuts::idToGroupString(idShortcut));
+        pModel->setItem(i,0,pTypeGroup);
+
+        QStandardItem *pTypeName=new QStandardItem;
+        pTypeName->setText(XShortcuts::idToString(idShortcut));
+        pModel->setItem(i,1,pTypeName);
+
+        QStandardItem *pTypeShortcut=new QStandardItem;
+        pTypeShortcut->setText(pShortcuts->getShortcut(idShortcut).toString());
+        pModel->setItem(i,2,pTypeShortcut);
+    }
+
+    g_pFilter->setSourceModel(pModel);
+    ui->tableViewShortcuts->setModel(g_pFilter);
+
+    ui->tableViewShortcuts->setColumnWidth(0,100);  // TODO
+    ui->tableViewShortcuts->setColumnWidth(1,200); // TODO
+    ui->tableViewShortcuts->setColumnWidth(2,100); // TODO
+}
+
+void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
+{
+    g_pFilter->setFilterRegExp(sString);
+    g_pFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    g_pFilter->setFilterKeyColumn(1);
 }

@@ -61,6 +61,7 @@ public:
     explicit XShortcuts(QObject *pParent=nullptr);
     void setName(QString sName);
     void setShortcutsIDs(QList<ID> listValueIDs);
+    QList<ID> getShortcutsIDs();
     void load();
     void save();
     QKeySequence getShortcut(ID id);
@@ -68,6 +69,7 @@ public:
     static QString idToSettingsString(ID id);
     static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
+    static QString idToGroupString(ID id);
 
 private:
     QString g_sName;

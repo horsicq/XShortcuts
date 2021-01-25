@@ -36,6 +36,11 @@ void XShortcuts::setShortcutsIDs(QList<XShortcuts::ID> listValueIDs)
     this->g_listValueIDs=listValueIDs;
 }
 
+QList<XShortcuts::ID> XShortcuts::getShortcutsIDs()
+{
+    return g_listValueIDs;
+}
+
 void XShortcuts::load()
 {
     QSettings *pSettings=nullptr;
@@ -154,7 +159,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_HEX_COPYASHEX:              sResult=tr("Copy as hex");                  break;
         case ID_DISASM_DUMPTOFILE:          sResult=tr("Dump to file");                 break;
         case ID_DISASM_GOTOADDRESS:         sResult=tr("Go to address");                break;
-        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Hex ")+tr("Signature");    break;
+        case ID_DISASM_HEXSIGNATURE:        sResult=tr("Hex signature");                break;
         case ID_DISASM_SIGNATURE:           sResult=tr("Signature");                    break;
         case ID_DISASM_FIND:                sResult=tr("Find");                         break;
         case ID_DISASM_FINDNEXT:            sResult=tr("Find next");                    break;
@@ -196,4 +201,16 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     }
 
     return ksResult;
+}
+
+QString XShortcuts::idToGroupString(XShortcuts::ID id)
+{
+    QString sResult=tr("Unknown");
+
+    if      (id&ID_ACTION)      sResult=tr("Action");
+    else if (id&ID_HEX)         sResult=tr("Hex");
+    else if (id&ID_DISASM)      sResult=tr("Disasm");
+    else if (id&ID_DEBUGGER)    sResult=tr("Debugger");
+
+    return sResult;
 }
