@@ -54,7 +54,8 @@ public:
         ID_DISASM_COPYASHEX,
         ID_DEBUGGER             =0x80000,
         ID_DEBUGGER_RUN,
-        ID_DEBUGGER_STEP
+        ID_DEBUGGER_STEPINTO,
+        ID_DEBUGGER_STEPOVER
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);

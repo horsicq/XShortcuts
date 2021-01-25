@@ -131,7 +131,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DISASM_SELECTALL:           sResult=QString("Disasm/SelectAll");    break;
         case ID_DISASM_COPYASHEX:           sResult=QString("Disasm/CopyAsHex");    break;
         case ID_DEBUGGER_RUN:               sResult=QString("Debugger/Run");        break;
-        case ID_DEBUGGER_STEP:              sResult=QString("Debugger/Step");       break;
+        case ID_DEBUGGER_STEPINTO:          sResult=QString("Debugger/StepInto");   break;
+        case ID_DEBUGGER_STEPOVER:          sResult=QString("Debugger/StepOver");   break;
     }
 
     return sResult;
@@ -160,7 +161,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_SELECTALL:           sResult=tr("Select all");                   break;
         case ID_DISASM_COPYASHEX:           sResult=tr("Copy as hex");                  break;
         case ID_DEBUGGER_RUN:               sResult=tr("Run");                          break;
-        case ID_DEBUGGER_STEP:              sResult=tr("Step");                         break;
+        case ID_DEBUGGER_STEPINTO:          sResult=tr("Step into");                    break;
+        case ID_DEBUGGER_STEPOVER:          sResult=tr("Step over");                    break;
     }
 
     return sResult;
@@ -189,7 +191,8 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_SELECTALL:           ksResult=QKeySequence::SelectAll;       break;
         case ID_DISASM_COPYASHEX:           ksResult=QKeySequence::Copy;            break;
         case ID_DEBUGGER_RUN:               ksResult=Qt::Key_F9;                    break;
-        case ID_DEBUGGER_STEP:              ksResult=Qt::Key_F7;                    break;
+        case ID_DEBUGGER_STEPINTO:          ksResult=Qt::Key_F7;                    break;
+        case ID_DEBUGGER_STEPOVER:          ksResult=Qt::Key_F8;                    break;
     }
 
     return ksResult;
