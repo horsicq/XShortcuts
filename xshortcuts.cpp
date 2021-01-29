@@ -119,25 +119,26 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:                sResult=QString("Action/Copy");         break;
-        case ID_HEX_DUMPTOFILE:             sResult=QString("Hex/DumpToFile");      break;
-        case ID_HEX_GOTOADDRESS:            sResult=QString("Hex/GoToAddress");     break;
-        case ID_HEX_SIGNATURE:              sResult=QString("Hex/Signature");       break;
-        case ID_HEX_FIND:                   sResult=QString("Hex/Find");            break;
-        case ID_HEX_FINDNEXT:               sResult=QString("Hex/FindNext");        break;
-        case ID_HEX_SELECTALL:              sResult=QString("Hex/SelectAll");       break;
-        case ID_HEX_COPYASHEX:              sResult=QString("Hex/CopyAsHex");       break;
-        case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");   break;
-        case ID_DISASM_GOTOADDRESS:         sResult=QString("Disasm/GoToAddress");  break;
-        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Disasm/HexSignature"); break;
-        case ID_DISASM_SIGNATURE:           sResult=QString("Disasm/Signature");    break;
-        case ID_DISASM_FIND:                sResult=QString("Disasm/Find");         break;
-        case ID_DISASM_FINDNEXT:            sResult=QString("Disasm/FindNext");     break;
-        case ID_DISASM_SELECTALL:           sResult=QString("Disasm/SelectAll");    break;
-        case ID_DISASM_COPYASHEX:           sResult=QString("Disasm/CopyAsHex");    break;
-        case ID_DEBUGGER_RUN:               sResult=QString("Debugger/Run");        break;
-        case ID_DEBUGGER_STEPINTO:          sResult=QString("Debugger/StepInto");   break;
-        case ID_DEBUGGER_STEPOVER:          sResult=QString("Debugger/StepOver");   break;
+        case ID_ACTION_COPY:                sResult=QString("Action/Copy");             break;
+        case ID_HEX_DUMPTOFILE:             sResult=QString("Hex/DumpToFile");          break;
+        case ID_HEX_GOTOADDRESS:            sResult=QString("Hex/GoToAddress");         break;
+        case ID_HEX_SIGNATURE:              sResult=QString("Hex/Signature");           break;
+        case ID_HEX_FIND:                   sResult=QString("Hex/Find");                break;
+        case ID_HEX_FINDNEXT:               sResult=QString("Hex/FindNext");            break;
+        case ID_HEX_SELECTALL:              sResult=QString("Hex/SelectAll");           break;
+        case ID_HEX_COPYASHEX:              sResult=QString("Hex/CopyAsHex");           break;
+        case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");       break;
+        case ID_DISASM_GOTOADDRESS:         sResult=QString("Disasm/GoToAddress");      break;
+        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Disasm/HexSignature");     break;
+        case ID_DISASM_SIGNATURE:           sResult=QString("Disasm/Signature");        break;
+        case ID_DISASM_FIND:                sResult=QString("Disasm/Find");             break;
+        case ID_DISASM_FINDNEXT:            sResult=QString("Disasm/FindNext");         break;
+        case ID_DISASM_SELECTALL:           sResult=QString("Disasm/SelectAll");        break;
+        case ID_DISASM_COPYASHEX:           sResult=QString("Disasm/CopyAsHex");        break;
+        case ID_DEBUGGER_RUN:               sResult=QString("Debugger/Run");            break;
+        case ID_DEBUGGER_BREAKPOINT:        sResult=QString("Debugger/Breakpoint");     break;
+        case ID_DEBUGGER_STEPINTO:          sResult=QString("Debugger/StepInto");       break;
+        case ID_DEBUGGER_STEPOVER:          sResult=QString("Debugger/StepOver");       break;
     }
 
     return sResult;
@@ -166,6 +167,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_SELECTALL:           sResult=tr("Select all");                   break;
         case ID_DISASM_COPYASHEX:           sResult=tr("Copy as hex");                  break;
         case ID_DEBUGGER_RUN:               sResult=tr("Run");                          break;
+        case ID_DEBUGGER_BREAKPOINT:        sResult=tr("Breakpoint");                   break;
         case ID_DEBUGGER_STEPINTO:          sResult=tr("Step into");                    break;
         case ID_DEBUGGER_STEPOVER:          sResult=tr("Step over");                    break;
     }
@@ -196,6 +198,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_SELECTALL:           ksResult=QKeySequence::SelectAll;       break;
         case ID_DISASM_COPYASHEX:           ksResult=QKeySequence::Copy;            break;
         case ID_DEBUGGER_RUN:               ksResult=Qt::Key_F9;                    break;
+        case ID_DEBUGGER_BREAKPOINT:        ksResult=Qt::Key_F2;                    break;
         case ID_DEBUGGER_STEPINTO:          ksResult=Qt::Key_F7;                    break;
         case ID_DEBUGGER_STEPOVER:          ksResult=Qt::Key_F8;                    break;
     }

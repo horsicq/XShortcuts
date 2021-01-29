@@ -71,6 +71,10 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     ui->tableViewShortcuts->setColumnWidth(0,100);  // TODO
     ui->tableViewShortcuts->setColumnWidth(1,200); // TODO
     ui->tableViewShortcuts->setColumnWidth(2,100); // TODO
+
+    connect(ui->tableViewShortcuts->selectionModel(),
+            SIGNAL(selectionChanged(const QItemSelection &,const QItemSelection &)),
+            SLOT(onCellChanged(const QItemSelection &,const QItemSelection &)));
 }
 
 void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
@@ -78,4 +82,17 @@ void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
     g_pFilter->setFilterRegExp(sString);
     g_pFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
     g_pFilter->setFilterKeyColumn(1);
+}
+
+void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected)
+{
+    Q_UNUSED(itemDeselected)
+
+    QModelIndexList listSelected=itemSelected.indexes();
+
+    if(listSelected.count()>=3)
+    {
+        QString sShortcut=listSelected.at(2).data().toString();
+        ui->lineEditShortcut->setText(sShortcut);
+    }
 }
