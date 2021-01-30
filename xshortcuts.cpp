@@ -120,6 +120,9 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
     switch(id)
     {
         case ID_ACTION_COPY:                sResult=QString("Action/Copy");             break;
+        case ID_STRINGS_COPYSTRING:         sResult=QString("Strings/CopyString");      break;
+        case ID_STRINGS_COPYOFFSET:         sResult=QString("Strings/CopyOffset");      break;
+        case ID_STRINGS_COPYSIZE:           sResult=QString("Strings/CopySize");        break;
         case ID_HEX_DUMPTOFILE:             sResult=QString("Hex/DumpToFile");          break;
         case ID_HEX_GOTOADDRESS:            sResult=QString("Hex/GoToAddress");         break;
         case ID_HEX_SIGNATURE:              sResult=QString("Hex/Signature");           break;
@@ -151,6 +154,9 @@ QString XShortcuts::idToString(XShortcuts::ID id)
     switch(id)
     {
         case ID_ACTION_COPY:                sResult=tr("Copy");                         break;
+        case ID_STRINGS_COPYSTRING:         sResult=tr("Copy string");                  break;
+        case ID_STRINGS_COPYOFFSET:         sResult=tr("Copy offset");                  break;
+        case ID_STRINGS_COPYSIZE:           sResult=tr("Copy size");                    break;
         case ID_HEX_DUMPTOFILE:             sResult=tr("Dump to file");                 break;
         case ID_HEX_GOTOADDRESS:            sResult=tr("Go to address");                break;
         case ID_HEX_SIGNATURE:              sResult=tr("Signature");                    break;
@@ -182,6 +188,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     switch(id)
     {
         case ID_ACTION_COPY:                ksResult=QKeySequence::Copy;            break;
+        case ID_STRINGS_COPYSTRING:         ksResult=QKeySequence::Copy;            break;
+        case ID_STRINGS_COPYOFFSET:         ksResult=QKeySequence();                break;
+        case ID_STRINGS_COPYSIZE:           ksResult=QKeySequence();                break;
         case ID_HEX_DUMPTOFILE:             ksResult=Qt::CTRL+Qt::Key_D;            break;
         case ID_HEX_GOTOADDRESS:            ksResult=Qt::CTRL+Qt::Key_G;            break;
         case ID_HEX_SIGNATURE:              ksResult=Qt::Key_S;                     break;
@@ -211,6 +220,7 @@ QString XShortcuts::idToGroupString(XShortcuts::ID id)
     QString sResult=tr("Unknown");
 
     if      (id&ID_ACTION)      sResult=tr("Action");
+    else if (id&ID_STRINGS)     sResult=tr("Strings");
     else if (id&ID_HEX)         sResult=tr("Hex");
     else if (id&ID_DISASM)      sResult=tr("Disasm");
     else if (id&ID_DEBUGGER)    sResult=tr("Debugger");
