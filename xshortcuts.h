@@ -63,6 +63,15 @@ public:
         ID_DEBUGGER_STEPOVER
     };
 
+//    QAction actionOpen(tr("Open"),this);
+//    QAction actionScan(tr("Scan"),this);
+//    QAction actionHex(tr("Hex"),this);
+//    QAction actionStrings(tr("Strings"),this);
+//    QAction actionEntropy(tr("Entropy"),this);
+//    QAction actionHash(tr("Hash"),this);
+//    QMenu menuCopy(tr("Copy"),this);
+//    QAction actionDump(tr("Dump"),this);
+
     explicit XShortcuts(QObject *pParent=nullptr);
     void setName(QString sName);
     void setShortcutsIDs(QList<ID> listValueIDs);
