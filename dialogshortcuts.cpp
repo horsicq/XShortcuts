@@ -28,6 +28,9 @@ DialogShortcuts::DialogShortcuts(QWidget *pParent) :
     ui->setupUi(this);
 
     g_pFilter=new QSortFilterProxyModel(this);
+
+    ui->lineEditShortcut->setEnabled(false);
+    ui->lineEditShortcut->installEventFilter(this);
 }
 
 DialogShortcuts::~DialogShortcuts()
@@ -43,10 +46,10 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 
     int nNumberOfRecords=listIDs.count();
 
-    QStandardItemModel *pModel=new QStandardItemModel(nNumberOfRecords,3);
-    pModel->setHeaderData(0,Qt::Horizontal,tr("Group"));
-    pModel->setHeaderData(1,Qt::Horizontal,tr("Name"));
-    pModel->setHeaderData(2,Qt::Horizontal,tr("Shortcut"));
+    g_pModel=new QStandardItemModel(nNumberOfRecords,3);
+    g_pModel->setHeaderData(0,Qt::Horizontal,tr("Group"));
+    g_pModel->setHeaderData(1,Qt::Horizontal,tr("Name"));
+    g_pModel->setHeaderData(2,Qt::Horizontal,tr("Shortcut"));
 
     for(int i=0;i<nNumberOfRecords;i++)
     {
@@ -54,27 +57,92 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 
         QStandardItem *pTypeGroup=new QStandardItem;
         pTypeGroup->setText(XShortcuts::idToGroupString(idShortcut));
-        pModel->setItem(i,0,pTypeGroup);
+        g_pModel->setItem(i,0,pTypeGroup);
 
         QStandardItem *pTypeName=new QStandardItem;
         pTypeName->setText(XShortcuts::idToString(idShortcut));
-        pModel->setItem(i,1,pTypeName);
+        g_pModel->setItem(i,1,pTypeName);
 
         QStandardItem *pTypeShortcut=new QStandardItem;
         pTypeShortcut->setText(pShortcuts->getShortcut(idShortcut).toString());
-        pModel->setItem(i,2,pTypeShortcut);
+        pTypeShortcut->setData(idShortcut);
+        g_pModel->setItem(i,2,pTypeShortcut);
     }
 
-    g_pFilter->setSourceModel(pModel);
+    g_pFilter->setSourceModel(g_pModel);
     ui->tableViewShortcuts->setModel(g_pFilter);
 
     ui->tableViewShortcuts->setColumnWidth(0,100);  // TODO
-    ui->tableViewShortcuts->setColumnWidth(1,200); // TODO
-    ui->tableViewShortcuts->setColumnWidth(2,100); // TODO
+    ui->tableViewShortcuts->setColumnWidth(1,200);  // TODO
+    ui->tableViewShortcuts->setColumnWidth(2,200);  // TODO
 
     connect(ui->tableViewShortcuts->selectionModel(),
             SIGNAL(selectionChanged(const QItemSelection &,const QItemSelection &)),
             SLOT(onCellChanged(const QItemSelection &,const QItemSelection &)));
+}
+
+bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
+{
+    if(pObj==ui->lineEditShortcut)
+    {
+        if(pEvent->type()==QEvent::KeyPress)
+        {
+            QKeyEvent *pKeyEvent=static_cast<QKeyEvent *>(pEvent);
+            Qt::Key key=static_cast<Qt::Key>(pKeyEvent->key());
+
+            // Only modifiers without keys
+            if( (key==Qt::Key_Control)||
+                (key==Qt::Key_Shift)||
+                (key==Qt::Key_Alt)||
+                (key==Qt::Key_Meta))
+            {
+                return false;
+            }
+
+            Qt::KeyboardModifiers kbModifiers=pKeyEvent->modifiers();
+
+            qint32 nKey=key;
+
+            if(kbModifiers&Qt::ShiftModifier)       nKey+=Qt::SHIFT;
+            if(kbModifiers&Qt::ControlModifier)     nKey+=Qt::CTRL;
+            if(kbModifiers&Qt::AltModifier)         nKey+=Qt::ALT;
+            if(kbModifiers&Qt::MetaModifier)        nKey+=Qt::META;
+
+            QKeySequence keyValue=QKeySequence(nKey);
+
+            // TODO Check KeySequence
+
+            QString sText=keyValue.toString();
+
+            if(g_pModel)
+            {
+                int nRow=ui->tableViewShortcuts->currentIndex().row();
+
+                if(nRow<g_pModel->rowCount())
+                {
+                    QStandardItem *pItem=g_pModel->item(nRow,2);
+                    XShortcuts::ID idShortcut=(XShortcuts::ID)(pItem->data().toUInt());
+
+                    if(g_pShortcuts->checkShortcut(idShortcut,keyValue))
+                    {
+                        pItem->setText(sText);
+                        g_pShortcuts->setShortcut(idShortcut,keyValue);
+                        ui->lineEditShortcut->setText(sText);
+                    }
+                    else
+                    {
+                        // TODO
+                        // MessageBox
+                        qDebug("ERROR");
+                    }
+                }
+            }
+
+            return true;
+        }
+    }
+
+    return QObject::eventFilter(pObj,pEvent);
 }
 
 void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
@@ -93,6 +161,7 @@ void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QI
     if(listSelected.count()>=3)
     {
         QString sShortcut=listSelected.at(2).data().toString();
+        ui->lineEditShortcut->setEnabled(true);
         ui->lineEditShortcut->setText(sShortcut);
     }
 }

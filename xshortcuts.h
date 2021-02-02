@@ -35,10 +35,13 @@ public:
     {
         ID_ACTION               =0x10000,
         ID_ACTION_COPY,
+        ID_ACTION__END,
         ID_STRINGS              =0x20000,
         ID_STRINGS_COPYSTRING,
         ID_STRINGS_COPYOFFSET,
         ID_STRINGS_COPYSIZE,
+        ID_STRINGS_HEX,
+        ID_STRINGS__END,
         ID_HEX                  =0x40000,
         ID_HEX_DUMPTOFILE,
         ID_HEX_GOTOADDRESS,
@@ -47,6 +50,8 @@ public:
         ID_HEX_FINDNEXT,
         ID_HEX_SELECTALL,
         ID_HEX_COPYASHEX,
+        ID_HEX_DISASM,
+        ID_HEX__END,
         ID_DISASM               =0x80000,
         ID_DISASM_DUMPTOFILE,
         ID_DISASM_GOTOADDRESS,
@@ -56,34 +61,43 @@ public:
         ID_DISASM_FINDNEXT,
         ID_DISASM_SELECTALL,
         ID_DISASM_COPYASHEX,
+        ID_DISASM__END,
         ID_DEBUGGER             =0x100000,
         ID_DEBUGGER_RUN,
         ID_DEBUGGER_BREAKPOINT,
         ID_DEBUGGER_STEPINTO,
-        ID_DEBUGGER_STEPOVER
+        ID_DEBUGGER_STEPOVER,
+        ID_DEBUGGER__END,
+        ID_ARCHIVE              =0x200000,
+        ID_ARCHIVE_OPEN,
+        ID_ARCHIVE_SCAN,
+        ID_ARCHIVE_HEX,
+        ID_ARCHIVE_STRINGS,
+        ID_ARCHIVE_ENTROPY,
+        ID_ARCHIVE_HASH,
+        ID_ARCHIVE_COPYFILENAME,
+        ID_ARCHIVE_DUMPTOFILE,
+        ID_ARCHIVE__END
     };
-
-//    QAction actionOpen(tr("Open"),this);
-//    QAction actionScan(tr("Scan"),this);
-//    QAction actionHex(tr("Hex"),this);
-//    QAction actionStrings(tr("Strings"),this);
-//    QAction actionEntropy(tr("Entropy"),this);
-//    QAction actionHash(tr("Hash"),this);
-//    QMenu menuCopy(tr("Copy"),this);
-//    QAction actionDump(tr("Dump"),this);
 
     explicit XShortcuts(QObject *pParent=nullptr);
     void setName(QString sName);
+    void addGroup(ID idGroup);
     void setShortcutsIDs(QList<ID> listValueIDs);
     QList<ID> getShortcutsIDs();
     void load();
     void save();
     QKeySequence getShortcut(ID id);
-    QString getApplicationDataPath();
+    void setShortcut(ID id,QKeySequence keyValue);
+    bool checkShortcut(ID id,QKeySequence keyValue);
+
+    static QString getApplicationDataPath();
     static QString idToSettingsString(ID id);
     static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
     static QString idToGroupString(ID id);
+    static ID getGroupEnd(ID idGroup);
+    static ID getGroupFromId(ID id);
 
 private:
     QString g_sName;
