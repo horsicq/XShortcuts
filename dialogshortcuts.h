@@ -25,6 +25,7 @@
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 #include <QKeyEvent>
+#include <QMessageBox>
 #include "xshortcuts.h"
 
 namespace Ui {
@@ -38,7 +39,6 @@ class DialogShortcuts : public QDialog
 public:
     explicit DialogShortcuts(QWidget *pParent=nullptr);
     ~DialogShortcuts();
-
     void setData(XShortcuts *pShortcuts);
 
 protected:
@@ -47,6 +47,7 @@ protected:
 private slots:
     void on_lineEditFilter_textChanged(const QString &sString);
     void onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected);
+
 private:
     Ui::DialogShortcuts *ui;
     XShortcuts *g_pShortcuts;

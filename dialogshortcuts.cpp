@@ -110,8 +110,6 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 
             QKeySequence keyValue=QKeySequence(nKey);
 
-            // TODO Check KeySequence
-
             QString sText=keyValue.toString();
 
             if(g_pModel)
@@ -131,9 +129,8 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
                     }
                     else
                     {
-                        // TODO
-                        // MessageBox
-                        qDebug("ERROR");
+                        QString sErrorMessage=QString("%1: %2").arg(tr("Cannot set shortcut")).arg(sText);
+                        QMessageBox::critical(this,tr("Error"),sErrorMessage);
                     }
                 }
             }
