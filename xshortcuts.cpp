@@ -177,6 +177,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");       break;
         case ID_DISASM_GOTOADDRESS:         sResult=QString("Disasm/GoToAddress");      break;
         case ID_DISASM_GOTOOFFSET:          sResult=QString("Disasm/GoToOffset");       break;
+        case ID_DISASM_GOTOENTRYPOINT:      sResult=QString("Disasm/GoToEntryPoint");   break;
         case ID_DISASM_HEXSIGNATURE:        sResult=QString("Disasm/HexSignature");     break;
         case ID_DISASM_SIGNATURE:           sResult=QString("Disasm/Signature");        break;
         case ID_DISASM_FIND:                sResult=QString("Disasm/Find");             break;

@@ -129,8 +129,9 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
                     }
                     else
                     {
+                        QString sGroup=XShortcuts::idToGroupString(XShortcuts::getGroupFromId(idShortcut));
                         QString sErrorMessage=QString("%1: %2").arg(tr("Cannot set shortcut")).arg(sText);
-                        QMessageBox::critical(this,tr("Error"),sErrorMessage);
+                        QMessageBox::critical(this,sGroup,sErrorMessage);
                     }
                 }
             }
