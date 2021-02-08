@@ -103,12 +103,13 @@ void XShortcuts::save()
 
 QKeySequence XShortcuts::getShortcut(XShortcuts::ID id)
 {
+#ifdef QT_DEBUG
     if(!g_mapValues.contains(id))
     {
         QString sErrorString=idToSettingsString(id);
         qDebug(sErrorString.toLatin1().data());
     }
-
+#endif
     return g_mapValues.value(id);
 }
 
@@ -197,6 +198,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_ARCHIVE_OPEN:               sResult=QString("Archive/Open");            break;
         case ID_ARCHIVE_SCAN:               sResult=QString("Archive/Scan");            break;
         case ID_ARCHIVE_STRINGS:            sResult=QString("Archive/Strings");         break;
+        case ID_TABLE_HEX:                  sResult=QString("Table/Hex");               break;
+        case ID_TABLE_DISASM:               sResult=QString("Table/Disasm");            break;
     }
 
     return sResult;
@@ -248,6 +251,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_OPEN:               sResult=tr("Open");                         break;
         case ID_ARCHIVE_SCAN:               sResult=tr("Scan");                         break;
         case ID_ARCHIVE_STRINGS:            sResult=tr("Strings");                      break;
+        case ID_TABLE_HEX:                  sResult=tr("Hex");                          break;
+        case ID_TABLE_DISASM:               sResult=tr("Disasm");                       break;
     }
 
     return sResult;
@@ -299,6 +304,8 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_ARCHIVE_OPEN:               ksResult=QKeySequence();                break;
         case ID_ARCHIVE_SCAN:               ksResult=QKeySequence();                break;
         case ID_ARCHIVE_STRINGS:            ksResult=QKeySequence();                break;
+        case ID_TABLE_HEX:                  ksResult=QKeySequence();                break;
+        case ID_TABLE_DISASM:               ksResult=QKeySequence();                break;
     }
 
     return ksResult;
@@ -314,6 +321,7 @@ QString XShortcuts::idToGroupString(XShortcuts::ID id)
     else if (id&ID_DISASM)      sResult=tr("Disasm");
     else if (id&ID_DEBUGGER)    sResult=tr("Debugger");
     else if (id&ID_ARCHIVE)     sResult=tr("Archive");
+    else if (id&ID_TABLE)       sResult=tr("Table");
 
     return sResult;
 }
@@ -328,6 +336,7 @@ XShortcuts::ID XShortcuts::getGroupEnd(XShortcuts::ID idGroup)
     if(idGroup==ID_DISASM)      nEnd=ID_DISASM__END;
     if(idGroup==ID_DEBUGGER)    nEnd=ID_DEBUGGER__END;
     if(idGroup==ID_ARCHIVE)     nEnd=ID_ARCHIVE__END;
+    if(idGroup==ID_TABLE)       nEnd=ID_TABLE__END;
 
     return (ID)nEnd;
 }

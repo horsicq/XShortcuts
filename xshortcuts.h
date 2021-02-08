@@ -85,7 +85,11 @@ public:
         ID_ARCHIVE_HASH,
         ID_ARCHIVE_COPYFILENAME,
         ID_ARCHIVE_DUMPTOFILE,
-        ID_ARCHIVE__END
+        ID_ARCHIVE__END,
+        ID_TABLE               =0x400000,
+        ID_TABLE_HEX,
+        ID_TABLE_DISASM,
+        ID_TABLE__END
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
