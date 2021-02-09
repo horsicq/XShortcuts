@@ -175,6 +175,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_HEX_COPYCURSOROFFSET:       sResult=QString("Hex/CopyCursorOffset");    break;
         case ID_HEX_COPYCURSORADDRESS:      sResult=QString("Hex/CopyCursorAddress");   break;
         case ID_HEX_DISASM:                 sResult=QString("Hex/Disasm");              break;
+        case ID_HEX_MEMORYMAP:              sResult=QString("Hex/MemoryMap");           break;
         case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");       break;
         case ID_DISASM_GOTOADDRESS:         sResult=QString("Disasm/GoToAddress");      break;
         case ID_DISASM_GOTOOFFSET:          sResult=QString("Disasm/GoToOffset");       break;
@@ -227,6 +228,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_HEX_COPYCURSOROFFSET:       sResult=tr("Copy cursor offset");           break;
         case ID_HEX_COPYCURSORADDRESS:      sResult=tr("Copy cursor address");          break;
         case ID_HEX_DISASM:                 sResult=tr("Disasm");                       break;
+        case ID_HEX_MEMORYMAP:              sResult=tr("Memory map");                   break;
         case ID_DISASM_DUMPTOFILE:          sResult=tr("Dump to file");                 break;
         case ID_DISASM_GOTOADDRESS:         sResult=tr("Go to address");                break;
         case ID_DISASM_GOTOOFFSET:          sResult=tr("Go to offset");                 break;
@@ -280,6 +282,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_HEX_COPYCURSOROFFSET:       ksResult=QKeySequence();                break;
         case ID_HEX_COPYCURSORADDRESS:      ksResult=QKeySequence();                break;
         case ID_HEX_DISASM:                 ksResult=QKeySequence();                break;
+        case ID_HEX_MEMORYMAP:              ksResult=QKeySequence();                break;
         case ID_DISASM_DUMPTOFILE:          ksResult=Qt::CTRL+Qt::Key_D;            break;
         case ID_DISASM_GOTOADDRESS:         ksResult=Qt::CTRL+Qt::Key_G;            break;
         case ID_DISASM_GOTOOFFSET:          ksResult=QKeySequence();                break;

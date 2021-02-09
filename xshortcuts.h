@@ -54,6 +54,7 @@ public:
         ID_HEX_COPYCURSOROFFSET,
         ID_HEX_COPYCURSORADDRESS,
         ID_HEX_DISASM,
+        ID_HEX_MEMORYMAP,
         ID_HEX__END,
         ID_DISASM               =0x80000,
         ID_DISASM_DUMPTOFILE,
