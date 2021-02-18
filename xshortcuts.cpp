@@ -164,7 +164,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_STRINGS_COPYOFFSET:         sResult=QString("Strings/CopyOffset");          break;
         case ID_STRINGS_COPYSIZE:           sResult=QString("Strings/CopySize");            break;
         case ID_STRINGS_HEX:                sResult=QString("Strings/Hex");                 break;
-        case ID_SIGNATURES_COPYSTRING:      sResult=QString("Signatures/CopyString");       break;
+        case ID_SIGNATURES_COPYNAME:        sResult=QString("Signatures/CopyName");         break;
         case ID_SIGNATURES_COPYSIGNATURE:   sResult=QString("Signatures/CopySignature");    break;
         case ID_SIGNATURES_COPYADDRESS:     sResult=QString("Signatures/CopyAddress");      break;
         case ID_SIGNATURES_COPYOFFSET:      sResult=QString("Signatures/CopyOffset");       break;
@@ -223,7 +223,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_STRINGS_COPYOFFSET:         sResult=tr("Copy offset");                  break;
         case ID_STRINGS_COPYSIZE:           sResult=tr("Copy size");                    break;
         case ID_STRINGS_HEX:                sResult=tr("Hex");                          break;
-        case ID_SIGNATURES_COPYSTRING:      sResult=tr("Copy string");                  break;
+        case ID_SIGNATURES_COPYNAME:        sResult=tr("Copy name");                    break;
         case ID_SIGNATURES_COPYSIGNATURE:   sResult=tr("Copy string");                  break;
         case ID_SIGNATURES_COPYADDRESS:     sResult=tr("Copy address");                 break;
         case ID_SIGNATURES_COPYOFFSET:      sResult=tr("Copy offset");                  break;
@@ -283,7 +283,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_STRINGS_COPYOFFSET:         ksResult=QKeySequence();                break;
         case ID_STRINGS_COPYSIZE:           ksResult=QKeySequence();                break;
         case ID_STRINGS_HEX:                ksResult=QKeySequence();                break;
-        case ID_SIGNATURES_COPYSTRING:      ksResult=QKeySequence::Copy;            break;
+        case ID_SIGNATURES_COPYNAME:        ksResult=QKeySequence::Copy;            break;
         case ID_SIGNATURES_COPYSIGNATURE:   ksResult=QKeySequence();                break;
         case ID_SIGNATURES_COPYADDRESS:     ksResult=QKeySequence();                break;
         case ID_SIGNATURES_COPYOFFSET:      ksResult=QKeySequence();                break;
