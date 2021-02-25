@@ -224,7 +224,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_STRINGS_COPYSIZE:           sResult=tr("Copy size");                    break;
         case ID_STRINGS_HEX:                sResult=tr("Hex");                          break;
         case ID_SIGNATURES_COPYNAME:        sResult=tr("Copy name");                    break;
-        case ID_SIGNATURES_COPYSIGNATURE:   sResult=tr("Copy string");                  break;
+        case ID_SIGNATURES_COPYSIGNATURE:   sResult=tr("Copy signature");               break;
         case ID_SIGNATURES_COPYADDRESS:     sResult=tr("Copy address");                 break;
         case ID_SIGNATURES_COPYOFFSET:      sResult=tr("Copy offset");                  break;
         case ID_SIGNATURES_COPYSIZE:        sResult=tr("Copy size");                    break;
