@@ -99,6 +99,7 @@ public:
         ID_TABLE_HEX,
         ID_TABLE_DISASM,
         ID_TABLE__END
+        // TODO More
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
