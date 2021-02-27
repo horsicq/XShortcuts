@@ -18,30 +18,49 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-#ifndef XSHORTCUTSTSCROLLAREA_H
-#define XSHORTCUTSTSCROLLAREA_H
+#include "xshortcutsdialog.h"
 
-#include <QAbstractScrollArea>
-#include "xshortcuts.h"
-
-class XShortcutstScrollArea : public QAbstractScrollArea
+XShortcutsDialog::XShortcutsDialog(QWidget *pParent): QDialog(pParent)
 {
-    Q_OBJECT
+    g_pShortcuts=&g_scEmpty;
+    g_bIsFocused=false;
+}
 
-public:
-    XShortcutstScrollArea(QWidget *pParent=nullptr);
+void XShortcutsDialog::setShortcuts(XShortcuts *pShortcuts)
+{
+    g_pShortcuts=pShortcuts;
 
-    virtual void setShortcuts(XShortcuts *pShortcuts);
-    XShortcuts *getShortcuts();
+    if(g_bIsFocused)
+    {
+        registerShortcuts(false);
+        registerShortcuts(true);
+    }
+}
 
-protected:
-    bool eventFilter(QObject *pObj,QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState)=0;
+XShortcuts *XShortcutsDialog::getShortcuts()
+{
+    return g_pShortcuts;
+}
 
-private:
-    bool g_bIsFocused;
-    XShortcuts *g_pShortcuts;
-    XShortcuts g_scEmpty;
-};
+bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
+{
+    Q_UNUSED(pObj)
 
-#endif // XSHORTCUTSTSCROLLAREA_H
+    if(pEvent->type()==QEvent::FocusIn)
+    {
+        g_bIsFocused=true;
+        registerShortcuts(true);
+    }
+    else if(pEvent->type()==QEvent::FocusOut)
+    {
+        g_bIsFocused=false;
+        registerShortcuts(false);
+    }
+
+    return QDialog::eventFilter(pObj,pEvent);
+}
+
+void XShortcutsDialog::registerShortcuts(bool bState)
+{
+    Q_UNUSED(bState)
+}

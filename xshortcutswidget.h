@@ -32,7 +32,7 @@ class XShortcutsWidget : public QWidget
 public:
     explicit XShortcutsWidget(QWidget *pParent=nullptr);
 
-    void setShortcuts(XShortcuts *pShortcuts);
+    virtual void setShortcuts(XShortcuts *pShortcuts);
     XShortcuts *getShortcuts();
 
 protected:

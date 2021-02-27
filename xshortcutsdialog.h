@@ -18,25 +18,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-#ifndef XSHORTCUTSTSCROLLAREA_H
-#define XSHORTCUTSTSCROLLAREA_H
+#ifndef XSHORTCUTSDIALOG_H
+#define XSHORTCUTSDIALOG_H
 
-#include <QAbstractScrollArea>
+#include <QDialog>
 #include "xshortcuts.h"
 
-class XShortcutstScrollArea : public QAbstractScrollArea
+class XShortcutsDialog : public QDialog
 {
     Q_OBJECT
-
 public:
-    XShortcutstScrollArea(QWidget *pParent=nullptr);
+    XShortcutsDialog(QWidget *pParent=nullptr);
 
     virtual void setShortcuts(XShortcuts *pShortcuts);
     XShortcuts *getShortcuts();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState)=0;
+    virtual void registerShortcuts(bool bState);
 
 private:
     bool g_bIsFocused;
@@ -44,4 +43,4 @@ private:
     XShortcuts g_scEmpty;
 };
 
-#endif // XSHORTCUTSTSCROLLAREA_H
+#endif // XSHORTCUTSDIALOG_H
