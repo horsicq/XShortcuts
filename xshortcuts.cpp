@@ -57,7 +57,7 @@ void XShortcuts::load()
 
     if(g_sFilePath!="")
     {
-        pSettings=new QSettings(g_sFilePath,QSettings::IniFormat);
+        pSettings=new QSettings(g_sFilePath,QSettings::IniFormat); // TODO more options
     }
 
     int nNumberOfIDs=g_listValueIDs.count();
