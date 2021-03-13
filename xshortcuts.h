@@ -30,6 +30,7 @@
 class XShortcuts : public QObject
 {
     Q_OBJECT
+
 public:
     enum ID
     {

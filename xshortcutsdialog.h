@@ -27,6 +27,7 @@
 class XShortcutsDialog : public QDialog
 {
     Q_OBJECT
+
 public:
     XShortcutsDialog(QWidget *pParent=nullptr);
 
