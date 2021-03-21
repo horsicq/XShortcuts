@@ -42,6 +42,7 @@ public:
         ID_STRINGS_COPYOFFSET,
         ID_STRINGS_COPYSIZE,
         ID_STRINGS_HEX,
+        ID_STRINGS_DEMANGLE,
         ID_STRINGS__END,
         ID_SIGNATURES               =0x40000,
         ID_SIGNATURES_COPYNAME,
