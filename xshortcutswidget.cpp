@@ -23,14 +23,14 @@
 XShortcutsWidget::XShortcutsWidget(QWidget *pParent): QWidget(pParent)
 {
     g_pShortcuts=&g_scEmpty;
-    g_bIsFocused=false;
+    g_bIsActive=false;
 }
 
 void XShortcutsWidget::setShortcuts(XShortcuts *pShortcuts)
 {
     g_pShortcuts=pShortcuts;
 
-    if(g_bIsFocused)
+    if(g_bIsActive)
     {
         registerShortcuts(false);
         registerShortcuts(true);
@@ -42,18 +42,24 @@ XShortcuts *XShortcutsWidget::getShortcuts()
     return g_pShortcuts;
 }
 
+void XShortcutsWidget::setActive(bool bState)
+{
+    g_bIsActive=bState;
+}
+
 bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)
 
     if(pEvent->type()==QEvent::FocusIn)
     {
-        g_bIsFocused=true;
+        g_bIsActive=true;
+        registerShortcuts(false);
         registerShortcuts(true);
     }
     else if(pEvent->type()==QEvent::FocusOut)
     {
-        g_bIsFocused=false;
+        g_bIsActive=false;
         registerShortcuts(false);
     }
 

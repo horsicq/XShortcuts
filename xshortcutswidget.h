@@ -34,13 +34,14 @@ public:
 
     virtual void setShortcuts(XShortcuts *pShortcuts);
     XShortcuts *getShortcuts();
+    void setActive(bool bState);
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState)=0;
 
 private:
-    bool g_bIsFocused;
+    bool g_bIsActive;
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
 };
