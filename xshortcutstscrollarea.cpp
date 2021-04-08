@@ -42,6 +42,11 @@ XShortcuts *XShortcutstScrollArea::getShortcuts()
     return g_pShortcuts;
 }
 
+bool XShortcutstScrollArea::isFocused()
+{
+    return g_bIsFocused;
+}
+
 bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)

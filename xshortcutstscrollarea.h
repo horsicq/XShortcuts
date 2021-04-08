@@ -33,6 +33,7 @@ public:
 
     virtual void setShortcuts(XShortcuts *pShortcuts);
     XShortcuts *getShortcuts();
+    bool isFocused();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
