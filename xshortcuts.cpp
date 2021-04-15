@@ -22,13 +22,17 @@
 
 XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
 {
-
+    g_bIsNative=false;
 }
 
-void XShortcuts::setName(QString sName)
+void XShortcuts::setName(QString sValue)
 {
-    this->g_sName=sName;
-    this->g_sFilePath=getApplicationDataPath()+QDir::separator()+QString("%1").arg(sName);
+    this->g_sName=sValue;
+}
+
+void XShortcuts::setNative(bool bValue)
+{
+    g_bIsNative=bValue;
 }
 
 void XShortcuts::addGroup(XShortcuts::ID idGroup)
@@ -55,9 +59,13 @@ void XShortcuts::load()
 {
     QSettings *pSettings=nullptr;
 
-    if(g_sFilePath!="")
+    if(g_bIsNative)
     {
-        pSettings=new QSettings(g_sFilePath,QSettings::IniFormat); // TODO more options
+        pSettings=new QSettings;
+    }
+    else if(g_sName!="")
+    {
+        pSettings=new QSettings(qApp->applicationDirPath()+QDir::separator()+QString("%1").arg(g_sName),QSettings::IniFormat); // TODO more options
     }
 
     int nNumberOfIDs=g_listValueIDs.count();
@@ -86,18 +94,32 @@ void XShortcuts::load()
 
 void XShortcuts::save()
 {
-    if(g_sFilePath!="")
-    {
-        QSettings settings(g_sFilePath,QSettings::IniFormat);
+    QSettings *pSettings=nullptr;
 
+    if(g_bIsNative)
+    {
+        pSettings=new QSettings;
+    }
+    else if(g_sName!="")
+    {
+        pSettings=new QSettings(qApp->applicationDirPath()+QDir::separator()+QString("%1").arg(g_sName),QSettings::IniFormat); // TODO more options
+    }
+
+    if(pSettings)
+    {
         int nNumberOfIDs=g_listValueIDs.count();
 
         for(int i=0;i<nNumberOfIDs;i++)
         {
             ID id=g_listValueIDs.at(i);
             QString sName=idToSettingsString(id);
-            settings.setValue(sName,g_mapValues.value(id).toString());
+            pSettings->setValue(sName,g_mapValues.value(id).toString());
         }
+    }
+
+    if(pSettings)
+    {
+        delete pSettings;
     }
 }
 
@@ -142,72 +164,69 @@ bool XShortcuts::checkShortcut(XShortcuts::ID id, QKeySequence keyValue)
     return bResult;
 }
 
-QString XShortcuts::getApplicationDataPath()
-{
-    QString sResult;
-#ifdef Q_OS_MAC
-    sResult=qApp->applicationDirPath()+"/../Resources";
-#else
-    sResult=qApp->applicationDirPath();
-#endif
-    return sResult;
-}
-
 QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 {
     QString sResult="Unknown";
 
     switch(id)
     {
-        case ID_ACTION_COPY:                sResult=QString("Action/Copy");                 break;
-        case ID_STRINGS_COPYSTRING:         sResult=QString("Strings/CopyString");          break;
-        case ID_STRINGS_COPYOFFSET:         sResult=QString("Strings/CopyOffset");          break;
-        case ID_STRINGS_COPYSIZE:           sResult=QString("Strings/CopySize");            break;
-        case ID_STRINGS_HEX:                sResult=QString("Strings/Hex");                 break;
-        case ID_STRINGS_DEMANGLE:           sResult=QString("Strings/Demangle");            break;
-        case ID_SIGNATURES_COPYNAME:        sResult=QString("Signatures/CopyName");         break;
-        case ID_SIGNATURES_COPYSIGNATURE:   sResult=QString("Signatures/CopySignature");    break;
-        case ID_SIGNATURES_COPYADDRESS:     sResult=QString("Signatures/CopyAddress");      break;
-        case ID_SIGNATURES_COPYOFFSET:      sResult=QString("Signatures/CopyOffset");       break;
-        case ID_SIGNATURES_COPYSIZE:        sResult=QString("Signatures/CopySize");         break;
-        case ID_SIGNATURES_HEX:             sResult=QString("Signatures/Hex");              break;
-        case ID_HEX_DUMPTOFILE:             sResult=QString("Hex/DumpToFile");              break;
-        case ID_HEX_GOTOADDRESS:            sResult=QString("Hex/GoToAddress");             break;
-        case ID_HEX_GOTOOFFSET:             sResult=QString("Hex/GoToOffset");              break;
-        case ID_HEX_SIGNATURE:              sResult=QString("Hex/Signature");               break;
-        case ID_HEX_FIND:                   sResult=QString("Hex/Find");                    break;
-        case ID_HEX_FINDNEXT:               sResult=QString("Hex/FindNext");                break;
-        case ID_HEX_SELECTALL:              sResult=QString("Hex/SelectAll");               break;
-        case ID_HEX_COPYASHEX:              sResult=QString("Hex/CopyAsHex");               break;
-        case ID_HEX_COPYCURSOROFFSET:       sResult=QString("Hex/CopyCursorOffset");        break;
-        case ID_HEX_COPYCURSORADDRESS:      sResult=QString("Hex/CopyCursorAddress");       break;
-        case ID_HEX_DISASM:                 sResult=QString("Hex/Disasm");                  break;
-        case ID_HEX_MEMORYMAP:              sResult=QString("Hex/MemoryMap");               break;
-        case ID_DISASM_DUMPTOFILE:          sResult=QString("Disasm/DumpToFile");           break;
-        case ID_DISASM_GOTOADDRESS:         sResult=QString("Disasm/GoToAddress");          break;
-        case ID_DISASM_GOTOOFFSET:          sResult=QString("Disasm/GoToOffset");           break;
-        case ID_DISASM_GOTOENTRYPOINT:      sResult=QString("Disasm/GoToEntryPoint");       break;
-        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Disasm/HexSignature");         break;
-        case ID_DISASM_SIGNATURE:           sResult=QString("Disasm/Signature");            break;
-        case ID_DISASM_FIND:                sResult=QString("Disasm/Find");                 break;
-        case ID_DISASM_FINDNEXT:            sResult=QString("Disasm/FindNext");             break;
-        case ID_DISASM_SELECTALL:           sResult=QString("Disasm/SelectAll");            break;
-        case ID_DISASM_COPYASHEX:           sResult=QString("Disasm/CopyAsHex");            break;
-        case ID_DISASM_HEX:                 sResult=QString("Disasm/Hex");                  break;
-        case ID_DEBUGGER_RUN:               sResult=QString("Debugger/Run");                break;
-        case ID_DEBUGGER_BREAKPOINT:        sResult=QString("Debugger/Breakpoint");         break;
-        case ID_DEBUGGER_STEPINTO:          sResult=QString("Debugger/StepInto");           break;
-        case ID_DEBUGGER_STEPOVER:          sResult=QString("Debugger/StepOver");           break;
-        case ID_ARCHIVE_COPYFILENAME:       sResult=QString("Archive/CopyFilename");        break;
-        case ID_ARCHIVE_DUMPTOFILE:         sResult=QString("Archive/DumpToFile");          break;
-        case ID_ARCHIVE_ENTROPY:            sResult=QString("Archive/Entropy");             break;
-        case ID_ARCHIVE_HASH:               sResult=QString("Archive/Hash");                break;
-        case ID_ARCHIVE_HEX:                sResult=QString("Archive/Hex");                 break;
-        case ID_ARCHIVE_OPEN:               sResult=QString("Archive/Open");                break;
-        case ID_ARCHIVE_SCAN:               sResult=QString("Archive/Scan");                break;
-        case ID_ARCHIVE_STRINGS:            sResult=QString("Archive/Strings");             break;
-        case ID_TABLE_HEX:                  sResult=QString("Table/Hex");                   break;
-        case ID_TABLE_DISASM:               sResult=QString("Table/Disasm");                break;
+        case ID_ACTION_COPY:                sResult=QString("Shortcuts/Action/Copy");                   break;
+        case ID_STRINGS_COPYSTRING:         sResult=QString("Shortcuts/Strings/CopyString");            break;
+        case ID_STRINGS_COPYOFFSET:         sResult=QString("Shortcuts/Strings/CopyOffset");            break;
+        case ID_STRINGS_COPYSIZE:           sResult=QString("Shortcuts/Strings/CopySize");              break;
+        case ID_STRINGS_HEX:                sResult=QString("Shortcuts/Strings/Hex");                   break;
+        case ID_STRINGS_DEMANGLE:           sResult=QString("Shortcuts/Strings/Demangle");              break;
+        case ID_SIGNATURES_COPYNAME:        sResult=QString("Shortcuts/Signatures/CopyName");           break;
+        case ID_SIGNATURES_COPYSIGNATURE:   sResult=QString("Shortcuts/Signatures/CopySignature");      break;
+        case ID_SIGNATURES_COPYADDRESS:     sResult=QString("Shortcuts/Signatures/CopyAddress");        break;
+        case ID_SIGNATURES_COPYOFFSET:      sResult=QString("Shortcuts/Signatures/CopyOffset");         break;
+        case ID_SIGNATURES_COPYSIZE:        sResult=QString("Shortcuts/Signatures/CopySize");           break;
+        case ID_SIGNATURES_HEX:             sResult=QString("Shortcuts/Signatures/Hex");                break;
+        case ID_HEX_DUMPTOFILE:             sResult=QString("Shortcuts/Hex/DumpToFile");                break;
+        case ID_HEX_GOTOADDRESS:            sResult=QString("Shortcuts/Hex/GoToAddress");               break;
+        case ID_HEX_GOTOOFFSET:             sResult=QString("Shortcuts/Hex/GoToOffset");                break;
+        case ID_HEX_SIGNATURE:              sResult=QString("Shortcuts/Hex/Signature");                 break;
+        case ID_HEX_FIND:                   sResult=QString("Shortcuts/Hex/Find");                      break;
+        case ID_HEX_FINDNEXT:               sResult=QString("Shortcuts/Hex/FindNext");                  break;
+        case ID_HEX_SELECTALL:              sResult=QString("Shortcuts/Hex/SelectAll");                 break;
+        case ID_HEX_COPYASHEX:              sResult=QString("Shortcuts/Hex/CopyAsHex");                 break;
+        case ID_HEX_COPYCURSOROFFSET:       sResult=QString("Shortcuts/Hex/CopyCursorOffset");          break;
+        case ID_HEX_COPYCURSORADDRESS:      sResult=QString("Shortcuts/Hex/CopyCursorAddress");         break;
+        case ID_HEX_DISASM:                 sResult=QString("Shortcuts/Hex/Disasm");                    break;
+        case ID_HEX_MEMORYMAP:              sResult=QString("Shortcuts/Hex/MemoryMap");                 break;
+        case ID_DISASM_DUMPTOFILE:          sResult=QString("Shortcuts/Disasm/DumpToFile");             break;
+        case ID_DISASM_GOTOADDRESS:         sResult=QString("Shortcuts/Disasm/GoToAddress");            break;
+        case ID_DISASM_GOTOOFFSET:          sResult=QString("Shortcuts/Disasm/GoToOffset");             break;
+        case ID_DISASM_GOTOENTRYPOINT:      sResult=QString("Shortcuts/Disasm/GoToEntryPoint");         break;
+        case ID_DISASM_HEXSIGNATURE:        sResult=QString("Shortcuts/Disasm/HexSignature");           break;
+        case ID_DISASM_SIGNATURE:           sResult=QString("Shortcuts/Disasm/Signature");              break;
+        case ID_DISASM_FIND:                sResult=QString("Shortcuts/Disasm/Find");                   break;
+        case ID_DISASM_FINDNEXT:            sResult=QString("Shortcuts/Disasm/FindNext");               break;
+        case ID_DISASM_SELECTALL:           sResult=QString("Shortcuts/Disasm/SelectAll");              break;
+        case ID_DISASM_COPYASHEX:           sResult=QString("Shortcuts/Disasm/CopyAsHex");              break;
+        case ID_DISASM_COPYCURSOROFFSET:    sResult=QString("Shortcuts/Disasm/CopyCursorOffset");       break;
+        case ID_DISASM_COPYCURSORADDRESS:   sResult=QString("Shortcuts/Disasm/CopyCursorAddress");      break;
+        case ID_DISASM_HEX:                 sResult=QString("Shortcuts/Disasm/Hex");                    break;
+        case ID_DEBUGGER_RUN:               sResult=QString("Shortcuts/Debugger/Run");                  break;
+        case ID_DEBUGGER_BREAKPOINT:        sResult=QString("Shortcuts/Debugger/Breakpoint");           break;
+        case ID_DEBUGGER_STEPINTO:          sResult=QString("Shortcuts/Debugger/StepInto");             break;
+        case ID_DEBUGGER_STEPOVER:          sResult=QString("Shortcuts/Debugger/StepOver");             break;
+        case ID_ARCHIVE_COPYFILENAME:       sResult=QString("Shortcuts/Archive/CopyFilename");          break;
+        case ID_ARCHIVE_DUMPTOFILE:         sResult=QString("Shortcuts/Archive/DumpToFile");            break;
+        case ID_ARCHIVE_ENTROPY:            sResult=QString("Shortcuts/Archive/Entropy");               break;
+        case ID_ARCHIVE_HASH:               sResult=QString("Shortcuts/Archive/Hash");                  break;
+        case ID_ARCHIVE_HEX:                sResult=QString("Shortcuts/Archive/Hex");                   break;
+        case ID_ARCHIVE_OPEN:               sResult=QString("Shortcuts/Archive/Open");                  break;
+        case ID_ARCHIVE_SCAN:               sResult=QString("Shortcuts/Archive/Scan");                  break;
+        case ID_ARCHIVE_STRINGS:            sResult=QString("Shortcuts/Archive/Strings");               break;
+        case ID_TABLE_HEX:                  sResult=QString("Shortcuts/Table/Hex");                     break;
+        case ID_TABLE_DISASM:               sResult=QString("Shortcuts/Table/Disasm");                  break;
+        default:
+        {
+        #ifdef QT_DEBUG
+            qDebug("UNKNOWN!!!");
+        #endif
+        }
     }
 
     return sResult;

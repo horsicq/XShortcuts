@@ -105,7 +105,8 @@ public:
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
-    void setName(QString sName);
+    void setName(QString sValue);
+    void setNative(bool bValue);
     void addGroup(ID idGroup);
     void setShortcutsIDs(QList<ID> listValueIDs);
     QList<ID> getShortcutsIDs();
@@ -115,7 +116,6 @@ public:
     void setShortcut(ID id,QKeySequence keyValue);
     bool checkShortcut(ID id,QKeySequence keyValue);
 
-    static QString getApplicationDataPath();
     static QString idToSettingsString(ID id);
     static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
@@ -124,6 +124,7 @@ public:
     static ID getGroupFromId(ID id);
 
 private:
+    bool g_bIsNative;
     QString g_sName;
     QString g_sFilePath;
     QList<ID> g_listValueIDs;
