@@ -83,7 +83,7 @@ public:
         ID_DISASM__END,
         ID_DEBUGGER                 =0x200000,
         ID_DEBUGGER_RUN,
-        ID_DEBUGGER_BREAKPOINT,
+        ID_DEBUGGER_SETBREAKPOINT,
         ID_DEBUGGER_STEPINTO,
         ID_DEBUGGER_STEPOVER,
         ID_DEBUGGER__END,

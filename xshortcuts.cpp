@@ -208,7 +208,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSORADDRESS:   sResult=QString("Shortcuts/Disasm/CopyCursorAddress");      break;
         case ID_DISASM_HEX:                 sResult=QString("Shortcuts/Disasm/Hex");                    break;
         case ID_DEBUGGER_RUN:               sResult=QString("Shortcuts/Debugger/Run");                  break;
-        case ID_DEBUGGER_BREAKPOINT:        sResult=QString("Shortcuts/Debugger/Breakpoint");           break;
+        case ID_DEBUGGER_SETBREAKPOINT:     sResult=QString("Shortcuts/Debugger/SetBreakpoint");        break;
         case ID_DEBUGGER_STEPINTO:          sResult=QString("Shortcuts/Debugger/StepInto");             break;
         case ID_DEBUGGER_STEPOVER:          sResult=QString("Shortcuts/Debugger/StepOver");             break;
         case ID_ARCHIVE_COPYFILENAME:       sResult=QString("Shortcuts/Archive/CopyFilename");          break;
@@ -275,7 +275,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSOROFFSET:    sResult=tr("Copy cursor offset");           break;
         case ID_DISASM_HEX:                 sResult=tr("Hex");                          break;
         case ID_DEBUGGER_RUN:               sResult=tr("Run");                          break;
-        case ID_DEBUGGER_BREAKPOINT:        sResult=tr("Breakpoint");                   break;
+        case ID_DEBUGGER_SETBREAKPOINT:     sResult=tr("Set breakpoint");               break;
         case ID_DEBUGGER_STEPINTO:          sResult=tr("Step into");                    break;
         case ID_DEBUGGER_STEPOVER:          sResult=tr("Step over");                    break;
         case ID_ARCHIVE_COPYFILENAME:       sResult=tr("Copy filename");                break;
@@ -336,7 +336,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_COPYCURSOROFFSET:    ksResult=QKeySequence();                break;
         case ID_DISASM_HEX:                 ksResult=QKeySequence();                break;
         case ID_DEBUGGER_RUN:               ksResult=Qt::Key_F9;                    break;
-        case ID_DEBUGGER_BREAKPOINT:        ksResult=Qt::Key_F2;                    break;
+        case ID_DEBUGGER_SETBREAKPOINT:     ksResult=Qt::Key_F2;                    break;
         case ID_DEBUGGER_STEPINTO:          ksResult=Qt::Key_F7;                    break;
         case ID_DEBUGGER_STEPOVER:          ksResult=Qt::Key_F8;                    break;
         case ID_ARCHIVE_COPYFILENAME:       ksResult=QKeySequence::Copy;            break;
