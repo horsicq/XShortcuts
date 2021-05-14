@@ -265,6 +265,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_DUMPTOFILE:          sResult=tr("Dump to file");                 break;
         case ID_DISASM_GOTOADDRESS:         sResult=tr("Go to address");                break;
         case ID_DISASM_GOTOOFFSET:          sResult=tr("Go to offset");                 break;
+        case ID_DISASM_GOTOENTRYPOINT:      sResult=tr("Go to entry point");            break;
         case ID_DISASM_HEXSIGNATURE:        sResult=tr("Hex signature");                break;
         case ID_DISASM_SIGNATURE:           sResult=tr("Signature");                    break;
         case ID_DISASM_FIND:                sResult=tr("Find");                         break;
@@ -326,6 +327,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_DUMPTOFILE:          ksResult=Qt::CTRL+Qt::Key_D;            break;
         case ID_DISASM_GOTOADDRESS:         ksResult=Qt::CTRL+Qt::Key_G;            break;
         case ID_DISASM_GOTOOFFSET:          ksResult=QKeySequence();                break;
+        case ID_DISASM_GOTOENTRYPOINT:      ksResult=QKeySequence();                break;
         case ID_DISASM_HEXSIGNATURE:        ksResult=Qt::Key_S;                     break;
         case ID_DISASM_SIGNATURE:           ksResult=Qt::SHIFT+Qt::Key_G;           break;
         case ID_DISASM_FIND:                ksResult=QKeySequence::Find;            break;
