@@ -211,6 +211,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_SETBREAKPOINT:     sResult=QString("Shortcuts/Debugger/SetBreakpoint");        break;
         case ID_DEBUGGER_STEPINTO:          sResult=QString("Shortcuts/Debugger/StepInto");             break;
         case ID_DEBUGGER_STEPOVER:          sResult=QString("Shortcuts/Debugger/StepOver");             break;
+        case ID_DEBUGGER_STOP:              sResult=QString("Shortcuts/Debugger/Stop");                 break;
         case ID_ARCHIVE_COPYFILENAME:       sResult=QString("Shortcuts/Archive/CopyFilename");          break;
         case ID_ARCHIVE_DUMPTOFILE:         sResult=QString("Shortcuts/Archive/DumpToFile");            break;
         case ID_ARCHIVE_ENTROPY:            sResult=QString("Shortcuts/Archive/Entropy");               break;
@@ -279,6 +280,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_SETBREAKPOINT:     sResult=tr("Set breakpoint");               break;
         case ID_DEBUGGER_STEPINTO:          sResult=tr("Step into");                    break;
         case ID_DEBUGGER_STEPOVER:          sResult=tr("Step over");                    break;
+        case ID_DEBUGGER_STOP:              sResult=tr("Stop");                         break;
         case ID_ARCHIVE_COPYFILENAME:       sResult=tr("Copy filename");                break;
         case ID_ARCHIVE_DUMPTOFILE:         sResult=tr("Dump to file");                 break;
         case ID_ARCHIVE_ENTROPY:            sResult=tr("Entropy");                      break;
@@ -341,6 +343,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_SETBREAKPOINT:     ksResult=Qt::Key_F2;                    break;
         case ID_DEBUGGER_STEPINTO:          ksResult=Qt::Key_F7;                    break;
         case ID_DEBUGGER_STEPOVER:          ksResult=Qt::Key_F8;                    break;
+        case ID_DEBUGGER_STOP:              ksResult=QKeySequence();                break;
         case ID_ARCHIVE_COPYFILENAME:       ksResult=QKeySequence::Copy;            break;
         case ID_ARCHIVE_DUMPTOFILE:         ksResult=Qt::CTRL+Qt::Key_D;            break;
         case ID_ARCHIVE_ENTROPY:            ksResult=QKeySequence();                break;

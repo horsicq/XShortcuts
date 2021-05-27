@@ -86,6 +86,7 @@ public:
         ID_DEBUGGER_SETBREAKPOINT,
         ID_DEBUGGER_STEPINTO,
         ID_DEBUGGER_STEPOVER,
+        ID_DEBUGGER_STOP,
         ID_DEBUGGER__END,
         ID_ARCHIVE                  =0x400000,
         ID_ARCHIVE_OPEN,
