@@ -291,6 +291,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_STRINGS:            sResult=tr("Strings");                      break;
         case ID_TABLE_HEX:                  sResult=tr("Hex");                          break;
         case ID_TABLE_DISASM:               sResult=tr("Disasm");                       break;
+        default:                            sResult=tr("Unknown");
     }
 
     return sResult;
@@ -354,6 +355,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_ARCHIVE_STRINGS:            ksResult=QKeySequence();                break;
         case ID_TABLE_HEX:                  ksResult=QKeySequence();                break;
         case ID_TABLE_DISASM:               ksResult=QKeySequence();                break;
+        default:                            ksResult=QKeySequence();
     }
 
     return ksResult;
