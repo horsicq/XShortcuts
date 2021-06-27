@@ -47,6 +47,18 @@ void XShortcutsWidget::setActive(bool bState)
     g_bIsActive=bState;
 }
 
+QWidget *XShortcutsWidget::getMainWidget(QWidget *pWidget)
+{
+    QWidget *pResult=pWidget;
+
+    while(pResult->parent())
+    {
+        pResult=qobject_cast<QWidget *>(pResult->parent());
+    }
+
+    return pResult;
+}
+
 bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)

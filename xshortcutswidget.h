@@ -36,6 +36,8 @@ public:
     XShortcuts *getShortcuts();
     void setActive(bool bState);
 
+    static QWidget *getMainWidget(QWidget *pWidget);
+
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState)=0;
