@@ -24,6 +24,7 @@
 #include <QWidget>
 #include <QShortcut>
 #include "xshortcuts.h"
+#include "xoptions.h"
 
 class XShortcutsWidget : public QWidget
 {
@@ -35,8 +36,6 @@ public:
     virtual void setShortcuts(XShortcuts *pShortcuts);
     XShortcuts *getShortcuts();
     void setActive(bool bState);
-
-    static QWidget *getMainWidget(QWidget *pWidget);
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
