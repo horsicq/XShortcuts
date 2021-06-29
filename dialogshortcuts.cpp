@@ -130,7 +130,7 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
                     else
                     {
                         QString sGroup=XShortcuts::idToGroupString(XShortcuts::getGroupFromId(idShortcut));
-                        QString sErrorMessage=QString("%1: %2").arg(tr("Cannot set shortcut")).arg(sText);
+                        QString sErrorMessage=QString("%1: %2").arg(tr("Cannot set shortcut"),sText);
                         QMessageBox::critical(this,sGroup,sErrorMessage);
                     }
                 }
@@ -162,4 +162,9 @@ void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QI
         ui->lineEditShortcut->setEnabled(true);
         ui->lineEditShortcut->setText(sShortcut);
     }
+}
+
+void DialogShortcuts::on_pushButtonClose_clicked()
+{
+    this->close();
 }

@@ -47,6 +47,7 @@ protected:
 private slots:
     void on_lineEditFilter_textChanged(const QString &sString);
     void onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected);
+    void on_pushButtonClose_clicked();
 
 private:
     Ui::DialogShortcuts *ui;
