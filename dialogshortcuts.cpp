@@ -168,3 +168,23 @@ void DialogShortcuts::on_pushButtonClose_clicked()
 {
     this->close();
 }
+
+void DialogShortcuts::on_pushButtonClear_clicked()
+{
+    ui->lineEditShortcut->clear();
+
+    if(g_pModel)
+    {
+        int nRow=ui->tableViewShortcuts->currentIndex().row();
+
+        if(nRow<g_pModel->rowCount())
+        {
+            QStandardItem *pItem=g_pModel->item(nRow,2);
+            XShortcuts::ID idShortcut=(XShortcuts::ID)(pItem->data().toUInt());
+
+            pItem->setText("");
+            ui->lineEditShortcut->setText("");
+            g_pShortcuts->setShortcut(idShortcut,QKeySequence());
+        }
+    }
+}

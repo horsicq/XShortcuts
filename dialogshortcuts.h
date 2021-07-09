@@ -49,6 +49,8 @@ private slots:
     void onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected);
     void on_pushButtonClose_clicked();
 
+    void on_pushButtonClear_clicked();
+
 private:
     Ui::DialogShortcuts *ui;
     XShortcuts *g_pShortcuts;
