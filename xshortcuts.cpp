@@ -207,6 +207,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSOROFFSET:            sResult=QString("Shortcuts/Disasm/CopyCursorOffset");           break;
         case ID_DISASM_COPYCURSORADDRESS:           sResult=QString("Shortcuts/Disasm/CopyCursorAddress");          break;
         case ID_DISASM_HEX:                         sResult=QString("Shortcuts/Disasm/Hex");                        break;
+        case ID_DEBUGGER_OPEN:                      sResult=QString("Shortcuts/Debugger/Open");                     break;
+        case ID_DEBUGGER_EXIT:                      sResult=QString("Shortcuts/Debugger/Exit");                     break;
         case ID_DEBUGGER_RUN:                       sResult=QString("Shortcuts/Debugger/Run");                      break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       sResult=QString("Shortcuts/Debugger/SetBreakpoint");            break;
         case ID_DEBUGGER_STEPINTO:                  sResult=QString("Shortcuts/Debugger/StepInto");                 break;
@@ -284,6 +286,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSORADDRESS:           sResult=tr("Copy cursor address");          break;
         case ID_DISASM_COPYCURSOROFFSET:            sResult=tr("Copy cursor offset");           break;
         case ID_DISASM_HEX:                         sResult=tr("Hex");                          break;
+        case ID_DEBUGGER_OPEN:                      sResult=tr("Open");                         break;
+        case ID_DEBUGGER_EXIT:                      sResult=tr("Exit");                         break;
         case ID_DEBUGGER_RUN:                       sResult=tr("Run");                          break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       sResult=tr("Set breakpoint");               break;
         case ID_DEBUGGER_STEPINTO:                  sResult=tr("Step into");                    break;
@@ -356,6 +360,8 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_COPYCURSORADDRESS:           ksResult=QKeySequence();                break;
         case ID_DISASM_COPYCURSOROFFSET:            ksResult=QKeySequence();                break;
         case ID_DISASM_HEX:                         ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_OPEN:                      ksResult=Qt::Key_F3;                    break;
+        case ID_DEBUGGER_EXIT:                      ksResult=Qt::ALT+Qt::Key_X;             break;
         case ID_DEBUGGER_RUN:                       ksResult=Qt::Key_F9;                    break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       ksResult=Qt::Key_F2;                    break;
         case ID_DEBUGGER_STEPINTO:                  ksResult=Qt::Key_F7;                    break;

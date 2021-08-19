@@ -82,6 +82,8 @@ public:
         ID_DISASM_HEX,
         ID_DISASM__END,
         ID_DEBUGGER                 =0x200000,
+        ID_DEBUGGER_OPEN,
+        ID_DEBUGGER_EXIT,
         ID_DEBUGGER_RUN,
         ID_DEBUGGER_SETREMOVEBREAKPOINT,
         ID_DEBUGGER_STEPINTO,
