@@ -210,6 +210,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_OPEN:                      sResult=QString("Shortcuts/Debugger/Open");                     break;
         case ID_DEBUGGER_EXIT:                      sResult=QString("Shortcuts/Debugger/Exit");                     break;
         case ID_DEBUGGER_RUN:                       sResult=QString("Shortcuts/Debugger/Run");                      break;
+        case ID_DEBUGGER_PAUSE:                     sResult=QString("Shortcuts/Debugger/Pause");                    break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       sResult=QString("Shortcuts/Debugger/SetBreakpoint");            break;
         case ID_DEBUGGER_STEPINTO:                  sResult=QString("Shortcuts/Debugger/StepInto");                 break;
         case ID_DEBUGGER_STEPOVER:                  sResult=QString("Shortcuts/Debugger/StepOver");                 break;
@@ -289,6 +290,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_OPEN:                      sResult=tr("Open");                         break;
         case ID_DEBUGGER_EXIT:                      sResult=tr("Exit");                         break;
         case ID_DEBUGGER_RUN:                       sResult=tr("Run");                          break;
+        case ID_DEBUGGER_PAUSE:                     sResult=tr("Pause");                        break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       sResult=tr("Set breakpoint");               break;
         case ID_DEBUGGER_STEPINTO:                  sResult=tr("Step into");                    break;
         case ID_DEBUGGER_STEPOVER:                  sResult=tr("Step over");                    break;
@@ -361,6 +363,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_COPYCURSOROFFSET:            ksResult=QKeySequence();                break;
         case ID_DISASM_HEX:                         ksResult=QKeySequence();                break;
         case ID_DEBUGGER_OPEN:                      ksResult=Qt::Key_F3;                    break;
+        case ID_DEBUGGER_PAUSE:                     ksResult=Qt::Key_F12;                   break;
         case ID_DEBUGGER_EXIT:                      ksResult=Qt::ALT+Qt::Key_X;             break;
         case ID_DEBUGGER_RUN:                       ksResult=Qt::Key_F9;                    break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       ksResult=Qt::Key_F2;                    break;
