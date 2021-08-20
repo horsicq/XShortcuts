@@ -216,6 +216,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_STEPOVER:                  sResult=QString("Shortcuts/Debugger/StepOver");                 break;
         case ID_DEBUGGER_STOP:                      sResult=QString("Shortcuts/Debugger/Stop");                     break;
         case ID_DEBUGGER_RESTART:                   sResult=QString("Shortcuts/Debugger/Restart");                  break;
+        case ID_DEBUGGER_ATTACH:                    sResult=QString("Shortcuts/Debugger/Attach");                   break;
+        case ID_DEBUGGER_DETACH:                    sResult=QString("Shortcuts/Debugger/Detach");                   break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=QString("Shortcuts/Debugger/Disasm/DumpToFile");        break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=QString("Shortcuts/Debugger/Disasm/GoToAddress");       break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=QString("Shortcuts/Debugger/Disasm/HexSignature");      break;
@@ -297,6 +299,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_STEPOVER:                  sResult=tr("Step over");                    break;
         case ID_DEBUGGER_STOP:                      sResult=tr("Stop");                         break;
         case ID_DEBUGGER_RESTART:                   sResult=tr("Restart");                      break;
+        case ID_DEBUGGER_ATTACH:                    sResult=tr("Attach");                       break;
+        case ID_DEBUGGER_DETACH:                    sResult=tr("Detach");                       break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=tr("Dump to file");                 break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=tr("Go to address");                break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=tr("Hex signature");                break;
@@ -373,6 +377,8 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_STEPOVER:                  ksResult=Qt::Key_F8;                    break;
         case ID_DEBUGGER_STOP:                      ksResult=QKeySequence();                break;
         case ID_DEBUGGER_RESTART:                   ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_ATTACH:                    ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_DETACH:                    ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       ksResult=QKeySequence();                break;
