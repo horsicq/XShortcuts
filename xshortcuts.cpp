@@ -227,6 +227,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=QString("Shortcuts/Debugger/Disasm/FindNext");          break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=QString("Shortcuts/Debugger/Disasm/CopyAsHex");         break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=QString("Shortcuts/Debugger/Disasm/CopyCursorAddress"); break;
+        case ID_DEBUGGER_HEX_DUMPTOFILE:            sResult=QString("Shortcuts/Debugger/Hex/DumpToFile");           break;
+        case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=QString("Shortcuts/Debugger/Hex/GoToAddress");          break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=QString("Shortcuts/Archive/CopyFilename");              break;
         case ID_ARCHIVE_DUMPTOFILE:                 sResult=QString("Shortcuts/Archive/DumpToFile");                break;
         case ID_ARCHIVE_ENTROPY:                    sResult=QString("Shortcuts/Archive/Entropy");                   break;
@@ -311,6 +313,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=tr("Find next");                    break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=tr("Copy as hex");                  break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=tr("Copy cursor address");          break;
+        case ID_DEBUGGER_HEX_DUMPTOFILE:            sResult=tr("Dump to file");                 break;
+        case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=tr("Go to address");                break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=tr("Copy filename");                break;
         case ID_ARCHIVE_DUMPTOFILE:                 sResult=tr("Dump to file");                 break;
         case ID_ARCHIVE_ENTROPY:                    sResult=tr("Entropy");                      break;
@@ -390,6 +394,8 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_FINDNEXT:           ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_HEX_DUMPTOFILE:            ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_HEX_GOTOADDRESS:           ksResult=QKeySequence();                break;
         case ID_ARCHIVE_COPYFILENAME:               ksResult=QKeySequence::Copy;            break;
         case ID_ARCHIVE_DUMPTOFILE:                 ksResult=Qt::CTRL+Qt::Key_D;            break;
         case ID_ARCHIVE_ENTROPY:                    ksResult=QKeySequence();                break;
