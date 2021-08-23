@@ -68,6 +68,13 @@ void XShortcuts::load()
         pSettings=new QSettings(qApp->applicationDirPath()+QDir::separator()+QString("%1").arg(g_sName),QSettings::IniFormat); // TODO more options
     }
 
+#ifdef QT_DEBUG
+    if(pSettings)
+    {
+        qDebug("XShortcuts load %s",pSettings->fileName().toLatin1().data());
+    }
+#endif
+
     int nNumberOfIDs=g_listValueIDs.count();
 
     for(int i=0;i<nNumberOfIDs;i++)
@@ -104,6 +111,13 @@ void XShortcuts::save()
     {
         pSettings=new QSettings(qApp->applicationDirPath()+QDir::separator()+QString("%1").arg(g_sName),QSettings::IniFormat); // TODO more options
     }
+
+#ifdef QT_DEBUG
+    if(pSettings)
+    {
+        qDebug("XShortcuts save %s",pSettings->fileName().toLatin1().data());
+    }
+#endif
 
     if(pSettings)
     {
@@ -374,7 +388,14 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_COPYCURSORADDRESS:           ksResult=QKeySequence();                break;
         case ID_DISASM_COPYCURSOROFFSET:            ksResult=QKeySequence();                break;
         case ID_DISASM_HEX:                         ksResult=QKeySequence();                break;
-        case ID_DEBUGGER_OPEN:                      ksResult=Qt::Key_F3;                    break;
+        case ID_DEBUGGER_OPEN:
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F3;
+        #endif
+        #ifdef Q_OS_OSX
+            ksResult=Qt::META+Qt::Key_O;
+        #endif
+            break;
         case ID_DEBUGGER_CLOSE:                     ksResult=QKeySequence();                break;
         case ID_DEBUGGER_PAUSE:                     ksResult=Qt::Key_F12;                   break;
         case ID_DEBUGGER_EXIT:                      ksResult=Qt::ALT+Qt::Key_X;             break;
