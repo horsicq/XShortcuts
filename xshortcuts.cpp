@@ -351,16 +351,36 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:                        ksResult=QKeySequence::Copy;            break;
-        case ID_STRINGS_COPYSTRING:                 ksResult=QKeySequence::Copy;            break;
-        case ID_STRINGS_COPYOFFSET:                 ksResult=QKeySequence();                break;
-        case ID_STRINGS_COPYSIZE:                   ksResult=QKeySequence();                break;
-        case ID_STRINGS_HEX:                        ksResult=QKeySequence();                break;
-        case ID_STRINGS_DEMANGLE:                   ksResult=QKeySequence();                break;
-        case ID_SIGNATURES_COPYNAME:                ksResult=QKeySequence::Copy;            break;
-        case ID_SIGNATURES_COPYSIGNATURE:           ksResult=QKeySequence();                break;
-        case ID_SIGNATURES_COPYADDRESS:             ksResult=QKeySequence();                break;
-        case ID_SIGNATURES_COPYOFFSET:              ksResult=QKeySequence();                break;
+        case ID_ACTION_COPY:
+            ksResult=QKeySequence::Copy;
+            break;
+        case ID_STRINGS_COPYSTRING:
+            ksResult=QKeySequence::Copy;
+            break;
+        case ID_STRINGS_COPYOFFSET:
+            ksResult=QKeySequence();
+            break;
+        case ID_STRINGS_COPYSIZE:
+            ksResult=QKeySequence();
+            break;
+        case ID_STRINGS_HEX:
+            ksResult=QKeySequence();
+            break;
+        case ID_STRINGS_DEMANGLE:
+            ksResult=QKeySequence();
+            break;
+        case ID_SIGNATURES_COPYNAME:
+            ksResult=QKeySequence::Copy;
+            break;
+        case ID_SIGNATURES_COPYSIGNATURE:
+            ksResult=QKeySequence();
+            break;
+        case ID_SIGNATURES_COPYADDRESS:
+            ksResult=QKeySequence();
+            break;
+        case ID_SIGNATURES_COPYOFFSET:
+            ksResult=QKeySequence();
+            break;
         case ID_SIGNATURES_COPYSIZE:                ksResult=QKeySequence();                break;
         case ID_SIGNATURES_HEX:                     ksResult=QKeySequence();                break;
         case ID_HEX_DUMPTOFILE:                     ksResult=Qt::CTRL+Qt::Key_D;            break;
@@ -392,11 +412,16 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         #ifdef Q_OS_WIN
             ksResult=Qt::Key_F3;
         #endif
+        #ifdef Q_OS_LINUX
+            ksResult=QKeySequence(); // TODO
+        #endif
         #ifdef Q_OS_OSX
-            ksResult=Qt::META+Qt::Key_O;
+            ksResult=Qt::CTRL+Qt::Key_O;
         #endif
             break;
-        case ID_DEBUGGER_CLOSE:                     ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_CLOSE:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_PAUSE:                     ksResult=Qt::Key_F12;                   break;
         case ID_DEBUGGER_EXIT:                      ksResult=Qt::ALT+Qt::Key_X;             break;
         case ID_DEBUGGER_RUN:                       ksResult=Qt::Key_F9;                    break;

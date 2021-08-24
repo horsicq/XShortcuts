@@ -64,7 +64,7 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
         g_pModel->setItem(i,1,pTypeName);
 
         QStandardItem *pTypeShortcut=new QStandardItem;
-        pTypeShortcut->setText(pShortcuts->getShortcut(idShortcut).toString());
+        pTypeShortcut->setText(pShortcuts->getShortcut(idShortcut).toString(QKeySequence::NativeText));
         pTypeShortcut->setData(idShortcut);
         g_pModel->setItem(i,2,pTypeShortcut);
     }
@@ -110,7 +110,7 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 
             QKeySequence keyValue=QKeySequence(nKey);
 
-            QString sText=keyValue.toString();
+            QString sText=keyValue.toString(QKeySequence::NativeText);
 
             if(g_pModel)
             {
