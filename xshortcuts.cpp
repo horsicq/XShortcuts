@@ -381,9 +381,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_SIGNATURES_COPYOFFSET:
             ksResult=QKeySequence();
             break;
-        case ID_SIGNATURES_COPYSIZE:                ksResult=QKeySequence();                break;
-        case ID_SIGNATURES_HEX:                     ksResult=QKeySequence();                break;
-        case ID_HEX_DUMPTOFILE:                     ksResult=Qt::CTRL+Qt::Key_D;            break;
+        case ID_SIGNATURES_COPYSIZE:
+            ksResult=QKeySequence();
+            break;
+        case ID_SIGNATURES_HEX:
+            ksResult=QKeySequence();
+            break;
+        case ID_HEX_DUMPTOFILE:
+            ksResult=Qt::CTRL+Qt::Key_D;
+            break;
         case ID_HEX_GOTOADDRESS:                    ksResult=Qt::CTRL+Qt::Key_G;            break;
         case ID_HEX_GOTOOFFSET:                     ksResult=QKeySequence();                break;
         case ID_HEX_SIGNATURE:                      ksResult=Qt::Key_S;                     break;
