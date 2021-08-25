@@ -426,9 +426,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_DUMPTOFILE:
             ksResult=Qt::CTRL+Qt::Key_D;
             break;
-        case ID_DISASM_GOTOADDRESS:                 ksResult=Qt::CTRL+Qt::Key_G;            break;
-        case ID_DISASM_GOTOOFFSET:                  ksResult=QKeySequence();                break;
-        case ID_DISASM_GOTOENTRYPOINT:              ksResult=QKeySequence();                break;
+        case ID_DISASM_GOTOADDRESS:
+            ksResult=Qt::CTRL+Qt::Key_G;
+            break;
+        case ID_DISASM_GOTOOFFSET:
+            ksResult=QKeySequence();
+            break;
+        case ID_DISASM_GOTOENTRYPOINT:
+            ksResult=QKeySequence();
+            break;
         case ID_DISASM_HEXSIGNATURE:                ksResult=Qt::Key_S;                     break;
         case ID_DISASM_SIGNATURE:                   ksResult=Qt::SHIFT+Qt::Key_G;           break;
         case ID_DISASM_FIND:                        ksResult=QKeySequence::Find;            break;
