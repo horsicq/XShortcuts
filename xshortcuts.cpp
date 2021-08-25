@@ -390,9 +390,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_HEX_DUMPTOFILE:
             ksResult=Qt::CTRL+Qt::Key_D;
             break;
-        case ID_HEX_GOTOADDRESS:                    ksResult=Qt::CTRL+Qt::Key_G;            break;
-        case ID_HEX_GOTOOFFSET:                     ksResult=QKeySequence();                break;
-        case ID_HEX_SIGNATURE:                      ksResult=Qt::Key_S;                     break;
+        case ID_HEX_GOTOADDRESS:
+            ksResult=Qt::CTRL+Qt::Key_G;
+            break;
+        case ID_HEX_GOTOOFFSET:
+            ksResult=QKeySequence();
+            break;
+        case ID_HEX_SIGNATURE:
+            ksResult=Qt::Key_S;
+            break;
         case ID_HEX_FIND:                           ksResult=QKeySequence::Find;            break;
         case ID_HEX_FINDNEXT:                       ksResult=QKeySequence::FindNext;        break;
         case ID_HEX_SELECTALL:                      ksResult=QKeySequence::SelectAll;       break;
