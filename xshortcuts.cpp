@@ -417,9 +417,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_HEX_COPYCURSORADDRESS:
             ksResult=QKeySequence();
             break;
-        case ID_HEX_DISASM:                         ksResult=QKeySequence();                break;
-        case ID_HEX_MEMORYMAP:                      ksResult=QKeySequence();                break;
-        case ID_DISASM_DUMPTOFILE:                  ksResult=Qt::CTRL+Qt::Key_D;            break;
+        case ID_HEX_DISASM:
+            ksResult=QKeySequence();
+            break;
+        case ID_HEX_MEMORYMAP:
+            ksResult=QKeySequence();
+            break;
+        case ID_DISASM_DUMPTOFILE:
+            ksResult=Qt::CTRL+Qt::Key_D;
+            break;
         case ID_DISASM_GOTOADDRESS:                 ksResult=Qt::CTRL+Qt::Key_G;            break;
         case ID_DISASM_GOTOOFFSET:                  ksResult=QKeySequence();                break;
         case ID_DISASM_GOTOENTRYPOINT:              ksResult=QKeySequence();                break;
