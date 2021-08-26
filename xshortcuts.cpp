@@ -435,9 +435,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_GOTOENTRYPOINT:
             ksResult=QKeySequence();
             break;
-        case ID_DISASM_HEXSIGNATURE:                ksResult=Qt::Key_S;                     break;
-        case ID_DISASM_SIGNATURE:                   ksResult=Qt::SHIFT+Qt::Key_G;           break;
-        case ID_DISASM_FIND:                        ksResult=QKeySequence::Find;            break;
+        case ID_DISASM_HEXSIGNATURE:
+            ksResult=Qt::Key_S;
+            break;
+        case ID_DISASM_SIGNATURE:
+            ksResult=Qt::SHIFT+Qt::Key_G;
+            break;
+        case ID_DISASM_FIND:
+            ksResult=QKeySequence::Find;
+            break;
         case ID_DISASM_FINDNEXT:                    ksResult=QKeySequence::FindNext;        break;
         case ID_DISASM_SELECTALL:                   ksResult=QKeySequence::SelectAll;       break;
         case ID_DISASM_COPYASHEX:                   ksResult=QKeySequence::Copy;            break;
@@ -466,8 +472,28 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_STEPOVER:                  ksResult=Qt::Key_F8;                    break;
         case ID_DEBUGGER_STOP:                      ksResult=QKeySequence();                break;
         case ID_DEBUGGER_RESTART:                   ksResult=QKeySequence();                break;
-        case ID_DEBUGGER_ATTACH:                    ksResult=QKeySequence();                break;
-        case ID_DEBUGGER_DETACH:                    ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_ATTACH:
+        #ifdef Q_OS_WIN
+            ksResult=Qt::ALT+Qt::Key_A;
+        #endif
+        #ifdef Q_OS_LINUX
+            ksResult=QKeySequence(); // TODO
+        #endif
+        #ifdef Q_OS_OSX
+            ksResult=QKeySequence(); // TODO
+        #endif
+            break;
+        case ID_DEBUGGER_DETACH:
+        #ifdef Q_OS_WIN
+            ksResult=Qt::CTRL+Qt::ALT+Qt::Key_F2;
+        #endif
+        #ifdef Q_OS_LINUX
+            ksResult=QKeySequence(); // TODO
+        #endif
+        #ifdef Q_OS_OSX
+            ksResult=QKeySequence(); // TODO
+        #endif
+            break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        ksResult=QKeySequence();                break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       ksResult=QKeySequence();                break;
