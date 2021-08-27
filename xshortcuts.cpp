@@ -476,8 +476,12 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_CLOSE:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_PAUSE:                     ksResult=Qt::Key_F12;                   break;
-        case ID_DEBUGGER_EXIT:                      ksResult=Qt::ALT+Qt::Key_X;             break;
+        case ID_DEBUGGER_PAUSE:
+            ksResult=Qt::Key_F12;
+            break;
+        case ID_DEBUGGER_EXIT:
+            ksResult=Qt::ALT+Qt::Key_X;
+            break;
         case ID_DEBUGGER_RUN:                       ksResult=Qt::Key_F9;                    break;
         case ID_DEBUGGER_SETREMOVEBREAKPOINT:       ksResult=Qt::Key_F2;                    break;
         case ID_DEBUGGER_STEPINTO:                  ksResult=Qt::Key_F7;                    break;
