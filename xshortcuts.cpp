@@ -491,9 +491,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_STEPINTO:
             ksResult=Qt::Key_F7;
             break;
-        case ID_DEBUGGER_STEPOVER:                  ksResult=Qt::Key_F8;                    break;
-        case ID_DEBUGGER_STOP:                      ksResult=QKeySequence();                break;
-        case ID_DEBUGGER_RESTART:                   ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_STEPOVER:
+            ksResult=Qt::Key_F8;
+            break;
+        case ID_DEBUGGER_STOP:
+            ksResult=QKeySequence();
+            break;
+        case ID_DEBUGGER_RESTART:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_ATTACH:
         #ifdef Q_OS_WIN
             ksResult=Qt::ALT+Qt::Key_A;
