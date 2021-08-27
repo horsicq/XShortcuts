@@ -444,12 +444,24 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_FIND:
             ksResult=QKeySequence::Find;
             break;
-        case ID_DISASM_FINDNEXT:                    ksResult=QKeySequence::FindNext;        break;
-        case ID_DISASM_SELECTALL:                   ksResult=QKeySequence::SelectAll;       break;
-        case ID_DISASM_COPYASHEX:                   ksResult=QKeySequence::Copy;            break;
-        case ID_DISASM_COPYCURSORADDRESS:           ksResult=QKeySequence();                break;
-        case ID_DISASM_COPYCURSOROFFSET:            ksResult=QKeySequence();                break;
-        case ID_DISASM_HEX:                         ksResult=QKeySequence();                break;
+        case ID_DISASM_FINDNEXT:
+            ksResult=QKeySequence::FindNext;
+            break;
+        case ID_DISASM_SELECTALL:
+            ksResult=QKeySequence::SelectAll;
+            break;
+        case ID_DISASM_COPYASHEX:
+            ksResult=QKeySequence::Copy;
+            break;
+        case ID_DISASM_COPYCURSORADDRESS:
+            ksResult=QKeySequence();
+            break;
+        case ID_DISASM_COPYCURSOROFFSET:
+            ksResult=QKeySequence();
+            break;
+        case ID_DISASM_HEX:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_OPEN:
         #ifdef Q_OS_WIN
             ksResult=Qt::Key_F3;
