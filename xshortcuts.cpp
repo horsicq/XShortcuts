@@ -549,9 +549,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_DUMPTOFILE:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_HEX_GOTOADDRESS:           ksResult=QKeySequence();                break;
-        case ID_ARCHIVE_COPYFILENAME:               ksResult=QKeySequence::Copy;            break;
-        case ID_ARCHIVE_DUMPTOFILE:                 ksResult=Qt::CTRL+Qt::Key_D;            break;
+        case ID_DEBUGGER_HEX_GOTOADDRESS:
+            ksResult=QKeySequence();
+            break;
+        case ID_ARCHIVE_COPYFILENAME:
+            ksResult=QKeySequence::Copy;
+            break;
+        case ID_ARCHIVE_DUMPTOFILE:
+            ksResult=Qt::CTRL+Qt::Key_D;
+            break;
         case ID_ARCHIVE_ENTROPY:                    ksResult=QKeySequence();                break;
         case ID_ARCHIVE_HASH:                       ksResult=QKeySequence();                break;
         case ID_ARCHIVE_HEX:                        ksResult=QKeySequence();                break;
