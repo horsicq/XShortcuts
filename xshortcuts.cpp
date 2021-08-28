@@ -534,9 +534,15 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_SIGNATURE:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_DISASM_FIND:               ksResult=QKeySequence();                break;
-        case ID_DEBUGGER_DISASM_FINDNEXT:           ksResult=QKeySequence();                break;
-        case ID_DEBUGGER_DISASM_COPYASHEX:          ksResult=QKeySequence();                break;
+        case ID_DEBUGGER_DISASM_FIND:
+            ksResult=QKeySequence();
+            break;
+        case ID_DEBUGGER_DISASM_FINDNEXT:
+            ksResult=QKeySequence();
+            break;
+        case ID_DEBUGGER_DISASM_COPYASHEX:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  ksResult=QKeySequence();                break;
         case ID_DEBUGGER_HEX_DUMPTOFILE:            ksResult=QKeySequence();                break;
         case ID_DEBUGGER_HEX_GOTOADDRESS:           ksResult=QKeySequence();                break;
