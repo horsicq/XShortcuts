@@ -48,7 +48,6 @@ private slots:
     void on_lineEditFilter_textChanged(const QString &sString);
     void onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected);
     void on_pushButtonClose_clicked();
-
     void on_pushButtonClear_clicked();
 
 private:

@@ -36,6 +36,7 @@ public:
     {
         GROUPID_UNKNOWN=0,
         GROUPID_FILE,
+        GROUPID_VIEW,
         GROUPID_DEBUGGER,
         GROUPID_DEBUG,
         GROUPID_ACTION,

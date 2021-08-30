@@ -292,7 +292,13 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_SIGNATURES_COPYOFFSET:              sResult=tr("Copy offset");                  break;
         case ID_SIGNATURES_COPYSIZE:                sResult=tr("Copy size");                    break;
         case ID_SIGNATURES_HEX:                     sResult=tr("Hex");                          break;
-        case ID_HEX_DUMPTOFILE:                     sResult=tr("Dump to file");                 break;
+        case ID_HEX_DUMPTOFILE:
+        case ID_DEBUGGER_HEX_DUMPTOFILE:
+        case ID_DEBUGGER_DISASM_DUMPTOFILE:
+        case ID_ARCHIVE_DUMPTOFILE:                 sResult=tr("Dump to file");                 break;
+        case ID_DISASM_GOTOADDRESS:
+        case ID_DEBUGGER_HEX_GOTOADDRESS:
+        case ID_DEBUGGER_DISASM_GOTOADDRESS:
         case ID_HEX_GOTOADDRESS:                    sResult=tr("Go to address");                break;
         case ID_HEX_GOTOOFFSET:                     sResult=tr("Go to offset");                 break;
         case ID_HEX_SIGNATURE:                      sResult=tr("Signature");                    break;
@@ -305,7 +311,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_HEX_DISASM:                         sResult=tr("Disasm");                       break;
         case ID_HEX_MEMORYMAP:                      sResult=tr("Memory map");                   break;
         case ID_DISASM_DUMPTOFILE:                  sResult=tr("Dump to file");                 break;
-        case ID_DISASM_GOTOADDRESS:                 sResult=tr("Go to address");                break;
         case ID_DISASM_GOTOOFFSET:                  sResult=tr("Go to offset");                 break;
         case ID_DISASM_GOTOENTRYPOINT:              sResult=tr("Go to entry point");            break;
         case ID_DISASM_HEXSIGNATURE:                sResult=tr("Hex signature");                break;
@@ -329,18 +334,13 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=tr("Step over");                    break;
         case ID_DEBUGGER_DEBUG_STOP:                sResult=tr("Stop");                         break;
         case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
-        case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=tr("Dump to file");                 break;
-        case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=tr("Go to address");                break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=tr("Hex signature");                break;
         case ID_DEBUGGER_DISASM_SIGNATURE:          sResult=tr("Signature");                    break;
         case ID_DEBUGGER_DISASM_FIND:               sResult=tr("Find");                         break;
         case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=tr("Find next");                    break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=tr("Copy as hex");                  break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=tr("Copy cursor address");          break;
-        case ID_DEBUGGER_HEX_DUMPTOFILE:            sResult=tr("Dump to file");                 break;
-        case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=tr("Go to address");                break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=tr("Copy filename");                break;
-        case ID_ARCHIVE_DUMPTOFILE:                 sResult=tr("Dump to file");                 break;
         case ID_ARCHIVE_ENTROPY:                    sResult=tr("Entropy");                      break;
         case ID_ARCHIVE_HASH:                       sResult=tr("Hash");                         break;
         case ID_ARCHIVE_HEX:                        sResult=tr("Hex");                          break;
@@ -605,6 +605,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
 
     if      (groupId==GROUPID_ACTION)       sResult=tr("Action");
     else if (groupId==GROUPID_FILE)         sResult=tr("File");
+    else if (groupId==GROUPID_VIEW)         sResult=tr("View");
     else if (groupId==GROUPID_STRINGS)      sResult=tr("Strings");
     else if (groupId==GROUPID_SIGNATURES)   sResult=tr("Signatures");
     else if (groupId==GROUPID_HEX)          sResult=tr("Hex");
