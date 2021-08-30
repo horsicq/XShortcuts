@@ -49,6 +49,7 @@ public:
 
     static const int GROUP_SH=24;
 
+    // TODO the subgroup
     enum ID
     {
         ID_ACTION                   =GROUPID_ACTION<<GROUP_SH,
