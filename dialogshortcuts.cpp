@@ -55,8 +55,10 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     {
         XShortcuts::ID idShortcut=listIDs.at(i);
 
+        XShortcuts::GROUPID groupId=XShortcuts::getGroupFromId(idShortcut);
+
         QStandardItem *pTypeGroup=new QStandardItem;
-        pTypeGroup->setText(XShortcuts::idToGroupString(idShortcut));
+        pTypeGroup->setText(XShortcuts::groupIdToString(groupId));
         g_pModel->setItem(i,0,pTypeGroup);
 
         QStandardItem *pTypeName=new QStandardItem;
@@ -129,7 +131,7 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
                     }
                     else
                     {
-                        QString sGroup=XShortcuts::idToGroupString(XShortcuts::getGroupFromId(idShortcut));
+                        QString sGroup=XShortcuts::groupIdToString(XShortcuts::getGroupFromId(idShortcut));
                         QString sErrorMessage=QString("%1: %2").arg(tr("Cannot set shortcut"),sText);
                         QMessageBox::critical(this,sGroup,sErrorMessage);
                     }

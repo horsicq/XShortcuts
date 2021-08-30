@@ -35,11 +35,21 @@ void XShortcuts::setNative(bool bValue)
     g_bIsNative=bValue;
 }
 
-void XShortcuts::addGroup(XShortcuts::ID idGroup)
+void XShortcuts::addGroup(GROUPID groupId)
 {
-    qint32 nEnd=getGroupEnd(idGroup);
+    qint32 nEnd=getGroupEnd(groupId);
 
-    for(qint32 nId=idGroup+1;nId<nEnd;nId++)
+    for(qint32 nId=(groupId<<GROUP_SH)+1;nId<nEnd;nId++)
+    {
+        g_listValueIDs.append((XShortcuts::ID)nId);
+    }
+}
+
+void XShortcuts::addGroup(ID id)
+{
+    qint32 nEnd=getGroupEnd((GROUPID)(id>>GROUP_SH));
+
+    for(qint32 nId=id+1;nId<nEnd;nId++)
     {
         g_listValueIDs.append((XShortcuts::ID)nId);
     }
@@ -160,9 +170,9 @@ bool XShortcuts::checkShortcut(XShortcuts::ID id, QKeySequence keyValue)
 
     if(keyValue!=QKeySequence())
     {
-        ID idGroup=getGroupFromId(id);
+        GROUPID idGroup=getGroupFromId(id);
 
-        for(qint32 nId=idGroup+1;nId<getGroupEnd(idGroup);nId++)
+        for(qint32 nId=(idGroup<<GROUP_SH)+1;nId<getGroupEnd(idGroup);nId++)
         {
             if(id!=nId)
             {
@@ -221,18 +231,18 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSOROFFSET:            sResult=QString("Shortcuts/Disasm/CopyCursorOffset");           break;
         case ID_DISASM_COPYCURSORADDRESS:           sResult=QString("Shortcuts/Disasm/CopyCursorAddress");          break;
         case ID_DISASM_HEX:                         sResult=QString("Shortcuts/Disasm/Hex");                        break;
-        case ID_DEBUGGER_OPEN:                      sResult=QString("Shortcuts/Debugger/Open");                     break;
-        case ID_DEBUGGER_CLOSE:                     sResult=QString("Shortcuts/Debugger/Close");                    break;
-        case ID_DEBUGGER_EXIT:                      sResult=QString("Shortcuts/Debugger/Exit");                     break;
-        case ID_DEBUGGER_RUN:                       sResult=QString("Shortcuts/Debugger/Run");                      break;
-        case ID_DEBUGGER_PAUSE:                     sResult=QString("Shortcuts/Debugger/Pause");                    break;
-        case ID_DEBUGGER_SETREMOVEBREAKPOINT:       sResult=QString("Shortcuts/Debugger/SetBreakpoint");            break;
-        case ID_DEBUGGER_STEPINTO:                  sResult=QString("Shortcuts/Debugger/StepInto");                 break;
-        case ID_DEBUGGER_STEPOVER:                  sResult=QString("Shortcuts/Debugger/StepOver");                 break;
-        case ID_DEBUGGER_STOP:                      sResult=QString("Shortcuts/Debugger/Stop");                     break;
-        case ID_DEBUGGER_RESTART:                   sResult=QString("Shortcuts/Debugger/Restart");                  break;
-        case ID_DEBUGGER_ATTACH:                    sResult=QString("Shortcuts/Debugger/Attach");                   break;
-        case ID_DEBUGGER_DETACH:                    sResult=QString("Shortcuts/Debugger/Detach");                   break;
+        case ID_DEBUGGER_FILE_OPEN:                 sResult=QString("Shortcuts/Debugger/File/Open");                break;
+        case ID_DEBUGGER_FILE_CLOSE:                sResult=QString("Shortcuts/Debugger/File/Close");               break;
+        case ID_DEBUGGER_FILE_EXIT:                 sResult=QString("Shortcuts/Debugger/File/Exit");                break;
+        case ID_DEBUGGER_DEBUG_RUN:                 sResult=QString("Shortcuts/Debugger/Debug/Run");                break;
+        case ID_DEBUGGER_DEBUG_PAUSE:               sResult=QString("Shortcuts/Debugger/Debug/Pause");              break;
+        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT: sResult=QString("Shortcuts/Debugger/Debug/SetBreakpoint");      break;
+        case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=QString("Shortcuts/Debugger/Debug/StepInto");           break;
+        case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=QString("Shortcuts/Debugger/Debug/StepOver");           break;
+        case ID_DEBUGGER_DEBUG_STOP:                sResult=QString("Shortcuts/Debugger/Debug/Stop");               break;
+        case ID_DEBUGGER_DEBUG_RESTART:             sResult=QString("Shortcuts/Debugger/Debug/Restart");            break;
+        case ID_DEBUGGER_FILE_ATTACH:               sResult=QString("Shortcuts/Debugger/File/Attach");              break;
+        case ID_DEBUGGER_FILE_DETACH:               sResult=QString("Shortcuts/Debugger/File/Detach");              break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=QString("Shortcuts/Debugger/Disasm/DumpToFile");        break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=QString("Shortcuts/Debugger/Disasm/GoToAddress");       break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=QString("Shortcuts/Debugger/Disasm/HexSignature");      break;
@@ -307,18 +317,18 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSORADDRESS:           sResult=tr("Copy cursor address");          break;
         case ID_DISASM_COPYCURSOROFFSET:            sResult=tr("Copy cursor offset");           break;
         case ID_DISASM_HEX:                         sResult=tr("Hex");                          break;
-        case ID_DEBUGGER_OPEN:                      sResult=tr("Open");                         break;
-        case ID_DEBUGGER_CLOSE:                     sResult=tr("Close");                        break;
-        case ID_DEBUGGER_EXIT:                      sResult=tr("Exit");                         break;
-        case ID_DEBUGGER_RUN:                       sResult=tr("Run");                          break;
-        case ID_DEBUGGER_PAUSE:                     sResult=tr("Pause");                        break;
-        case ID_DEBUGGER_SETREMOVEBREAKPOINT:       sResult=tr("Set breakpoint");               break;
-        case ID_DEBUGGER_STEPINTO:                  sResult=tr("Step into");                    break;
-        case ID_DEBUGGER_STEPOVER:                  sResult=tr("Step over");                    break;
-        case ID_DEBUGGER_STOP:                      sResult=tr("Stop");                         break;
-        case ID_DEBUGGER_RESTART:                   sResult=tr("Restart");                      break;
-        case ID_DEBUGGER_ATTACH:                    sResult=tr("Attach");                       break;
-        case ID_DEBUGGER_DETACH:                    sResult=tr("Detach");                       break;
+        case ID_DEBUGGER_FILE_OPEN:                 sResult=tr("Open");                         break;
+        case ID_DEBUGGER_FILE_ATTACH:               sResult=tr("Attach");                       break;
+        case ID_DEBUGGER_FILE_DETACH:               sResult=tr("Detach");                       break;
+        case ID_DEBUGGER_FILE_CLOSE:                sResult=tr("Close");                        break;
+        case ID_DEBUGGER_FILE_EXIT:                 sResult=tr("Exit");                         break;
+        case ID_DEBUGGER_DEBUG_RUN:                 sResult=tr("Run");                          break;
+        case ID_DEBUGGER_DEBUG_PAUSE:               sResult=tr("Pause");                        break;
+        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT: sResult=tr("Set breakpoint");               break;
+        case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=tr("Step into");                    break;
+        case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=tr("Step over");                    break;
+        case ID_DEBUGGER_DEBUG_STOP:                sResult=tr("Stop");                         break;
+        case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=tr("Dump to file");                 break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=tr("Go to address");                break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=tr("Hex signature");                break;
@@ -462,7 +472,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DISASM_HEX:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_OPEN:
+        case ID_DEBUGGER_FILE_OPEN:
         #ifdef Q_OS_WIN
             ksResult=Qt::Key_F3;
         #endif
@@ -473,34 +483,34 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=Qt::CTRL+Qt::Key_O;
         #endif
             break;
-        case ID_DEBUGGER_CLOSE:
+        case ID_DEBUGGER_FILE_CLOSE:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_PAUSE:
+        case ID_DEBUGGER_DEBUG_PAUSE:
             ksResult=Qt::Key_F12;
             break;
-        case ID_DEBUGGER_EXIT:
+        case ID_DEBUGGER_FILE_EXIT:
             ksResult=Qt::ALT+Qt::Key_X;
             break;
-        case ID_DEBUGGER_RUN:
+        case ID_DEBUGGER_DEBUG_RUN:
             ksResult=Qt::Key_F9;
             break;
-        case ID_DEBUGGER_SETREMOVEBREAKPOINT:
+        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT:
             ksResult=Qt::Key_F2;
             break;
-        case ID_DEBUGGER_STEPINTO:
+        case ID_DEBUGGER_DEBUG_STEPINTO:
             ksResult=Qt::Key_F7;
             break;
-        case ID_DEBUGGER_STEPOVER:
+        case ID_DEBUGGER_DEBUG_STEPOVER:
             ksResult=Qt::Key_F8;
             break;
-        case ID_DEBUGGER_STOP:
+        case ID_DEBUGGER_DEBUG_STOP:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_RESTART:
+        case ID_DEBUGGER_DEBUG_RESTART:
             ksResult=QKeySequence();
             break;
-        case ID_DEBUGGER_ATTACH:
+        case ID_DEBUGGER_FILE_ATTACH:
         #ifdef Q_OS_WIN
             ksResult=Qt::ALT+Qt::Key_A;
         #endif
@@ -511,7 +521,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence(); // TODO
         #endif
             break;
-        case ID_DEBUGGER_DETACH:
+        case ID_DEBUGGER_FILE_DETACH:
         #ifdef Q_OS_WIN
             ksResult=Qt::CTRL+Qt::ALT+Qt::Key_F2;
         #endif
@@ -567,54 +577,69 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_ARCHIVE_HEX:
             ksResult=QKeySequence();
             break;
-        case ID_ARCHIVE_OPEN:                       ksResult=QKeySequence();                break;
-        case ID_ARCHIVE_SCAN:                       ksResult=QKeySequence();                break;
-        case ID_ARCHIVE_STRINGS:                    ksResult=QKeySequence();                break;
-        case ID_TABLE_HEX:                          ksResult=QKeySequence();                break;
-        case ID_TABLE_DISASM:                       ksResult=QKeySequence();                break;
-        default:                                    ksResult=QKeySequence();
+        case ID_ARCHIVE_OPEN:
+            ksResult=QKeySequence();
+            break;
+        case ID_ARCHIVE_SCAN:
+            ksResult=QKeySequence();
+            break;
+        case ID_ARCHIVE_STRINGS:
+            ksResult=QKeySequence();
+            break;
+        case ID_TABLE_HEX:
+            ksResult=QKeySequence();
+            break;
+        case ID_TABLE_DISASM:
+            ksResult=QKeySequence();
+            break;
+        default:
+            ksResult=QKeySequence();
     }
 
     return ksResult;
 }
 
-QString XShortcuts::idToGroupString(XShortcuts::ID id)
+QString XShortcuts::groupIdToString(GROUPID groupId)
 {
     QString sResult=tr("Unknown");
 
-    if      (id&ID_ACTION)      sResult=tr("Action");
-    else if (id&ID_STRINGS)     sResult=tr("Strings");
-    else if (id&ID_SIGNATURES)  sResult=tr("Signatures");
-    else if (id&ID_HEX)         sResult=tr("Hex");
-    else if (id&ID_DISASM)      sResult=tr("Disasm");
-    else if (id&ID_DEBUGGER)    sResult=tr("Debugger");
-    else if (id&ID_ARCHIVE)     sResult=tr("Archive");
-    else if (id&ID_TABLE)       sResult=tr("Table");
+    if      (groupId==GROUPID_ACTION)       sResult=tr("Action");
+    else if (groupId==GROUPID_FILE)         sResult=tr("File");
+    else if (groupId==GROUPID_STRINGS)      sResult=tr("Strings");
+    else if (groupId==GROUPID_SIGNATURES)   sResult=tr("Signatures");
+    else if (groupId==GROUPID_HEX)          sResult=tr("Hex");
+    else if (groupId==GROUPID_DISASM)       sResult=tr("Disasm");
+    else if (groupId==GROUPID_DEBUG)        sResult=tr("Debug");
+    else if (groupId==GROUPID_DEBUGGER)     sResult=tr("Debugger");
+    else if (groupId==GROUPID_ARCHIVE)      sResult=tr("Archive");
+    else if (groupId==GROUPID_TABLE)        sResult=tr("Table");
 
     return sResult;
 }
 
-XShortcuts::ID XShortcuts::getGroupEnd(XShortcuts::ID idGroup)
+XShortcuts::ID XShortcuts::getGroupEnd(GROUPID groupId)
 {
     int nEnd=0;
 
-    if(idGroup==ID_ACTION)      nEnd=ID_ACTION__END;
-    if(idGroup==ID_STRINGS)     nEnd=ID_STRINGS__END;
-    if(idGroup==ID_SIGNATURES)  nEnd=ID_SIGNATURES__END;
-    if(idGroup==ID_HEX)         nEnd=ID_HEX__END;
-    if(idGroup==ID_DISASM)      nEnd=ID_DISASM__END;
-    if(idGroup==ID_DEBUGGER)    nEnd=ID_DEBUGGER__END;
-    if(idGroup==ID_ARCHIVE)     nEnd=ID_ARCHIVE__END;
-    if(idGroup==ID_TABLE)       nEnd=ID_TABLE__END;
+    if(groupId==GROUPID_ACTION)         nEnd=ID_ACTION__END;
+    if(groupId==GROUPID_STRINGS)        nEnd=ID_STRINGS__END;
+    if(groupId==GROUPID_SIGNATURES)     nEnd=ID_SIGNATURES__END;
+    if(groupId==GROUPID_HEX)            nEnd=ID_HEX__END;
+    if(groupId==GROUPID_DISASM)         nEnd=ID_DISASM__END;
+    if(groupId==GROUPID_DEBUGGER)       nEnd=ID_DEBUGGER__END;
+    if(groupId==GROUPID_ARCHIVE)        nEnd=ID_ARCHIVE__END;
+    if(groupId==GROUPID_TABLE)          nEnd=ID_TABLE__END;
 
     return (ID)nEnd;
 }
 
-XShortcuts::ID XShortcuts::getGroupFromId(XShortcuts::ID id)
+XShortcuts::GROUPID XShortcuts::getGroupFromId(XShortcuts::ID id)
 {
     qint32 nResult=id;
 
-    nResult&=0xFFFF0000;
+    nResult&=0xFF000000;
 
-    return (ID)nResult;
+    nResult>>=24;
+
+    return (GROUPID)nResult;
 }

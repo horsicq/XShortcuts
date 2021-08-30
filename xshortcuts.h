@@ -32,19 +32,36 @@ class XShortcuts : public QObject
     Q_OBJECT
 
 public:
+    enum GROUPID
+    {
+        GROUPID_UNKNOWN=0,
+        GROUPID_FILE,
+        GROUPID_DEBUGGER,
+        GROUPID_DEBUG,
+        GROUPID_ACTION,
+        GROUPID_STRINGS,
+        GROUPID_SIGNATURES,
+        GROUPID_HEX,
+        GROUPID_DISASM,
+        GROUPID_ARCHIVE,
+        GROUPID_TABLE,
+    };
+
+    static const int GROUP_SH=24;
+
     enum ID
     {
-        ID_ACTION                   =0x10000,
+        ID_ACTION                   =GROUPID_ACTION<<GROUP_SH,
         ID_ACTION_COPY,
         ID_ACTION__END,
-        ID_STRINGS                  =0x20000,
+        ID_STRINGS                  =GROUPID_STRINGS<<GROUP_SH,
         ID_STRINGS_COPYSTRING,
         ID_STRINGS_COPYOFFSET,
         ID_STRINGS_COPYSIZE,
         ID_STRINGS_HEX,
         ID_STRINGS_DEMANGLE,
         ID_STRINGS__END,
-        ID_SIGNATURES               =0x40000,
+        ID_SIGNATURES               =GROUPID_SIGNATURES<<GROUP_SH,
         ID_SIGNATURES_COPYNAME,
         ID_SIGNATURES_COPYSIGNATURE,
         ID_SIGNATURES_COPYADDRESS,
@@ -52,7 +69,7 @@ public:
         ID_SIGNATURES_COPYSIZE,
         ID_SIGNATURES_HEX,
         ID_SIGNATURES__END,
-        ID_HEX                      =0x80000,
+        ID_HEX                      =GROUPID_HEX<<GROUP_SH,
         ID_HEX_DUMPTOFILE,
         ID_HEX_GOTOOFFSET,
         ID_HEX_GOTOADDRESS,
@@ -66,7 +83,7 @@ public:
         ID_HEX_DISASM,
         ID_HEX_MEMORYMAP,
         ID_HEX__END,
-        ID_DISASM                   =0x100000,
+        ID_DISASM                   =GROUPID_DISASM<<GROUP_SH,
         ID_DISASM_DUMPTOFILE,
         ID_DISASM_GOTOADDRESS,
         ID_DISASM_GOTOOFFSET,
@@ -81,19 +98,19 @@ public:
         ID_DISASM_COPYCURSOROFFSET,
         ID_DISASM_HEX,
         ID_DISASM__END,
-        ID_DEBUGGER                 =0x200000,
-        ID_DEBUGGER_OPEN,
-        ID_DEBUGGER_CLOSE,
-        ID_DEBUGGER_EXIT,
-        ID_DEBUGGER_RUN,
-        ID_DEBUGGER_PAUSE,
-        ID_DEBUGGER_SETREMOVEBREAKPOINT,
-        ID_DEBUGGER_STEPINTO,
-        ID_DEBUGGER_STEPOVER,
-        ID_DEBUGGER_STOP,
-        ID_DEBUGGER_RESTART,
-        ID_DEBUGGER_ATTACH,
-        ID_DEBUGGER_DETACH,
+        ID_DEBUGGER                 =GROUPID_DEBUGGER<<GROUP_SH,
+        ID_DEBUGGER_FILE_OPEN,
+        ID_DEBUGGER_FILE_CLOSE,
+        ID_DEBUGGER_FILE_ATTACH,
+        ID_DEBUGGER_FILE_DETACH,
+        ID_DEBUGGER_FILE_EXIT,
+        ID_DEBUGGER_DEBUG_RUN,
+        ID_DEBUGGER_DEBUG_PAUSE,
+        ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT,
+        ID_DEBUGGER_DEBUG_STEPINTO,
+        ID_DEBUGGER_DEBUG_STEPOVER,
+        ID_DEBUGGER_DEBUG_STOP,
+        ID_DEBUGGER_DEBUG_RESTART,
         ID_DEBUGGER_DISASM_DUMPTOFILE,
         ID_DEBUGGER_DISASM_GOTOADDRESS,
         ID_DEBUGGER_DISASM_HEXSIGNATURE,
@@ -105,7 +122,7 @@ public:
         ID_DEBUGGER_HEX_DUMPTOFILE,
         ID_DEBUGGER_HEX_GOTOADDRESS,
         ID_DEBUGGER__END,
-        ID_ARCHIVE                  =0x400000,
+        ID_ARCHIVE                  =GROUPID_ARCHIVE<<GROUP_SH,
         ID_ARCHIVE_OPEN,
         ID_ARCHIVE_SCAN,
         ID_ARCHIVE_HEX,
@@ -115,7 +132,7 @@ public:
         ID_ARCHIVE_COPYFILENAME,
         ID_ARCHIVE_DUMPTOFILE,
         ID_ARCHIVE__END,
-        ID_TABLE                    =0x800000,
+        ID_TABLE                    =GROUPID_TABLE<<GROUP_SH,
         ID_TABLE_HEX,
         ID_TABLE_DISASM,
         ID_TABLE__END
@@ -125,7 +142,8 @@ public:
     explicit XShortcuts(QObject *pParent=nullptr);
     void setName(QString sValue);
     void setNative(bool bValue);
-    void addGroup(ID idGroup);
+    void addGroup(GROUPID groupId);
+    void addGroup(ID id); // TODO remove
     void setShortcutsIDs(QList<ID> listValueIDs);
     QList<ID> getShortcutsIDs();
     void load();
@@ -137,9 +155,9 @@ public:
     static QString idToSettingsString(ID id);
     static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
-    static QString idToGroupString(ID id);
-    static ID getGroupEnd(ID idGroup);
-    static ID getGroupFromId(ID id);
+    static QString groupIdToString(GROUPID groupId);
+    static ID getGroupEnd(GROUPID groupId);
+    static GROUPID getGroupFromId(ID id);
 
 private:
     bool g_bIsNative;
