@@ -326,7 +326,10 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_HEX_FIND:
             sResult=tr("Find");
             break;
-        case ID_HEX_FINDNEXT:                       sResult=tr("Find next");                    break;
+        case ID_DEBUGGER_DISASM_FINDNEXT:
+        case ID_HEX_FINDNEXT:
+            sResult=tr("Find next");
+            break;
         case ID_HEX_SELECTALL:                      sResult=tr("Select all");                   break;
         case ID_HEX_COPYASHEX:                      sResult=tr("Copy as hex");                  break;
         case ID_HEX_COPYCURSOROFFSET:               sResult=tr("Copy cursor offset");           break;
@@ -363,7 +366,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_STOP:                sResult=tr("Stop");                         break;
         case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=tr("Hex signature");                break;
-        case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=tr("Find next");                    break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=tr("Copy as hex");                  break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=tr("Copy cursor address");          break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=tr("Copy filename");                break;
