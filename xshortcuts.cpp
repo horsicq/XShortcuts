@@ -316,6 +316,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_HEX_GOTOOFFSET:
             sResult=tr("Go to offset");
             break;
+        case ID_DEBUGGER_DISASM_SIGNATURE:
+        case ID_DISASM_SIGNATURE:
         case ID_HEX_SIGNATURE:
             sResult=tr("Signature");
             break;
@@ -334,7 +336,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_DUMPTOFILE:                  sResult=tr("Dump to file");                 break;
         case ID_DISASM_GOTOENTRYPOINT:              sResult=tr("Go to entry point");            break;
         case ID_DISASM_HEXSIGNATURE:                sResult=tr("Hex signature");                break;
-        case ID_DISASM_SIGNATURE:                   sResult=tr("Signature");                    break;
         case ID_DISASM_FINDNEXT:                    sResult=tr("Find next");                    break;
         case ID_DISASM_SELECTALL:                   sResult=tr("Select all");                   break;
         case ID_DISASM_COPYASHEX:                   sResult=tr("Copy as hex");                  break;
@@ -362,7 +363,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_STOP:                sResult=tr("Stop");                         break;
         case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=tr("Hex signature");                break;
-        case ID_DEBUGGER_DISASM_SIGNATURE:          sResult=tr("Signature");                    break;
         case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=tr("Find next");                    break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=tr("Copy as hex");                  break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=tr("Copy cursor address");          break;
