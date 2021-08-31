@@ -106,6 +106,14 @@ public:
         ID_DEBUGGER_FILE_ATTACH,
         ID_DEBUGGER_FILE_DETACH,
         ID_DEBUGGER_FILE_EXIT,
+        ID_DEBUGGER_VIEW_CPU,
+        ID_DEBUGGER_VIEW_ACTIONS,
+        ID_DEBUGGER_VIEW_LOG,
+        ID_DEBUGGER_VIEW_BREAKPOINTS,
+        ID_DEBUGGER_VIEW_MEMORYMAP,
+        ID_DEBUGGER_VIEW_CALLSTACK,
+        ID_DEBUGGER_VIEW_THREADS,
+        ID_DEBUGGER_VIEW_HANDLES,
         ID_DEBUGGER_DEBUG_RUN,
         ID_DEBUGGER_DEBUG_PAUSE,
         ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT,
@@ -159,7 +167,8 @@ public:
     static QKeySequence getDefault(ID id);
     static QString groupIdToString(GROUPID groupId);
     static ID getGroupEnd(GROUPID groupId);
-    static GROUPID getGroupFromId(ID id);
+    static GROUPID getGroupId(ID id);
+    static GROUPID getSubgroupId(ID id);
 
 private:
     bool g_bIsNative;

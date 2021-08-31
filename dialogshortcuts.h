@@ -36,6 +36,13 @@ class DialogShortcuts : public QDialog
 {
     Q_OBJECT
 
+    enum COLUMN
+    {
+        COLUMN_GROUP=0,
+        COLUMN_NAME,
+        COLUMN_SHORTCUT
+    };
+
 public:
     explicit DialogShortcuts(QWidget *pParent=nullptr);
     ~DialogShortcuts();
