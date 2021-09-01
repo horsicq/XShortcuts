@@ -288,18 +288,44 @@ QString XShortcuts::idToString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_ACTION_COPY:                        sResult=tr("Copy");                         break;
-        case ID_STRINGS_COPYSTRING:                 sResult=tr("Copy string");                  break;
-        case ID_STRINGS_COPYOFFSET:                 sResult=tr("Copy offset");                  break;
-        case ID_STRINGS_COPYSIZE:                   sResult=tr("Copy size");                    break;
-        case ID_STRINGS_HEX:                        sResult=tr("Hex");                          break;
-        case ID_STRINGS_DEMANGLE:                   sResult=tr("Demangle");                     break;
-        case ID_SIGNATURES_COPYNAME:                sResult=tr("Copy name");                    break;
-        case ID_SIGNATURES_COPYSIGNATURE:           sResult=tr("Copy signature");               break;
-        case ID_SIGNATURES_COPYADDRESS:             sResult=tr("Copy address");                 break;
-        case ID_SIGNATURES_COPYOFFSET:              sResult=tr("Copy offset");                  break;
-        case ID_SIGNATURES_COPYSIZE:                sResult=tr("Copy size");                    break;
-        case ID_SIGNATURES_HEX:                     sResult=tr("Hex");                          break;
+        case ID_ACTION_COPY:
+            sResult=tr("Copy");
+            break;
+        case ID_STRINGS_COPYSTRING:
+            sResult=tr("Copy string");
+            break;
+        case ID_STRINGS_COPYOFFSET:
+            sResult=tr("Copy offset");
+            break;
+        case ID_STRINGS_COPYSIZE:
+            sResult=tr("Copy size");
+            break;
+        case ID_STRINGS_HEX:
+            sResult=tr("Hex");
+            break;
+        case ID_STRINGS_DEMANGLE:
+            sResult=tr("Demangle");
+            break;
+        case ID_SIGNATURES_COPYNAME:
+            sResult=tr("Copy name");
+            break;
+        case ID_SIGNATURES_COPYSIGNATURE:
+            sResult=tr("Copy signature");
+            break;
+        case ID_SIGNATURES_COPYADDRESS:
+            sResult=tr("Copy address");
+            break;
+        case ID_SIGNATURES_COPYOFFSET:
+            sResult=tr("Copy offset");
+            break;
+        case ID_SIGNATURES_COPYSIZE:
+            sResult=tr("Copy size");
+            break;
+        case ID_TABLE_HEX:
+        case ID_DISASM_HEX:
+        case ID_SIGNATURES_HEX:
+            sResult=tr("Hex");
+            break;
         case ID_HEX_DUMPTOFILE:
         case ID_DEBUGGER_HEX_DUMPTOFILE:
         case ID_DEBUGGER_DISASM_DUMPTOFILE:
@@ -334,7 +360,10 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_HEX_COPYASHEX:                      sResult=tr("Copy as hex");                  break;
         case ID_HEX_COPYCURSOROFFSET:               sResult=tr("Copy cursor offset");           break;
         case ID_HEX_COPYCURSORADDRESS:              sResult=tr("Copy cursor address");          break;
-        case ID_HEX_DISASM:                         sResult=tr("Disasm");                       break;
+        case ID_TABLE_DISASM:
+        case ID_HEX_DISASM:
+            sResult=tr("Disasm");
+            break;
         case ID_HEX_MEMORYMAP:                      sResult=tr("Memory map");                   break;
         case ID_DISASM_DUMPTOFILE:                  sResult=tr("Dump to file");                 break;
         case ID_DISASM_GOTOENTRYPOINT:              sResult=tr("Go to entry point");            break;
@@ -344,7 +373,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_COPYASHEX:                   sResult=tr("Copy as hex");                  break;
         case ID_DISASM_COPYCURSORADDRESS:           sResult=tr("Copy cursor address");          break;
         case ID_DISASM_COPYCURSOROFFSET:            sResult=tr("Copy cursor offset");           break;
-        case ID_DISASM_HEX:                         sResult=tr("Hex");                          break;
         case ID_DEBUGGER_FILE_OPEN:                 sResult=tr("Open");                         break;
         case ID_DEBUGGER_FILE_ATTACH:               sResult=tr("Attach");                       break;
         case ID_DEBUGGER_FILE_DETACH:               sResult=tr("Detach");                       break;
@@ -374,9 +402,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_HEX:                        sResult=tr("Hex");                          break;
         case ID_ARCHIVE_OPEN:                       sResult=tr("Open");                         break;
         case ID_ARCHIVE_SCAN:                       sResult=tr("Scan");                         break;
-        case ID_ARCHIVE_STRINGS:                    sResult=tr("Strings");                      break;
-        case ID_TABLE_HEX:                          sResult=tr("Hex");                          break;
-        case ID_TABLE_DISASM:                       sResult=tr("Disasm");                       break;
+        case ID_ARCHIVE_STRINGS:                    sResult=tr("Strings");                      break; 
         default:                                    sResult=tr("Unknown");
     }
 
