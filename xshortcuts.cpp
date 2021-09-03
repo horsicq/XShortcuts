@@ -438,9 +438,15 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT:
             sResult=tr("Set breakpoint");
             break;
-        case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=tr("Step into");                    break;
-        case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=tr("Step over");                    break;
-        case ID_DEBUGGER_DEBUG_STOP:                sResult=tr("Stop");                         break;
+        case ID_DEBUGGER_DEBUG_STEPINTO:
+            sResult=tr("Step into");
+            break;
+        case ID_DEBUGGER_DEBUG_STEPOVER:
+            sResult=tr("Step over");
+            break;
+        case ID_DEBUGGER_DEBUG_STOP:
+            sResult=tr("Stop");
+            break;
         case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=tr("Copy filename");                break;
         case ID_ARCHIVE_ENTROPY:                    sResult=tr("Entropy");                      break;
