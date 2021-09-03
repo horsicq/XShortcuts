@@ -369,6 +369,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DISASM_COPYASHEX:
         case ID_HEX_COPYASHEX:
+        case ID_DEBUGGER_DISASM_COPYASHEX:
             sResult=tr("Copy as hex");
             break;
         case ID_DISASM_COPYCURSOROFFSET:
@@ -376,7 +377,10 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Copy cursor offset");
             break;
         case ID_DISASM_COPYCURSORADDRESS:
-        case ID_HEX_COPYCURSORADDRESS:              sResult=tr("Copy cursor address");          break;
+        case ID_HEX_COPYCURSORADDRESS:
+        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
+            sResult=tr("Copy cursor address");
+            break;
         case ID_TABLE_DISASM:
         case ID_HEX_DISASM:
             sResult=tr("Disasm");
@@ -410,8 +414,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=tr("Step over");                    break;
         case ID_DEBUGGER_DEBUG_STOP:                sResult=tr("Stop");                         break;
         case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
-        case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=tr("Copy as hex");                  break;
-        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=tr("Copy cursor address");          break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=tr("Copy filename");                break;
         case ID_ARCHIVE_ENTROPY:                    sResult=tr("Entropy");                      break;
         case ID_ARCHIVE_HASH:                       sResult=tr("Hash");                         break;
