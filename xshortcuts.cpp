@@ -396,10 +396,18 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_HEXSIGNATURE:
             sResult=tr("Hex signature");
             break;
-        case ID_DEBUGGER_FILE_ATTACH:               sResult=tr("Attach");                       break;
-        case ID_DEBUGGER_FILE_DETACH:               sResult=tr("Detach");                       break;
-        case ID_DEBUGGER_FILE_CLOSE:                sResult=tr("Close");                        break;
-        case ID_DEBUGGER_FILE_EXIT:                 sResult=tr("Exit");                         break;
+        case ID_DEBUGGER_FILE_ATTACH:
+            sResult=tr("Attach");
+            break;
+        case ID_DEBUGGER_FILE_DETACH:
+            sResult=tr("Detach");
+            break;
+        case ID_DEBUGGER_FILE_CLOSE:
+            sResult=tr("Close");
+            break;
+        case ID_DEBUGGER_FILE_EXIT:
+            sResult=tr("Exit");
+            break;
         case ID_DEBUGGER_VIEW_CPU:                  sResult=tr("CPU");                          break;
         case ID_DEBUGGER_VIEW_ACTIONS:              sResult=tr("Actions");                      break;
         case ID_DEBUGGER_VIEW_LOG:                  sResult=tr("Log");                          break;
