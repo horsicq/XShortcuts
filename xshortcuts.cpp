@@ -408,9 +408,15 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_FILE_EXIT:
             sResult=tr("Exit");
             break;
-        case ID_DEBUGGER_VIEW_CPU:                  sResult=tr("CPU");                          break;
-        case ID_DEBUGGER_VIEW_ACTIONS:              sResult=tr("Actions");                      break;
-        case ID_DEBUGGER_VIEW_LOG:                  sResult=tr("Log");                          break;
+        case ID_DEBUGGER_VIEW_CPU:
+            sResult=tr("CPU");
+            break;
+        case ID_DEBUGGER_VIEW_ACTIONS:
+            sResult=tr("Actions");
+            break;
+        case ID_DEBUGGER_VIEW_LOG:
+            sResult=tr("Log");
+            break;
         case ID_DEBUGGER_VIEW_BREAKPOINTS:          sResult=tr("Breakpoints");                  break;
         case ID_DEBUGGER_VIEW_CALLSTACK:            sResult=tr("Call stack");                   break;
         case ID_DEBUGGER_VIEW_THREADS:              sResult=tr("Threads");                      break;
