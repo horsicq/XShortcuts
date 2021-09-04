@@ -775,6 +775,15 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_FILE_OPEN:
             result=GROUPID_FILE;
             break;
+        case ID_DEBUGGER_DEBUG_PAUSE:
+        case ID_DEBUGGER_DEBUG_RESTART:
+        case ID_DEBUGGER_DEBUG_RUN:
+        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT:
+        case ID_DEBUGGER_DEBUG_STEPINTO:
+        case ID_DEBUGGER_DEBUG_STEPOVER:
+        case ID_DEBUGGER_DEBUG_STOP:
+            result=GROUPID_DEBUG;
+            break;
         default:
             result=GROUPID_UNKNOWN;
     }
