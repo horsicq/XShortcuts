@@ -447,10 +447,18 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_STOP:
             sResult=tr("Stop");
             break;
-        case ID_DEBUGGER_DEBUG_RESTART:             sResult=tr("Restart");                      break;
-        case ID_ARCHIVE_COPYFILENAME:               sResult=tr("Copy filename");                break;
-        case ID_ARCHIVE_ENTROPY:                    sResult=tr("Entropy");                      break;
-        case ID_ARCHIVE_HASH:                       sResult=tr("Hash");                         break;
+        case ID_DEBUGGER_DEBUG_RESTART:
+            sResult=tr("Restart");
+            break;
+        case ID_ARCHIVE_COPYFILENAME:
+            sResult=tr("Copy filename");
+            break;
+        case ID_ARCHIVE_ENTROPY:
+            sResult=tr("Entropy");
+            break;
+        case ID_ARCHIVE_HASH:
+            sResult=tr("Hash");
+            break;
         case ID_ARCHIVE_SCAN:                       sResult=tr("Scan");                         break;
         case ID_ARCHIVE_STRINGS:                    sResult=tr("Strings");                      break; 
         default:                                    sResult=tr("Unknown");
