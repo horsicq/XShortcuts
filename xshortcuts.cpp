@@ -459,9 +459,14 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_HASH:
             sResult=tr("Hash");
             break;
-        case ID_ARCHIVE_SCAN:                       sResult=tr("Scan");                         break;
-        case ID_ARCHIVE_STRINGS:                    sResult=tr("Strings");                      break; 
-        default:                                    sResult=tr("Unknown");
+        case ID_ARCHIVE_SCAN:
+            sResult=tr("Scan");
+            break;
+        case ID_ARCHIVE_STRINGS:
+            sResult=tr("Strings");
+            break;
+        default:
+            sResult=tr("Unknown");
     }
 
     return sResult;
