@@ -58,6 +58,7 @@ public:
         ID_ACTION__END,
         ID_FILE                     =GROUPID_FILE<<GROUP_SH,
         ID_FILE_OPEN,
+        ID_FILE_CLOSE,
         ID_STRINGS                  =GROUPID_STRINGS<<GROUP_SH,
         ID_STRINGS_COPYSTRING,
         ID_STRINGS_COPYOFFSET,
