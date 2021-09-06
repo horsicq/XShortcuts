@@ -248,7 +248,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_VIEW_HANDLES:              sResult=QString("Shortcuts/Debugger/View/Handles");             break;
         case ID_DEBUGGER_DEBUG_RUN:                 sResult=QString("Shortcuts/Debugger/Debug/Run");                break;
         case ID_DEBUGGER_DEBUG_PAUSE:               sResult=QString("Shortcuts/Debugger/Debug/Pause");              break;
-        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT: sResult=QString("Shortcuts/Debugger/Debug/SetBreakpoint");      break;
+        case ID_DEBUGGER_DEBUG_TOGGLE:              sResult=QString("Shortcuts/Debugger/Debug/Toggle");             break;
         case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=QString("Shortcuts/Debugger/Debug/StepInto");           break;
         case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=QString("Shortcuts/Debugger/Debug/StepOver");           break;
         case ID_DEBUGGER_DEBUG_STOP:                sResult=QString("Shortcuts/Debugger/Debug/Stop");               break;
@@ -263,8 +263,10 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=QString("Shortcuts/Debugger/Disasm/FindNext");          break;
         case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=QString("Shortcuts/Debugger/Disasm/CopyAsHex");         break;
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=QString("Shortcuts/Debugger/Disasm/CopyCursorAddress"); break;
+        case ID_DEBUGGER_DISASM_SELECTALL:          sResult=QString("Shortcuts/Debugger/Disasm/SelectAll");         break;
         case ID_DEBUGGER_HEX_DUMPTOFILE:            sResult=QString("Shortcuts/Debugger/Hex/DumpToFile");           break;
         case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=QString("Shortcuts/Debugger/Hex/GoToAddress");          break;
+        case ID_DEBUGGER_HEX_SELECTALL:             sResult=QString("Shortcuts/Debugger/Hex/SelectAll");            break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=QString("Shortcuts/Archive/CopyFilename");              break;
         case ID_ARCHIVE_DUMPTOFILE:                 sResult=QString("Shortcuts/Archive/DumpToFile");                break;
         case ID_ARCHIVE_ENTROPY:                    sResult=QString("Shortcuts/Archive/Entropy");                   break;
@@ -381,6 +383,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DISASM_SELECTALL:
         case ID_HEX_SELECTALL:
+        case ID_DEBUGGER_DISASM_SELECTALL:
+        case ID_DEBUGGER_HEX_SELECTALL:
             sResult=tr("Select all");
             break;
         case ID_DISASM_COPYASHEX:
@@ -445,8 +449,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_PAUSE:
             sResult=tr("Pause");
             break;
-        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT:
-            sResult=tr("Set breakpoint");
+        case ID_DEBUGGER_DEBUG_TOGGLE:
+            sResult=tr("Toggle");
             break;
         case ID_DEBUGGER_DEBUG_STEPINTO:
             sResult=tr("Step into");
@@ -622,7 +626,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_RUN:
             ksResult=Qt::Key_F9;
             break;
-        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT:
+        case ID_DEBUGGER_DEBUG_TOGGLE:
             ksResult=Qt::Key_F2;
             break;
         case ID_DEBUGGER_DEBUG_STEPINTO:
@@ -683,10 +687,16 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
             ksResult=QKeySequence();
             break;
+        case ID_DEBUGGER_DISASM_SELECTALL:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_HEX_DUMPTOFILE:
             ksResult=QKeySequence();
             break;
         case ID_DEBUGGER_HEX_GOTOADDRESS:
+            ksResult=QKeySequence();
+            break;
+        case ID_DEBUGGER_HEX_SELECTALL:
             ksResult=QKeySequence();
             break;
         case ID_ARCHIVE_COPYFILENAME:
@@ -788,7 +798,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_DEBUG_PAUSE:
         case ID_DEBUGGER_DEBUG_RESTART:
         case ID_DEBUGGER_DEBUG_RUN:
-        case ID_DEBUGGER_DEBUG_SETREMOVEBREAKPOINT:
+        case ID_DEBUGGER_DEBUG_TOGGLE:
         case ID_DEBUGGER_DEBUG_STEPINTO:
         case ID_DEBUGGER_DEBUG_STEPOVER:
         case ID_DEBUGGER_DEBUG_STOP:
