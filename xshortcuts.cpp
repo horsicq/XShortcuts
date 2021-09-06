@@ -814,6 +814,17 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_VIEW_THREADS:
             result=GROUPID_VIEW;
             break;
+        case ID_DEBUGGER_DISASM_COPYASHEX:
+        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
+        case ID_DEBUGGER_DISASM_DUMPTOFILE:
+        case ID_DEBUGGER_DISASM_FIND:
+        case ID_DEBUGGER_DISASM_FINDNEXT:
+        case ID_DEBUGGER_DISASM_GOTOADDRESS:
+        case ID_DEBUGGER_DISASM_HEXSIGNATURE:
+        case ID_DEBUGGER_DISASM_SELECTALL:
+        case ID_DEBUGGER_DISASM_SIGNATURE:
+            result=GROUPID_DISASM;
+            break;
         default:
             result=GROUPID_UNKNOWN;
     }
