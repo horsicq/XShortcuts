@@ -825,6 +825,11 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_DISASM_SIGNATURE:
             result=GROUPID_DISASM;
             break;
+        case ID_DEBUGGER_HEX_DUMPTOFILE:
+        case ID_DEBUGGER_HEX_GOTOADDRESS:
+        case ID_DEBUGGER_HEX_SELECTALL:
+            result=GROUPID_HEX;
+            break;
         default:
             result=GROUPID_UNKNOWN;
     }
