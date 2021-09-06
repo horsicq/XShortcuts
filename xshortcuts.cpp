@@ -278,7 +278,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         default:
         {
         #ifdef QT_DEBUG
-            qDebug("UNKNOWN!!!");
+            qDebug("UNKNOWN SHORTCUT!!!");
         #endif
         }
     }
