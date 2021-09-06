@@ -63,7 +63,7 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 
         if(subgroupId!=XShortcuts::GROUPID_UNKNOWN)
         {
-            sGroup+=QString("/%1").arg(sSubgroup);
+            sGroup+=QString(" -> %1").arg(sSubgroup);
         }
 
         QStandardItem *pTypeGroup=new QStandardItem;
