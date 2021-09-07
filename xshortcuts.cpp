@@ -265,6 +265,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=QString("Shortcuts/Debugger/Disasm/CopyCursorAddress"); break;
         case ID_DEBUGGER_DISASM_SELECTALL:          sResult=QString("Shortcuts/Debugger/Disasm/SelectAll");         break;
         case ID_DEBUGGER_HEX_DUMPTOFILE:            sResult=QString("Shortcuts/Debugger/Hex/DumpToFile");           break;
+        case ID_DEBUGGER_HEX_FIND:                  sResult=QString("Shortcuts/Debugger/Hex/Find");                 break;
+        case ID_DEBUGGER_HEX_FINDNEXT:              sResult=QString("Shortcuts/Debugger/Hex/FindNext");             break;
         case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=QString("Shortcuts/Debugger/Hex/GoToAddress");          break;
         case ID_DEBUGGER_HEX_SELECTALL:             sResult=QString("Shortcuts/Debugger/Hex/SelectAll");            break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=QString("Shortcuts/Archive/CopyFilename");              break;
@@ -373,10 +375,12 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DISASM_FIND:
         case ID_DEBUGGER_DISASM_FIND:
+        case ID_DEBUGGER_HEX_FIND:
         case ID_HEX_FIND:
             sResult=tr("Find");
             break;
         case ID_DEBUGGER_DISASM_FINDNEXT:
+        case ID_DEBUGGER_HEX_FINDNEXT:
         case ID_HEX_FINDNEXT:
         case ID_DISASM_FINDNEXT:
             sResult=tr("Find next");
@@ -693,6 +697,12 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_DUMPTOFILE:
             ksResult=QKeySequence();
             break;
+        case ID_DEBUGGER_HEX_FIND:
+            ksResult=QKeySequence();
+            break;
+        case ID_DEBUGGER_HEX_FINDNEXT:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_HEX_GOTOADDRESS:
             ksResult=QKeySequence();
             break;
@@ -826,6 +836,8 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
             result=GROUPID_DISASM;
             break;
         case ID_DEBUGGER_HEX_DUMPTOFILE:
+        case ID_DEBUGGER_HEX_FIND:
+        case ID_DEBUGGER_HEX_FINDNEXT:
         case ID_DEBUGGER_HEX_GOTOADDRESS:
         case ID_DEBUGGER_HEX_SELECTALL:
             result=GROUPID_HEX;
