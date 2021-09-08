@@ -269,6 +269,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_FINDNEXT:              sResult=QString("Shortcuts/Debugger/Hex/FindNext");             break;
         case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=QString("Shortcuts/Debugger/Hex/GoToAddress");          break;
         case ID_DEBUGGER_HEX_SIGNATURE:             sResult=QString("Shortcuts/Debugger/Hex/Signature");            break;
+        case ID_DEBUGGER_HEX_COPYASHEX:             sResult=QString("Shortcuts/Debugger/Hex/CopyAsHex");            break;
         case ID_DEBUGGER_HEX_SELECTALL:             sResult=QString("Shortcuts/Debugger/Hex/SelectAll");            break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=QString("Shortcuts/Archive/CopyFilename");              break;
         case ID_ARCHIVE_DUMPTOFILE:                 sResult=QString("Shortcuts/Archive/DumpToFile");                break;
@@ -396,6 +397,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_COPYASHEX:
         case ID_HEX_COPYASHEX:
         case ID_DEBUGGER_DISASM_COPYASHEX:
+        case ID_DEBUGGER_HEX_COPYASHEX:
             sResult=tr("Copy as hex");
             break;
         case ID_DISASM_COPYCURSOROFFSET:
@@ -711,6 +713,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_SIGNATURE:
             ksResult=QKeySequence();
             break;
+        case ID_DEBUGGER_HEX_COPYASHEX:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_HEX_SELECTALL:
             ksResult=QKeySequence();
             break;
@@ -845,6 +850,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_HEX_FINDNEXT:
         case ID_DEBUGGER_HEX_GOTOADDRESS:
         case ID_DEBUGGER_HEX_SIGNATURE:
+        case ID_DEBUGGER_HEX_COPYASHEX:
         case ID_DEBUGGER_HEX_SELECTALL:
             result=GROUPID_HEX;
             break;
