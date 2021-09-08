@@ -190,7 +190,7 @@ bool XShortcuts::checkShortcut(XShortcuts::ID id, QKeySequence keyValue)
 
 QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 {
-    QString sResult="Unknown";
+    QString sResult=QString("Unknown");
 
     switch(id)
     {
@@ -270,6 +270,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=QString("Shortcuts/Debugger/Hex/GoToAddress");          break;
         case ID_DEBUGGER_HEX_SIGNATURE:             sResult=QString("Shortcuts/Debugger/Hex/Signature");            break;
         case ID_DEBUGGER_HEX_COPYASHEX:             sResult=QString("Shortcuts/Debugger/Hex/CopyAsHex");            break;
+        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:     sResult=QString("Shortcuts/Debugger/Hex/CopyCursorAddress");    break;
         case ID_DEBUGGER_HEX_SELECTALL:             sResult=QString("Shortcuts/Debugger/Hex/SelectAll");            break;
         case ID_ARCHIVE_COPYFILENAME:               sResult=QString("Shortcuts/Archive/CopyFilename");              break;
         case ID_ARCHIVE_DUMPTOFILE:                 sResult=QString("Shortcuts/Archive/DumpToFile");                break;
@@ -407,6 +408,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_COPYCURSORADDRESS:
         case ID_HEX_COPYCURSORADDRESS:
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
+        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
             sResult=tr("Copy cursor address");
             break;
         case ID_TABLE_DISASM:
@@ -716,6 +718,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_COPYASHEX:
             ksResult=QKeySequence();
             break;
+        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
+            ksResult=QKeySequence();
+            break;
         case ID_DEBUGGER_HEX_SELECTALL:
             ksResult=QKeySequence();
             break;
@@ -851,6 +856,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_HEX_GOTOADDRESS:
         case ID_DEBUGGER_HEX_SIGNATURE:
         case ID_DEBUGGER_HEX_COPYASHEX:
+        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
         case ID_DEBUGGER_HEX_SELECTALL:
             result=GROUPID_HEX;
             break;
