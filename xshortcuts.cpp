@@ -197,6 +197,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_ACTION_COPY:                        sResult=QString("Shortcuts/Action/Copy");                       break;
         case ID_FILE_OPEN:                          sResult=QString("Shortcuts/File/Open");                         break;
         case ID_FILE_SAVE:                          sResult=QString("Shortcuts/File/Save");                         break;
+        case ID_FILE_SAVEAS:                        sResult=QString("Shortcuts/File/SaveAs");                       break;
         case ID_FILE_CLOSE:                         sResult=QString("Shortcuts/File/Close");                        break;
         case ID_FILE_EXIT:                          sResult=QString("Shortcuts/File/Exit");                         break;
         case ID_STRINGS_COPYSTRING:                 sResult=QString("Shortcuts/Strings/CopyString");                break;
@@ -307,6 +308,9 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_FILE_SAVE:
             sResult=tr("Save");
+            break;
+        case ID_FILE_SAVEAS:
+            sResult=tr("Save As");
             break;
         case ID_FILE_CLOSE:
         case ID_DEBUGGER_FILE_CLOSE:
@@ -506,6 +510,21 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     {
         case ID_ACTION_COPY:
             ksResult=QKeySequence::Copy;
+            break;
+        case ID_FILE_OPEN:
+            ksResult=QKeySequence();
+            break;
+        case ID_FILE_SAVE:
+            ksResult=QKeySequence();
+            break;
+        case ID_FILE_SAVEAS:
+            ksResult=QKeySequence();
+            break;
+        case ID_FILE_CLOSE:
+            ksResult=QKeySequence();
+            break;
+        case ID_FILE_EXIT:
+            ksResult=QKeySequence();
             break;
         case ID_STRINGS_COPYSTRING:
             ksResult=QKeySequence::Copy;

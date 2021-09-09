@@ -60,6 +60,7 @@ public:
         ID_FILE                     =GROUPID_FILE<<GROUP_SH,
         ID_FILE_OPEN,
         ID_FILE_SAVE,
+        ID_FILE_SAVEAS,
         ID_FILE_CLOSE,
         ID_FILE_EXIT,
         ID_STRINGS                  =GROUPID_STRINGS<<GROUP_SH,
