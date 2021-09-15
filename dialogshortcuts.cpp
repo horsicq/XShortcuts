@@ -83,9 +83,9 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     g_pFilter->setSourceModel(g_pModel);
     ui->tableViewShortcuts->setModel(g_pFilter);
 
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_GROUP,150);  // TODO
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,200);  // TODO
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);  // TODO
+    ui->tableViewShortcuts->setColumnWidth(COLUMN_GROUP,150);       // TODO
+    ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,200);        // TODO
+    ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);    // TODO
 
     connect(ui->tableViewShortcuts->selectionModel(),
             SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
