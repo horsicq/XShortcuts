@@ -45,6 +45,7 @@ public:
         GROUPID_HEX,
         GROUPID_DISASM,
         GROUPID_STACK,
+        GROUPID_REGISTERS,
         GROUPID_ARCHIVE,
         GROUPID_TABLE,
     };
