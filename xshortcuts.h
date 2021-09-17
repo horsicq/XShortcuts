@@ -52,7 +52,7 @@ public:
 
     static const int GROUP_SH=24;
 
-    // TODO execute till selection
+    // TODO Debugger execute till selection
     enum ID
     {
         ID_ACTION                   =GROUPID_ACTION<<GROUP_SH,
