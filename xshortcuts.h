@@ -34,6 +34,7 @@ class XShortcuts : public QObject
 public:
     enum GROUPID
     {
+        // TODO PROCESS
         GROUPID_UNKNOWN=0,
         GROUPID_FILE,
         GROUPID_VIEW,
