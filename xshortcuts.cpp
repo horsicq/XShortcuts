@@ -802,6 +802,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_STACK)        sResult=tr("Stack");
     else if (groupId==GROUPID_ARCHIVE)      sResult=tr("Archive");
     else if (groupId==GROUPID_TABLE)        sResult=tr("Table");
+    else if (groupId==GROUPID_PROCESS)      sResult=tr("Process");
 
     return sResult;
 }

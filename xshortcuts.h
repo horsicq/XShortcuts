@@ -34,7 +34,6 @@ class XShortcuts : public QObject
 public:
     enum GROUPID
     {
-        // TODO PROCESS
         GROUPID_UNKNOWN=0,
         GROUPID_FILE,
         GROUPID_VIEW,
@@ -49,6 +48,7 @@ public:
         GROUPID_REGISTERS,
         GROUPID_ARCHIVE,
         GROUPID_TABLE,
+        GROUPID_PROCESS
     };
 
     static const int GROUP_SH=24;
