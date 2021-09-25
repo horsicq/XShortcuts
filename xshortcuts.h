@@ -162,7 +162,10 @@ public:
         ID_TABLE                    =GROUPID_TABLE<<GROUP_SH,
         ID_TABLE_HEX,
         ID_TABLE_DISASM,
-        ID_TABLE__END
+        ID_TABLE__END,
+        ID_PROCESS                  =GROUPID_PROCESS<<GROUP_SH,
+        ID_PROCESS_STRUCTS,
+        ID_PROCESS__END
         // TODO More
     };
 
