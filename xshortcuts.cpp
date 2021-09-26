@@ -286,6 +286,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_TABLE_DISASM:                       sResult=QString("Shortcuts/Table/Disasm");                      break;
         case ID_PROCESS_STRUCTS:                    sResult=QString("Shortcuts/Process/Structs");                   break;
         case ID_PROCESS_MEMORY_HEX:                 sResult=QString("Shortcuts/Process/Memory/Hex");                break;
+        case ID_PROCESS_MEMORY_STRINGS:             sResult=QString("Shortcuts/Process/Memory/Strings");            break;
         case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
         default:
         {
@@ -498,6 +499,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Scan");
             break;
         case ID_ARCHIVE_STRINGS:
+        case ID_PROCESS_MEMORY_STRINGS:
             sResult=tr("Strings");
             break;
         case ID_PROCESS_STRUCTS:
@@ -793,6 +795,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_PROCESS_MEMORY_HEX:
+            ksResult=QKeySequence();
+            break;
+        case ID_PROCESS_MEMORY_STRINGS:
             ksResult=QKeySequence();
             break;
         default:
