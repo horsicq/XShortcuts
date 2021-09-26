@@ -287,6 +287,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_PROCESS_STRUCTS:                    sResult=QString("Shortcuts/Process/Structs");                   break;
         case ID_PROCESS_MEMORY_HEX:                 sResult=QString("Shortcuts/Process/Memory/Hex");                break;
         case ID_PROCESS_MEMORY_STRINGS:             sResult=QString("Shortcuts/Process/Memory/Strings");            break;
+        case ID_PROCESS_MEMORY_SIGNATURES:          sResult=QString("Shortcuts/Process/Memory/Signatures");         break;
         case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
         default:
         {
@@ -388,6 +389,9 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_SIGNATURE:
         case ID_HEX_SIGNATURE:
             sResult=tr("Signature");
+            break;
+        case ID_PROCESS_MEMORY_SIGNATURES:
+            sResult=tr("Signatures");
             break;
         case ID_DISASM_FIND:
         case ID_DEBUGGER_DISASM_FIND:
@@ -800,6 +804,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_STRINGS:
             ksResult=QKeySequence();
             break;
+        case ID_PROCESS_MEMORY_SIGNATURES:
+            ksResult=QKeySequence();
+            break;
         default:
             ksResult=QKeySequence();
     }
@@ -825,6 +832,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_ARCHIVE)      sResult=tr("Archive");
     else if (groupId==GROUPID_TABLE)        sResult=tr("Table");
     else if (groupId==GROUPID_PROCESS)      sResult=tr("Process");
+    else if (groupId==GROUPID_MEMORY)       sResult=tr("Memory");
 
     return sResult;
 }

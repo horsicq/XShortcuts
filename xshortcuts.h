@@ -48,7 +48,8 @@ public:
         GROUPID_REGISTERS,
         GROUPID_ARCHIVE,
         GROUPID_TABLE,
-        GROUPID_PROCESS
+        GROUPID_PROCESS,
+        GROUPID_MEMORY
     };
 
     static const int GROUP_SH=24;
@@ -167,6 +168,7 @@ public:
         ID_PROCESS_STRUCTS,
         ID_PROCESS_MEMORY_HEX,
         ID_PROCESS_MEMORY_STRINGS,
+        ID_PROCESS_MEMORY_SIGNATURES,
         ID_PROCESS_DUMPTOFILE,
         ID_PROCESS__END
         // TODO More
