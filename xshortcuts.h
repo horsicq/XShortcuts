@@ -165,6 +165,8 @@ public:
         ID_TABLE__END,
         ID_PROCESS                  =GROUPID_PROCESS<<GROUP_SH,
         ID_PROCESS_STRUCTS,
+        ID_PROCESS_MEMORY_HEX,
+        ID_PROCESS_DUMPTOFILE,
         ID_PROCESS__END
         // TODO More
     };

@@ -285,6 +285,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_TABLE_HEX:                          sResult=QString("Shortcuts/Table/Hex");                         break;
         case ID_TABLE_DISASM:                       sResult=QString("Shortcuts/Table/Disasm");                      break;
         case ID_PROCESS_STRUCTS:                    sResult=QString("Shortcuts/Process/Structs");                   break;
+        case ID_PROCESS_MEMORY_HEX:                 sResult=QString("Shortcuts/Process/Memory/Hex");                break;
+        case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
         default:
         {
         #ifdef QT_DEBUG
@@ -358,6 +360,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DISASM_HEX:
         case ID_SIGNATURES_HEX:
         case ID_ARCHIVE_HEX:
+        case ID_PROCESS_MEMORY_HEX:
             sResult=tr("Hex");
             break;
         case ID_HEX_DUMPTOFILE:
@@ -365,6 +368,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_DUMPTOFILE:
         case ID_ARCHIVE_DUMPTOFILE:
         case ID_DISASM_DUMPTOFILE:
+        case ID_PROCESS_DUMPTOFILE:
             sResult=tr("Dump to file");
             break;
         case ID_DISASM_GOTOADDRESS:
@@ -783,6 +787,12 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_PROCESS_STRUCTS:
+            ksResult=QKeySequence();
+            break;
+        case ID_PROCESS_DUMPTOFILE:
+            ksResult=QKeySequence();
+            break;
+        case ID_PROCESS_MEMORY_HEX:
             ksResult=QKeySequence();
             break;
         default:
