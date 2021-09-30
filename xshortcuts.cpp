@@ -857,6 +857,7 @@ XShortcuts::ID XShortcuts::getGroupEnd(GROUPID groupId)
     if(groupId==GROUPID_DEBUGGER)       nEnd=ID_DEBUGGER__END;
     if(groupId==GROUPID_ARCHIVE)        nEnd=ID_ARCHIVE__END;
     if(groupId==GROUPID_TABLE)          nEnd=ID_TABLE__END;
+    if(groupId==GROUPID_PROCESS)        nEnd=ID_PROCESS__END;
 
     return (ID)nEnd;
 }
