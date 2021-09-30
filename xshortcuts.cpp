@@ -883,6 +883,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_FILE_DETACH:
         case ID_DEBUGGER_FILE_EXIT:
         case ID_DEBUGGER_FILE_OPEN:
+        case ID_PROCESS_FILE_VIEWER:
             result=GROUPID_FILE;
             break;
         case ID_DEBUGGER_DEBUG_PAUSE:
@@ -927,6 +928,11 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
             break;
         case ID_DEBUGGER_STACK_GOTOADDRESS:
             result=GROUPID_STACK;
+            break;
+        case ID_PROCESS_MEMORY_HEX:
+        case ID_PROCESS_MEMORY_SIGNATURES:
+        case ID_PROCESS_MEMORY_STRINGS:
+            result=GROUPID_MEMORY;
             break;
         default:
             result=GROUPID_UNKNOWN;
