@@ -290,6 +290,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_STRINGS:             sResult=QString("Shortcuts/Process/Memory/Strings");            break;
         case ID_PROCESS_MEMORY_SIGNATURES:          sResult=QString("Shortcuts/Process/Memory/Signatures");         break;
         case ID_PROCESS_FILE_VIEWER:                sResult=QString("Shortcuts/Process/File/Viewer");               break;
+        case ID_PROCESS_FILE_COPYFILENAME:          sResult=QString("Shortcuts/Process/File/CopyFilename");         break;
         case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
         default:
         {
@@ -496,6 +497,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Toggle");
             break;
         case ID_ARCHIVE_COPYFILENAME:
+        case ID_PROCESS_FILE_COPYFILENAME:
             sResult=tr("Copy filename");
             break;
         case ID_ARCHIVE_ENTROPY:
@@ -821,6 +823,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_PROCESS_FILE_VIEWER:
             ksResult=QKeySequence();
             break;
+        case ID_PROCESS_FILE_COPYFILENAME:
+            ksResult=QKeySequence();
+            break;
         default:
             ksResult=QKeySequence();
     }
@@ -892,6 +897,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_FILE_EXIT:
         case ID_DEBUGGER_FILE_OPEN:
         case ID_PROCESS_FILE_VIEWER:
+        case ID_PROCESS_FILE_COPYFILENAME:
             result=GROUPID_FILE;
             break;
         case ID_DEBUGGER_DEBUG_PAUSE:
