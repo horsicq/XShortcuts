@@ -199,6 +199,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_FILE_SAVE:                          sResult=QString("Shortcuts/File/Save");                         break;
         case ID_FILE_SAVEAS:                        sResult=QString("Shortcuts/File/SaveAs");                       break;
         case ID_FILE_CLOSE:                         sResult=QString("Shortcuts/File/Close");                        break;
+        case ID_FILE_PRINT:                         sResult=QString("Shortcuts/File/Print");                        break;
         case ID_FILE_EXIT:                          sResult=QString("Shortcuts/File/Exit");                         break;
         case ID_STRINGS_COPYSTRING:                 sResult=QString("Shortcuts/Strings/CopyString");                break;
         case ID_STRINGS_COPYOFFSET:                 sResult=QString("Shortcuts/Strings/CopyOffset");                break;
@@ -321,6 +322,9 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_FILE_CLOSE:
         case ID_DEBUGGER_FILE_CLOSE:
             sResult=tr("Close");
+            break;
+        case ID_FILE_PRINT:
+            sResult=tr("Print");
             break;
         case ID_FILE_EXIT:
         case ID_DEBUGGER_FILE_EXIT:
@@ -539,6 +543,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_FILE_CLOSE:
+            ksResult=QKeySequence();
+            break;
+        case ID_FILE_PRINT:
             ksResult=QKeySequence();
             break;
         case ID_FILE_EXIT:
@@ -797,7 +804,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_PROCESS_STRUCTS:
-            ksResult=QKeySequence();
+            ksResult=Qt::ALT+Qt::Key_S;
             break;
         case ID_PROCESS_DUMPTOFILE:
             ksResult=QKeySequence();

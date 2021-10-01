@@ -65,6 +65,7 @@ public:
         ID_FILE_SAVE,
         ID_FILE_SAVEAS,
         ID_FILE_CLOSE,
+        ID_FILE_PRINT,
         ID_FILE_EXIT,
         ID_STRINGS                  =GROUPID_STRINGS<<GROUP_SH,
         ID_STRINGS_COPYSTRING,
