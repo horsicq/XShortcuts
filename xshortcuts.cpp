@@ -286,12 +286,12 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_TABLE_HEX:                          sResult=QString("Shortcuts/Table/Hex");                         break;
         case ID_TABLE_DISASM:                       sResult=QString("Shortcuts/Table/Disasm");                      break;
         case ID_PROCESS_STRUCTS:                    sResult=QString("Shortcuts/Process/Structs");                   break;
+        case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
         case ID_PROCESS_MEMORY_HEX:                 sResult=QString("Shortcuts/Process/Memory/Hex");                break;
         case ID_PROCESS_MEMORY_STRINGS:             sResult=QString("Shortcuts/Process/Memory/Strings");            break;
         case ID_PROCESS_MEMORY_SIGNATURES:          sResult=QString("Shortcuts/Process/Memory/Signatures");         break;
         case ID_PROCESS_FILE_VIEWER:                sResult=QString("Shortcuts/Process/File/Viewer");               break;
         case ID_PROCESS_FILE_COPYFILENAME:          sResult=QString("Shortcuts/Process/File/CopyFilename");         break;
-        case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
         default:
         {
         #ifdef QT_DEBUG
