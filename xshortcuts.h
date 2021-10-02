@@ -174,7 +174,6 @@ public:
         ID_PROCESS_FILE_VIEWER,
         ID_PROCESS_FILE_COPYFILENAME,
         ID_PROCESS__END
-        // TODO More
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
