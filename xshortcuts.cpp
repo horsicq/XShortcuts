@@ -45,7 +45,7 @@ void XShortcuts::addGroup(GROUPID groupId)
     }
 }
 
-void XShortcuts::addGroup(ID id)
+void XShortcuts::addGroup(ID id) // TODO Remove
 {
     qint32 nEnd=getGroupEnd((GROUPID)(id>>GROUP_SH));
 
