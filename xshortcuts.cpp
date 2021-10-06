@@ -709,7 +709,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             break;
         case ID_DEBUGGER_FILE_DETACH:
         #ifdef Q_OS_WIN
-            ksResult=Qt::CTRL+Qt::ALT+Qt::Key_F2;
+            ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_F2;
         #endif
         #ifdef Q_OS_LINUX
             ksResult=QKeySequence(); // TODO
