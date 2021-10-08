@@ -815,10 +815,10 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=Qt::CTRL+Qt::Key_H;
             break;
         case ID_PROCESS_MEMORY_STRINGS:
-            ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_F;
+            ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_J;
             break;
         case ID_PROCESS_MEMORY_SIGNATURES:
-            ksResult=QKeySequence();
+            ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_K;
             break;
         case ID_PROCESS_FILE_VIEWER:
             ksResult=QKeySequence();
