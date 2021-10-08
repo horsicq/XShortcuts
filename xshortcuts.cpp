@@ -809,10 +809,10 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=Qt::ALT+Qt::Key_S;
             break;
         case ID_PROCESS_DUMPTOFILE:
-            ksResult=QKeySequence();
+            ksResult=Qt::CTRL+Qt::Key_D;
             break;
         case ID_PROCESS_MEMORY_HEX:
-            ksResult=QKeySequence();
+            ksResult=Qt::CTRL+Qt::Key_H;
             break;
         case ID_PROCESS_MEMORY_STRINGS:
             ksResult=QKeySequence();
