@@ -27,6 +27,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 #include "xshortcuts.h"
+#include "xoptions.h"
 
 namespace Ui {
 class DialogShortcuts;
