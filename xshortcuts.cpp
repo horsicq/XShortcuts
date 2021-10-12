@@ -533,7 +533,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     switch(id)
     {
         case ID_ACTION_COPY:
-            ksResult=QKeySequence::Copy;
+            ksResult=QKeySequence::Copy; // TODO rework
             break;
         case ID_FILE_OPEN:
             ksResult=QKeySequence();
@@ -554,7 +554,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_STRINGS_COPYSTRING:
-            ksResult=QKeySequence::Copy;
+            ksResult=QKeySequence::Copy; // TODO rework
             break;
         case ID_STRINGS_COPYOFFSET:
             ksResult=QKeySequence();
@@ -569,7 +569,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_SIGNATURES_COPYNAME:
-            ksResult=QKeySequence::Copy;
+            ksResult=QKeySequence::Copy; // TODO rework
             break;
         case ID_SIGNATURES_COPYSIGNATURE:
             ksResult=QKeySequence();
@@ -821,7 +821,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_K;
             break;
         case ID_PROCESS_FILE_VIEWER:
-            ksResult=QKeySequence();
+            ksResult=Qt::ALT+Qt::Key_V;
             break;
         case ID_PROCESS_FILE_COPYFILENAME:
             ksResult=QKeySequence();
