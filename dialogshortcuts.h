@@ -22,12 +22,12 @@
 #define DIALOGSHORTCUTS_H
 
 #include <QDialog>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
 #include <QKeyEvent>
 #include <QMessageBox>
-#include "xshortcuts.h"
+#include <QSortFilterProxyModel>
+#include <QStandardItemModel>
 #include "xoptions.h"
+#include "xshortcuts.h"
 
 namespace Ui {
 class DialogShortcuts;
