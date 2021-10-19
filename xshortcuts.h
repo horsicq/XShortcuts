@@ -21,11 +21,11 @@
 #ifndef XSHORTCUTS_H
 #define XSHORTCUTS_H
 
-#include <QMap>
-#include <QDir>
-#include <QSettings>
 #include <QApplication>
+#include <QDir>
 #include <QKeySequence>
+#include <QMap>
+#include <QSettings>
 
 class XShortcuts : public QObject
 {
