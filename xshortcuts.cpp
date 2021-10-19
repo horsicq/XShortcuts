@@ -256,7 +256,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_RESTART:             sResult=QString("Shortcuts/Debugger/Debug/Restart");            break;
         case ID_DEBUGGER_FILE_ATTACH:               sResult=QString("Shortcuts/Debugger/File/Attach");              break;
         case ID_DEBUGGER_FILE_DETACH:               sResult=QString("Shortcuts/Debugger/File/Detach");              break;
-        case ID_DEBUGGER_DISASM_TOGGLE:             sResult=QString("Shortcuts/Debugger/Disasm/Toggle");            break;
+        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:   sResult=QString("Shortcuts/Debugger/Disasm/BreakpointToggle");  break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=QString("Shortcuts/Debugger/Disasm/DumpToFile");        break;
         case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=QString("Shortcuts/Debugger/Disasm/GoToAddress");       break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=QString("Shortcuts/Debugger/Disasm/HexSignature");      break;
@@ -493,7 +493,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DEBUG_RESTART:
             sResult=tr("Restart");
             break;
-        case ID_DEBUGGER_DISASM_TOGGLE:
+        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
             sResult=tr("Toggle");
             break;
         case ID_ARCHIVE_COPYFILENAME:
@@ -718,7 +718,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence(); // TODO
         #endif
             break;
-        case ID_DEBUGGER_DISASM_TOGGLE:
+        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
             ksResult=Qt::Key_F2;
             break;
         case ID_DEBUGGER_DISASM_DUMPTOFILE:
@@ -918,7 +918,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_VIEW_THREADS:
             result=GROUPID_VIEW;
             break;
-        case ID_DEBUGGER_DISASM_TOGGLE:
+        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
         case ID_DEBUGGER_DISASM_COPYASHEX:
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
         case ID_DEBUGGER_DISASM_DUMPTOFILE:
