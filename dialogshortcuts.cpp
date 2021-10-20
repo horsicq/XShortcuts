@@ -51,7 +51,7 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     g_pModel->setHeaderData(COLUMN_NAME,Qt::Horizontal,tr("Name"));
     g_pModel->setHeaderData(COLUMN_SHORTCUT,Qt::Horizontal,tr("Shortcut"));
 
-    for(int i=0;i<nNumberOfRecords;i++)
+    for(qint32 i=0;i<nNumberOfRecords;i++)
     {
         XShortcuts::ID idShortcut=listIDs.at(i);
 
