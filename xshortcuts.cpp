@@ -133,7 +133,7 @@ void XShortcuts::save()
     {
         int nNumberOfIDs=g_listValueIDs.count();
 
-        for(int i=0;i<nNumberOfIDs;i++)
+        for(qint32 i=0;i<nNumberOfIDs;i++)
         {
             ID id=g_listValueIDs.at(i);
             QString sName=idToSettingsString(id);
