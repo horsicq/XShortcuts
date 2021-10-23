@@ -17,3 +17,6 @@ SOURCES += \
 
 FORMS += \
     $$PWD/dialogshortcuts.ui
+
+DISTFILES += \
+    $$PWD/xshortcuts.cmake
