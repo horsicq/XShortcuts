@@ -125,7 +125,7 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 
             if(g_pModel)
             {
-                int nRow=ui->tableViewShortcuts->currentIndex().row();
+                qint32 nRow=ui->tableViewShortcuts->currentIndex().row();
 
                 if(nRow<g_pModel->rowCount())
                 {
