@@ -131,7 +131,7 @@ void XShortcuts::save()
 
     if(pSettings)
     {
-        int nNumberOfIDs=g_listValueIDs.count();
+        qint32 nNumberOfIDs=g_listValueIDs.count();
 
         for(qint32 i=0;i<nNumberOfIDs;i++)
         {
