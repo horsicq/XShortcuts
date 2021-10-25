@@ -186,7 +186,7 @@ void DialogShortcuts::on_pushButtonClear_clicked()
 
     if(g_pModel)
     {
-        int nRow=ui->tableViewShortcuts->currentIndex().row();
+        qint32 nRow=ui->tableViewShortcuts->currentIndex().row();
 
         if(nRow<g_pModel->rowCount())
         {
