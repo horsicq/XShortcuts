@@ -858,7 +858,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
 
 XShortcuts::ID XShortcuts::getGroupEnd(GROUPID groupId)
 {
-    int nEnd=0;
+    qint32 nEnd=0;
 
     // TODO STACK
     if(groupId==GROUPID_ACTION)         nEnd=ID_ACTION__END;
