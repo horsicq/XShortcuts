@@ -19,4 +19,6 @@ FORMS += \
     $$PWD/dialogshortcuts.ui
 
 DISTFILES += \
+    $$PWD/LICENSE \
+    $$PWD/README.md \
     $$PWD/xshortcuts.cmake
