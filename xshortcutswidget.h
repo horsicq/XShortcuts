@@ -35,6 +35,8 @@ public:
 
     virtual void setShortcuts(XShortcuts *pShortcuts);
     XShortcuts *getShortcuts();
+    void setGlobalOptions(XOptions *pXOptions);
+    XOptions *getGlobalOptions();
     void setActive(bool bState);
 
 protected:
@@ -45,6 +47,8 @@ private:
     bool g_bIsActive;
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
+    XOptions *g_pXOptions;
+    XOptions xOptionsEmpty;
 };
 
 #endif // XSHORTCUTSWIDGET_H

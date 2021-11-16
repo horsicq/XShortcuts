@@ -23,6 +23,7 @@
 XShortcutsWidget::XShortcutsWidget(QWidget *pParent): QWidget(pParent)
 {
     g_pShortcuts=&g_scEmpty;
+    g_pXOptions=&xOptionsEmpty;
     g_bIsActive=false;
 }
 
@@ -40,6 +41,16 @@ void XShortcutsWidget::setShortcuts(XShortcuts *pShortcuts)
 XShortcuts *XShortcutsWidget::getShortcuts()
 {
     return g_pShortcuts;
+}
+
+void XShortcutsWidget::setGlobalOptions(XOptions *pXOptions)
+{
+    g_pXOptions=pXOptions;
+}
+
+XOptions *XShortcutsWidget::getGlobalOptions()
+{
+    return g_pXOptions;
 }
 
 void XShortcutsWidget::setActive(bool bState)
