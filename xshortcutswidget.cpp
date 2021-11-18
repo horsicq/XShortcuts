@@ -27,9 +27,10 @@ XShortcutsWidget::XShortcutsWidget(QWidget *pParent): QWidget(pParent)
     g_bIsActive=false;
 }
 
-void XShortcutsWidget::setShortcuts(XShortcuts *pShortcuts)
+void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
 {
     g_pShortcuts=pShortcuts;
+    g_pXOptions=pXOptions;
 
     if(g_bIsActive)
     {
@@ -41,11 +42,6 @@ void XShortcutsWidget::setShortcuts(XShortcuts *pShortcuts)
 XShortcuts *XShortcutsWidget::getShortcuts()
 {
     return g_pShortcuts;
-}
-
-void XShortcutsWidget::setGlobalOptions(XOptions *pXOptions)
-{
-    g_pXOptions=pXOptions;
 }
 
 XOptions *XShortcutsWidget::getGlobalOptions()

@@ -23,12 +23,14 @@
 XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent): QAbstractScrollArea(pParent)
 {
     g_pShortcuts=&g_scEmpty;
+    g_pXOptions=&xOptionsEmpty;
     g_bIsFocused=false;
 }
 
-void XShortcutstScrollArea::setShortcuts(XShortcuts *pShortcuts)
+void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
 {
     g_pShortcuts=pShortcuts;
+    g_pXOptions=pXOptions;
 
     if(g_bIsFocused)
     {
@@ -40,6 +42,11 @@ void XShortcutstScrollArea::setShortcuts(XShortcuts *pShortcuts)
 XShortcuts *XShortcutstScrollArea::getShortcuts()
 {
     return g_pShortcuts;
+}
+
+XOptions *XShortcutstScrollArea::getGlobalOptions()
+{
+    return g_pXOptions;
 }
 
 bool XShortcutstScrollArea::isFocused()

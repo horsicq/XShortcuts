@@ -23,6 +23,7 @@
 
 #include <QAbstractScrollArea>
 #include "xshortcuts.h"
+#include "xoptions.h"
 
 class XShortcutstScrollArea : public QAbstractScrollArea
 {
@@ -31,8 +32,9 @@ class XShortcutstScrollArea : public QAbstractScrollArea
 public:
     XShortcutstScrollArea(QWidget *pParent=nullptr);
 
-    virtual void setShortcuts(XShortcuts *pShortcuts);
+    virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
     XShortcuts *getShortcuts();
+    XOptions *getGlobalOptions();
     bool isFocused();
 
 protected:
@@ -43,6 +45,8 @@ private:
     bool g_bIsFocused;
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
+    XOptions *g_pXOptions;
+    XOptions xOptionsEmpty;
 };
 
 #endif // XSHORTCUTSTSCROLLAREA_H

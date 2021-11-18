@@ -23,12 +23,14 @@
 XShortcutsDialog::XShortcutsDialog(QWidget *pParent): QDialog(pParent)
 {
     g_pShortcuts=&g_scEmpty;
+    g_pXOptions=&xOptionsEmpty;
     g_bIsFocused=false;
 }
 
-void XShortcutsDialog::setShortcuts(XShortcuts *pShortcuts)
+void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
 {
     g_pShortcuts=pShortcuts;
+    g_pXOptions=pXOptions;
 
     if(g_bIsFocused)
     {
@@ -40,6 +42,11 @@ void XShortcutsDialog::setShortcuts(XShortcuts *pShortcuts)
 XShortcuts *XShortcutsDialog::getShortcuts()
 {
     return g_pShortcuts;
+}
+
+XOptions *XShortcutsDialog::getGlobalOptions()
+{
+    return g_pXOptions;
 }
 
 bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)

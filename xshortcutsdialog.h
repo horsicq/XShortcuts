@@ -23,6 +23,7 @@
 
 #include <QDialog>
 #include "xshortcuts.h"
+#include "xoptions.h"
 
 class XShortcutsDialog : public QDialog
 {
@@ -31,8 +32,9 @@ class XShortcutsDialog : public QDialog
 public:
     XShortcutsDialog(QWidget *pParent=nullptr);
 
-    virtual void setShortcuts(XShortcuts *pShortcuts);
+    virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
     XShortcuts *getShortcuts();
+    XOptions *getGlobalOptions();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
@@ -42,6 +44,8 @@ private:
     bool g_bIsFocused;
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
+    XOptions *g_pXOptions;
+    XOptions xOptionsEmpty;
 };
 
 #endif // XSHORTCUTSDIALOG_H

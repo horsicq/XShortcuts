@@ -33,9 +33,8 @@ class XShortcutsWidget : public QWidget
 public:
     explicit XShortcutsWidget(QWidget *pParent=nullptr);
 
-    virtual void setShortcuts(XShortcuts *pShortcuts);
+    virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
     XShortcuts *getShortcuts();
-    void setGlobalOptions(XOptions *pXOptions);
     XOptions *getGlobalOptions();
     void setActive(bool bState);
 
