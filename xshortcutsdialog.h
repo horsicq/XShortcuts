@@ -35,6 +35,7 @@ public:
     virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
+    virtual void adjust();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;

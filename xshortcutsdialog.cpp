@@ -49,6 +49,11 @@ XOptions *XShortcutsDialog::getGlobalOptions()
     return g_pXOptions;
 }
 
+void XShortcutsDialog::adjust()
+{
+
+}
+
 bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)
