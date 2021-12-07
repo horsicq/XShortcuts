@@ -181,7 +181,7 @@ public:
     void setName(QString sValue);
     void setNative(bool bValue);
     void addGroup(GROUPID groupId);
-    void addGroup(ID id); // TODO remove
+    void addGroup(ID id); // TODO remove !!!
     void setShortcutsIDs(QList<ID> listValueIDs);
     QList<ID> getShortcutsIDs();
     void load();
