@@ -55,6 +55,7 @@ public:
     static const qint32 GROUP_SH=24;
 
     // TODO Debugger execute till selection
+    // TODO Debugger breakpoints
     enum ID
     {
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
