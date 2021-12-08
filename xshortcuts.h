@@ -60,6 +60,7 @@ public:
     {
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
         ID_ACTION_COPY,
+        ID_ACTION_SHOW,
         ID_ACTION__END,
         ID_FILE                             =GROUPID_FILE<<GROUP_SH,
         ID_FILE_OPEN,
