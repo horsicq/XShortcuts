@@ -38,6 +38,7 @@ public:
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     void setActive(bool bState);
+    void saveModel(QAbstractItemModel *pModel,QString sFileName);
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
