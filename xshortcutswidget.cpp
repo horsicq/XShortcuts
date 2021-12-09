@@ -41,7 +41,7 @@ void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
 
 void XShortcutsWidget::adjust()
 {
-
+    // TODO
 }
 
 XShortcuts *XShortcutsWidget::getShortcuts()
