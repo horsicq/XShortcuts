@@ -56,6 +56,7 @@ public:
 
     // TODO Debugger execute till selection
     // TODO Debugger breakpoints
+    // TODO more
     enum ID
     {
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
