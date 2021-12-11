@@ -180,6 +180,7 @@ public:
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
+
     void setName(QString sValue);
     void setNative(bool bValue);
     void addGroup(GROUPID groupId);
