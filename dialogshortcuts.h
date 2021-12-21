@@ -47,6 +47,7 @@ class DialogShortcuts : public QDialog
 public:
     explicit DialogShortcuts(QWidget *pParent=nullptr);
     ~DialogShortcuts();
+
     void setData(XShortcuts *pShortcuts);
 
 protected:
