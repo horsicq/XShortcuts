@@ -27,6 +27,7 @@ XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
 
 void XShortcuts::setName(QString sValue)
 {
+    // mb TODO different names for Windows and macOS
     this->g_sName=sValue;
 }
 
