@@ -1,3 +1,3 @@
 # XShortcuts
 
-Shortcuts for some projects
+Shortcuts for projects
