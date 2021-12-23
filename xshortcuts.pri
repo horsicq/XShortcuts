@@ -18,6 +18,11 @@ SOURCES += \
 FORMS += \
     $$PWD/dialogshortcuts.ui
 
+!contains(XCONFIG, xoptions) {
+    XCONFIG += xoptions
+    include($$PWD/../XOptions/xoptions.pri)
+}
+
 DISTFILES += \
     $$PWD/LICENSE \
     $$PWD/README.md \
