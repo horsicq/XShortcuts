@@ -23,7 +23,7 @@
 XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent): QAbstractScrollArea(pParent)
 {
     g_pShortcuts=&g_scEmpty;
-    g_pXOptions=&xOptionsEmpty;
+    g_pXOptions=&g_xOptionsEmpty;
     g_bIsFocused=false;
 }
 

@@ -46,7 +46,7 @@ private:
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
     XOptions *g_pXOptions;
-    XOptions xOptionsEmpty;
+    XOptions g_xOptionsEmpty;
 };
 
 #endif // XSHORTCUTSTSCROLLAREA_H
