@@ -193,7 +193,6 @@ public:
     QKeySequence getShortcut(ID id);
     void setShortcut(ID id,QKeySequence keyValue);
     bool checkShortcut(ID id,QKeySequence keyValue);
-
     static QString idToSettingsString(ID id);
     static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
