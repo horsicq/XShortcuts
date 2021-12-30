@@ -34,11 +34,11 @@ public:
     explicit XShortcutsWidget(QWidget *pParent=nullptr);
 
     virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
-    virtual void adjust();
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     void setActive(bool bState);
     void saveModel(QAbstractItemModel *pModel,QString sFileName);
+    virtual void adjustView();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;

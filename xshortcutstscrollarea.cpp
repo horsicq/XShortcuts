@@ -37,6 +37,8 @@ void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions
         registerShortcuts(false);
         registerShortcuts(true);
     }
+
+    adjustView();
 }
 
 XShortcuts *XShortcutstScrollArea::getShortcuts()
@@ -70,4 +72,9 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
     }
 
     return QAbstractScrollArea::eventFilter(pObj,pEvent);
+}
+
+void XShortcutstScrollArea::adjustView()
+{
+
 }

@@ -37,11 +37,8 @@ void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
         registerShortcuts(false);
         registerShortcuts(true);
     }
-}
 
-void XShortcutsWidget::adjust()
-{
-    // TODO
+    adjustView();
 }
 
 XShortcuts *XShortcutsWidget::getShortcuts()
@@ -89,4 +86,9 @@ bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
     }
 
     return QWidget::eventFilter(pObj,pEvent);
+}
+
+void XShortcutsWidget::adjustView()
+{
+
 }

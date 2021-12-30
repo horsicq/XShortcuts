@@ -36,6 +36,7 @@ public:
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     bool isFocused();
+    virtual void adjustView();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;

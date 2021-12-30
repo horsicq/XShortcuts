@@ -37,6 +37,8 @@ void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
         registerShortcuts(false);
         registerShortcuts(true);
     }
+
+    adjustView();
 }
 
 XShortcuts *XShortcutsDialog::getShortcuts()
@@ -49,7 +51,7 @@ XOptions *XShortcutsDialog::getGlobalOptions()
     return g_pXOptions;
 }
 
-void XShortcutsDialog::adjust()
+void XShortcutsDialog::adjustView()
 {
 
 }
