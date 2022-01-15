@@ -156,7 +156,7 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 
 void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
 {
-    g_pFilter->setFilterRegExp(sString);
+    g_pFilter->setFilterRegularExpression(sString);
     g_pFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
     g_pFilter->setFilterKeyColumn(COLUMN_NAME);
 }
