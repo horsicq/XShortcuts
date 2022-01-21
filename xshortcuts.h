@@ -57,7 +57,7 @@ public:
     // TODO Debugger execute till selection
     // TODO Debugger breakpoints
     // TODO more
-    // TODO remove GROUP_SH, use function like getSubgroupId
+    // TODO remove GROUP_SH, use function like getSubgroupId !!!
     enum ID
     {
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
