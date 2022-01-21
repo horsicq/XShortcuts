@@ -538,7 +538,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
     switch(id)
     {
         case ID_ACTION_COPY:
-            ksResult=QKeySequence::Copy; // TODO rework
+            ksResult=QKeySequence::Copy; // TODO rework !!!
             break;
         case ID_ACTION_SHOW:
             ksResult=QKeySequence();
