@@ -57,7 +57,6 @@ public:
     // TODO Debugger execute till selection
     // TODO Debugger breakpoints
     // TODO more
-    // TODO remove GROUP_SH, use function like getSubgroupId !!!
     enum ID
     {
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
@@ -197,7 +196,7 @@ public:
     static QString idToString(ID id);
     static QKeySequence getDefault(ID id);
     static QString groupIdToString(GROUPID groupId);
-    static ID getGroupEnd(GROUPID groupId);
+    static ID getGroupEnd(GROUPID groupId); // TODO remove
     static GROUPID getGroupId(ID id);
     static GROUPID getSubgroupId(ID id);
 

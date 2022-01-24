@@ -884,13 +884,132 @@ XShortcuts::ID XShortcuts::getGroupEnd(GROUPID groupId)
 
 XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
 {
-    qint32 nResult=id;
+    GROUPID result=GROUPID_UNKNOWN;
 
-    nResult&=0xFF000000;
+    switch(id)
+    {
+        case ID_ACTION_COPY:
+        case ID_ACTION_SHOW:
+            result=GROUPID_ACTION;
+            break;
+        case ID_FILE_OPEN:
+        case ID_FILE_SAVE:
+        case ID_FILE_SAVEAS:
+        case ID_FILE_CLOSE:
+        case ID_FILE_PRINT:
+        case ID_FILE_EXIT:
+            result=GROUPID_FILE;
+            break;
+        case ID_STRINGS_COPYSTRING:
+        case ID_STRINGS_COPYOFFSET:
+        case ID_STRINGS_COPYSIZE:
+        case ID_STRINGS_HEX:
+        case ID_STRINGS_DEMANGLE:
+            result=GROUPID_STRINGS;
+            break;
+        case ID_SIGNATURES_COPYNAME:
+        case ID_SIGNATURES_COPYSIGNATURE:
+        case ID_SIGNATURES_COPYADDRESS:
+        case ID_SIGNATURES_COPYOFFSET:
+        case ID_SIGNATURES_COPYSIZE:
+        case ID_SIGNATURES_HEX:
+            result=GROUPID_SIGNATURES;
+            break;
+        case ID_HEX_DUMPTOFILE:
+        case ID_HEX_GOTOOFFSET:
+        case ID_HEX_GOTOADDRESS:
+        case ID_HEX_SIGNATURE:
+        case ID_HEX_FIND:
+        case ID_HEX_FINDNEXT:
+        case ID_HEX_SELECTALL:
+        case ID_HEX_COPYASHEX:
+        case ID_HEX_COPYCURSOROFFSET:
+        case ID_HEX_COPYCURSORADDRESS:
+        case ID_HEX_DISASM:
+        case ID_HEX_MEMORYMAP:
+            result=GROUPID_HEX;
+            break;
+        case ID_DISASM_DUMPTOFILE:
+        case ID_DISASM_GOTOADDRESS:
+        case ID_DISASM_GOTOOFFSET:
+        case ID_DISASM_GOTOENTRYPOINT:
+        case ID_DISASM_HEXSIGNATURE:
+        case ID_DISASM_SIGNATURE:
+        case ID_DISASM_FIND:
+        case ID_DISASM_FINDNEXT:
+        case ID_DISASM_SELECTALL:
+        case ID_DISASM_COPYASHEX:
+        case ID_DISASM_COPYCURSORADDRESS:
+        case ID_DISASM_COPYCURSOROFFSET:
+        case ID_DISASM_HEX:
+            result=GROUPID_DISASM;
+            break;
+        case ID_DEBUGGER_FILE_OPEN:
+        case ID_DEBUGGER_FILE_CLOSE:
+        case ID_DEBUGGER_FILE_ATTACH:
+        case ID_DEBUGGER_FILE_DETACH:
+        case ID_DEBUGGER_FILE_EXIT:
+        case ID_DEBUGGER_VIEW_CPU:
+        case ID_DEBUGGER_VIEW_ACTIONS:
+        case ID_DEBUGGER_VIEW_LOG:
+        case ID_DEBUGGER_VIEW_BREAKPOINTS:
+        case ID_DEBUGGER_VIEW_MEMORYMAP:
+        case ID_DEBUGGER_VIEW_CALLSTACK:
+        case ID_DEBUGGER_VIEW_THREADS:
+        case ID_DEBUGGER_VIEW_HANDLES:
+        case ID_DEBUGGER_DEBUG_RUN:
+        case ID_DEBUGGER_DEBUG_PAUSE:
+        case ID_DEBUGGER_DEBUG_STEPINTO:
+        case ID_DEBUGGER_DEBUG_STEPOVER:
+        case ID_DEBUGGER_DEBUG_STOP:
+        case ID_DEBUGGER_DEBUG_RESTART:
+        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
+        case ID_DEBUGGER_DISASM_DUMPTOFILE:
+        case ID_DEBUGGER_DISASM_GOTOADDRESS:
+        case ID_DEBUGGER_DISASM_HEXSIGNATURE:
+        case ID_DEBUGGER_DISASM_SIGNATURE:
+        case ID_DEBUGGER_DISASM_FIND:
+        case ID_DEBUGGER_DISASM_FINDNEXT:
+        case ID_DEBUGGER_DISASM_COPYASHEX:
+        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
+        case ID_DEBUGGER_DISASM_SELECTALL:
+        case ID_DEBUGGER_HEX_DUMPTOFILE:
+        case ID_DEBUGGER_HEX_FIND:
+        case ID_DEBUGGER_HEX_FINDNEXT:
+        case ID_DEBUGGER_HEX_GOTOADDRESS:
+        case ID_DEBUGGER_HEX_SIGNATURE:
+        case ID_DEBUGGER_HEX_COPYASHEX:
+        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
+        case ID_DEBUGGER_HEX_SELECTALL:
+        case ID_DEBUGGER_STACK_GOTOADDRESS:
+            result=GROUPID_DEBUGGER;
+            break;
+        case ID_ARCHIVE_OPEN:
+        case ID_ARCHIVE_SCAN:
+        case ID_ARCHIVE_HEX:
+        case ID_ARCHIVE_STRINGS:
+        case ID_ARCHIVE_ENTROPY:
+        case ID_ARCHIVE_HASH:
+        case ID_ARCHIVE_COPYFILENAME:
+        case ID_ARCHIVE_DUMPTOFILE:
+            result=GROUPID_ARCHIVE;
+            break;
+        case ID_TABLE_HEX:
+        case ID_TABLE_DISASM:
+            result=GROUPID_DISASM;
+            break;
+        case ID_PROCESS_STRUCTS:
+        case ID_PROCESS_DUMPTOFILE:
+        case ID_PROCESS_MEMORY_HEX:
+        case ID_PROCESS_MEMORY_STRINGS:
+        case ID_PROCESS_MEMORY_SIGNATURES:
+        case ID_PROCESS_FILE_VIEWER:
+        case ID_PROCESS_FILE_COPYFILENAME:
+            result=GROUPID_PROCESS;
+            break;
+    }
 
-    nResult>>=24;
-
-    return (GROUPID)nResult;
+    return result;
 }
 
 XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)

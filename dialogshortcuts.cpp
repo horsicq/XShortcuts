@@ -156,7 +156,11 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 
 void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5,12,0)
     g_pFilter->setFilterRegularExpression(sString);
+#else
+    g_pFilter->setFilterRegExp(sString);
+#endif
     g_pFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
     g_pFilter->setFilterKeyColumn(COLUMN_NAME);
 }
