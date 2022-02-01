@@ -52,7 +52,7 @@ public:
         GROUPID_MEMORY
     };
 
-    static const qint32 GROUP_SH=24; // 0xFF000000
+    static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove
 
     // TODO Debugger execute till selection
     // TODO Debugger breakpoints

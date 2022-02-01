@@ -23,7 +23,7 @@
 XShortcutsDialog::XShortcutsDialog(QWidget *pParent): QDialog(pParent)
 {
     g_pShortcuts=&g_scEmpty;
-    g_pXOptions=&xOptionsEmpty;
+    g_pXOptions=&g_xOptionsEmpty;
     g_bIsFocused=false;
 }
 
