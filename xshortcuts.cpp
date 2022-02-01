@@ -154,7 +154,7 @@ QKeySequence XShortcuts::getShortcut(XShortcuts::ID id)
     if(!g_mapValues.contains(id))
     {
         QString sErrorString=idToSettingsString(id);
-        qDebug(sErrorString.toLatin1().data());
+        qDebug("%s", sErrorString.toLatin1().data());
     }
 #endif
     return g_mapValues.value(id);
