@@ -87,9 +87,7 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,200);        // TODO
     ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);    // TODO
 
-    connect(ui->tableViewShortcuts->selectionModel(),
-            SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            SLOT(onCellChanged(QItemSelection,QItemSelection)));
+    connect(ui->tableViewShortcuts->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(onCellChanged(QItemSelection,QItemSelection)));
 }
 
 bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
