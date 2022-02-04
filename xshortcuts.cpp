@@ -712,7 +712,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence(); // TODO
         #endif
         #ifdef Q_OS_OSX
-            ksResult=QKeySequence(); // TODO
+            ksResult=QKeySequence(); // TODO Check
         #endif
             break;
         case ID_DEBUGGER_FILE_DETACH:
@@ -723,7 +723,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence(); // TODO
         #endif
         #ifdef Q_OS_OSX
-            ksResult=QKeySequence(); // TODO
+            ksResult=QKeySequence(); // TODO Check
         #endif
             break;
         case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
