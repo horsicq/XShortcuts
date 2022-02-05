@@ -56,7 +56,7 @@ void XShortcutsWidget::setActive(bool bState)
     g_bIsActive=bState;
 }
 
-void XShortcutsWidget::saveModel(QAbstractItemModel *pModel, QString sFileName)
+void XShortcutsWidget::saveModel(QAbstractItemModel *pModel,QString sFileName)
 {
     sFileName=QFileDialog::getSaveFileName(this,tr("Save"),sFileName,QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"),tr("All files")));
 
