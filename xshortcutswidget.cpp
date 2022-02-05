@@ -69,7 +69,7 @@ void XShortcutsWidget::saveModel(QAbstractItemModel *pModel,QString sFileName)
     }
 }
 
-bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
+bool XShortcutsWidget::eventFilter(QObject *pObj,QEvent *pEvent)
 {
     Q_UNUSED(pObj)
 
