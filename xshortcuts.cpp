@@ -160,7 +160,7 @@ QKeySequence XShortcuts::getShortcut(XShortcuts::ID id)
     return g_mapValues.value(id);
 }
 
-void XShortcuts::setShortcut(XShortcuts::ID id, QKeySequence keyValue)
+void XShortcuts::setShortcut(XShortcuts::ID id,QKeySequence keyValue)
 {
     g_mapValues.insert(id,keyValue);
 }
