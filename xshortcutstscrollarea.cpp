@@ -56,7 +56,7 @@ bool XShortcutstScrollArea::isFocused()
     return g_bIsFocused;
 }
 
-bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
+bool XShortcutstScrollArea::eventFilter(QObject *pObj,QEvent *pEvent)
 {
     Q_UNUSED(pObj)
 
