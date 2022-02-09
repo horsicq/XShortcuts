@@ -90,7 +90,7 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     connect(ui->tableViewShortcuts->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(onCellChanged(QItemSelection,QItemSelection)));
 }
 
-bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
+bool DialogShortcuts::eventFilter(QObject *pObj,QEvent *pEvent)
 {
     if(pObj==ui->lineEditShortcut)
     {
