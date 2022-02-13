@@ -163,7 +163,7 @@ void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
     g_pFilter->setFilterKeyColumn(COLUMN_NAME);
 }
 
-void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected)
+void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected)
 {
     Q_UNUSED(itemDeselected)
 
