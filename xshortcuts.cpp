@@ -154,7 +154,7 @@ QKeySequence XShortcuts::getShortcut(XShortcuts::ID id)
     if(!g_mapValues.contains(id))
     {
         QString sErrorString=idToSettingsString(id);
-        qDebug("%s", sErrorString.toLatin1().data());
+        qDebug("%s",sErrorString.toLatin1().data());
     }
 #endif
     return g_mapValues.value(id);
@@ -165,7 +165,7 @@ void XShortcuts::setShortcut(XShortcuts::ID id,QKeySequence keyValue)
     g_mapValues.insert(id,keyValue);
 }
 
-bool XShortcuts::checkShortcut(XShortcuts::ID id, QKeySequence keyValue)
+bool XShortcuts::checkShortcut(XShortcuts::ID id,QKeySequence keyValue)
 {
     bool bResult=true;
 
