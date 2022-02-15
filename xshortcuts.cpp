@@ -294,6 +294,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_SIGNATURES:          sResult=QString("Shortcuts/Process/Memory/Signatures");         break;
         case ID_PROCESS_FILE_VIEWER:                sResult=QString("Shortcuts/Process/File/Viewer");               break;
         case ID_PROCESS_FILE_COPYFILENAME:          sResult=QString("Shortcuts/Process/File/CopyFilename");         break;
+        case ID_PROCESS_MEMORYMAP:                  sResult=QString("Shortcuts/Process/MemoryMap");                 break;
+        case ID_PROCESS_MODULES:                    sResult=QString("Shortcuts/Process/Modules");                   break;
         default:
         {
         #ifdef QT_DEBUG
@@ -444,6 +446,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DEBUGGER_VIEW_MEMORYMAP:
         case ID_HEX_MEMORYMAP:
+        case ID_PROCESS_MEMORYMAP:
             sResult=tr("Memory map");
             break;
         case ID_DISASM_GOTOENTRYPOINT:
@@ -523,6 +526,9 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_PROCESS_FILE_VIEWER:
             sResult=tr("Viewer");
+            break;
+        case ID_PROCESS_MODULES:
+            sResult=tr("Modules");
             break;
         default:
             sResult=tr("Unknown");
@@ -828,6 +834,12 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_SIGNATURES:
             ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_K;
             break;
+        case ID_PROCESS_MEMORYMAP:
+            ksResult=QKeySequence();
+            break;
+        case ID_PROCESS_MODULES:
+            ksResult=QKeySequence();
+            break;
         case ID_PROCESS_FILE_VIEWER:
             ksResult=Qt::ALT+Qt::Key_V;
             break;
@@ -1005,6 +1017,8 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_SIGNATURES:
         case ID_PROCESS_FILE_VIEWER:
         case ID_PROCESS_FILE_COPYFILENAME:
+        case ID_PROCESS_MEMORYMAP:
+        case ID_PROCESS_MODULES:
             result=GROUPID_PROCESS;
             break;
     }
