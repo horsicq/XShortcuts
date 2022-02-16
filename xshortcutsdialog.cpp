@@ -56,7 +56,7 @@ void XShortcutsDialog::adjustView()
 
 }
 
-bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
+bool XShortcutsDialog::eventFilter(QObject *pObj,QEvent *pEvent)
 {
     Q_UNUSED(pObj)
 
