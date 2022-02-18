@@ -296,6 +296,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_PROCESS_FILE_COPYFILENAME:          sResult=QString("Shortcuts/Process/File/CopyFilename");         break;
         case ID_PROCESS_MEMORYMAP:                  sResult=QString("Shortcuts/Process/MemoryMap");                 break;
         case ID_PROCESS_MODULES:                    sResult=QString("Shortcuts/Process/Modules");                   break;
+        case ID_MEMORYMAP_DUMPTOFILE:               sResult=QString("Shortcuts/MemoryMap/DumpToFile");              break;
+        case ID_MODULES_DUMPTOFILE:                 sResult=QString("Shortcuts/Modules/DumpToFile");                break;
         default:
         {
         #ifdef QT_DEBUG
@@ -384,6 +386,8 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_DUMPTOFILE:
         case ID_DISASM_DUMPTOFILE:
         case ID_PROCESS_DUMPTOFILE:
+        case ID_MEMORYMAP_DUMPTOFILE:
+        case ID_MODULES_DUMPTOFILE:
             sResult=tr("Dump to file");
             break;
         case ID_DISASM_GOTOADDRESS:
@@ -1088,6 +1092,12 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_PROCESS_MEMORY_SIGNATURES:
         case ID_PROCESS_MEMORY_STRINGS:
             result=GROUPID_MEMORY;
+            break;
+        case ID_MEMORYMAP_DUMPTOFILE:
+            result=GROUPID_MEMORYMAP;
+            break;
+        case ID_MODULES_DUMPTOFILE:
+            result=GROUPID_MODULES;
             break;
         default:
             result=GROUPID_UNKNOWN;

@@ -49,7 +49,9 @@ public:
         GROUPID_ARCHIVE,
         GROUPID_TABLE,
         GROUPID_PROCESS,
-        GROUPID_MEMORY
+        GROUPID_MEMORY,
+        GROUPID_MEMORYMAP,
+        GROUPID_MODULES
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove
@@ -178,7 +180,13 @@ public:
         ID_PROCESS_FILE_COPYFILENAME,
         ID_PROCESS_MEMORYMAP,
         ID_PROCESS_MODULES,
-        ID_PROCESS__END
+        ID_PROCESS__END,
+        ID_MEMORYMAP                        =GROUPID_MEMORYMAP<<GROUP_SH,
+        ID_MEMORYMAP_DUMPTOFILE,
+        ID_MEMORYMAP__END,
+        ID_MODULES                          =GROUPID_MODULES<<GROUP_SH,
+        ID_MODULES_DUMPTOFILE,
+        ID_MODULES__END,
     };
 
     explicit XShortcuts(QObject *pParent=nullptr);
