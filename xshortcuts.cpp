@@ -226,6 +226,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_HEX_COPYCURSORADDRESS:              sResult=QString("Shortcuts/Hex/CopyCursorAddress");             break;
         case ID_HEX_DISASM:                         sResult=QString("Shortcuts/Hex/Disasm");                        break;
         case ID_HEX_MEMORYMAP:                      sResult=QString("Shortcuts/Hex/MemoryMap");                     break;
+        case ID_HEX_EDITHEX:                        sResult=QString("Shortcuts/Hex/EditHex");                       break;
         case ID_DISASM_DUMPTOFILE:                  sResult=QString("Shortcuts/Disasm/DumpToFile");                 break;
         case ID_DISASM_GOTOADDRESS:                 sResult=QString("Shortcuts/Disasm/GoToAddress");                break;
         case ID_DISASM_GOTOOFFSET:                  sResult=QString("Shortcuts/Disasm/GoToOffset");                 break;
@@ -378,6 +379,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_SIGNATURES_HEX:
         case ID_ARCHIVE_HEX:
         case ID_PROCESS_MEMORY_HEX:
+        case ID_HEX_EDITHEX:
             sResult=tr("Hex");
             break;
         case ID_HEX_DUMPTOFILE:
@@ -638,6 +640,9 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
             ksResult=QKeySequence();
             break;
         case ID_HEX_MEMORYMAP:
+            ksResult=QKeySequence();
+            break;
+        case ID_HEX_EDITHEX:
             ksResult=QKeySequence();
             break;
         case ID_DISASM_DUMPTOFILE:
@@ -943,6 +948,7 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_HEX_COPYCURSORADDRESS:
         case ID_HEX_DISASM:
         case ID_HEX_MEMORYMAP:
+        case ID_HEX_EDITHEX:
             result=GROUPID_HEX;
             break;
         case ID_DISASM_DUMPTOFILE:

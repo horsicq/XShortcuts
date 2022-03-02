@@ -100,6 +100,7 @@ public:
         ID_HEX_COPYCURSORADDRESS,
         ID_HEX_DISASM,
         ID_HEX_MEMORYMAP,
+        ID_HEX_EDITHEX,
         ID_HEX__END,
         ID_DISASM                           =GROUPID_DISASM<<GROUP_SH,
         ID_DISASM_DUMPTOFILE,
