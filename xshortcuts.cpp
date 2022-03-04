@@ -203,9 +203,9 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_FILE_CLOSE:                         sResult=QString("Shortcuts/File/Close");                        break;
         case ID_FILE_PRINT:                         sResult=QString("Shortcuts/File/Print");                        break;
         case ID_FILE_EXIT:                          sResult=QString("Shortcuts/File/Exit");                         break;
-        case ID_STRINGS_COPYSTRING:                 sResult=QString("Shortcuts/Strings/CopyString");                break;
-        case ID_STRINGS_COPYOFFSET:                 sResult=QString("Shortcuts/Strings/CopyOffset");                break;
-        case ID_STRINGS_COPYSIZE:                   sResult=QString("Shortcuts/Strings/CopySize");                  break;
+        case ID_STRINGS_COPY_STRING:                sResult=QString("Shortcuts/Strings/Copy/String");               break;
+        case ID_STRINGS_COPY_OFFSET:                sResult=QString("Shortcuts/Strings/Copy/Offset");               break;
+        case ID_STRINGS_COPY_SIZE:                  sResult=QString("Shortcuts/Strings/Copy/Size");                 break;
         case ID_STRINGS_HEX:                        sResult=QString("Shortcuts/Strings/Hex");                       break;
         case ID_STRINGS_DEMANGLE:                   sResult=QString("Shortcuts/Strings/Demangle");                  break;
         case ID_SIGNATURES_COPYNAME:                sResult=QString("Shortcuts/Signatures/CopyName");               break;
@@ -293,10 +293,12 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_HEX:                 sResult=QString("Shortcuts/Process/Memory/Hex");                break;
         case ID_PROCESS_MEMORY_STRINGS:             sResult=QString("Shortcuts/Process/Memory/Strings");            break;
         case ID_PROCESS_MEMORY_SIGNATURES:          sResult=QString("Shortcuts/Process/Memory/Signatures");         break;
+        case ID_PROCESS_MEMORY_MEMORYMAP:           sResult=QString("Shortcuts/Process/Memory/MemoryMap");          break;
+        case ID_PROCESS_MEMORY_MODULES:             sResult=QString("Shortcuts/Process/Memory/Modules");            break;
         case ID_PROCESS_FILE_VIEWER:                sResult=QString("Shortcuts/Process/File/Viewer");               break;
-        case ID_PROCESS_FILE_COPYFILENAME:          sResult=QString("Shortcuts/Process/File/CopyFilename");         break;
-        case ID_PROCESS_MEMORYMAP:                  sResult=QString("Shortcuts/Process/MemoryMap");                 break;
-        case ID_PROCESS_MODULES:                    sResult=QString("Shortcuts/Process/Modules");                   break;
+        case ID_PROCESS_COPY_PID:                   sResult=QString("Shortcuts/Process/Copy/PID");                  break;
+        case ID_PROCESS_COPY_NAME:                  sResult=QString("Shortcuts/Process/Copy/Name");                 break;
+        case ID_PROCESS_COPY_FILENAME:              sResult=QString("Shortcuts/Process/Copy/Filename");             break;
         case ID_MEMORYMAP_DUMPTOFILE:               sResult=QString("Shortcuts/MemoryMap/DumpToFile");              break;
         case ID_MODULES_DUMPTOFILE:                 sResult=QString("Shortcuts/Modules/DumpToFile");                break;
         default:
@@ -344,14 +346,14 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ACTION_SHOW:
             sResult=tr("Show");
             break;
-        case ID_STRINGS_COPYSTRING:
-            sResult=tr("Copy string");
+        case ID_STRINGS_COPY_STRING:
+            sResult=tr("String");
             break;
-        case ID_STRINGS_COPYOFFSET:
-            sResult=tr("Copy offset");
+        case ID_STRINGS_COPY_OFFSET:
+            sResult=tr("Offset");
             break;
-        case ID_STRINGS_COPYSIZE:
-            sResult=tr("Copy size");
+        case ID_STRINGS_COPY_SIZE:
+            sResult=tr("Size");
             break;
         case ID_STRINGS_HEX:
             sResult=tr("Hex");
@@ -452,7 +454,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DEBUGGER_VIEW_MEMORYMAP:
         case ID_HEX_MEMORYMAP:
-        case ID_PROCESS_MEMORYMAP:
+        case ID_PROCESS_MEMORY_MEMORYMAP:
             sResult=tr("Memory map");
             break;
         case ID_DISASM_GOTOENTRYPOINT:
@@ -511,8 +513,16 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Toggle");
             break;
         case ID_ARCHIVE_COPYFILENAME:
-        case ID_PROCESS_FILE_COPYFILENAME:
             sResult=tr("Copy filename");
+            break;
+        case ID_PROCESS_COPY_FILENAME:
+            sResult=tr("Filename");
+            break;
+        case ID_PROCESS_COPY_NAME:
+            sResult=tr("Name");
+            break;
+        case ID_PROCESS_COPY_PID:
+            sResult=QString("PID");
             break;
         case ID_ARCHIVE_ENTROPY:
             sResult=tr("Entropy");
@@ -533,7 +543,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_PROCESS_FILE_VIEWER:
             sResult=tr("Viewer");
             break;
-        case ID_PROCESS_MODULES:
+        case ID_PROCESS_MEMORY_MODULES:
             sResult=tr("Modules");
             break;
         default:
@@ -573,13 +583,13 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_FILE_EXIT:
             ksResult=QKeySequence();
             break;
-        case ID_STRINGS_COPYSTRING:
+        case ID_STRINGS_COPY_STRING:
             ksResult=QKeySequence::Copy; // TODO rework
             break;
-        case ID_STRINGS_COPYOFFSET:
+        case ID_STRINGS_COPY_OFFSET:
             ksResult=QKeySequence();
             break;
-        case ID_STRINGS_COPYSIZE:
+        case ID_STRINGS_COPY_SIZE:
             ksResult=QKeySequence();
             break;
         case ID_STRINGS_HEX:
@@ -843,16 +853,16 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_SIGNATURES:
             ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_K;
             break;
-        case ID_PROCESS_MEMORYMAP:
+        case ID_PROCESS_MEMORY_MEMORYMAP:
             ksResult=QKeySequence();
             break;
-        case ID_PROCESS_MODULES:
+        case ID_PROCESS_MEMORY_MODULES:
             ksResult=QKeySequence();
             break;
         case ID_PROCESS_FILE_VIEWER:
             ksResult=Qt::ALT+Qt::Key_V;
             break;
-        case ID_PROCESS_FILE_COPYFILENAME:
+        case ID_PROCESS_COPY_FILENAME:
             ksResult=QKeySequence();
             break;
         default:
@@ -881,6 +891,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_TABLE)        sResult=tr("Table");
     else if (groupId==GROUPID_PROCESS)      sResult=tr("Process");
     else if (groupId==GROUPID_MEMORY)       sResult=tr("Memory");
+    else if (groupId==GROUPID_COPY)         sResult=tr("Copy");
 
     return sResult;
 }
@@ -921,9 +932,9 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_FILE_EXIT:
             result=GROUPID_FILE;
             break;
-        case ID_STRINGS_COPYSTRING:
-        case ID_STRINGS_COPYOFFSET:
-        case ID_STRINGS_COPYSIZE:
+        case ID_STRINGS_COPY_STRING:
+        case ID_STRINGS_COPY_OFFSET:
+        case ID_STRINGS_COPY_SIZE:
         case ID_STRINGS_HEX:
         case ID_STRINGS_DEMANGLE:
             result=GROUPID_STRINGS;
@@ -1025,10 +1036,12 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_HEX:
         case ID_PROCESS_MEMORY_STRINGS:
         case ID_PROCESS_MEMORY_SIGNATURES:
+        case ID_PROCESS_MEMORY_MEMORYMAP:
+        case ID_PROCESS_MEMORY_MODULES:
         case ID_PROCESS_FILE_VIEWER:
-        case ID_PROCESS_FILE_COPYFILENAME:
-        case ID_PROCESS_MEMORYMAP:
-        case ID_PROCESS_MODULES:
+        case ID_PROCESS_COPY_FILENAME:
+        case ID_PROCESS_COPY_PID:
+        case ID_PROCESS_COPY_NAME:
             result=GROUPID_PROCESS;
             break;
     }
@@ -1048,7 +1061,6 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_FILE_EXIT:
         case ID_DEBUGGER_FILE_OPEN:
         case ID_PROCESS_FILE_VIEWER:
-        case ID_PROCESS_FILE_COPYFILENAME:
             result=GROUPID_FILE;
             break;
         case ID_DEBUGGER_DEBUG_PAUSE:
@@ -1097,6 +1109,8 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_PROCESS_MEMORY_HEX:
         case ID_PROCESS_MEMORY_SIGNATURES:
         case ID_PROCESS_MEMORY_STRINGS:
+        case ID_PROCESS_MEMORY_MEMORYMAP:
+        case ID_PROCESS_MEMORY_MODULES:
             result=GROUPID_MEMORY;
             break;
         case ID_MEMORYMAP_DUMPTOFILE:
@@ -1104,6 +1118,14 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
             break;
         case ID_MODULES_DUMPTOFILE:
             result=GROUPID_MODULES;
+            break;
+        case ID_PROCESS_COPY_FILENAME:
+        case ID_PROCESS_COPY_NAME:
+        case ID_PROCESS_COPY_PID:
+        case ID_STRINGS_COPY_STRING:
+        case ID_STRINGS_COPY_OFFSET:
+        case ID_STRINGS_COPY_SIZE:
+            result=GROUPID_COPY;
             break;
         default:
             result=GROUPID_UNKNOWN;
