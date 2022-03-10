@@ -513,10 +513,10 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Toggle");
             break;
         case ID_ARCHIVE_COPYFILENAME:
-            sResult=tr("Copy filename");
+            sResult=tr("File name");
             break;
         case ID_PROCESS_COPY_FILENAME:
-            sResult=tr("Filename");
+            sResult=tr("File name");
             break;
         case ID_PROCESS_COPY_NAME:
             sResult=tr("Name");
