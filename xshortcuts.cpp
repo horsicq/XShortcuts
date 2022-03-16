@@ -208,11 +208,10 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_STRINGS_COPY_SIZE:                  sResult=QString("Shortcuts/Strings/Copy/Size");                 break;
         case ID_STRINGS_HEX:                        sResult=QString("Shortcuts/Strings/Hex");                       break;
         case ID_STRINGS_DEMANGLE:                   sResult=QString("Shortcuts/Strings/Demangle");                  break;
-        case ID_SIGNATURES_COPYNAME:                sResult=QString("Shortcuts/Signatures/CopyName");               break;
-        case ID_SIGNATURES_COPYSIGNATURE:           sResult=QString("Shortcuts/Signatures/CopySignature");          break;
-        case ID_SIGNATURES_COPYADDRESS:             sResult=QString("Shortcuts/Signatures/CopyAddress");            break;
-        case ID_SIGNATURES_COPYOFFSET:              sResult=QString("Shortcuts/Signatures/CopyOffset");             break;
-        case ID_SIGNATURES_COPYSIZE:                sResult=QString("Shortcuts/Signatures/CopySize");               break;
+        case ID_SIGNATURES_COPY_NAME:               sResult=QString("Shortcuts/Signatures/Copy/Name");              break;
+        case ID_SIGNATURES_COPY_SIGNATURE:          sResult=QString("Shortcuts/Signatures/Copy/Signature");         break;
+        case ID_SIGNATURES_COPY_ADDRESS:            sResult=QString("Shortcuts/Signatures/Copy/Address");           break;
+        case ID_SIGNATURES_COPY_OFFSET:             sResult=QString("Shortcuts/Signatures/Copy/Offset");            break;
         case ID_SIGNATURES_HEX:                     sResult=QString("Shortcuts/Signatures/Hex");                    break;
         case ID_HEX_DUMPTOFILE:                     sResult=QString("Shortcuts/Hex/DumpToFile");                    break;
         case ID_HEX_GOTOADDRESS:                    sResult=QString("Shortcuts/Hex/GoToAddress");                   break;
@@ -350,31 +349,23 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("String");
             break;
         case ID_STRINGS_COPY_OFFSET:
+        case ID_SIGNATURES_COPY_OFFSET:
             sResult=tr("Offset");
             break;
         case ID_STRINGS_COPY_SIZE:
             sResult=tr("Size");
             break;
-        case ID_STRINGS_HEX:
-            sResult=tr("Hex");
-            break;
         case ID_STRINGS_DEMANGLE:
             sResult=tr("Demangle");
             break;
-        case ID_SIGNATURES_COPYNAME:
-            sResult=tr("Copy name");
+        case ID_SIGNATURES_COPY_NAME:
+            sResult=tr("Name");
             break;
-        case ID_SIGNATURES_COPYSIGNATURE:
-            sResult=tr("Copy signature");
+        case ID_SIGNATURES_COPY_SIGNATURE:
+            sResult=tr("Signature");
             break;
-        case ID_SIGNATURES_COPYADDRESS:
-            sResult=tr("Copy address");
-            break;
-        case ID_SIGNATURES_COPYOFFSET:
-            sResult=tr("Copy offset");
-            break;
-        case ID_SIGNATURES_COPYSIZE:
-            sResult=tr("Copy size");
+        case ID_SIGNATURES_COPY_ADDRESS:
+            sResult=tr("Address");
             break;
         case ID_TABLE_HEX:
         case ID_DISASM_HEX:
@@ -382,6 +373,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_HEX:
         case ID_PROCESS_MEMORY_HEX:
         case ID_HEX_EDITHEX:
+        case ID_STRINGS_HEX:
             sResult=tr("Hex");
             break;
         case ID_HEX_DUMPTOFILE:
@@ -598,19 +590,16 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_STRINGS_DEMANGLE:
             ksResult=QKeySequence();
             break;
-        case ID_SIGNATURES_COPYNAME:
+        case ID_SIGNATURES_COPY_NAME:
             ksResult=QKeySequence::Copy; // TODO rework
             break;
-        case ID_SIGNATURES_COPYSIGNATURE:
+        case ID_SIGNATURES_COPY_SIGNATURE:
             ksResult=QKeySequence();
             break;
-        case ID_SIGNATURES_COPYADDRESS:
+        case ID_SIGNATURES_COPY_ADDRESS:
             ksResult=QKeySequence();
             break;
-        case ID_SIGNATURES_COPYOFFSET:
-            ksResult=QKeySequence();
-            break;
-        case ID_SIGNATURES_COPYSIZE:
+        case ID_SIGNATURES_COPY_OFFSET:
             ksResult=QKeySequence();
             break;
         case ID_SIGNATURES_HEX:
@@ -939,11 +928,10 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_STRINGS_DEMANGLE:
             result=GROUPID_STRINGS;
             break;
-        case ID_SIGNATURES_COPYNAME:
-        case ID_SIGNATURES_COPYSIGNATURE:
-        case ID_SIGNATURES_COPYADDRESS:
-        case ID_SIGNATURES_COPYOFFSET:
-        case ID_SIGNATURES_COPYSIZE:
+        case ID_SIGNATURES_COPY_NAME:
+        case ID_SIGNATURES_COPY_SIGNATURE:
+        case ID_SIGNATURES_COPY_ADDRESS:
+        case ID_SIGNATURES_COPY_OFFSET:
         case ID_SIGNATURES_HEX:
             result=GROUPID_SIGNATURES;
             break;
@@ -1125,6 +1113,10 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_STRINGS_COPY_STRING:
         case ID_STRINGS_COPY_OFFSET:
         case ID_STRINGS_COPY_SIZE:
+        case ID_SIGNATURES_COPY_ADDRESS:
+        case ID_SIGNATURES_COPY_NAME:
+        case ID_SIGNATURES_COPY_OFFSET:
+        case ID_SIGNATURES_COPY_SIGNATURE:
             result=GROUPID_COPY;
             break;
         default:
