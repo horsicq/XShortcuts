@@ -881,6 +881,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_PROCESS)      sResult=tr("Process");
     else if (groupId==GROUPID_MEMORY)       sResult=tr("Memory");
     else if (groupId==GROUPID_COPY)         sResult=tr("Copy");
+    else if (groupId==GROUPID_GOTO)         sResult=tr("Go to");
 
     return sResult;
 }

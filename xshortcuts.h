@@ -52,7 +52,8 @@ public:
         GROUPID_MEMORY,
         GROUPID_MEMORYMAP,
         GROUPID_MODULES,
-        GROUPID_COPY
+        GROUPID_COPY,
+        GROUPID_GOTO
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove
