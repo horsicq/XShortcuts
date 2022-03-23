@@ -27,6 +27,9 @@ DialogShortcuts::DialogShortcuts(QWidget *pParent) :
 {
     ui->setupUi(this);
 
+    g_pShortcuts=nullptr;
+    g_pModel=nullptr;
+
     g_pFilter=new QSortFilterProxyModel(this);
 
     ui->lineEditShortcut->setEnabled(false);
