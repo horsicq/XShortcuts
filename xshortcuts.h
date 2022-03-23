@@ -53,7 +53,8 @@ public:
         GROUPID_MEMORYMAP,
         GROUPID_MODULES,
         GROUPID_COPY,
-        GROUPID_GOTO
+        GROUPID_GOTO,
+        GROUPID_EDIT
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove
@@ -80,6 +81,7 @@ public:
         ID_STRINGS_COPY_SIZE,
         ID_STRINGS_HEX,
         ID_STRINGS_DEMANGLE,
+        ID_STRINGS_EDIT_STRING,
         ID_STRINGS__END,
         ID_SIGNATURES                       =GROUPID_SIGNATURES<<GROUP_SH,
         ID_SIGNATURES_COPY_NAME,

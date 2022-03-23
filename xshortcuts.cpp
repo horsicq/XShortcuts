@@ -208,6 +208,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_STRINGS_COPY_SIZE:                  sResult=QString("Shortcuts/Strings/Copy/Size");                 break;
         case ID_STRINGS_HEX:                        sResult=QString("Shortcuts/Strings/Hex");                       break;
         case ID_STRINGS_DEMANGLE:                   sResult=QString("Shortcuts/Strings/Demangle");                  break;
+        case ID_STRINGS_EDIT_STRING:                sResult=QString("Shortcuts/Strings/Edit/String");               break;
         case ID_SIGNATURES_COPY_NAME:               sResult=QString("Shortcuts/Signatures/Copy/Name");              break;
         case ID_SIGNATURES_COPY_SIGNATURE:          sResult=QString("Shortcuts/Signatures/Copy/Signature");         break;
         case ID_SIGNATURES_COPY_ADDRESS:            sResult=QString("Shortcuts/Signatures/Copy/Address");           break;
@@ -346,6 +347,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Show");
             break;
         case ID_STRINGS_COPY_STRING:
+        case ID_STRINGS_EDIT_STRING:
             sResult=tr("String");
             break;
         case ID_STRINGS_COPY_OFFSET:
@@ -881,6 +883,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_PROCESS)      sResult=tr("Process");
     else if (groupId==GROUPID_MEMORY)       sResult=tr("Memory");
     else if (groupId==GROUPID_COPY)         sResult=tr("Copy");
+    else if (groupId==GROUPID_EDIT)         sResult=tr("Edit");
     else if (groupId==GROUPID_GOTO)         sResult=tr("Go to");
 
     return sResult;
@@ -927,6 +930,7 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_STRINGS_COPY_SIZE:
         case ID_STRINGS_HEX:
         case ID_STRINGS_DEMANGLE:
+        case ID_STRINGS_EDIT_STRING:
             result=GROUPID_STRINGS;
             break;
         case ID_SIGNATURES_COPY_NAME:
@@ -1119,6 +1123,9 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_SIGNATURES_COPY_OFFSET:
         case ID_SIGNATURES_COPY_SIGNATURE:
             result=GROUPID_COPY;
+            break;
+        case ID_STRINGS_EDIT_STRING:
+            result=GROUPID_EDIT;
             break;
         default:
             result=GROUPID_UNKNOWN;
