@@ -54,7 +54,8 @@ public:
         GROUPID_MODULES,
         GROUPID_COPY,
         GROUPID_GOTO,
-        GROUPID_EDIT
+        GROUPID_EDIT,
+        GROUPID_TOOLS
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove
