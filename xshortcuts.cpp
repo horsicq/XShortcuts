@@ -82,7 +82,7 @@ void XShortcuts::load()
 #ifdef QT_DEBUG
     if(pSettings)
     {
-        qDebug("XShortcuts: load file %s",pSettings->fileName().toLatin1().data());
+        qDebug("XShortcuts: load file %s",pSettings->fileName().toUtf8().data());
     }
 #endif
 
@@ -126,7 +126,7 @@ void XShortcuts::save()
 #ifdef QT_DEBUG
     if(pSettings)
     {
-        qDebug("XShortcuts: save file %s",pSettings->fileName().toLatin1().data());
+        qDebug("XShortcuts: save file %s",pSettings->fileName().toUtf8().data());
     }
 #endif
 
