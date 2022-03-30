@@ -244,7 +244,6 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_FILE_CLOSE:                sResult=QString("Shortcuts/Debugger/File/Close");               break;
         case ID_DEBUGGER_FILE_EXIT:                 sResult=QString("Shortcuts/Debugger/File/Exit");                break;
         case ID_DEBUGGER_VIEW_CPU:                  sResult=QString("Shortcuts/Debugger/View/CPU");                 break;
-        case ID_DEBUGGER_VIEW_ACTIONS:              sResult=QString("Shortcuts/Debugger/View/Actions");             break;
         case ID_DEBUGGER_VIEW_LOG:                  sResult=QString("Shortcuts/Debugger/View/Log");                 break;
         case ID_DEBUGGER_VIEW_BREAKPOINTS:          sResult=QString("Shortcuts/Debugger/View/Breakpoints");         break;
         case ID_DEBUGGER_VIEW_MEMORYMAP:            sResult=QString("Shortcuts/Debugger/View/MemoryMap");           break;
@@ -466,9 +465,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DEBUGGER_VIEW_CPU:
             sResult=tr("CPU");
-            break;
-        case ID_DEBUGGER_VIEW_ACTIONS:
-            sResult=tr("Actions");
             break;
         case ID_DEBUGGER_VIEW_LOG:
             sResult=tr("Log");
@@ -977,7 +973,6 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_DEBUGGER_FILE_DETACH:
         case ID_DEBUGGER_FILE_EXIT:
         case ID_DEBUGGER_VIEW_CPU:
-        case ID_DEBUGGER_VIEW_ACTIONS:
         case ID_DEBUGGER_VIEW_LOG:
         case ID_DEBUGGER_VIEW_BREAKPOINTS:
         case ID_DEBUGGER_VIEW_MEMORYMAP:
@@ -1065,7 +1060,6 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_DEBUG_STOP:
             result=GROUPID_DEBUG;
             break;
-        case ID_DEBUGGER_VIEW_ACTIONS:
         case ID_DEBUGGER_VIEW_BREAKPOINTS:
         case ID_DEBUGGER_VIEW_CALLSTACK:
         case ID_DEBUGGER_VIEW_CPU:
