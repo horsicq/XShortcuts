@@ -58,7 +58,7 @@ public:
         GROUPID_TOOLS
     };
 
-    static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove
+    static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
 
     // TODO Debugger execute till selection
     // TODO Debugger breakpoints
