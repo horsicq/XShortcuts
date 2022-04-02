@@ -42,6 +42,7 @@ public:
         GROUPID_ACTION,
         GROUPID_STRINGS,
         GROUPID_SIGNATURES,
+        GROUPID_STRUCTS,
         GROUPID_HEX,
         GROUPID_DISASM,
         GROUPID_STACK,

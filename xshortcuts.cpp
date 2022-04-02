@@ -868,6 +868,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_VIEW)         sResult=tr("View");
     else if (groupId==GROUPID_STRINGS)      sResult=tr("Strings");
     else if (groupId==GROUPID_SIGNATURES)   sResult=tr("Signatures");
+    else if (groupId==GROUPID_STRUCTS)      sResult=tr("Structs");
     else if (groupId==GROUPID_HEX)          sResult=tr("Hex");
     else if (groupId==GROUPID_DISASM)       sResult=tr("Disasm");
     else if (groupId==GROUPID_DEBUG)        sResult=tr("Debug");
