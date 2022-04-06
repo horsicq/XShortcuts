@@ -250,6 +250,9 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_VIEW_CALLSTACK:            sResult=QString("Shortcuts/Debugger/View/CallStack");           break;
         case ID_DEBUGGER_VIEW_THREADS:              sResult=QString("Shortcuts/Debugger/View/Threads");             break;
         case ID_DEBUGGER_VIEW_HANDLES:              sResult=QString("Shortcuts/Debugger/View/Handles");             break;
+        case ID_DEBUGGER_TOOLS_OPTIONS:             sResult=QString("Shortcuts/Debugger/Tools/Options");            break;
+        case ID_DEBUGGER_TOOLS_SHORTCUTS:           sResult=QString("Shortcuts/Debugger/Tools/Shortcuts");          break;
+        case ID_DEBUGGER_HELP_ABOUT:                sResult=QString("Shortcuts/Debugger/Help/About");               break;
         case ID_DEBUGGER_DEBUG_RUN:                 sResult=QString("Shortcuts/Debugger/Debug/Run");                break;
         case ID_DEBUGGER_DEBUG_PAUSE:               sResult=QString("Shortcuts/Debugger/Debug/Pause");              break;
         case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=QString("Shortcuts/Debugger/Debug/StepInto");           break;
@@ -480,6 +483,15 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DEBUGGER_VIEW_HANDLES:
             sResult=tr("Handles");
+            break;
+        case ID_DEBUGGER_TOOLS_OPTIONS:
+            sResult=tr("Options");
+            break;
+        case ID_DEBUGGER_TOOLS_SHORTCUTS:
+            sResult=tr("Shortcuts");
+            break;
+        case ID_DEBUGGER_HELP_ABOUT:
+            sResult=tr("About");
             break;
         case ID_DEBUGGER_DEBUG_RUN:
             sResult=tr("Run");
@@ -883,6 +895,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_EDIT)         sResult=tr("Edit");
     else if (groupId==GROUPID_GOTO)         sResult=tr("Go to");
     else if (groupId==GROUPID_TOOLS)        sResult=tr("Tools");
+    else if (groupId==GROUPID_HELP)         sResult=tr("Help");
 
     return sResult;
 }
@@ -980,6 +993,9 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_DEBUGGER_VIEW_CALLSTACK:
         case ID_DEBUGGER_VIEW_THREADS:
         case ID_DEBUGGER_VIEW_HANDLES:
+        case ID_DEBUGGER_TOOLS_OPTIONS:
+        case ID_DEBUGGER_TOOLS_SHORTCUTS:
+        case ID_DEBUGGER_HELP_ABOUT:
         case ID_DEBUGGER_DEBUG_RUN:
         case ID_DEBUGGER_DEBUG_PAUSE:
         case ID_DEBUGGER_DEBUG_STEPINTO:
@@ -1069,6 +1085,13 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_VIEW_MEMORYMAP:
         case ID_DEBUGGER_VIEW_THREADS:
             result=GROUPID_VIEW;
+            break;
+        case ID_DEBUGGER_TOOLS_OPTIONS:
+        case ID_DEBUGGER_TOOLS_SHORTCUTS:
+            result=GROUPID_TOOLS;
+            break;
+        case ID_DEBUGGER_HELP_ABOUT:
+            result=GROUPID_HELP;
             break;
         case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
         case ID_DEBUGGER_DISASM_COPYASHEX:

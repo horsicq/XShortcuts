@@ -23,8 +23,8 @@
 
 #include <QWidget>
 #include <QShortcut>
-#include "xshortcuts.h"
 #include "xoptions.h"
+#include "xshortcuts.h"
 
 class XShortcutsWidget : public QWidget
 {
