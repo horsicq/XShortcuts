@@ -50,6 +50,7 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
     qint32 nNumberOfRecords=listIDs.count();
 
     g_pModel=new QStandardItemModel(nNumberOfRecords,3);
+
     g_pModel->setHeaderData(COLUMN_GROUP,Qt::Horizontal,tr("Group"));
     g_pModel->setHeaderData(COLUMN_NAME,Qt::Horizontal,tr("Name"));
     g_pModel->setHeaderData(COLUMN_SHORTCUT,Qt::Horizontal,tr("Shortcut"));
