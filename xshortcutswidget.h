@@ -21,8 +21,8 @@
 #ifndef XSHORTCUTSWIDGET_H
 #define XSHORTCUTSWIDGET_H
 
-#include <QWidget>
 #include <QShortcut>
+#include <QWidget>
 #include "xoptions.h"
 #include "xshortcuts.h"
 
