@@ -64,6 +64,7 @@ public:
 
     // TODO Debugger execute till selection
     // TODO Debugger breakpoints
+    // TODO tracing
     // TODO more
     enum ID
     {
