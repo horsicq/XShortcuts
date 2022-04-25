@@ -299,6 +299,7 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_MEMORYMAP:           sResult=QString("Shortcuts/Process/Memory/MemoryMap");          break;
         case ID_PROCESS_MEMORY_MODULES:             sResult=QString("Shortcuts/Process/Memory/Modules");            break;
         case ID_PROCESS_FILE_VIEWER:                sResult=QString("Shortcuts/Process/File/Viewer");               break;
+        case ID_PROCESS_FILE_FOLDER:                sResult=QString("Shortcuts/Process/File/Folder");               break;
         case ID_PROCESS_COPY_PID:                   sResult=QString("Shortcuts/Process/Copy/PID");                  break;
         case ID_PROCESS_COPY_NAME:                  sResult=QString("Shortcuts/Process/Copy/Name");                 break;
         case ID_PROCESS_COPY_FILENAME:              sResult=QString("Shortcuts/Process/Copy/Filename");             break;
@@ -545,6 +546,9 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_PROCESS_FILE_VIEWER:
             sResult=tr("Viewer");
+            break;
+        case ID_PROCESS_FILE_FOLDER:
+            sResult=tr("Folder");
             break;
         case ID_PROCESS_MEMORY_MODULES:
             sResult=tr("Modules");
@@ -1046,6 +1050,7 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_MEMORYMAP:
         case ID_PROCESS_MEMORY_MODULES:
         case ID_PROCESS_FILE_VIEWER:
+        case ID_PROCESS_FILE_FOLDER:
         case ID_PROCESS_COPY_FILENAME:
         case ID_PROCESS_COPY_PID:
         case ID_PROCESS_COPY_NAME:
