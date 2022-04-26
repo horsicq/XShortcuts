@@ -251,6 +251,8 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_DEBUGGER_VIEW_CALLSTACK:            sResult=QString("Shortcuts/Debugger/View/CallStack");           break;
         case ID_DEBUGGER_VIEW_THREADS:              sResult=QString("Shortcuts/Debugger/View/Threads");             break;
         case ID_DEBUGGER_VIEW_HANDLES:              sResult=QString("Shortcuts/Debugger/View/Handles");             break;
+        case ID_DEBUGGER_VIEW_MODULES:              sResult=QString("Shortcuts/Debugger/View/Modules");             break;
+        case ID_DEBUGGER_VIEW_SYMBOLS:              sResult=QString("Shortcuts/Debugger/View/Symbols");             break;
         case ID_DEBUGGER_TOOLS_OPTIONS:             sResult=QString("Shortcuts/Debugger/Tools/Options");            break;
         case ID_DEBUGGER_TOOLS_SHORTCUTS:           sResult=QString("Shortcuts/Debugger/Tools/Shortcuts");          break;
         case ID_DEBUGGER_HELP_ABOUT:                sResult=QString("Shortcuts/Debugger/Help/About");               break;
@@ -485,6 +487,12 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_DEBUGGER_VIEW_HANDLES:
             sResult=tr("Handles");
+            break;
+        case ID_DEBUGGER_VIEW_MODULES:
+            sResult=tr("Modules");
+            break;
+        case ID_DEBUGGER_VIEW_SYMBOLS:
+            sResult=tr("Symbols");
             break;
         case ID_DEBUGGER_TOOLS_OPTIONS:
             sResult=tr("Options");
@@ -998,6 +1006,8 @@ XShortcuts::GROUPID XShortcuts::getGroupId(XShortcuts::ID id)
         case ID_DEBUGGER_VIEW_CALLSTACK:
         case ID_DEBUGGER_VIEW_THREADS:
         case ID_DEBUGGER_VIEW_HANDLES:
+        case ID_DEBUGGER_VIEW_MODULES:
+        case ID_DEBUGGER_VIEW_SYMBOLS:
         case ID_DEBUGGER_TOOLS_OPTIONS:
         case ID_DEBUGGER_TOOLS_SHORTCUTS:
         case ID_DEBUGGER_HELP_ABOUT:
@@ -1090,6 +1100,8 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
         case ID_DEBUGGER_VIEW_LOG:
         case ID_DEBUGGER_VIEW_MEMORYMAP:
         case ID_DEBUGGER_VIEW_THREADS:
+        case ID_DEBUGGER_VIEW_MODULES:
+        case ID_DEBUGGER_VIEW_SYMBOLS:
             result=GROUPID_VIEW;
             break;
         case ID_DEBUGGER_TOOLS_OPTIONS:
