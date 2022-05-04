@@ -204,6 +204,8 @@ public:
         ID_MODULES__END,
     };
 
+    // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
+
     explicit XShortcuts(QObject *pParent=nullptr);
 
     void setName(QString sValue);
