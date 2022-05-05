@@ -57,7 +57,8 @@ public:
         GROUPID_GOTO,
         GROUPID_EDIT,
         GROUPID_TOOLS,
-        GROUPID_HELP
+        GROUPID_HELP,
+        GROUPID__SIZE
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
@@ -68,6 +69,7 @@ public:
     // TODO more
     enum ID
     {
+        ID_UNKNOWN=0,
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
         ID_ACTION_COPY,
         ID_ACTION_SHOW,
@@ -204,7 +206,7 @@ public:
         ID_MODULES__END,
     };
 
-    // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
+
 
     explicit XShortcuts(QObject *pParent=nullptr);
 
@@ -226,6 +228,13 @@ public:
     static ID getGroupEnd(GROUPID groupId); // TODO remove
     static GROUPID getGroupId(ID id);
     static GROUPID getSubgroupId(ID id);
+
+
+    // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
+    static quint64 createShortcutsId(GROUPID groupID,quint32 nSubgoups,ID baseId);
+    static GROUPID getGroupId(quint64 nShortcutId);
+    static QList<GROUPID> getSubgroupIds(quint64 nShortcutId);
+    static ID getBaseId(quint64 nShortcutId);
 
 private:
     bool g_bIsNative;

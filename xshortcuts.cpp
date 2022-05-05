@@ -1170,3 +1170,40 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
 
     return result;
 }
+
+quint64 XShortcuts::createShortcutsId(GROUPID groupID, quint32 nSubgoups, ID baseId)
+{
+    quint64 nResult=0;
+
+    nResult=(((quint64)groupID)<<(32*3))|(((quint64)nSubgoups)<<(32*2))|((quint64)baseId);
+
+    return nResult;
+}
+
+XShortcuts::GROUPID XShortcuts::getGroupId(quint64 nShortcutId)
+{
+    GROUPID result=GROUPID_UNKNOWN;
+
+    result=(GROUPID)(nShortcutId>>(32*3));
+
+    return result;
+}
+
+QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId)
+{
+    QList<GROUPID> listResult;
+
+    quint32 nSubgroups=(quint32)(nShortcutId>>(32*2));
+
+
+    return listResult;
+}
+
+XShortcuts::ID XShortcuts::getBaseId(quint64 nShortcutId)
+{
+    ID result=ID_UNKNOWN;
+
+    result=(ID)(nShortcutId&0xFFFFFFFF);
+
+    return result;
+}
