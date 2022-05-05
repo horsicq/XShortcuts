@@ -1171,11 +1171,11 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
     return result;
 }
 
-quint64 XShortcuts::createShortcutsId(GROUPID groupID, quint32 nSubgoups, ID baseId)
+quint64 XShortcuts::createShortcutsId(GROUPID groupID, quint32 nSubgroups, ID baseId)
 {
     quint64 nResult=0;
 
-    nResult=(((quint64)groupID)<<(32*3))|(((quint64)nSubgoups)<<(32*2))|((quint64)baseId);
+    nResult=(((quint64)groupID)<<(16*3))|(((quint64)nSubgroups)<<(16*2))|((quint64)baseId);
 
     return nResult;
 }
@@ -1184,7 +1184,7 @@ XShortcuts::GROUPID XShortcuts::getGroupId(quint64 nShortcutId)
 {
     GROUPID result=GROUPID_UNKNOWN;
 
-    result=(GROUPID)(nShortcutId>>(32*3));
+    result=(GROUPID)(nShortcutId>>(16*3));
 
     return result;
 }
@@ -1193,8 +1193,17 @@ QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId)
 {
     QList<GROUPID> listResult;
 
-    quint32 nSubgroups=(quint32)(nShortcutId>>(32*2));
+    quint32 nSubgroups=(quint32)(nShortcutId>>(16*2));
 
+    for(qint32 i=0;i<32;i++)
+    {
+        if(nSubgroups&(1<<i))
+        {
+            GROUPID groupId=(GROUPID)i;
+
+            listResult.append(groupId);
+        }
+    }
 
     return listResult;
 }

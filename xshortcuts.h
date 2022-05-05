@@ -57,8 +57,7 @@ public:
         GROUPID_GOTO,
         GROUPID_EDIT,
         GROUPID_TOOLS,
-        GROUPID_HELP,
-        GROUPID__SIZE
+        GROUPID_HELP
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
@@ -206,8 +205,6 @@ public:
         ID_MODULES__END,
     };
 
-
-
     explicit XShortcuts(QObject *pParent=nullptr);
 
     void setName(QString sValue);
@@ -229,9 +226,8 @@ public:
     static GROUPID getGroupId(ID id);
     static GROUPID getSubgroupId(ID id);
 
-
     // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
-    static quint64 createShortcutsId(GROUPID groupID,quint32 nSubgoups,ID baseId);
+    static quint64 createShortcutsId(GROUPID groupID,quint32 nSubgroups,ID baseId);
     static GROUPID getGroupId(quint64 nShortcutId);
     static QList<GROUPID> getSubgroupIds(quint64 nShortcutId);
     static ID getBaseId(quint64 nShortcutId);
