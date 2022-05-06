@@ -60,6 +60,19 @@ public:
         GROUPID_HELP
     };
 
+    enum BASEID
+    {
+        BASEID_UNKNOWN=0,
+        BASEID_COPY,
+        BASEID_SHOW,
+        BASEID_OPEN,
+        BASEID_SAVE,
+        BASEID_SAVEAS,
+        BASEID_CLOSE,
+        BASEID_PRINT,
+        BASEID_EXIT,
+    };
+
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
 
     // TODO Debugger execute till selection
@@ -210,34 +223,40 @@ public:
     void setName(QString sValue);
     void setNative(bool bValue);
     void addGroup(GROUPID groupId);
+    void addId(quint64 nId);
     void addGroup(ID id); // TODO remove !!!
     void setShortcutsIDs(QList<ID> listValueIDs);
-    QList<ID> getShortcutsIDs();
+    QList<ID> getShortcutsIDs(); // TODO remove
     void load();
     void save();
-    QKeySequence getShortcut(ID id);
-    void setShortcut(ID id,QKeySequence keyValue);
-    bool checkShortcut(ID id,QKeySequence keyValue);
-    static QString idToSettingsString(ID id);
-    static QString idToString(ID id);
-    static QKeySequence getDefault(ID id);
+    QKeySequence getShortcut(ID id); // TODO remove
+    void setShortcut(ID id,QKeySequence keyValue); // TODO remove
+    bool checkShortcut(ID id,QKeySequence keyValue); // TODO remove
+    static QString idToSettingsString(ID id); // TODO remove
+    static QString idToString(ID id); // TODO remove
+    static QKeySequence getDefault(ID id); // TODO remove
+    static QKeySequence getDefault(quint64 nId); // TODO remove
     static QString groupIdToString(GROUPID groupId);
+    static QString baseIdToString(BASEID baseId);
     static ID getGroupEnd(GROUPID groupId); // TODO remove
-    static GROUPID getGroupId(ID id);
-    static GROUPID getSubgroupId(ID id);
+    static GROUPID getGroupId(ID id); // TODO remove
+    static GROUPID getSubgroupId(ID id); // TODO remove
 
     // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
-    static quint64 createShortcutsId(GROUPID groupID,quint32 nSubgroups,ID baseId);
+    static quint64 createShortcutsId(GROUPID groupId,QList<GROUPID> listSubgroup,BASEID baseId);
     static GROUPID getGroupId(quint64 nShortcutId);
     static QList<GROUPID> getSubgroupIds(quint64 nShortcutId);
-    static ID getBaseId(quint64 nShortcutId);
+    static BASEID getBaseId(quint64 nShortcutId);
+    static QString baseIdToSettingsString(BASEID baseId);
+    static QString groupIdToSettingsString(GROUPID groupId);
 
 private:
     bool g_bIsNative;
     QString g_sName;
     QString g_sFilePath;
-    QList<ID> g_listValueIDs;
-    QMap<ID,QKeySequence> g_mapValues;
+    QList<ID> __g_listValueIDs;
+    QMap<quint64,QKeySequence> g_mapValues;
+    QMap<ID,QKeySequence> __g_mapValues;
 };
 
 #endif // XSHORTCUTS_H
