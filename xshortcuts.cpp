@@ -1316,7 +1316,7 @@ XShortcuts::GROUPID XShortcuts::getSubgroupId(ID id)
     return result;
 }
 
-quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgroup, BASEID baseId)
+quint64 XShortcuts::createShortcutsId(GROUPID groupId,QList<GROUPID>listSubgroup,BASEID baseId)
 {
     quint64 nResult=0;
 
