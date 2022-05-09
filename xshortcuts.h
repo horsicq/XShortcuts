@@ -235,7 +235,7 @@ public:
     static QString idToSettingsString(ID id); // TODO remove
     static QString idToString(ID id); // TODO remove
     static QKeySequence getDefault(ID id); // TODO remove
-    static QKeySequence getDefault(quint64 nId); // TODO remove
+    static QKeySequence getDefault(quint64 nId);
     static QString groupIdToString(GROUPID groupId);
     static QString baseIdToString(BASEID baseId);
     static ID getGroupEnd(GROUPID groupId); // TODO remove
@@ -243,6 +243,7 @@ public:
     static GROUPID getSubgroupId(ID id); // TODO remove
 
     // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
+    // TODO make defines
     static quint64 createShortcutsId(GROUPID groupId,QList<GROUPID> listSubgroup,BASEID baseId);
     static GROUPID getGroupId(quint64 nShortcutId);
     static QList<GROUPID> getSubgroupIds(quint64 nShortcutId);

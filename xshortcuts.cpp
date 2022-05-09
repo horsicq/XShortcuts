@@ -46,13 +46,6 @@ void XShortcuts::addGroup(GROUPID groupId)
         __g_listValueIDs.append((XShortcuts::ID)nId);
     }
 
-//    ID_FILE_OPEN,
-//    ID_FILE_SAVE,
-//    ID_FILE_SAVEAS,
-//    ID_FILE_CLOSE,
-//    ID_FILE_PRINT,
-//    ID_FILE_EXIT,
-
     if(groupId==GROUPID_FILE)
     {
         addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_OPEN));
@@ -996,6 +989,7 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
 
 QKeySequence XShortcuts::getDefault(quint64 nId)
 {
+    // TODO use defines
     QKeySequence ksResult=QKeySequence();
 
     GROUPID groupId=getGroupId(nId);
@@ -1008,6 +1002,94 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_CLOSE))         ksResult=QKeySequence();
         else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_PRINT))         ksResult=QKeySequence();
         else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_EXIT))          ksResult=QKeySequence();
+    }
+    else if(groupId==GROUPID_VIEW)
+    {
+
+    }
+    else if(groupId==GROUPID_DEBUGGER)
+    {
+
+    }
+    else if(groupId==GROUPID_DEBUG)
+    {
+
+    }
+    else if(groupId==GROUPID_ACTION)
+    {
+
+    }
+    else if(groupId==GROUPID_STRINGS)
+    {
+
+    }
+    else if(groupId==GROUPID_SIGNATURES)
+    {
+
+    }
+    else if(groupId==GROUPID_STRUCTS)
+    {
+
+    }
+    else if(groupId==GROUPID_HEX)
+    {
+
+    }
+    else if(groupId==GROUPID_DISASM)
+    {
+
+    }
+    else if(groupId==GROUPID_STACK)
+    {
+
+    }
+    else if(groupId==GROUPID_REGISTERS)
+    {
+
+    }
+    else if(groupId==GROUPID_ARCHIVE)
+    {
+
+    }
+    else if(groupId==GROUPID_TABLE)
+    {
+
+    }
+    else if(groupId==GROUPID_PROCESS)
+    {
+
+    }
+    else if(groupId==GROUPID_MEMORY)
+    {
+
+    }
+    else if(groupId==GROUPID_MEMORYMAP)
+    {
+
+    }
+    else if(groupId==GROUPID_MODULES)
+    {
+
+    }
+    else if(groupId==GROUPID_COPY)
+    {
+
+    }
+    else if(groupId==GROUPID_GOTO)
+    {
+
+    }
+    else if(groupId==GROUPID_EDIT)
+    {
+
+    }
+    else if(groupId==GROUPID_TOOLS)
+    {
+
+    }
+    else if(groupId==GROUPID_HELP)
+    {
+
     }
 
     return ksResult;
