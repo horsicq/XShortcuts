@@ -71,6 +71,10 @@ public:
         BASEID_CLOSE,
         BASEID_PRINT,
         BASEID_EXIT,
+        BASEID_DUMPTOFILE,
+        BASEID_OFFSET,
+        BASEID_ADDRESS,
+        BASEID_SIGNATURE,
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
@@ -233,6 +237,7 @@ public:
     void setShortcut(ID id,QKeySequence keyValue); // TODO remove
     bool checkShortcut(ID id,QKeySequence keyValue); // TODO remove
     static QString idToSettingsString(ID id); // TODO remove
+    static QString idToSettingsString(quint64 nId);
     static QString idToString(ID id); // TODO remove
     static QKeySequence getDefault(ID id); // TODO remove
     static QKeySequence getDefault(quint64 nId);

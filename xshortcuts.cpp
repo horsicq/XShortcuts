@@ -85,7 +85,20 @@ void XShortcuts::addGroup(GROUPID groupId)
     }
     else if(groupId==GROUPID_HEX)
     {
+        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_DUMPTOFILE));
+        addId(createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_OFFSET));
+        addId(createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_ADDRESS));
+        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_SIGNATURE));
 
+//        ID_HEX_FIND,
+//        ID_HEX_FINDNEXT,
+//        ID_HEX_SELECTALL,
+//        ID_HEX_COPYASHEX,
+//        ID_HEX_COPYCURSOROFFSET,
+//        ID_HEX_COPYCURSORADDRESS,
+//        ID_HEX_DISASM,
+//        ID_HEX_MEMORYMAP,
+//        ID_HEX_EDITHEX,
     }
     else if(groupId==GROUPID_DISASM)
     {
@@ -210,6 +223,23 @@ void XShortcuts::load()
 
     if(pSettings)
     {
+        QList<quint64> listKeys=g_mapValues.keys();
+
+        qint32 nNumberOfRecords=listKeys.count();
+
+        for(qint32 i=0;i<nNumberOfRecords;i++)
+        {
+            quint64 nId=listKeys.at(i);
+            QKeySequence ksDefault=getDefault(nId);
+
+            QString sPath=idToSettingsString(nId);
+
+            g_mapValues.insert(nId,QKeySequence::fromString(pSettings->value(sPath,ksDefault).toString()));
+        }
+    }
+
+    if(pSettings)
+    {
         delete pSettings;
     }
 }
@@ -243,6 +273,22 @@ void XShortcuts::save()
             ID id=__g_listValueIDs.at(i);
             QString sName=idToSettingsString(id);
             pSettings->setValue(sName,__g_mapValues.value(id).toString());
+        }
+    }
+
+    if(pSettings)
+    {
+        QList<quint64> listKeys=g_mapValues.keys();
+
+        qint32 nNumberOfRecords=listKeys.count();
+
+        for(qint32 i=0;i<nNumberOfRecords;i++)
+        {
+            quint64 nId=listKeys.at(i);
+
+            QString sPath=idToSettingsString(nId);
+
+            pSettings->setValue(sPath,g_mapValues.value(nId).toString());
         }
     }
 
@@ -417,6 +463,28 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         #endif
         }
     }
+
+    return sResult;
+}
+
+QString XShortcuts::idToSettingsString(quint64 nId)
+{
+    QString sResult;
+
+    GROUPID groupId=getGroupId(nId);
+    QList<GROUPID> listSubgroupIds=getSubgroupIds(nId);
+    BASEID baseId=getBaseId(nId);
+
+    sResult+=QString("XShortcuts/%1/").arg(groupIdToSettingsString(groupId));
+
+    qint32 nNumberOfRecords=listSubgroupIds.count();
+
+    for(qint32 i=0;i<nNumberOfRecords;i++)
+    {
+        sResult+=QString("%1/").arg(groupIdToSettingsString(listSubgroupIds.at(i)));
+    }
+
+    sResult+=QString("%1").arg(baseIdToSettingsString(baseId));
 
     return sResult;
 }
@@ -1136,6 +1204,10 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_CLOSE)          sResult=tr("Close");
     else if (baseId==BASEID_PRINT)          sResult=tr("Print");
     else if (baseId==BASEID_EXIT)           sResult=tr("Exit");
+    else if (baseId==BASEID_DUMPTOFILE)     sResult=tr("Dump to file");
+    else if (baseId==BASEID_ADDRESS)        sResult=tr("Address");
+    else if (baseId==BASEID_OFFSET)         sResult=tr("Offset");
+    else if (baseId==BASEID_SIGNATURE)      sResult=tr("Signature");
 
     return sResult;
 }
@@ -1411,7 +1483,9 @@ quint64 XShortcuts::createShortcutsId(GROUPID groupId,QList<GROUPID>listSubgroup
         nSubgoups|=(((quint64)1)<<(listSubgroup.at(i)));
     }
 
-    nResult=(((quint64)groupId)<<(16*3))|(((quint64)nNumberOfRecords)<<(16*2))|((quint64)baseId);
+    nResult=(((quint64)groupId)<<(16*3))|(((quint64)nSubgoups)<<(16))|((quint64)baseId);
+
+//    qDebug(QString::number(nResult,16).toLatin1().data());
 
     return nResult;
 }
@@ -1429,7 +1503,7 @@ QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId)
 {
     QList<GROUPID> listResult;
 
-    quint32 nSubgroups=(quint32)(nShortcutId>>(16*2));
+    quint32 nSubgroups=(quint32)(nShortcutId>>16);
 
     for(qint32 i=0;i<32;i++)
     {
@@ -1461,10 +1535,14 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_SHOW)           sResult=QString("Show");
     else if (baseId==BASEID_OPEN)           sResult=QString("Open");
     else if (baseId==BASEID_SAVE)           sResult=QString("Save");
-    else if (baseId==BASEID_SAVEAS)         sResult=QString("Save as");
+    else if (baseId==BASEID_SAVEAS)         sResult=QString("SaveAs");
     else if (baseId==BASEID_CLOSE)          sResult=QString("Close");
     else if (baseId==BASEID_PRINT)          sResult=QString("Print");
     else if (baseId==BASEID_EXIT)           sResult=QString("Exit");
+    else if (baseId==BASEID_DUMPTOFILE)     sResult=QString("DumpToFile");
+    else if (baseId==BASEID_ADDRESS)        sResult=QString("Address");
+    else if (baseId==BASEID_OFFSET)         sResult=QString("Offset");
+    else if (baseId==BASEID_SIGNATURE)      sResult=QString("Signature");
 
     return sResult;
 }
@@ -1491,7 +1569,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_MEMORY)       sResult=QString("Memory");
     else if (groupId==GROUPID_COPY)         sResult=QString("Copy");
     else if (groupId==GROUPID_EDIT)         sResult=QString("Edit");
-    else if (groupId==GROUPID_GOTO)         sResult=QString("Go to");
+    else if (groupId==GROUPID_GOTO)         sResult=QString("GoTo");
     else if (groupId==GROUPID_TOOLS)        sResult=QString("Tools");
     else if (groupId==GROUPID_HELP)         sResult=QString("Help");
 
