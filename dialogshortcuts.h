@@ -39,8 +39,7 @@ class DialogShortcuts : public QDialog
 
     enum COLUMN
     {
-        COLUMN_GROUP=0,
-        COLUMN_NAME,
+        COLUMN_NAME=0,
         COLUMN_SHORTCUT
     };
 
@@ -49,6 +48,7 @@ public:
     ~DialogShortcuts();
 
     void setData(XShortcuts *pShortcuts);
+    void reload();
 
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
@@ -58,6 +58,8 @@ private slots:
     void onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected);
     void on_pushButtonClose_clicked();
     void on_pushButtonClear_clicked();
+
+    void on_pushButtonDefault_clicked();
 
 private:
     Ui::DialogShortcuts *ui;

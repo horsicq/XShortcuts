@@ -40,6 +40,7 @@ public:
         GROUPID_DEBUGGER,
         GROUPID_DEBUG,
         GROUPID_ACTION,
+        GROUPID_STRING,
         GROUPID_STRINGS,
         GROUPID_SIGNATURES,
         GROUPID_STRUCTS,
@@ -74,7 +75,11 @@ public:
         BASEID_DUMPTOFILE,
         BASEID_OFFSET,
         BASEID_ADDRESS,
+        BASEID_SIZE,
+        BASEID_STRING,
         BASEID_SIGNATURE,
+        BASEID_HEX,
+        BASEID_DEMANGLE,
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
@@ -229,13 +234,16 @@ public:
     void addGroup(GROUPID groupId);
     void addId(quint64 nId);
     void addGroup(ID id); // TODO remove !!!
-    void setShortcutsIDs(QList<ID> listValueIDs);
-    QList<ID> getShortcutsIDs(); // TODO remove
+    void setShortcutsIDs(QList<ID> listValueIDs); // TODO remove
+    QList<quint64> getShortcutsIDs();
     void load();
     void save();
     QKeySequence getShortcut(ID id); // TODO remove
+    QKeySequence getShortcut(quint64 nId);
     void setShortcut(ID id,QKeySequence keyValue); // TODO remove
+    void setShortcut(quint64 nId,QKeySequence keyValue);
     bool checkShortcut(ID id,QKeySequence keyValue); // TODO remove
+    bool checkShortcut(quint64 nId,QKeySequence keyValue);
     static QString idToSettingsString(ID id); // TODO remove
     static QString idToSettingsString(quint64 nId);
     static QString idToString(ID id); // TODO remove

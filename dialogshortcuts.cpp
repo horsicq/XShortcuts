@@ -45,50 +45,53 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 {
     g_pShortcuts=pShortcuts;
 
-    QList<XShortcuts::ID> listIDs=pShortcuts->getShortcutsIDs();
+    reload();
+}
+
+void DialogShortcuts::reload()
+{
+    // TODO remove old Model
+    QList<quint64> listIDs=g_pShortcuts->getShortcutsIDs();
 
     qint32 nNumberOfRecords=listIDs.count();
 
-    g_pModel=new QStandardItemModel(nNumberOfRecords,3);
+    g_pModel=new QStandardItemModel(nNumberOfRecords,2);
 
-    g_pModel->setHeaderData(COLUMN_GROUP,Qt::Horizontal,tr("Group"));
     g_pModel->setHeaderData(COLUMN_NAME,Qt::Horizontal,tr("Name"));
     g_pModel->setHeaderData(COLUMN_SHORTCUT,Qt::Horizontal,tr("Shortcut"));
 
     for(qint32 i=0;i<nNumberOfRecords;i++)
     {
-        XShortcuts::ID idShortcut=listIDs.at(i);
+        quint64 nId=listIDs.at(i);
 
-        XShortcuts::GROUPID groupId=XShortcuts::getGroupId(idShortcut);
-        XShortcuts::GROUPID subgroupId=XShortcuts::getSubgroupId(idShortcut);
+        XShortcuts::GROUPID groupId=XShortcuts::getGroupId(nId);
+        QList<XShortcuts::GROUPID> listSubgroups=XShortcuts::getSubgroupIds(nId);
+        XShortcuts::BASEID baseId=XShortcuts::getBaseId(nId);
 
-        QString sGroup=XShortcuts::groupIdToString(groupId);
-        QString sSubgroup=XShortcuts::groupIdToString(subgroupId);
+        QString sName;
+        sName+=QString("%1 -> ").arg(XShortcuts::groupIdToString(groupId));
 
-        if(subgroupId!=XShortcuts::GROUPID_UNKNOWN)
+        for(qint32 j=0;j<listSubgroups.count();j++)
         {
-            sGroup+=QString(" -> %1").arg(sSubgroup);
+            sName+=QString("%1 -> ").arg(XShortcuts::groupIdToString(listSubgroups.at(j)));
         }
 
-        QStandardItem *pTypeGroup=new QStandardItem;
-        pTypeGroup->setText(sGroup);
-        g_pModel->setItem(i,COLUMN_GROUP,pTypeGroup);
+        sName+=XShortcuts::baseIdToString(baseId);
 
         QStandardItem *pTypeName=new QStandardItem;
-        pTypeName->setText(XShortcuts::idToString(idShortcut));
+        pTypeName->setText(sName);
         g_pModel->setItem(i,COLUMN_NAME,pTypeName);
 
         QStandardItem *pTypeShortcut=new QStandardItem;
-        pTypeShortcut->setText(pShortcuts->getShortcut(idShortcut).toString(QKeySequence::NativeText));
-        pTypeShortcut->setData(idShortcut);
+        pTypeShortcut->setText(g_pShortcuts->getShortcut(nId).toString(QKeySequence::NativeText));
+        pTypeShortcut->setData(nId);
         g_pModel->setItem(i,COLUMN_SHORTCUT,pTypeShortcut);
     }
 
     g_pFilter->setSourceModel(g_pModel);
     ui->tableViewShortcuts->setModel(g_pFilter);
 
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_GROUP,150);       // TODO
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,200);        // TODO
+    ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,350);        // TODO
     ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);    // TODO
 
     connect(ui->tableViewShortcuts->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(onCellChanged(QItemSelection,QItemSelection)));
@@ -132,17 +135,17 @@ bool DialogShortcuts::eventFilter(QObject *pObj,QEvent *pEvent)
                 if(nRow<g_pModel->rowCount())
                 {
                     QStandardItem *pItem=g_pModel->item(nRow,COLUMN_SHORTCUT);
-                    XShortcuts::ID idShortcut=(XShortcuts::ID)(pItem->data().toUInt());
+                    quint64 nId=(quint64)(pItem->data().toULongLong());
 
-                    if(g_pShortcuts->checkShortcut(idShortcut,keyValue))
+                    if(g_pShortcuts->checkShortcut(nId,keyValue))
                     {
                         pItem->setText(sText);
-                        g_pShortcuts->setShortcut(idShortcut,keyValue);
+                        g_pShortcuts->setShortcut(nId,keyValue);
                         ui->lineEditShortcut->setText(sText);
                     }
                     else
                     {
-                        QString sGroup=XShortcuts::groupIdToString(XShortcuts::getGroupId(idShortcut));
+                        QString sGroup=XShortcuts::groupIdToString(XShortcuts::getGroupId(nId));
                         QString sErrorMessage=QString("%1: %2").arg(tr("Cannot set shortcut"),sText);
                         QMessageBox::critical(XOptions::getMainWidget(this),sGroup,sErrorMessage);
                     }
@@ -173,7 +176,7 @@ void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected,const QIt
 
     QModelIndexList listSelected=itemSelected.indexes();
 
-    if(listSelected.count()>=3)
+    if(listSelected.count()>=2)
     {
         QString sShortcut=listSelected.at(COLUMN_SHORTCUT).data().toString();
         ui->lineEditShortcut->setEnabled(true);
@@ -197,11 +200,27 @@ void DialogShortcuts::on_pushButtonClear_clicked()
         if(nRow<g_pModel->rowCount())
         {
             QStandardItem *pItem=g_pModel->item(nRow,COLUMN_SHORTCUT);
-            XShortcuts::ID idShortcut=(XShortcuts::ID)(pItem->data().toUInt());
+            quint64 nId=(quint64)(pItem->data().toULongLong());
 
             pItem->setText("");
             ui->lineEditShortcut->setText("");
-            g_pShortcuts->setShortcut(idShortcut,QKeySequence());
+            g_pShortcuts->setShortcut(nId,QKeySequence());
         }
     }
+}
+
+void DialogShortcuts::on_pushButtonDefault_clicked()
+{
+    QList<quint64> listIDs=g_pShortcuts->getShortcutsIDs();
+
+    qint32 nNumberOfRecords=listIDs.count();
+
+    for(qint32 i=0;i<nNumberOfRecords;i++)
+    {
+        quint64 nId=listIDs.at(i);
+
+        g_pShortcuts->setShortcut(nId,g_pShortcuts->getDefault(nId));
+    }
+
+    reload();
 }
