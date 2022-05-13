@@ -27,6 +27,41 @@
 #include <QMap>
 #include <QSettings>
 
+#define X_ID_STRING_COPY_STRING         XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRING,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_STRING)
+#define X_ID_STRING_COPY_OFFSET         XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRING,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_OFFSET)
+#define X_ID_STRING_COPY_SIZE           XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRING,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_SIZE)
+#define X_ID_STRING_FOLLOWIN_HEX        XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRING,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+#define X_ID_STRING_DEMANGLE            XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRING,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DEMANGLE)
+#define X_ID_STRING_EDIT_STRING         XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRING,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_STRING)
+
+#define X_ID_SIGNATURE_COPY_NAME        XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURE,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_NAME)
+#define X_ID_SIGNATURE_COPY_SIGNATURE   XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURE,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_SIGNATURE)
+#define X_ID_SIGNATURE_COPY_ADDRESS     XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURE,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
+#define X_ID_SIGNATURE_COPY_OFFSET      XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURE,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_OFFSET)
+#define X_ID_SIGNATURE_FOLLOWIN_HEX     XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURE,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+
+#define X_ID_HEX_DUMPTOFILE             XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
+#define X_ID_HEX_GOTO_OFFSET            XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_GOTO,XShortcuts::BASEID_OFFSET)
+#define X_ID_HEX_GOTO_ADDRESS           XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_GOTO,XShortcuts::BASEID_ADDRESS)
+#define X_ID_HEX_SIGNATURE              XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_SIGNATURE)
+#define X_ID_HEX_FIND_STRING            XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_STRING)
+#define X_ID_HEX_FIND_SIGNATURE         XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_SIGNATURE)
+#define X_ID_HEX_FIND_VALUE             XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_VALUE)
+#define X_ID_HEX_FIND_NEXT              XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_NEXT)
+#define X_ID_HEX_SELECT_ALL             XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_SELECT,XShortcuts::BASEID_ALL)
+#define X_ID_HEX_COPY_HEX               XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_HEX)
+#define X_ID_HEX_COPY_OFFSET            XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_OFFSET)
+#define X_ID_HEX_COPY_ADDRESS           XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
+#define X_ID_HEX_FOLLOWIN_DISASM        XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_DISASM)
+#define X_ID_HEX_FOLLOWIN_MEMORYMAP     XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_MEMORYMAP)
+#define X_ID_HEX_EDIT_HEX               XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
+
+#define X_ID_DEBUGGER_FILE_OPEN         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_OPEN)
+#define X_ID_DEBUGGER_FILE_CLOSE        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_CLOSE)
+#define X_ID_DEBUGGER_FILE_ATTACH       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_ATTACH)
+#define X_ID_DEBUGGER_FILE_DETACH       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_DETACH)
+#define X_ID_DEBUGGER_FILE_EXIT         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_EXIT)
+
 class XShortcuts : public QObject
 {
     Q_OBJECT
@@ -41,13 +76,16 @@ public:
         GROUPID_DEBUG,
         GROUPID_ACTION,
         GROUPID_STRING,
-        GROUPID_STRINGS,
-        GROUPID_SIGNATURES,
+        GROUPID_STRINGS,  // TODO remove
+        GROUPID_SIGNATURE,
+        GROUPID_SIGNATURES,  // TODO remove
+        GROUPID_STRUCT,
         GROUPID_STRUCTS,
         GROUPID_HEX,
         GROUPID_DISASM,
         GROUPID_STACK,
-        GROUPID_REGISTERS,
+        GROUPID_REGISTER,
+        GROUPID_REGISTERS,  // TODO remove
         GROUPID_ARCHIVE,
         GROUPID_TABLE,
         GROUPID_PROCESS,
@@ -57,8 +95,12 @@ public:
         GROUPID_COPY,
         GROUPID_GOTO,
         GROUPID_EDIT,
+        GROUPID_FIND,
         GROUPID_TOOLS,
-        GROUPID_HELP
+        GROUPID_HELP,
+        GROUPID_SELECT,
+        GROUPID_FOLLOWIN,
+        GROUPID_SHOWIN
     };
 
     enum BASEID
@@ -75,11 +117,20 @@ public:
         BASEID_DUMPTOFILE,
         BASEID_OFFSET,
         BASEID_ADDRESS,
+        BASEID_ENTRYPOINT,
         BASEID_SIZE,
         BASEID_STRING,
         BASEID_SIGNATURE,
         BASEID_HEX,
         BASEID_DEMANGLE,
+        BASEID_NAME,
+        BASEID_NEXT,
+        BASEID_VALUE,
+        BASEID_ALL,
+        BASEID_DISASM,
+        BASEID_MEMORYMAP,
+        BASEID_ATTACH,
+        BASEID_DETACH,
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
@@ -92,45 +143,12 @@ public:
     {
         ID_UNKNOWN=0,
         ID_ACTION                           =GROUPID_ACTION<<GROUP_SH,
-        ID_ACTION_COPY,
-        ID_ACTION_SHOW,
         ID_ACTION__END,
-        ID_FILE                             =GROUPID_FILE<<GROUP_SH,
-        ID_FILE_OPEN,
-        ID_FILE_SAVE,
-        ID_FILE_SAVEAS,
-        ID_FILE_CLOSE,
-        ID_FILE_PRINT,
-        ID_FILE_EXIT,
         ID_STRINGS                          =GROUPID_STRINGS<<GROUP_SH,
-        ID_STRINGS_COPY_STRING,
-        ID_STRINGS_COPY_OFFSET,
-        ID_STRINGS_COPY_SIZE,
-        ID_STRINGS_HEX,
-        ID_STRINGS_DEMANGLE,
-        ID_STRINGS_EDIT_STRING,
         ID_STRINGS__END,
         ID_SIGNATURES                       =GROUPID_SIGNATURES<<GROUP_SH,
-        ID_SIGNATURES_COPY_NAME,
-        ID_SIGNATURES_COPY_SIGNATURE,
-        ID_SIGNATURES_COPY_ADDRESS,
-        ID_SIGNATURES_COPY_OFFSET,
-        ID_SIGNATURES_HEX,
         ID_SIGNATURES__END,
         ID_HEX                              =GROUPID_HEX<<GROUP_SH,
-        ID_HEX_DUMPTOFILE,
-        ID_HEX_GOTOOFFSET,
-        ID_HEX_GOTOADDRESS,
-        ID_HEX_SIGNATURE,
-        ID_HEX_FIND,
-        ID_HEX_FINDNEXT,
-        ID_HEX_SELECTALL,
-        ID_HEX_COPYASHEX,
-        ID_HEX_COPYCURSOROFFSET,
-        ID_HEX_COPYCURSORADDRESS,
-        ID_HEX_DISASM,
-        ID_HEX_MEMORYMAP,
-        ID_HEX_EDITHEX,
         ID_HEX__END,
         ID_DISASM                           =GROUPID_DISASM<<GROUP_SH,
         ID_DISASM_DUMPTOFILE,
@@ -148,11 +166,6 @@ public:
         ID_DISASM_HEX,
         ID_DISASM__END,
         ID_DEBUGGER                         =GROUPID_DEBUGGER<<GROUP_SH,
-        ID_DEBUGGER_FILE_OPEN,
-        ID_DEBUGGER_FILE_CLOSE,
-        ID_DEBUGGER_FILE_ATTACH,
-        ID_DEBUGGER_FILE_DETACH,
-        ID_DEBUGGER_FILE_EXIT,
         ID_DEBUGGER_VIEW_CPU,
         ID_DEBUGGER_VIEW_LOG,
         ID_DEBUGGER_VIEW_BREAKPOINTS,
@@ -252,8 +265,6 @@ public:
     static QString groupIdToString(GROUPID groupId);
     static QString baseIdToString(BASEID baseId);
     static ID getGroupEnd(GROUPID groupId); // TODO remove
-    static GROUPID getGroupId(ID id); // TODO remove
-    static GROUPID getSubgroupId(ID id); // TODO remove
 
     // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
     // TODO make defines
