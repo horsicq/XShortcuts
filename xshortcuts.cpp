@@ -374,7 +374,7 @@ void XShortcuts::setShortcut(XShortcuts::ID id,QKeySequence keyValue)
     __g_mapValues.insert(id,keyValue);
 }
 
-void XShortcuts::setShortcut(quint64 nId, QKeySequence keyValue)
+void XShortcuts::setShortcut(quint64 nId,QKeySequence keyValue)
 {
     g_mapValues.insert(nId,keyValue);
 }
