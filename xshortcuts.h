@@ -56,6 +56,22 @@
 #define X_ID_HEX_FOLLOWIN_MEMORYMAP     XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_MEMORYMAP)
 #define X_ID_HEX_EDIT_HEX               XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
 
+#define X_ID_DISASM_DUMPTOFILE          XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
+#define X_ID_DISASM_GOTO_OFFSET         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_GOTO,XShortcuts::BASEID_OFFSET)
+#define X_ID_DISASM_GOTO_ADDRESS        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_GOTO,XShortcuts::BASEID_ADDRESS)
+#define X_ID_DISASM_GOTO_ENTRYPOINT     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_GOTO,XShortcuts::BASEID_ENTRYPOINT)
+#define X_ID_DISASM_SIGNATURE           XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_SIGNATURE)
+#define X_ID_DISASM_HEX_SIGNATURE       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_HEX,XShortcuts::BASEID_SIGNATURE)
+#define X_ID_DISASM_FIND_STRING         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_STRING)
+#define X_ID_DISASM_FIND_SIGNATURE      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_SIGNATURE)
+#define X_ID_DISASM_FIND_VALUE          XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_VALUE)
+#define X_ID_DISASM_FIND_NEXT           XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_NEXT)
+#define X_ID_DISASM_SELECT_ALL          XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_SELECT,XShortcuts::BASEID_ALL)
+#define X_ID_DISASM_COPY_HEX            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_HEX)
+#define X_ID_DISASM_COPY_OFFSET         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_OFFSET)
+#define X_ID_DISASM_COPY_ADDRESS        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
+#define X_ID_DISASM_FOLLOWIN_HEX        XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+
 #define X_ID_DEBUGGER_FILE_OPEN         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_OPEN)
 #define X_ID_DEBUGGER_FILE_CLOSE        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_CLOSE)
 #define X_ID_DEBUGGER_FILE_ATTACH       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_ATTACH)
@@ -151,19 +167,6 @@ public:
         ID_HEX                              =GROUPID_HEX<<GROUP_SH,
         ID_HEX__END,
         ID_DISASM                           =GROUPID_DISASM<<GROUP_SH,
-        ID_DISASM_DUMPTOFILE,
-        ID_DISASM_GOTOADDRESS,
-        ID_DISASM_GOTOOFFSET,
-        ID_DISASM_GOTOENTRYPOINT,
-        ID_DISASM_HEXSIGNATURE,
-        ID_DISASM_SIGNATURE,
-        ID_DISASM_FIND,
-        ID_DISASM_FINDNEXT,
-        ID_DISASM_SELECTALL,
-        ID_DISASM_COPYASHEX,
-        ID_DISASM_COPYCURSORADDRESS,
-        ID_DISASM_COPYCURSOROFFSET,
-        ID_DISASM_HEX,
         ID_DISASM__END,
         ID_DEBUGGER                         =GROUPID_DEBUGGER<<GROUP_SH,
         ID_DEBUGGER_VIEW_CPU,

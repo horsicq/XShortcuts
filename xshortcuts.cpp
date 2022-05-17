@@ -116,24 +116,22 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_EDIT_HEX);
     }
     else if(groupId==GROUPID_DISASM)
-    {
-        //        ID_DISASM_DUMPTOFILE,
-        //        ID_DISASM_GOTOADDRESS,
-        //        ID_DISASM_GOTOOFFSET,
-        //        ID_DISASM_GOTOENTRYPOINT,
-        //        ID_DISASM_HEXSIGNATURE,
-        //        ID_DISASM_SIGNATURE,
-        //        ID_DISASM_FIND,
-        //        ID_DISASM_FINDNEXT,
-        //        ID_DISASM_SELECTALL,
-        //        ID_DISASM_COPYASHEX,
-        //        ID_DISASM_COPYCURSORADDRESS,
-        //        ID_DISASM_COPYCURSOROFFSET,
-        //        ID_DISASM_HEX,
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_DUMPTOFILE));
-        addId(createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_OFFSET));
-        addId(createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_ADDRESS));
-        addId(createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_ENTRYPOINT));
+    { 
+        addId(X_ID_DISASM_DUMPTOFILE);
+        addId(X_ID_DISASM_GOTO_OFFSET);
+        addId(X_ID_DISASM_GOTO_ADDRESS);
+        addId(X_ID_DISASM_GOTO_ENTRYPOINT);
+        addId(X_ID_DISASM_SIGNATURE);
+        addId(X_ID_DISASM_HEX_SIGNATURE);
+        addId(X_ID_DISASM_FIND_STRING);
+        addId(X_ID_DISASM_FIND_SIGNATURE);
+        addId(X_ID_DISASM_FIND_VALUE);
+        addId(X_ID_DISASM_FIND_NEXT);
+        addId(X_ID_DISASM_SELECT_ALL);
+        addId(X_ID_DISASM_COPY_HEX);
+        addId(X_ID_DISASM_COPY_OFFSET);
+        addId(X_ID_DISASM_COPY_ADDRESS);
+        addId(X_ID_DISASM_FOLLOWIN_HEX);
     }
     else if(groupId==GROUPID_STACK)
     {
@@ -443,19 +441,6 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_DISASM_DUMPTOFILE:                  sResult=QString("Shortcuts/Disasm/DumpToFile");                 break;
-        case ID_DISASM_GOTOADDRESS:                 sResult=QString("Shortcuts/Disasm/GoToAddress");                break;
-        case ID_DISASM_GOTOOFFSET:                  sResult=QString("Shortcuts/Disasm/GoToOffset");                 break;
-        case ID_DISASM_GOTOENTRYPOINT:              sResult=QString("Shortcuts/Disasm/GoToEntryPoint");             break;
-        case ID_DISASM_HEXSIGNATURE:                sResult=QString("Shortcuts/Disasm/HexSignature");               break;
-        case ID_DISASM_SIGNATURE:                   sResult=QString("Shortcuts/Disasm/Signature");                  break;
-        case ID_DISASM_FIND:                        sResult=QString("Shortcuts/Disasm/Find");                       break;
-        case ID_DISASM_FINDNEXT:                    sResult=QString("Shortcuts/Disasm/FindNext");                   break;
-        case ID_DISASM_SELECTALL:                   sResult=QString("Shortcuts/Disasm/SelectAll");                  break;
-        case ID_DISASM_COPYASHEX:                   sResult=QString("Shortcuts/Disasm/CopyAsHex");                  break;
-        case ID_DISASM_COPYCURSOROFFSET:            sResult=QString("Shortcuts/Disasm/CopyCursorOffset");           break;
-        case ID_DISASM_COPYCURSORADDRESS:           sResult=QString("Shortcuts/Disasm/CopyCursorAddress");          break;
-        case ID_DISASM_HEX:                         sResult=QString("Shortcuts/Disasm/Hex");                        break;
         case ID_DEBUGGER_VIEW_CPU:                  sResult=QString("Shortcuts/Debugger/View/CPU");                 break;
         case ID_DEBUGGER_VIEW_LOG:                  sResult=QString("Shortcuts/Debugger/View/Log");                 break;
         case ID_DEBUGGER_VIEW_BREAKPOINTS:          sResult=QString("Shortcuts/Debugger/View/Breakpoints");         break;
@@ -560,7 +545,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Open");
             break;
         case ID_TABLE_HEX:
-        case ID_DISASM_HEX:
         case ID_ARCHIVE_HEX:
         case ID_PROCESS_MEMORY_HEX:
             sResult=tr("Hex");
@@ -568,54 +552,39 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_HEX_DUMPTOFILE:
         case ID_DEBUGGER_DISASM_DUMPTOFILE:
         case ID_ARCHIVE_DUMPTOFILE:
-        case ID_DISASM_DUMPTOFILE:
         case ID_PROCESS_DUMPTOFILE:
         case ID_MEMORYMAP_DUMPTOFILE:
         case ID_MODULES_DUMPTOFILE:
             sResult=tr("Dump to file");
             break;
-        case ID_DISASM_GOTOADDRESS:
         case ID_DEBUGGER_HEX_GOTOADDRESS:
         case ID_DEBUGGER_DISASM_GOTOADDRESS:
         case ID_DEBUGGER_STACK_GOTOADDRESS:
             sResult=tr("Go to address");
             break;
-        case ID_DISASM_GOTOOFFSET:
-
-            sResult=tr("Go to offset");
-            break;
         case ID_DEBUGGER_DISASM_SIGNATURE:
         case ID_DEBUGGER_HEX_SIGNATURE:
-        case ID_DISASM_SIGNATURE:
             sResult=tr("Signature");
             break;
         case ID_PROCESS_MEMORY_SIGNATURES:
             sResult=tr("Signatures");
             break;
-        case ID_DISASM_FIND:
         case ID_DEBUGGER_DISASM_FIND:
         case ID_DEBUGGER_HEX_FIND:
             sResult=tr("Find");
             break;
         case ID_DEBUGGER_DISASM_FINDNEXT:
         case ID_DEBUGGER_HEX_FINDNEXT:
-        case ID_DISASM_FINDNEXT:
             sResult=tr("Find next");
             break;
-        case ID_DISASM_SELECTALL:
         case ID_DEBUGGER_DISASM_SELECTALL:
         case ID_DEBUGGER_HEX_SELECTALL:
             sResult=tr("Select all");
             break;
-        case ID_DISASM_COPYASHEX:
         case ID_DEBUGGER_DISASM_COPYASHEX:
         case ID_DEBUGGER_HEX_COPYASHEX:
             sResult=tr("Copy as hex");
             break;
-        case ID_DISASM_COPYCURSOROFFSET:
-            sResult=tr("Copy cursor offset");
-            break;
-        case ID_DISASM_COPYCURSORADDRESS:
         case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
         case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
             sResult=tr("Copy cursor address");
@@ -627,12 +596,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_PROCESS_MEMORY_MEMORYMAP:
             sResult=tr("Memory map");
             break;
-        case ID_DISASM_GOTOENTRYPOINT:
-            sResult=tr("Go to entry point");
-            break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:
-        case ID_DISASM_HEXSIGNATURE:
-            sResult=tr("Hex signature");
             break;
         case ID_DEBUGGER_VIEW_CPU:
             sResult=tr("CPU");
@@ -738,45 +702,6 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_DISASM_DUMPTOFILE:
-            ksResult=Qt::CTRL+Qt::Key_D;
-            break;
-        case ID_DISASM_GOTOADDRESS:
-            ksResult=Qt::CTRL+Qt::Key_G;
-            break;
-        case ID_DISASM_GOTOOFFSET:
-            ksResult=QKeySequence();
-            break;
-        case ID_DISASM_GOTOENTRYPOINT:
-            ksResult=QKeySequence();
-            break;
-        case ID_DISASM_HEXSIGNATURE:
-            ksResult=Qt::Key_S;
-            break;
-        case ID_DISASM_SIGNATURE:
-            ksResult=Qt::SHIFT+Qt::Key_G;
-            break;
-        case ID_DISASM_FIND:
-            ksResult=QKeySequence::Find;
-            break;
-        case ID_DISASM_FINDNEXT:
-            ksResult=QKeySequence::FindNext;
-            break;
-        case ID_DISASM_SELECTALL:
-            ksResult=QKeySequence::SelectAll;
-            break;
-        case ID_DISASM_COPYASHEX:
-            ksResult=QKeySequence::Copy;
-            break;
-        case ID_DISASM_COPYCURSORADDRESS:
-            ksResult=QKeySequence();
-            break;
-        case ID_DISASM_COPYCURSOROFFSET:
-            ksResult=QKeySequence();
-            break;
-        case ID_DISASM_HEX:
-            ksResult=QKeySequence();
-            break;
         case ID_DEBUGGER_DEBUG_PAUSE:
             ksResult=Qt::Key_F12;
             break;
@@ -993,10 +918,21 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     }
     else if(groupId==GROUPID_DISASM)
     {
-        if      (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_DUMPTOFILE))                    ksResult=Qt::CTRL+Qt::Key_D;
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_OFFSET))          ksResult=Qt::CTRL+Qt::Key_G;
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_ADDRESS))         ksResult=QKeySequence();
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>()<<GROUPID_GOTO,BASEID_ENTRYPOINT))      ksResult=QKeySequence();
+        if      (nId==X_ID_DISASM_DUMPTOFILE)           ksResult=Qt::CTRL+Qt::Key_D;
+        else if (nId==X_ID_DISASM_GOTO_OFFSET)          ksResult=Qt::CTRL+Qt::Key_G;
+        else if (nId==X_ID_DISASM_GOTO_ADDRESS)         ksResult=QKeySequence();
+        else if (nId==X_ID_DISASM_GOTO_ENTRYPOINT)      ksResult=QKeySequence();
+        else if (nId==X_ID_DISASM_SIGNATURE)            ksResult=Qt::SHIFT+Qt::Key_G;
+        else if (nId==X_ID_DISASM_HEX_SIGNATURE)        ksResult=Qt::Key_S;
+        else if (nId==X_ID_DISASM_FIND_STRING)          ksResult=QKeySequence::Find;
+        else if (nId==X_ID_DISASM_FIND_SIGNATURE)       ksResult=QKeySequence();
+        else if (nId==X_ID_DISASM_FIND_VALUE)           ksResult=QKeySequence();
+        else if (nId==X_ID_DISASM_FIND_NEXT)            ksResult=QKeySequence::FindNext;
+        else if (nId==X_ID_DISASM_SELECT_ALL)           ksResult=QKeySequence::SelectAll;
+        else if (nId==X_ID_DISASM_COPY_HEX)             ksResult=QKeySequence::Copy;
+        else if (nId==X_ID_DISASM_COPY_OFFSET)          ksResult=QKeySequence();
+        else if (nId==X_ID_DISASM_COPY_ADDRESS)         ksResult=QKeySequence();
+        else if (nId==X_ID_DISASM_FOLLOWIN_HEX)         ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_STACK)
     {
