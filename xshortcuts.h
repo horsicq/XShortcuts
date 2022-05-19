@@ -70,13 +70,23 @@
 #define X_ID_DISASM_COPY_HEX            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_HEX)
 #define X_ID_DISASM_COPY_OFFSET         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_OFFSET)
 #define X_ID_DISASM_COPY_ADDRESS        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
-#define X_ID_DISASM_FOLLOWIN_HEX        XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+#define X_ID_DISASM_FOLLOWIN_HEX        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+#define X_ID_DISASM_EDIT_HEX            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
 
 #define X_ID_DEBUGGER_FILE_OPEN         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_OPEN)
 #define X_ID_DEBUGGER_FILE_CLOSE        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_CLOSE)
 #define X_ID_DEBUGGER_FILE_ATTACH       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_ATTACH)
 #define X_ID_DEBUGGER_FILE_DETACH       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_DETACH)
 #define X_ID_DEBUGGER_FILE_EXIT         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_EXIT)
+#define X_ID_DEBUGGER_VIEW_CPU          XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_CPU)
+#define X_ID_DEBUGGER_VIEW_LOG          XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_LOG)
+#define X_ID_DEBUGGER_VIEW_BREAKPOINTS  XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_BREAKPOINTS)
+#define X_ID_DEBUGGER_VIEW_MEMORYMAP    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_MEMORYMAP)
+#define X_ID_DEBUGGER_VIEW_CALLSTACK    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_CALLSTACK)
+#define X_ID_DEBUGGER_VIEW_THREADS      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_THREADS)
+#define X_ID_DEBUGGER_VIEW_HANDLES      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_HANDLES)
+#define X_ID_DEBUGGER_VIEW_MODULES      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_MODULES)
+#define X_ID_DEBUGGER_VIEW_SYMBOLS      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_VIEW,XShortcuts::BASEID_SYMBOLS)
 
 class XShortcuts : public QObject
 {
@@ -147,6 +157,14 @@ public:
         BASEID_MEMORYMAP,
         BASEID_ATTACH,
         BASEID_DETACH,
+        BASEID_CPU,
+        BASEID_LOG,
+        BASEID_BREAKPOINTS,
+        BASEID_CALLSTACK,
+        BASEID_THREADS,
+        BASEID_HANDLES,
+        BASEID_MODULES,
+        BASEID_SYMBOLS,
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
@@ -169,15 +187,6 @@ public:
         ID_DISASM                           =GROUPID_DISASM<<GROUP_SH,
         ID_DISASM__END,
         ID_DEBUGGER                         =GROUPID_DEBUGGER<<GROUP_SH,
-        ID_DEBUGGER_VIEW_CPU,
-        ID_DEBUGGER_VIEW_LOG,
-        ID_DEBUGGER_VIEW_BREAKPOINTS,
-        ID_DEBUGGER_VIEW_MEMORYMAP,
-        ID_DEBUGGER_VIEW_CALLSTACK,
-        ID_DEBUGGER_VIEW_THREADS,
-        ID_DEBUGGER_VIEW_HANDLES,
-        ID_DEBUGGER_VIEW_MODULES,
-        ID_DEBUGGER_VIEW_SYMBOLS,
         ID_DEBUGGER_TOOLS_SHORTCUTS,
         ID_DEBUGGER_TOOLS_OPTIONS,
         ID_DEBUGGER_HELP_ABOUT,

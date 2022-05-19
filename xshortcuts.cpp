@@ -66,6 +66,15 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_FILE_ATTACH);
         addId(X_ID_DEBUGGER_FILE_DETACH);
         addId(X_ID_DEBUGGER_FILE_EXIT);
+        addId(X_ID_DEBUGGER_VIEW_CPU);
+        addId(X_ID_DEBUGGER_VIEW_LOG);
+        addId(X_ID_DEBUGGER_VIEW_BREAKPOINTS);
+        addId(X_ID_DEBUGGER_VIEW_MEMORYMAP);
+        addId(X_ID_DEBUGGER_VIEW_CALLSTACK);
+        addId(X_ID_DEBUGGER_VIEW_THREADS);
+        addId(X_ID_DEBUGGER_VIEW_HANDLES);
+        addId(X_ID_DEBUGGER_VIEW_MODULES);
+        addId(X_ID_DEBUGGER_VIEW_SYMBOLS);
     }
     else if(groupId==GROUPID_DEBUG)
     {
@@ -132,6 +141,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_COPY_OFFSET);
         addId(X_ID_DISASM_COPY_ADDRESS);
         addId(X_ID_DISASM_FOLLOWIN_HEX);
+        addId(X_ID_DISASM_EDIT_HEX);
     }
     else if(groupId==GROUPID_STACK)
     {
@@ -441,15 +451,6 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_DEBUGGER_VIEW_CPU:                  sResult=QString("Shortcuts/Debugger/View/CPU");                 break;
-        case ID_DEBUGGER_VIEW_LOG:                  sResult=QString("Shortcuts/Debugger/View/Log");                 break;
-        case ID_DEBUGGER_VIEW_BREAKPOINTS:          sResult=QString("Shortcuts/Debugger/View/Breakpoints");         break;
-        case ID_DEBUGGER_VIEW_MEMORYMAP:            sResult=QString("Shortcuts/Debugger/View/MemoryMap");           break;
-        case ID_DEBUGGER_VIEW_CALLSTACK:            sResult=QString("Shortcuts/Debugger/View/CallStack");           break;
-        case ID_DEBUGGER_VIEW_THREADS:              sResult=QString("Shortcuts/Debugger/View/Threads");             break;
-        case ID_DEBUGGER_VIEW_HANDLES:              sResult=QString("Shortcuts/Debugger/View/Handles");             break;
-        case ID_DEBUGGER_VIEW_MODULES:              sResult=QString("Shortcuts/Debugger/View/Modules");             break;
-        case ID_DEBUGGER_VIEW_SYMBOLS:              sResult=QString("Shortcuts/Debugger/View/Symbols");             break;
         case ID_DEBUGGER_TOOLS_OPTIONS:             sResult=QString("Shortcuts/Debugger/Tools/Options");            break;
         case ID_DEBUGGER_TOOLS_SHORTCUTS:           sResult=QString("Shortcuts/Debugger/Tools/Shortcuts");          break;
         case ID_DEBUGGER_HELP_ABOUT:                sResult=QString("Shortcuts/Debugger/Help/About");               break;
@@ -592,35 +593,10 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_TABLE_DISASM:
             sResult=tr("Disasm");
             break;
-        case ID_DEBUGGER_VIEW_MEMORYMAP:
         case ID_PROCESS_MEMORY_MEMORYMAP:
             sResult=tr("Memory map");
             break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:
-            break;
-        case ID_DEBUGGER_VIEW_CPU:
-            sResult=tr("CPU");
-            break;
-        case ID_DEBUGGER_VIEW_LOG:
-            sResult=tr("Log");
-            break;
-        case ID_DEBUGGER_VIEW_BREAKPOINTS:
-            sResult=tr("Breakpoints");
-            break;
-        case ID_DEBUGGER_VIEW_CALLSTACK:
-            sResult=tr("Call stack");
-            break;
-        case ID_DEBUGGER_VIEW_THREADS:
-            sResult=tr("Threads");
-            break;
-        case ID_DEBUGGER_VIEW_HANDLES:
-            sResult=tr("Handles");
-            break;
-        case ID_DEBUGGER_VIEW_MODULES:
-            sResult=tr("Modules");
-            break;
-        case ID_DEBUGGER_VIEW_SYMBOLS:
-            sResult=tr("Symbols");
             break;
         case ID_DEBUGGER_TOOLS_OPTIONS:
             sResult=tr("Options");
@@ -1068,6 +1044,14 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_MEMORYMAP)      sResult=tr("Memory map");
     else if (baseId==BASEID_ATTACH)         sResult=tr("Attach");
     else if (baseId==BASEID_DETACH)         sResult=tr("Detach");
+    else if (baseId==BASEID_CPU)            sResult=tr("CPU");
+    else if (baseId==BASEID_LOG)            sResult=tr("Log");
+    else if (baseId==BASEID_BREAKPOINTS)    sResult=tr("Breakpoints");
+    else if (baseId==BASEID_CALLSTACK)      sResult=tr("Callstack");
+    else if (baseId==BASEID_THREADS)        sResult=tr("Threads");
+    else if (baseId==BASEID_HANDLES)        sResult=tr("Handles");
+    else if (baseId==BASEID_MODULES)        sResult=tr("Modules");
+    else if (baseId==BASEID_SYMBOLS)        sResult=tr("Symbols");
 
     return sResult;
 }
@@ -1174,6 +1158,14 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_MEMORYMAP)      sResult=QString("MemoryMap");
     else if (baseId==BASEID_ATTACH)         sResult=QString("Attach");
     else if (baseId==BASEID_DETACH)         sResult=QString("Detach");
+    else if (baseId==BASEID_CPU)            sResult=QString("CPU");
+    else if (baseId==BASEID_LOG)            sResult=QString("Log");
+    else if (baseId==BASEID_BREAKPOINTS)    sResult=QString("Breakpoints");
+    else if (baseId==BASEID_CALLSTACK)      sResult=QString("Callstack");
+    else if (baseId==BASEID_THREADS)        sResult=QString("Threads");
+    else if (baseId==BASEID_HANDLES)        sResult=QString("Handles");
+    else if (baseId==BASEID_MODULES)        sResult=QString("Modules");
+    else if (baseId==BASEID_SYMBOLS)        sResult=QString("Symbols");
 
     return sResult;
 }
