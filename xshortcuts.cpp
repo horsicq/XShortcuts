@@ -39,13 +39,6 @@ void XShortcuts::setNative(bool bValue)
 
 void XShortcuts::addGroup(GROUPID groupId)
 {
-    qint32 nEnd=getGroupEnd(groupId);
-
-    for(qint32 nId=(groupId<<GROUP_SH)+1;nId<nEnd;nId++)
-    {
-        __g_listValueIDs.append((XShortcuts::ID)nId);
-    }
-
     if(groupId==GROUPID_FILE)
     {
         addId(X_ID_FILE_OPEN);
@@ -78,6 +71,37 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_TOOLS_SHORTCUTS);
         addId(X_ID_DEBUGGER_TOOLS_OPTIONS);
         addId(X_ID_DEBUGGER_HELP_ABOUT);
+        addId(X_ID_DEBUGGER_DEBUG_RUN);
+        addId(X_ID_DEBUGGER_DEBUG_PAUSE);
+        addId(X_ID_DEBUGGER_DEBUG_STEPINTO);
+        addId(X_ID_DEBUGGER_DEBUG_STEPOVER);
+        addId(X_ID_DEBUGGER_DEBUG_STOP);
+        addId(X_ID_DEBUGGER_DEBUG_RESTART);
+        addId(X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE);
+        addId(X_ID_DEBUGGER_DISASM_DUMPTOFILE);
+        addId(X_ID_DEBUGGER_DISASM_GOTO_ADDRESS);
+        addId(X_ID_DEBUGGER_DISASM_HEX_SIGNATURE);
+        addId(X_ID_DEBUGGER_DISASM_SIGNATURE);
+        addId(X_ID_DEBUGGER_DISASM_FIND_STRING);
+        addId(X_ID_DEBUGGER_DISASM_FIND_VALUE);
+        addId(X_ID_DEBUGGER_DISASM_FIND_SIGNATURE);
+        addId(X_ID_DEBUGGER_DISASM_FIND_NEXT);
+        addId(X_ID_DEBUGGER_DISASM_COPY_HEX);
+        addId(X_ID_DEBUGGER_DISASM_COPY_ADDRESS);
+        addId(X_ID_DEBUGGER_DISASM_SELECT_ALL);
+        addId(X_ID_DEBUGGER_DISASM_EDIT_HEX);
+        addId(X_ID_DEBUGGER_HEX_DUMPTOFILE);
+        addId(X_ID_DEBUGGER_HEX_FIND_STRING);
+        addId(X_ID_DEBUGGER_HEX_FIND_VALUE);
+        addId(X_ID_DEBUGGER_HEX_FIND_SIGNATURE);
+        addId(X_ID_DEBUGGER_HEX_FIND_NEXT);
+        addId(X_ID_DEBUGGER_HEX_GOTO_ADDRESS);
+        addId(X_ID_DEBUGGER_HEX_SIGNATURE);
+        addId(X_ID_DEBUGGER_HEX_COPY_HEX);
+        addId(X_ID_DEBUGGER_HEX_COPY_ADDRESS);
+        addId(X_ID_DEBUGGER_HEX_SELECT_ALL);
+        addId(X_ID_DEBUGGER_HEX_EDIT_HEX);
+        addId(X_ID_DEBUGGER_STACK_GOTOADDRESS);
     }
     else if(groupId==GROUPID_DEBUG)
     {
@@ -156,7 +180,14 @@ void XShortcuts::addGroup(GROUPID groupId)
     }
     else if(groupId==GROUPID_ARCHIVE)
     {
-
+        addId(X_ID_ARCHIVE_OPEN);
+        addId(X_ID_ARCHIVE_SCAN);
+        addId(X_ID_ARCHIVE_HEX);
+        addId(X_ID_ARCHIVE_STRINGS);
+        addId(X_ID_ARCHIVE_ENTROPY);
+        addId(X_ID_ARCHIVE_HASH);
+        addId(X_ID_ARCHIVE_COPY_FILENAME);
+        addId(X_ID_ARCHIVE_DUMPTOFILE);
     }
     else if(groupId==GROUPID_TABLE)
     {
@@ -183,11 +214,11 @@ void XShortcuts::addGroup(GROUPID groupId)
     }
     else if(groupId==GROUPID_MEMORYMAP)
     {
-
+        addId(X_ID_MEMORYMAP_DUMPTOFILE);
     }
     else if(groupId==GROUPID_MODULES)
     {
-
+        addId(X_ID_MODULES_DUMPTOFILE);
     }
     else if(groupId==GROUPID_COPY)
     {
@@ -225,6 +256,10 @@ void XShortcuts::addGroup(GROUPID groupId)
     {
 
     }
+    else if(groupId==GROUPID_BREAKPOINT)
+    {
+
+    }
 }
 
 void XShortcuts::addId(quint64 nId)
@@ -234,17 +269,7 @@ void XShortcuts::addId(quint64 nId)
 
 void XShortcuts::addGroup(ID id) // TODO Remove
 {
-    qint32 nEnd=getGroupEnd((GROUPID)(id>>GROUP_SH));
 
-    for(qint32 nId=id+1;nId<nEnd;nId++)
-    {
-        __g_listValueIDs.append((XShortcuts::ID)nId);
-    }
-}
-
-void XShortcuts::setShortcutsIDs(QList<XShortcuts::ID> listValueIDs)
-{
-    this->__g_listValueIDs=listValueIDs;
 }
 
 QList<quint64> XShortcuts::getShortcutsIDs()
@@ -271,24 +296,6 @@ void XShortcuts::load()
         qDebug("XShortcuts: load file %s",pSettings->fileName().toUtf8().data());
     }
 #endif
-
-    qint32 nNumberOfIDs=__g_listValueIDs.count();
-
-    for(qint32 i=0;i<nNumberOfIDs;i++)
-    {
-        ID id=__g_listValueIDs.at(i);
-        QString sName=idToSettingsString(id);
-        QKeySequence ksDefault=getDefault(id);
-
-        if(pSettings)
-        {
-            __g_mapValues.insert(id,QKeySequence::fromString(pSettings->value(sName,ksDefault.toString()).toString()));
-        }
-        else
-        {
-            __g_mapValues.insert(id,ksDefault);
-        }
-    }
 
     if(pSettings)
     {
@@ -335,18 +342,6 @@ void XShortcuts::save()
 
     if(pSettings)
     {
-        qint32 nNumberOfIDs=__g_listValueIDs.count();
-
-        for(qint32 i=0;i<nNumberOfIDs;i++)
-        {
-            ID id=__g_listValueIDs.at(i);
-            QString sName=idToSettingsString(id);
-            pSettings->setValue(sName,__g_mapValues.value(id).toString());
-        }
-    }
-
-    if(pSettings)
-    {
         QList<quint64> listKeys=g_mapValues.keys();
 
         qint32 nNumberOfRecords=listKeys.count();
@@ -367,18 +362,6 @@ void XShortcuts::save()
     }
 }
 
-QKeySequence XShortcuts::getShortcut(XShortcuts::ID id)
-{
-#ifdef QT_DEBUG
-    if(!__g_mapValues.contains(id))
-    {
-        QString sErrorString=idToSettingsString(id);
-        qDebug("%s",sErrorString.toLatin1().data());
-    }
-#endif
-    return __g_mapValues.value(id);
-}
-
 QKeySequence XShortcuts::getShortcut(quint64 nId)
 {
 #ifdef QT_DEBUG
@@ -391,41 +374,12 @@ QKeySequence XShortcuts::getShortcut(quint64 nId)
     return g_mapValues.value(nId);
 }
 
-void XShortcuts::setShortcut(XShortcuts::ID id,QKeySequence keyValue)
-{
-    __g_mapValues.insert(id,keyValue);
-}
-
 void XShortcuts::setShortcut(quint64 nId,QKeySequence keyValue)
 {
     g_mapValues.insert(nId,keyValue);
 }
 
-bool XShortcuts::checkShortcut(XShortcuts::ID id,QKeySequence keyValue)
-{
-    bool bResult=true;
-
-    if(keyValue!=QKeySequence())
-    {
-        GROUPID idGroup=getGroupId(id);
-
-        for(qint32 nId=(idGroup<<GROUP_SH)+1;nId<getGroupEnd(idGroup);nId++)
-        {
-            if(id!=nId)
-            {
-                if(getShortcut((ID)nId)==keyValue)
-                {
-                    bResult=false;
-                    break;
-                }
-            }
-        }
-    }
-
-    return bResult;
-}
-
-bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keyValue)
+bool XShortcuts::checkShortcut(quint64 nId,QKeySequence keyValue)
 {
     bool bResult=true;
 
@@ -459,60 +413,6 @@ bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keyValue)
     return bResult;
 }
 
-QString XShortcuts::idToSettingsString(XShortcuts::ID id)
-{
-    QString sResult=QString("Unknown");
-
-    switch(id)
-    {
-        case ID_DEBUGGER_DEBUG_RUN:                 sResult=QString("Shortcuts/Debugger/Debug/Run");                break;
-        case ID_DEBUGGER_DEBUG_PAUSE:               sResult=QString("Shortcuts/Debugger/Debug/Pause");              break;
-        case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=QString("Shortcuts/Debugger/Debug/StepInto");           break;
-        case ID_DEBUGGER_DEBUG_STEPOVER:            sResult=QString("Shortcuts/Debugger/Debug/StepOver");           break;
-        case ID_DEBUGGER_DEBUG_STOP:                sResult=QString("Shortcuts/Debugger/Debug/Stop");               break;
-        case ID_DEBUGGER_DEBUG_RESTART:             sResult=QString("Shortcuts/Debugger/Debug/Restart");            break;
-        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:   sResult=QString("Shortcuts/Debugger/Disasm/BreakpointToggle");  break;
-        case ID_DEBUGGER_DISASM_DUMPTOFILE:         sResult=QString("Shortcuts/Debugger/Disasm/DumpToFile");        break;
-        case ID_DEBUGGER_DISASM_GOTOADDRESS:        sResult=QString("Shortcuts/Debugger/Disasm/GoToAddress");       break;
-        case ID_DEBUGGER_DISASM_HEXSIGNATURE:       sResult=QString("Shortcuts/Debugger/Disasm/HexSignature");      break;
-        case ID_DEBUGGER_DISASM_SIGNATURE:          sResult=QString("Shortcuts/Debugger/Disasm/Signature");         break;
-        case ID_DEBUGGER_DISASM_FIND:               sResult=QString("Shortcuts/Debugger/Disasm/Find");              break;
-        case ID_DEBUGGER_DISASM_FINDNEXT:           sResult=QString("Shortcuts/Debugger/Disasm/FindNext");          break;
-        case ID_DEBUGGER_DISASM_COPYASHEX:          sResult=QString("Shortcuts/Debugger/Disasm/CopyAsHex");         break;
-        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:  sResult=QString("Shortcuts/Debugger/Disasm/CopyCursorAddress"); break;
-        case ID_DEBUGGER_DISASM_SELECTALL:          sResult=QString("Shortcuts/Debugger/Disasm/SelectAll");         break;
-        case ID_DEBUGGER_HEX_DUMPTOFILE:            sResult=QString("Shortcuts/Debugger/Hex/DumpToFile");           break;
-        case ID_DEBUGGER_HEX_FIND:                  sResult=QString("Shortcuts/Debugger/Hex/Find");                 break;
-        case ID_DEBUGGER_HEX_FINDNEXT:              sResult=QString("Shortcuts/Debugger/Hex/FindNext");             break;
-        case ID_DEBUGGER_HEX_GOTOADDRESS:           sResult=QString("Shortcuts/Debugger/Hex/GoToAddress");          break;
-        case ID_DEBUGGER_HEX_SIGNATURE:             sResult=QString("Shortcuts/Debugger/Hex/Signature");            break;
-        case ID_DEBUGGER_HEX_COPYASHEX:             sResult=QString("Shortcuts/Debugger/Hex/CopyAsHex");            break;
-        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:     sResult=QString("Shortcuts/Debugger/Hex/CopyCursorAddress");    break;
-        case ID_DEBUGGER_HEX_SELECTALL:             sResult=QString("Shortcuts/Debugger/Hex/SelectAll");            break;
-        case ID_DEBUGGER_STACK_GOTOADDRESS:         sResult=QString("Shortcuts/Debugger/Stack/GoToAddress");        break;
-        case ID_ARCHIVE_COPYFILENAME:               sResult=QString("Shortcuts/Archive/CopyFilename");              break;
-        case ID_ARCHIVE_DUMPTOFILE:                 sResult=QString("Shortcuts/Archive/DumpToFile");                break;
-        case ID_ARCHIVE_ENTROPY:                    sResult=QString("Shortcuts/Archive/Entropy");                   break;
-        case ID_ARCHIVE_HASH:                       sResult=QString("Shortcuts/Archive/Hash");                      break;
-        case ID_ARCHIVE_HEX:                        sResult=QString("Shortcuts/Archive/Hex");                       break;
-        case ID_ARCHIVE_OPEN:                       sResult=QString("Shortcuts/Archive/Open");                      break;
-        case ID_ARCHIVE_SCAN:                       sResult=QString("Shortcuts/Archive/Scan");                      break;
-        case ID_ARCHIVE_STRINGS:                    sResult=QString("Shortcuts/Archive/Strings");                   break;
-        case ID_TABLE_HEX:                          sResult=QString("Shortcuts/Table/Hex");                         break;
-        case ID_TABLE_DISASM:                       sResult=QString("Shortcuts/Table/Disasm");                      break;
-        case ID_MEMORYMAP_DUMPTOFILE:               sResult=QString("Shortcuts/MemoryMap/DumpToFile");              break;
-        case ID_MODULES_DUMPTOFILE:                 sResult=QString("Shortcuts/Modules/DumpToFile");                break;
-        default:
-        {
-        #ifdef QT_DEBUG
-            qDebug("UNKNOWN SHORTCUT!!!");
-        #endif
-        }
-    }
-
-    return sResult;
-}
-
 QString XShortcuts::idToSettingsString(quint64 nId)
 {
     QString sResult;
@@ -533,221 +433,6 @@ QString XShortcuts::idToSettingsString(quint64 nId)
     sResult+=QString("%1").arg(baseIdToSettingsString(baseId));
 
     return sResult;
-}
-
-QString XShortcuts::idToString(XShortcuts::ID id)
-{
-    QString sResult=tr("Unknown");
-
-    switch(id)
-    {
-        case ID_ARCHIVE_OPEN:
-            sResult=tr("Open");
-            break;
-        case ID_TABLE_HEX:
-        case ID_ARCHIVE_HEX:
-            sResult=tr("Hex");
-            break;
-        case ID_DEBUGGER_HEX_DUMPTOFILE:
-        case ID_DEBUGGER_DISASM_DUMPTOFILE:
-        case ID_ARCHIVE_DUMPTOFILE:
-        case ID_MEMORYMAP_DUMPTOFILE:
-        case ID_MODULES_DUMPTOFILE:
-            sResult=tr("Dump to file");
-            break;
-        case ID_DEBUGGER_HEX_GOTOADDRESS:
-        case ID_DEBUGGER_DISASM_GOTOADDRESS:
-        case ID_DEBUGGER_STACK_GOTOADDRESS:
-            sResult=tr("Go to address");
-            break;
-        case ID_DEBUGGER_DISASM_SIGNATURE:
-        case ID_DEBUGGER_HEX_SIGNATURE:
-            sResult=tr("Signature");
-            break;
-        case ID_DEBUGGER_DISASM_FIND:
-        case ID_DEBUGGER_HEX_FIND:
-            sResult=tr("Find");
-            break;
-        case ID_DEBUGGER_DISASM_FINDNEXT:
-        case ID_DEBUGGER_HEX_FINDNEXT:
-            sResult=tr("Find next");
-            break;
-        case ID_DEBUGGER_DISASM_SELECTALL:
-        case ID_DEBUGGER_HEX_SELECTALL:
-            sResult=tr("Select all");
-            break;
-        case ID_DEBUGGER_DISASM_COPYASHEX:
-        case ID_DEBUGGER_HEX_COPYASHEX:
-            sResult=tr("Copy as hex");
-            break;
-        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
-        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
-            sResult=tr("Copy cursor address");
-            break;
-        case ID_TABLE_DISASM:
-            sResult=tr("Disasm");
-            break;
-        case ID_DEBUGGER_DISASM_HEXSIGNATURE:
-            break;
-        case ID_DEBUGGER_DEBUG_RUN:
-            sResult=tr("Run");
-            break;
-        case ID_DEBUGGER_DEBUG_PAUSE:
-            sResult=tr("Pause");
-            break;
-        case ID_DEBUGGER_DEBUG_STEPINTO:
-            sResult=tr("Step into");
-            break;
-        case ID_DEBUGGER_DEBUG_STEPOVER:
-            sResult=tr("Step over");
-            break;
-        case ID_DEBUGGER_DEBUG_STOP:
-            sResult=tr("Stop");
-            break;
-        case ID_DEBUGGER_DEBUG_RESTART:
-            sResult=tr("Restart");
-            break;
-        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
-            sResult=tr("Toggle");
-            break;
-        case ID_ARCHIVE_COPYFILENAME:
-            sResult=tr("File name");
-            break;
-        case ID_ARCHIVE_ENTROPY:
-            sResult=tr("Entropy");
-            break;
-        case ID_ARCHIVE_HASH:
-            sResult=tr("Hash");
-            break;
-        case ID_ARCHIVE_SCAN:
-            sResult=tr("Scan");
-            break;
-        case ID_ARCHIVE_STRINGS:
-            sResult=tr("Strings");
-            break;
-        default:
-            sResult=tr("Unknown");
-    }
-
-    return sResult;
-}
-
-QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
-{
-    QKeySequence ksResult=QKeySequence();
-
-    switch(id)
-    {
-        case ID_DEBUGGER_DEBUG_PAUSE:
-            ksResult=Qt::Key_F12;
-            break;
-        case ID_DEBUGGER_DEBUG_RUN:
-            ksResult=Qt::Key_F9;
-            break;
-        case ID_DEBUGGER_DEBUG_STEPINTO:
-            ksResult=Qt::Key_F7;
-            break;
-        case ID_DEBUGGER_DEBUG_STEPOVER:
-            ksResult=Qt::Key_F8;
-            break;
-        case ID_DEBUGGER_DEBUG_STOP:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DEBUG_RESTART:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_BREAKPOINTTOGGLE:
-            ksResult=Qt::Key_F2;
-            break;
-        case ID_DEBUGGER_DISASM_DUMPTOFILE:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_GOTOADDRESS:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_HEXSIGNATURE:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_SIGNATURE:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_FIND:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_FINDNEXT:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_COPYASHEX:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_COPYCURSORADDRESS:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_DISASM_SELECTALL:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_DUMPTOFILE:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_FIND:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_FINDNEXT:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_GOTOADDRESS:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_SIGNATURE:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_COPYASHEX:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_COPYCURSORADDRESS:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_HEX_SELECTALL:
-            ksResult=QKeySequence();
-            break;
-        case ID_DEBUGGER_STACK_GOTOADDRESS:
-            ksResult=QKeySequence();
-            break;
-        case ID_ARCHIVE_COPYFILENAME:
-            ksResult=QKeySequence::Copy;
-            break;
-        case ID_ARCHIVE_DUMPTOFILE:
-            ksResult=Qt::CTRL+Qt::Key_D;
-            break;
-        case ID_ARCHIVE_ENTROPY:
-            ksResult=QKeySequence();
-            break;
-        case ID_ARCHIVE_HASH:
-            ksResult=QKeySequence();
-            break;
-        case ID_ARCHIVE_HEX:
-            ksResult=QKeySequence();
-            break;
-        case ID_ARCHIVE_OPEN:
-            ksResult=QKeySequence();
-            break;
-        case ID_ARCHIVE_SCAN:
-            ksResult=QKeySequence();
-            break;
-        case ID_ARCHIVE_STRINGS:
-            ksResult=QKeySequence();
-            break;
-        case ID_TABLE_HEX:
-            ksResult=QKeySequence();
-            break;
-        case ID_TABLE_DISASM:
-            ksResult=QKeySequence();
-            break;
-        default:
-            ksResult=QKeySequence();
-    }
-
-    return ksResult;
 }
 
 QKeySequence XShortcuts::getDefault(quint64 nId)
@@ -772,23 +457,61 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     }
     else if(groupId==GROUPID_DEBUGGER)
     {
-        if      (nId==X_ID_DEBUGGER_FILE_OPEN)              ksResult=QKeySequence::Open;
-        else if (nId==X_ID_DEBUGGER_FILE_CLOSE)             ksResult=QKeySequence::Close;
-        else if (nId==X_ID_DEBUGGER_FILE_ATTACH)            ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_FILE_DETACH)            ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_FILE_EXIT)              ksResult=QKeySequence::Quit;
-        else if (nId==X_ID_DEBUGGER_VIEW_CPU)               ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_LOG)               ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_BREAKPOINTS)       ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_MEMORYMAP)         ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_CALLSTACK)         ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_THREADS)           ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_HANDLES)           ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_MODULES)           ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_VIEW_SYMBOLS)           ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_TOOLS_SHORTCUTS)        ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_TOOLS_OPTIONS)          ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_HELP_ABOUT)             ksResult=QKeySequence();
+        if      (nId==X_ID_DEBUGGER_FILE_OPEN)                  ksResult=QKeySequence::Open;
+        else if (nId==X_ID_DEBUGGER_FILE_CLOSE)                 ksResult=QKeySequence::Close;
+        else if (nId==X_ID_DEBUGGER_FILE_ATTACH)                ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_FILE_DETACH)                ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_FILE_EXIT)                  ksResult=QKeySequence::Quit;
+        else if (nId==X_ID_DEBUGGER_VIEW_CPU)                   ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_LOG)                   ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_BREAKPOINTS)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_MEMORYMAP)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_CALLSTACK)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_THREADS)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_HANDLES)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_MODULES)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_SYMBOLS)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_TOOLS_SHORTCUTS)            ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_TOOLS_OPTIONS)              ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HELP_ABOUT)                 ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_RUN)                  ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_PAUSE)                ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_STEPINTO)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_STEPOVER)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_STOP)                 ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_RESTART)              ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F2;
+        #else
+            ksResult=QKeySequence();
+        #endif
+        }
+        else if (nId==X_ID_DEBUGGER_DISASM_DUMPTOFILE)          ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_GOTO_ADDRESS)        ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_HEX_SIGNATURE)       ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_SIGNATURE)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_FIND_STRING)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_FIND_VALUE)          ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_FIND_SIGNATURE)      ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_FIND_NEXT)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_COPY_HEX)            ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_COPY_ADDRESS)        ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_SELECT_ALL)          ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DISASM_EDIT_HEX)            ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_DUMPTOFILE)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_FIND_STRING)            ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_FIND_VALUE)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_FIND_SIGNATURE)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_FIND_NEXT)              ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_GOTO_ADDRESS)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_SIGNATURE)              ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_COPY_HEX)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_COPY_ADDRESS)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_SELECT_ALL)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HEX_EDIT_HEX)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_STACK_GOTOADDRESS)          ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_DEBUG)
     {
@@ -865,7 +588,14 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     }
     else if(groupId==GROUPID_ARCHIVE)
     {
-
+        if      (nId==X_ID_ARCHIVE_OPEN)                ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_SCAN)                ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_HEX)                 ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_STRINGS)             ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_ENTROPY)             ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_HASH)                ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_COPY_FILENAME)       ksResult=QKeySequence();
+        else if (nId==X_ID_ARCHIVE_DUMPTOFILE)          ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_TABLE)
     {
@@ -892,11 +622,11 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     }
     else if(groupId==GROUPID_MEMORYMAP)
     {
-
+        if      (nId==X_ID_MEMORYMAP_DUMPTOFILE)        ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_MODULES)
     {
-
+        if      (nId==X_ID_MODULES_DUMPTOFILE)          ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_COPY)
     {
@@ -934,6 +664,10 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     {
 
     }
+    else if(groupId==GROUPID_BREAKPOINT)
+    {
+
+    }
 
     return ksResult;
 }
@@ -967,6 +701,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_SELECT)       sResult=tr("Select");
     else if (groupId==GROUPID_FOLLOWIN)     sResult=tr("Follow in");
     else if (groupId==GROUPID_SHOWIN)       sResult=tr("Show in");
+    else if (groupId==GROUPID_BREAKPOINT)   sResult=tr("Breakpoint");
 
     return sResult;
 }
@@ -1018,26 +753,18 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_VIEWER)         sResult=tr("Viewer");
     else if (baseId==BASEID_FOLDER)         sResult=tr("Folder");
     else if (baseId==BASEID_PID)            sResult=QString("PID");
+    else if (baseId==BASEID_RUN)            sResult=tr("Run");
+    else if (baseId==BASEID_PAUSE)          sResult=tr("Pause");
+    else if (baseId==BASEID_STEPINTO)       sResult=tr("Step into");
+    else if (baseId==BASEID_STEPOVER)       sResult=tr("Step over");
+    else if (baseId==BASEID_STOP)           sResult=tr("Stop");
+    else if (baseId==BASEID_RESTART)        sResult=tr("Restart");
+    else if (baseId==BASEID_TOGGLE)         sResult=tr("Toggle");
+    else if (baseId==BASEID_SCAN)           sResult=tr("Scan");
+    else if (baseId==BASEID_ENTROPY)        sResult=tr("Entropy");
+    else if (baseId==BASEID_HASH)           sResult=tr("Hash");
 
     return sResult;
-}
-
-XShortcuts::ID XShortcuts::getGroupEnd(GROUPID groupId)
-{
-    qint32 nEnd=0;
-
-    // TODO STACK
-    if(groupId==GROUPID_ACTION)         nEnd=ID_ACTION__END;
-    if(groupId==GROUPID_STRINGS)        nEnd=ID_STRINGS__END;
-    if(groupId==GROUPID_SIGNATURES)     nEnd=ID_SIGNATURES__END;
-    if(groupId==GROUPID_HEX)            nEnd=ID_HEX__END;
-    if(groupId==GROUPID_DISASM)         nEnd=ID_DISASM__END;
-    if(groupId==GROUPID_DEBUGGER)       nEnd=ID_DEBUGGER__END;
-    if(groupId==GROUPID_ARCHIVE)        nEnd=ID_ARCHIVE__END;
-    if(groupId==GROUPID_TABLE)          nEnd=ID_TABLE__END;
-    if(groupId==GROUPID_PROCESS)        nEnd=ID_PROCESS__END;
-
-    return (ID)nEnd;
 }
 
 quint64 XShortcuts::createShortcutsId(GROUPID groupId,QList<GROUPID>listSubgroup,BASEID baseId)
@@ -1142,6 +869,16 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_VIEWER)         sResult=QString("Viewer");
     else if (baseId==BASEID_FOLDER)         sResult=QString("Folder");
     else if (baseId==BASEID_PID)            sResult=QString("PID");
+    else if (baseId==BASEID_RUN)            sResult=QString("Run");
+    else if (baseId==BASEID_PAUSE)          sResult=QString("Pause");
+    else if (baseId==BASEID_STEPINTO)       sResult=QString("StepInto");
+    else if (baseId==BASEID_STEPOVER)       sResult=QString("StepOver");
+    else if (baseId==BASEID_STOP)           sResult=QString("Stop");
+    else if (baseId==BASEID_RESTART)        sResult=QString("Restart");
+    else if (baseId==BASEID_TOGGLE)         sResult=QString("Toggle");
+    else if (baseId==BASEID_SCAN)           sResult=QString("Scan");
+    else if (baseId==BASEID_ENTROPY)        sResult=QString("Entropy");
+    else if (baseId==BASEID_HASH)           sResult=QString("Hash");
 
     return sResult;
 }
@@ -1175,6 +912,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_SELECT)       sResult=QString("Select");
     else if (groupId==GROUPID_FOLLOWIN)     sResult=QString("FollowIn");
     else if (groupId==GROUPID_SHOWIN)       sResult=QString("ShowIn");
+    else if (groupId==GROUPID_BREAKPOINT)   sResult=QString("Breakpoint");
 
     return sResult;
 }
