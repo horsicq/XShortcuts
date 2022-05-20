@@ -48,12 +48,12 @@ void XShortcuts::addGroup(GROUPID groupId)
 
     if(groupId==GROUPID_FILE)
     {
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_OPEN));
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_SAVE));
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_SAVEAS));
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_CLOSE));
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_PRINT));
-        addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_EXIT));
+        addId(X_ID_FILE_OPEN);
+        addId(X_ID_FILE_SAVE);
+        addId(X_ID_FILE_SAVEAS);
+        addId(X_ID_FILE_CLOSE);
+        addId(X_ID_FILE_PRINT);
+        addId(X_ID_FILE_EXIT);
     }
     else if(groupId==GROUPID_VIEW)
     {
@@ -75,6 +75,9 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_VIEW_HANDLES);
         addId(X_ID_DEBUGGER_VIEW_MODULES);
         addId(X_ID_DEBUGGER_VIEW_SYMBOLS);
+        addId(X_ID_DEBUGGER_TOOLS_SHORTCUTS);
+        addId(X_ID_DEBUGGER_TOOLS_OPTIONS);
+        addId(X_ID_DEBUGGER_HELP_ABOUT);
     }
     else if(groupId==GROUPID_DEBUG)
     {
@@ -161,7 +164,18 @@ void XShortcuts::addGroup(GROUPID groupId)
     }
     else if(groupId==GROUPID_PROCESS)
     {
-
+        addId(X_ID_PROCESS_STRUCTS);
+        addId(X_ID_PROCESS_DUMPTOFILE);
+        addId(X_ID_PROCESS_MEMORY_HEX);
+        addId(X_ID_PROCESS_MEMORY_STRINGS);
+        addId(X_ID_PROCESS_MEMORY_SIGNATURES);
+        addId(X_ID_PROCESS_MEMORY_MEMORYMAP);
+        addId(X_ID_PROCESS_MEMORY_MODULES);
+        addId(X_ID_PROCESS_SHOWIN_VIEWER);
+        addId(X_ID_PROCESS_SHOWIN_FOLDER);
+        addId(X_ID_PROCESS_COPY_PID);
+        addId(X_ID_PROCESS_COPY_NAME);
+        addId(X_ID_PROCESS_COPY_FILENAME);
     }
     else if(groupId==GROUPID_MEMORY)
     {
@@ -451,9 +465,6 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
 
     switch(id)
     {
-        case ID_DEBUGGER_TOOLS_OPTIONS:             sResult=QString("Shortcuts/Debugger/Tools/Options");            break;
-        case ID_DEBUGGER_TOOLS_SHORTCUTS:           sResult=QString("Shortcuts/Debugger/Tools/Shortcuts");          break;
-        case ID_DEBUGGER_HELP_ABOUT:                sResult=QString("Shortcuts/Debugger/Help/About");               break;
         case ID_DEBUGGER_DEBUG_RUN:                 sResult=QString("Shortcuts/Debugger/Debug/Run");                break;
         case ID_DEBUGGER_DEBUG_PAUSE:               sResult=QString("Shortcuts/Debugger/Debug/Pause");              break;
         case ID_DEBUGGER_DEBUG_STEPINTO:            sResult=QString("Shortcuts/Debugger/Debug/StepInto");           break;
@@ -489,18 +500,6 @@ QString XShortcuts::idToSettingsString(XShortcuts::ID id)
         case ID_ARCHIVE_STRINGS:                    sResult=QString("Shortcuts/Archive/Strings");                   break;
         case ID_TABLE_HEX:                          sResult=QString("Shortcuts/Table/Hex");                         break;
         case ID_TABLE_DISASM:                       sResult=QString("Shortcuts/Table/Disasm");                      break;
-        case ID_PROCESS_STRUCTS:                    sResult=QString("Shortcuts/Process/Structs");                   break;
-        case ID_PROCESS_DUMPTOFILE:                 sResult=QString("Shortcuts/Process/DumpToFile");                break;
-        case ID_PROCESS_MEMORY_HEX:                 sResult=QString("Shortcuts/Process/Memory/Hex");                break;
-        case ID_PROCESS_MEMORY_STRINGS:             sResult=QString("Shortcuts/Process/Memory/Strings");            break;
-        case ID_PROCESS_MEMORY_SIGNATURES:          sResult=QString("Shortcuts/Process/Memory/Signatures");         break;
-        case ID_PROCESS_MEMORY_MEMORYMAP:           sResult=QString("Shortcuts/Process/Memory/MemoryMap");          break;
-        case ID_PROCESS_MEMORY_MODULES:             sResult=QString("Shortcuts/Process/Memory/Modules");            break;
-        case ID_PROCESS_FILE_VIEWER:                sResult=QString("Shortcuts/Process/File/Viewer");               break;
-        case ID_PROCESS_FILE_FOLDER:                sResult=QString("Shortcuts/Process/File/Folder");               break;
-        case ID_PROCESS_COPY_PID:                   sResult=QString("Shortcuts/Process/Copy/PID");                  break;
-        case ID_PROCESS_COPY_NAME:                  sResult=QString("Shortcuts/Process/Copy/Name");                 break;
-        case ID_PROCESS_COPY_FILENAME:              sResult=QString("Shortcuts/Process/Copy/Filename");             break;
         case ID_MEMORYMAP_DUMPTOFILE:               sResult=QString("Shortcuts/MemoryMap/DumpToFile");              break;
         case ID_MODULES_DUMPTOFILE:                 sResult=QString("Shortcuts/Modules/DumpToFile");                break;
         default:
@@ -547,13 +546,11 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             break;
         case ID_TABLE_HEX:
         case ID_ARCHIVE_HEX:
-        case ID_PROCESS_MEMORY_HEX:
             sResult=tr("Hex");
             break;
         case ID_DEBUGGER_HEX_DUMPTOFILE:
         case ID_DEBUGGER_DISASM_DUMPTOFILE:
         case ID_ARCHIVE_DUMPTOFILE:
-        case ID_PROCESS_DUMPTOFILE:
         case ID_MEMORYMAP_DUMPTOFILE:
         case ID_MODULES_DUMPTOFILE:
             sResult=tr("Dump to file");
@@ -566,9 +563,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_DEBUGGER_DISASM_SIGNATURE:
         case ID_DEBUGGER_HEX_SIGNATURE:
             sResult=tr("Signature");
-            break;
-        case ID_PROCESS_MEMORY_SIGNATURES:
-            sResult=tr("Signatures");
             break;
         case ID_DEBUGGER_DISASM_FIND:
         case ID_DEBUGGER_HEX_FIND:
@@ -593,19 +587,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_TABLE_DISASM:
             sResult=tr("Disasm");
             break;
-        case ID_PROCESS_MEMORY_MEMORYMAP:
-            sResult=tr("Memory map");
-            break;
         case ID_DEBUGGER_DISASM_HEXSIGNATURE:
-            break;
-        case ID_DEBUGGER_TOOLS_OPTIONS:
-            sResult=tr("Options");
-            break;
-        case ID_DEBUGGER_TOOLS_SHORTCUTS:
-            sResult=tr("Shortcuts");
-            break;
-        case ID_DEBUGGER_HELP_ABOUT:
-            sResult=tr("About");
             break;
         case ID_DEBUGGER_DEBUG_RUN:
             sResult=tr("Run");
@@ -631,15 +613,6 @@ QString XShortcuts::idToString(XShortcuts::ID id)
         case ID_ARCHIVE_COPYFILENAME:
             sResult=tr("File name");
             break;
-        case ID_PROCESS_COPY_FILENAME:
-            sResult=tr("File name");
-            break;
-        case ID_PROCESS_COPY_NAME:
-            sResult=tr("Name");
-            break;
-        case ID_PROCESS_COPY_PID:
-            sResult=QString("PID");
-            break;
         case ID_ARCHIVE_ENTROPY:
             sResult=tr("Entropy");
             break;
@@ -650,20 +623,7 @@ QString XShortcuts::idToString(XShortcuts::ID id)
             sResult=tr("Scan");
             break;
         case ID_ARCHIVE_STRINGS:
-        case ID_PROCESS_MEMORY_STRINGS:
             sResult=tr("Strings");
-            break;
-        case ID_PROCESS_STRUCTS:
-            sResult=tr("Structs");
-            break;
-        case ID_PROCESS_FILE_VIEWER:
-            sResult=tr("Viewer");
-            break;
-        case ID_PROCESS_FILE_FOLDER:
-            sResult=tr("Folder");
-            break;
-        case ID_PROCESS_MEMORY_MODULES:
-            sResult=tr("Modules");
             break;
         default:
             sResult=tr("Unknown");
@@ -783,33 +743,6 @@ QKeySequence XShortcuts::getDefault(XShortcuts::ID id)
         case ID_TABLE_DISASM:
             ksResult=QKeySequence();
             break;
-        case ID_PROCESS_STRUCTS:
-            ksResult=Qt::ALT+Qt::Key_S;
-            break;
-        case ID_PROCESS_DUMPTOFILE:
-            ksResult=Qt::CTRL+Qt::Key_D;
-            break;
-        case ID_PROCESS_MEMORY_HEX:
-            ksResult=Qt::CTRL+Qt::Key_H;
-            break;
-        case ID_PROCESS_MEMORY_STRINGS:
-            ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_J;
-            break;
-        case ID_PROCESS_MEMORY_SIGNATURES:
-            ksResult=(Qt::CTRL|Qt::ALT)+Qt::Key_K;
-            break;
-        case ID_PROCESS_MEMORY_MEMORYMAP:
-            ksResult=QKeySequence();
-            break;
-        case ID_PROCESS_MEMORY_MODULES:
-            ksResult=QKeySequence();
-            break;
-        case ID_PROCESS_FILE_VIEWER:
-            ksResult=Qt::ALT+Qt::Key_V;
-            break;
-        case ID_PROCESS_COPY_FILENAME:
-            ksResult=QKeySequence();
-            break;
         default:
             ksResult=QKeySequence();
     }
@@ -826,12 +759,12 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
 
     if(groupId==GROUPID_FILE)
     {
-        if      (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_OPEN))                          ksResult=QKeySequence();
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_SAVE))                          ksResult=QKeySequence();
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_SAVEAS))                        ksResult=QKeySequence();
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_CLOSE))                         ksResult=QKeySequence();
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_PRINT))                         ksResult=QKeySequence();
-        else if (nId==createShortcutsId(groupId,QList<GROUPID>(),BASEID_EXIT))                          ksResult=QKeySequence();
+        if      (nId==X_ID_FILE_OPEN)                       ksResult=QKeySequence();
+        else if (nId==X_ID_FILE_SAVE)                       ksResult=QKeySequence();
+        else if (nId==X_ID_FILE_SAVEAS)                     ksResult=QKeySequence();
+        else if (nId==X_ID_FILE_CLOSE)                      ksResult=QKeySequence();
+        else if (nId==X_ID_FILE_PRINT)                      ksResult=QKeySequence();
+        else if (nId==X_ID_FILE_EXIT)                       ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_VIEW)
     {
@@ -844,6 +777,18 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId==X_ID_DEBUGGER_FILE_ATTACH)            ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_FILE_DETACH)            ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_FILE_EXIT)              ksResult=QKeySequence::Quit;
+        else if (nId==X_ID_DEBUGGER_VIEW_CPU)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_LOG)               ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_BREAKPOINTS)       ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_MEMORYMAP)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_CALLSTACK)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_THREADS)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_HANDLES)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_MODULES)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_VIEW_SYMBOLS)           ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_TOOLS_SHORTCUTS)        ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_TOOLS_OPTIONS)          ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_HELP_ABOUT)             ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_DEBUG)
     {
@@ -928,7 +873,18 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     }
     else if(groupId==GROUPID_PROCESS)
     {
-
+        if      (nId==X_ID_PROCESS_STRUCTS)             ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_DUMPTOFILE)          ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_MEMORY_HEX)          ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_MEMORY_STRINGS)      ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_MEMORY_SIGNATURES)   ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_MEMORY_MEMORYMAP)    ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_MEMORY_MODULES)      ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_SHOWIN_VIEWER)       ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_SHOWIN_FOLDER)       ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_COPY_PID)            ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_COPY_NAME)           ksResult=QKeySequence();
+        else if (nId==X_ID_PROCESS_COPY_FILENAME)       ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_MEMORY)
     {
@@ -1033,7 +989,9 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_OFFSET)         sResult=tr("Offset");
     else if (baseId==BASEID_SIZE)           sResult=tr("Size");
     else if (baseId==BASEID_STRING)         sResult=tr("String");
+    else if (baseId==BASEID_STRINGS)        sResult=tr("Strings");
     else if (baseId==BASEID_SIGNATURE)      sResult=tr("Signature");
+    else if (baseId==BASEID_SIGNATURES)     sResult=tr("Signatures");
     else if (baseId==BASEID_HEX)            sResult=tr("Hex");
     else if (baseId==BASEID_DEMANGLE)       sResult=tr("Demangle");
     else if (baseId==BASEID_NAME)           sResult=tr("Name");
@@ -1052,6 +1010,14 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_HANDLES)        sResult=tr("Handles");
     else if (baseId==BASEID_MODULES)        sResult=tr("Modules");
     else if (baseId==BASEID_SYMBOLS)        sResult=tr("Symbols");
+    else if (baseId==BASEID_SHORTCUTS)      sResult=tr("Shortcuts");
+    else if (baseId==BASEID_OPTIONS)        sResult=tr("Options");
+    else if (baseId==BASEID_ABOUT)          sResult=tr("About");
+    else if (baseId==BASEID_FILENAME)       sResult=tr("File name");
+    else if (baseId==BASEID_STRUCTS)        sResult=tr("Structs");
+    else if (baseId==BASEID_VIEWER)         sResult=tr("Viewer");
+    else if (baseId==BASEID_FOLDER)         sResult=tr("Folder");
+    else if (baseId==BASEID_PID)            sResult=QString("PID");
 
     return sResult;
 }
@@ -1147,7 +1113,9 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_OFFSET)         sResult=QString("Offset");
     else if (baseId==BASEID_SIZE)           sResult=QString("Size");
     else if (baseId==BASEID_STRING)         sResult=QString("String");
+    else if (baseId==BASEID_STRINGS)        sResult=QString("Strings");
     else if (baseId==BASEID_SIGNATURE)      sResult=QString("Signature");
+    else if (baseId==BASEID_SIGNATURES)     sResult=QString("Signatures");
     else if (baseId==BASEID_HEX)            sResult=QString("Hex");
     else if (baseId==BASEID_DEMANGLE)       sResult=QString("Demangle");
     else if (baseId==BASEID_NAME)           sResult=QString("Name");
@@ -1166,6 +1134,14 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_HANDLES)        sResult=QString("Handles");
     else if (baseId==BASEID_MODULES)        sResult=QString("Modules");
     else if (baseId==BASEID_SYMBOLS)        sResult=QString("Symbols");
+    else if (baseId==BASEID_SHORTCUTS)      sResult=QString("Shortcuts");
+    else if (baseId==BASEID_OPTIONS)        sResult=QString("Options");
+    else if (baseId==BASEID_ABOUT)          sResult=QString("About");
+    else if (baseId==BASEID_FILENAME)       sResult=QString("FileName");
+    else if (baseId==BASEID_STRUCTS)        sResult=QString("Structs");
+    else if (baseId==BASEID_VIEWER)         sResult=QString("Viewer");
+    else if (baseId==BASEID_FOLDER)         sResult=QString("Folder");
+    else if (baseId==BASEID_PID)            sResult=QString("PID");
 
     return sResult;
 }
