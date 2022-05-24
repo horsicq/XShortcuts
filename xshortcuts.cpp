@@ -101,7 +101,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_HEX_COPY_ADDRESS);
         addId(X_ID_DEBUGGER_HEX_SELECT_ALL);
         addId(X_ID_DEBUGGER_HEX_EDIT_HEX);
-        addId(X_ID_DEBUGGER_STACK_GOTOADDRESS);
+        addId(X_ID_DEBUGGER_STACK_GOTO_ADDRESS);
+        addId(X_ID_DEBUGGER_STACK_EDIT_HEX);
     }
     else if(groupId==GROUPID_DEBUG)
     {
@@ -511,7 +512,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId==X_ID_DEBUGGER_HEX_COPY_ADDRESS)           ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_HEX_SELECT_ALL)             ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_HEX_EDIT_HEX)               ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_STACK_GOTOADDRESS)          ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_STACK_GOTO_ADDRESS)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_STACK_EDIT_HEX)             ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_DEBUG)
     {
