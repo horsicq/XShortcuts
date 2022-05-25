@@ -116,6 +116,8 @@
 #define X_ID_DEBUGGER_DISASM_COPY_ADDRESS       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
 #define X_ID_DEBUGGER_DISASM_SELECT_ALL         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM,XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_DEBUGGER_DISASM_EDIT_HEX           XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_DISASM_FOLLOWIN_HEX       XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_DISASM_FOLLOWIN_STACK     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_STACK)
 #define X_ID_DEBUGGER_HEX_DUMPTOFILE            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_HEX,XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_DEBUGGER_HEX_FIND_STRING           XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_HEX<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_STRING)
 #define X_ID_DEBUGGER_HEX_FIND_VALUE            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_HEX<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_VALUE)
@@ -153,6 +155,7 @@
 #define X_ID_ARCHIVE_DUMPTOFILE                 XShortcuts::createShortcutsId(XShortcuts::GROUPID_ARCHIVE,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
 
 #define X_ID_MODULES_DUMPTOFILE                 XShortcuts::createShortcutsId(XShortcuts::GROUPID_MODULES,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
+#define X_ID_MODULES_SHOWIN_FOLDER              XShortcuts::createShortcutsId(XShortcuts::GROUPID_MODULES,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_SHOWIN,XShortcuts::BASEID_FOLDER)
 
 #define X_ID_MEMORYMAP_DUMPTOFILE               XShortcuts::createShortcutsId(XShortcuts::GROUPID_MEMORYMAP,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
 
@@ -253,7 +256,8 @@ public:
         BASEID_TOGGLE,
         BASEID_SCAN,
         BASEID_ENTROPY,
-        BASEID_HASH
+        BASEID_HASH,
+        BASEID_STACK
     };
 
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!

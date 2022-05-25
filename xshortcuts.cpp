@@ -765,6 +765,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_SCAN)           sResult=tr("Scan");
     else if (baseId==BASEID_ENTROPY)        sResult=tr("Entropy");
     else if (baseId==BASEID_HASH)           sResult=tr("Hash");
+    else if (baseId==BASEID_STACK)          sResult=tr("Stack");
 
     return sResult;
 }
@@ -881,6 +882,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_SCAN)           sResult=QString("Scan");
     else if (baseId==BASEID_ENTROPY)        sResult=QString("Entropy");
     else if (baseId==BASEID_HASH)           sResult=QString("Hash");
+    else if (baseId==BASEID_STACK)          sResult=QString("Stack");
 
     return sResult;
 }
