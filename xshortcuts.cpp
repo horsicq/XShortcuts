@@ -113,22 +113,22 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_COPY));
         addId(createShortcutsId(groupId,QList<GROUPID>(),BASEID_SHOW));
     }
-    else if(groupId==GROUPID_STRING)
+    else if(groupId==GROUPID_STRINGS)
     {
-        addId(X_ID_STRING_COPY_STRING);
-        addId(X_ID_STRING_COPY_OFFSET);
-        addId(X_ID_STRING_COPY_SIZE);
-        addId(X_ID_STRING_FOLLOWIN_HEX);
-        addId(X_ID_STRING_DEMANGLE);
-        addId(X_ID_STRING_EDIT_STRING);
+        addId(X_ID_STRINGS_COPY_STRING);
+        addId(X_ID_STRINGS_COPY_OFFSET);
+        addId(X_ID_STRINGS_COPY_SIZE);
+        addId(X_ID_STRINGS_FOLLOWIN_HEX);
+        addId(X_ID_STRINGS_DEMANGLE);
+        addId(X_ID_STRINGS_EDIT_STRING);
     }
-    else if(groupId==GROUPID_SIGNATURE)
+    else if(groupId==GROUPID_SIGNATURES)
     {
-        addId(X_ID_SIGNATURE_COPY_NAME);
-        addId(X_ID_SIGNATURE_COPY_SIGNATURE);
-        addId(X_ID_SIGNATURE_COPY_ADDRESS);
-        addId(X_ID_SIGNATURE_COPY_OFFSET);
-        addId(X_ID_SIGNATURE_FOLLOWIN_HEX);
+        addId(X_ID_SIGNATURES_COPY_NAME);
+        addId(X_ID_SIGNATURES_COPY_SIGNATURE);
+        addId(X_ID_SIGNATURES_COPY_ADDRESS);
+        addId(X_ID_SIGNATURES_COPY_OFFSET);
+        addId(X_ID_SIGNATURES_FOLLOWIN_HEX);
     }
     else if(groupId==GROUPID_STRUCT)
     {
@@ -525,20 +525,20 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     }
     else if(groupId==GROUPID_STRING)
     {
-        if      (nId==X_ID_STRING_COPY_STRING)          ksResult=QKeySequence::Copy;
-        else if (nId==X_ID_STRING_COPY_OFFSET)          ksResult=QKeySequence();
-        else if (nId==X_ID_STRING_COPY_SIZE)            ksResult=QKeySequence();
-        else if (nId==X_ID_STRING_FOLLOWIN_HEX)         ksResult=QKeySequence();
-        else if (nId==X_ID_STRING_DEMANGLE)             ksResult=QKeySequence();
-        else if (nId==X_ID_STRING_EDIT_STRING)          ksResult=QKeySequence();
+        if      (nId==X_ID_STRINGS_COPY_STRING)         ksResult=QKeySequence::Copy;
+        else if (nId==X_ID_STRINGS_COPY_OFFSET)         ksResult=QKeySequence();
+        else if (nId==X_ID_STRINGS_COPY_SIZE)           ksResult=QKeySequence();
+        else if (nId==X_ID_STRINGS_FOLLOWIN_HEX)        ksResult=QKeySequence();
+        else if (nId==X_ID_STRINGS_DEMANGLE)            ksResult=QKeySequence();
+        else if (nId==X_ID_STRINGS_EDIT_STRING)         ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_SIGNATURE)
     {
-        if      (nId==X_ID_SIGNATURE_COPY_NAME)         ksResult=QKeySequence::Copy;
-        else if (nId==X_ID_SIGNATURE_COPY_SIGNATURE)    ksResult=QKeySequence();
-        else if (nId==X_ID_SIGNATURE_COPY_ADDRESS)      ksResult=QKeySequence();
-        else if (nId==X_ID_SIGNATURE_COPY_OFFSET)       ksResult=QKeySequence();
-        else if (nId==X_ID_SIGNATURE_FOLLOWIN_HEX)      ksResult=QKeySequence();
+        if      (nId==X_ID_SIGNATURES_COPY_NAME)        ksResult=QKeySequence::Copy;
+        else if (nId==X_ID_SIGNATURES_COPY_SIGNATURE)   ksResult=QKeySequence();
+        else if (nId==X_ID_SIGNATURES_COPY_ADDRESS)     ksResult=QKeySequence();
+        else if (nId==X_ID_SIGNATURES_COPY_OFFSET)      ksResult=QKeySequence();
+        else if (nId==X_ID_SIGNATURES_FOLLOWIN_HEX)     ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_STRUCT)
     {
