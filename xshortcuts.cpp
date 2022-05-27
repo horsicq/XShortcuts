@@ -682,8 +682,10 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_FILE)         sResult=tr("File");
     else if (groupId==GROUPID_VIEW)         sResult=tr("View");
     else if (groupId==GROUPID_STRING)       sResult=tr("String");
+    else if (groupId==GROUPID_STRINGS)      sResult=tr("Strings");
     else if (groupId==GROUPID_SIGNATURE)    sResult=tr("Signature");
-    else if (groupId==GROUPID_STRUCT)       sResult=tr("Structs");
+    else if (groupId==GROUPID_SIGNATURES)   sResult=tr("Signatures");
+    else if (groupId==GROUPID_STRUCT)       sResult=tr("Struct");
     else if (groupId==GROUPID_HEX)          sResult=tr("Hex");
     else if (groupId==GROUPID_DISASM)       sResult=tr("Disasm");
     else if (groupId==GROUPID_DEBUG)        sResult=tr("Debug");
@@ -704,6 +706,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_FOLLOWIN)     sResult=tr("Follow in");
     else if (groupId==GROUPID_SHOWIN)       sResult=tr("Show in");
     else if (groupId==GROUPID_BREAKPOINT)   sResult=tr("Breakpoint");
+    else if (groupId==GROUPID_MODULES)      sResult=tr("Modules");
+    else if (groupId==GROUPID_MEMORYMAP)    sResult=tr("Memory map");
 
     return sResult;
 }
@@ -895,8 +899,10 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_FILE)         sResult=QString("File");
     else if (groupId==GROUPID_VIEW)         sResult=QString("View");
     else if (groupId==GROUPID_STRING)       sResult=QString("String");
+    else if (groupId==GROUPID_STRINGS)      sResult=QString("Strings");
     else if (groupId==GROUPID_SIGNATURE)    sResult=QString("Signature");
-    else if (groupId==GROUPID_STRUCT)       sResult=QString("Structs");
+    else if (groupId==GROUPID_SIGNATURES)   sResult=QString("Signatures");
+    else if (groupId==GROUPID_STRUCT)       sResult=QString("Struct");
     else if (groupId==GROUPID_HEX)          sResult=QString("Hex");
     else if (groupId==GROUPID_DISASM)       sResult=QString("Disasm");
     else if (groupId==GROUPID_DEBUG)        sResult=QString("Debug");
@@ -917,6 +923,8 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_FOLLOWIN)     sResult=QString("FollowIn");
     else if (groupId==GROUPID_SHOWIN)       sResult=QString("ShowIn");
     else if (groupId==GROUPID_BREAKPOINT)   sResult=QString("Breakpoint");
+    else if (groupId==GROUPID_MODULES)      sResult=QString("Modules");
+    else if (groupId==GROUPID_MEMORYMAP)    sResult=QString("MemoryMap");
 
     return sResult;
 }
