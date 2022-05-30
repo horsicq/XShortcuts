@@ -475,18 +475,31 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId==X_ID_DEBUGGER_TOOLS_SHORTCUTS)            ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_TOOLS_OPTIONS)              ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_HELP_ABOUT)                 ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_DEBUG_RUN)                  ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_RUN)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F9;
+        #endif
+        }
         else if (nId==X_ID_DEBUGGER_DEBUG_PAUSE)                ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_DEBUG_STEPINTO)             ksResult=QKeySequence();
-        else if (nId==X_ID_DEBUGGER_DEBUG_STEPOVER)             ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_STEPINTO)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F7;
+        #endif
+        }
+        else if (nId==X_ID_DEBUGGER_DEBUG_STEPOVER)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F8;
+        #endif
+        }
         else if (nId==X_ID_DEBUGGER_DEBUG_STOP)                 ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_DEBUG_RESTART)              ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE)
         {
         #ifdef Q_OS_WIN
             ksResult=Qt::Key_F2;
-        #else
-            ksResult=QKeySequence();
         #endif
         }
         else if (nId==X_ID_DEBUGGER_DISASM_DUMPTOFILE)          ksResult=QKeySequence();
