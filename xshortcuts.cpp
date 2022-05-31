@@ -494,7 +494,12 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult=Qt::Key_F8;
         #endif
         }
-        else if (nId==X_ID_DEBUGGER_DEBUG_STOP)                 ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_STOP)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F12;
+        #endif
+        }
         else if (nId==X_ID_DEBUGGER_DEBUG_RESTART)              ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE)
         {
