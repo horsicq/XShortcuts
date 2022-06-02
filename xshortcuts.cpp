@@ -102,6 +102,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_HEX_SELECT_ALL);
         addId(X_ID_DEBUGGER_HEX_EDIT_HEX);
         addId(X_ID_DEBUGGER_STACK_GOTO_ADDRESS);
+        addId(X_ID_DEBUGGER_STACK_COPY_ADDRESS);
+        addId(X_ID_DEBUGGER_STACK_COPY_VALUE);
         addId(X_ID_DEBUGGER_STACK_EDIT_HEX);
     }
     else if(groupId==GROUPID_DEBUG)
@@ -481,7 +483,12 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult=Qt::Key_F9;
         #endif
         }
-        else if (nId==X_ID_DEBUGGER_DEBUG_PAUSE)                ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_PAUSE)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::Key_F12;
+        #endif
+        }
         else if (nId==X_ID_DEBUGGER_DEBUG_STEPINTO)
         {
         #ifdef Q_OS_WIN
@@ -500,7 +507,12 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult=Qt::Key_F12;
         #endif
         }
-        else if (nId==X_ID_DEBUGGER_DEBUG_RESTART)              ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_DEBUG_RESTART)
+        {
+        #ifdef Q_OS_WIN
+            ksResult=Qt::CTRL+Qt::Key_F2;
+        #endif
+        }
         else if (nId==X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE)
         {
         #ifdef Q_OS_WIN
@@ -531,6 +543,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId==X_ID_DEBUGGER_HEX_SELECT_ALL)             ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_HEX_EDIT_HEX)               ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_STACK_GOTO_ADDRESS)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_STACK_COPY_ADDRESS)         ksResult=QKeySequence();
+        else if (nId==X_ID_DEBUGGER_STACK_COPY_VALUE)           ksResult=QKeySequence();
         else if (nId==X_ID_DEBUGGER_STACK_EDIT_HEX)             ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_DEBUG)
@@ -696,36 +710,37 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
 {
     QString sResult="";
 
-    if      (groupId==GROUPID_ACTION)       sResult=tr("Action");
-    else if (groupId==GROUPID_FILE)         sResult=tr("File");
-    else if (groupId==GROUPID_VIEW)         sResult=tr("View");
-    else if (groupId==GROUPID_STRING)       sResult=tr("String");
-    else if (groupId==GROUPID_STRINGS)      sResult=tr("Strings");
-    else if (groupId==GROUPID_SIGNATURE)    sResult=tr("Signature");
-    else if (groupId==GROUPID_SIGNATURES)   sResult=tr("Signatures");
-    else if (groupId==GROUPID_STRUCT)       sResult=tr("Struct");
-    else if (groupId==GROUPID_HEX)          sResult=tr("Hex");
-    else if (groupId==GROUPID_DISASM)       sResult=tr("Disasm");
-    else if (groupId==GROUPID_DEBUG)        sResult=tr("Debug");
-    else if (groupId==GROUPID_DEBUGGER)     sResult=tr("Debugger");
-    else if (groupId==GROUPID_REGISTER)     sResult=tr("Register");
-    else if (groupId==GROUPID_STACK)        sResult=tr("Stack");
-    else if (groupId==GROUPID_ARCHIVE)      sResult=tr("Archive");
-    else if (groupId==GROUPID_TABLE)        sResult=tr("Table");
-    else if (groupId==GROUPID_PROCESS)      sResult=tr("Process");
-    else if (groupId==GROUPID_MEMORY)       sResult=tr("Memory");
-    else if (groupId==GROUPID_COPY)         sResult=tr("Copy");
-    else if (groupId==GROUPID_EDIT)         sResult=tr("Edit");
-    else if (groupId==GROUPID_FIND)         sResult=tr("Find");
-    else if (groupId==GROUPID_GOTO)         sResult=tr("Go to");
-    else if (groupId==GROUPID_TOOLS)        sResult=tr("Tools");
-    else if (groupId==GROUPID_HELP)         sResult=tr("Help");
-    else if (groupId==GROUPID_SELECT)       sResult=tr("Select");
-    else if (groupId==GROUPID_FOLLOWIN)     sResult=tr("Follow in");
-    else if (groupId==GROUPID_SHOWIN)       sResult=tr("Show in");
-    else if (groupId==GROUPID_BREAKPOINT)   sResult=tr("Breakpoint");
-    else if (groupId==GROUPID_MODULES)      sResult=tr("Modules");
-    else if (groupId==GROUPID_MEMORYMAP)    sResult=tr("Memory map");
+    if      (groupId==GROUPID_ACTION)           sResult=tr("Action");
+    else if (groupId==GROUPID_FILE)             sResult=tr("File");
+    else if (groupId==GROUPID_VIEW)             sResult=tr("View");
+    else if (groupId==GROUPID_STRING)           sResult=tr("String");
+    else if (groupId==GROUPID_STRINGS)          sResult=tr("Strings");
+    else if (groupId==GROUPID_SIGNATURE)        sResult=tr("Signature");
+    else if (groupId==GROUPID_SIGNATURES)       sResult=tr("Signatures");
+    else if (groupId==GROUPID_STRUCT)           sResult=tr("Struct");
+    else if (groupId==GROUPID_HEX)              sResult=tr("Hex");
+    else if (groupId==GROUPID_DISASM)           sResult=tr("Disasm");
+    else if (groupId==GROUPID_DEBUG)            sResult=tr("Debug");
+    else if (groupId==GROUPID_DEBUGGER)         sResult=tr("Debugger");
+    else if (groupId==GROUPID_REGISTER)         sResult=tr("Register");
+    else if (groupId==GROUPID_STACK)            sResult=tr("Stack");
+    else if (groupId==GROUPID_ARCHIVE)          sResult=tr("Archive");
+    else if (groupId==GROUPID_TABLE)            sResult=tr("Table");
+    else if (groupId==GROUPID_PROCESS)          sResult=tr("Process");
+    else if (groupId==GROUPID_MEMORY)           sResult=tr("Memory");
+    else if (groupId==GROUPID_COPY)             sResult=tr("Copy");
+    else if (groupId==GROUPID_EDIT)             sResult=tr("Edit");
+    else if (groupId==GROUPID_FIND)             sResult=tr("Find");
+    else if (groupId==GROUPID_GOTO)             sResult=tr("Go to");
+    else if (groupId==GROUPID_TOOLS)            sResult=tr("Tools");
+    else if (groupId==GROUPID_HELP)             sResult=tr("Help");
+    else if (groupId==GROUPID_SELECT)           sResult=tr("Select");
+    else if (groupId==GROUPID_FOLLOWIN)         sResult=tr("Follow in");
+    else if (groupId==GROUPID_FOLLOWVALUEIN)    sResult=tr("Follow value in");
+    else if (groupId==GROUPID_SHOWIN)           sResult=tr("Show in");
+    else if (groupId==GROUPID_BREAKPOINT)       sResult=tr("Breakpoint");
+    else if (groupId==GROUPID_MODULES)          sResult=tr("Modules");
+    else if (groupId==GROUPID_MEMORYMAP)        sResult=tr("Memory map");
 
     return sResult;
 }
@@ -913,36 +928,37 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
 {
     QString sResult="";
 
-    if      (groupId==GROUPID_ACTION)       sResult=QString("Action");
-    else if (groupId==GROUPID_FILE)         sResult=QString("File");
-    else if (groupId==GROUPID_VIEW)         sResult=QString("View");
-    else if (groupId==GROUPID_STRING)       sResult=QString("String");
-    else if (groupId==GROUPID_STRINGS)      sResult=QString("Strings");
-    else if (groupId==GROUPID_SIGNATURE)    sResult=QString("Signature");
-    else if (groupId==GROUPID_SIGNATURES)   sResult=QString("Signatures");
-    else if (groupId==GROUPID_STRUCT)       sResult=QString("Struct");
-    else if (groupId==GROUPID_HEX)          sResult=QString("Hex");
-    else if (groupId==GROUPID_DISASM)       sResult=QString("Disasm");
-    else if (groupId==GROUPID_DEBUG)        sResult=QString("Debug");
-    else if (groupId==GROUPID_DEBUGGER)     sResult=QString("Debugger");
-    else if (groupId==GROUPID_REGISTER)     sResult=QString("Register");
-    else if (groupId==GROUPID_STACK)        sResult=QString("Stack");
-    else if (groupId==GROUPID_ARCHIVE)      sResult=QString("Archive");
-    else if (groupId==GROUPID_TABLE)        sResult=QString("Table");
-    else if (groupId==GROUPID_PROCESS)      sResult=QString("Process");
-    else if (groupId==GROUPID_MEMORY)       sResult=QString("Memory");
-    else if (groupId==GROUPID_COPY)         sResult=QString("Copy");
-    else if (groupId==GROUPID_EDIT)         sResult=QString("Edit");
-    else if (groupId==GROUPID_FIND)         sResult=QString("Find");
-    else if (groupId==GROUPID_GOTO)         sResult=QString("GoTo");
-    else if (groupId==GROUPID_TOOLS)        sResult=QString("Tools");
-    else if (groupId==GROUPID_HELP)         sResult=QString("Help");
-    else if (groupId==GROUPID_SELECT)       sResult=QString("Select");
-    else if (groupId==GROUPID_FOLLOWIN)     sResult=QString("FollowIn");
-    else if (groupId==GROUPID_SHOWIN)       sResult=QString("ShowIn");
-    else if (groupId==GROUPID_BREAKPOINT)   sResult=QString("Breakpoint");
-    else if (groupId==GROUPID_MODULES)      sResult=QString("Modules");
-    else if (groupId==GROUPID_MEMORYMAP)    sResult=QString("MemoryMap");
+    if      (groupId==GROUPID_ACTION)           sResult=QString("Action");
+    else if (groupId==GROUPID_FILE)             sResult=QString("File");
+    else if (groupId==GROUPID_VIEW)             sResult=QString("View");
+    else if (groupId==GROUPID_STRING)           sResult=QString("String");
+    else if (groupId==GROUPID_STRINGS)          sResult=QString("Strings");
+    else if (groupId==GROUPID_SIGNATURE)        sResult=QString("Signature");
+    else if (groupId==GROUPID_SIGNATURES)       sResult=QString("Signatures");
+    else if (groupId==GROUPID_STRUCT)           sResult=QString("Struct");
+    else if (groupId==GROUPID_HEX)              sResult=QString("Hex");
+    else if (groupId==GROUPID_DISASM)           sResult=QString("Disasm");
+    else if (groupId==GROUPID_DEBUG)            sResult=QString("Debug");
+    else if (groupId==GROUPID_DEBUGGER)         sResult=QString("Debugger");
+    else if (groupId==GROUPID_REGISTER)         sResult=QString("Register");
+    else if (groupId==GROUPID_STACK)            sResult=QString("Stack");
+    else if (groupId==GROUPID_ARCHIVE)          sResult=QString("Archive");
+    else if (groupId==GROUPID_TABLE)            sResult=QString("Table");
+    else if (groupId==GROUPID_PROCESS)          sResult=QString("Process");
+    else if (groupId==GROUPID_MEMORY)           sResult=QString("Memory");
+    else if (groupId==GROUPID_COPY)             sResult=QString("Copy");
+    else if (groupId==GROUPID_EDIT)             sResult=QString("Edit");
+    else if (groupId==GROUPID_FIND)             sResult=QString("Find");
+    else if (groupId==GROUPID_GOTO)             sResult=QString("GoTo");
+    else if (groupId==GROUPID_TOOLS)            sResult=QString("Tools");
+    else if (groupId==GROUPID_HELP)             sResult=QString("Help");
+    else if (groupId==GROUPID_SELECT)           sResult=QString("Select");
+    else if (groupId==GROUPID_FOLLOWIN)         sResult=QString("FollowIn");
+    else if (groupId==GROUPID_FOLLOWVALUEIN)    sResult=QString("FollowValueIn");
+    else if (groupId==GROUPID_SHOWIN)           sResult=QString("ShowIn");
+    else if (groupId==GROUPID_BREAKPOINT)       sResult=QString("Breakpoint");
+    else if (groupId==GROUPID_MODULES)          sResult=QString("Modules");
+    else if (groupId==GROUPID_MEMORYMAP)        sResult=QString("MemoryMap");
 
     return sResult;
 }
