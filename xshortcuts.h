@@ -133,6 +133,10 @@
 #define X_ID_DEBUGGER_STACK_COPY_ADDRESS            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
 #define X_ID_DEBUGGER_STACK_COPY_VALUE              XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_VALUE)
 #define X_ID_DEBUGGER_STACK_EDIT_HEX                XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_STACK_FOLLOWIN_HEX            XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_STACK_FOLLOWIN_DISASM         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_DISASM)
+#define X_ID_DEBUGGER_STACK_VALUE_FOLLOWIN_HEX      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_VALUE<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_STACK_VALUE_FOLLOWIN_DISASM   XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_VALUE<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_DISASM)
 
 #define X_ID_PROCESS_STRUCTS                        XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_STRUCTS)
 #define X_ID_PROCESS_DUMPTOFILE                     XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
@@ -200,9 +204,9 @@ public:
         GROUPID_HELP,
         GROUPID_SELECT,
         GROUPID_FOLLOWIN,
-        GROUPID_FOLLOWVALUEIN,
         GROUPID_SHOWIN,
-        GROUPID_BREAKPOINT
+        GROUPID_BREAKPOINT,
+        GROUPID_VALUE
     };
 
     enum BASEID

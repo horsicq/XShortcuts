@@ -736,11 +736,11 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_HELP)             sResult=tr("Help");
     else if (groupId==GROUPID_SELECT)           sResult=tr("Select");
     else if (groupId==GROUPID_FOLLOWIN)         sResult=tr("Follow in");
-    else if (groupId==GROUPID_FOLLOWVALUEIN)    sResult=tr("Follow value in");
     else if (groupId==GROUPID_SHOWIN)           sResult=tr("Show in");
     else if (groupId==GROUPID_BREAKPOINT)       sResult=tr("Breakpoint");
     else if (groupId==GROUPID_MODULES)          sResult=tr("Modules");
     else if (groupId==GROUPID_MEMORYMAP)        sResult=tr("Memory map");
+    else if (groupId==GROUPID_VALUE)            sResult=tr("Value");
 
     return sResult;
 }
@@ -954,11 +954,11 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_HELP)             sResult=QString("Help");
     else if (groupId==GROUPID_SELECT)           sResult=QString("Select");
     else if (groupId==GROUPID_FOLLOWIN)         sResult=QString("FollowIn");
-    else if (groupId==GROUPID_FOLLOWVALUEIN)    sResult=QString("FollowValueIn");
     else if (groupId==GROUPID_SHOWIN)           sResult=QString("ShowIn");
     else if (groupId==GROUPID_BREAKPOINT)       sResult=QString("Breakpoint");
     else if (groupId==GROUPID_MODULES)          sResult=QString("Modules");
     else if (groupId==GROUPID_MEMORYMAP)        sResult=QString("MemoryMap");
+    else if (groupId==GROUPID_VALUE)            sResult=QString("Value");
 
     return sResult;
 }
