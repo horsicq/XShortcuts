@@ -137,6 +137,7 @@
 #define X_ID_DEBUGGER_STACK_FOLLOWIN_DISASM         XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_DISASM)
 #define X_ID_DEBUGGER_STACK_VALUE_FOLLOWIN_HEX      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_VALUE<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_STACK_VALUE_FOLLOWIN_DISASM   XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_STACK<<XShortcuts::GROUPID_VALUE<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_DISASM)
+// TODO Registers
 
 #define X_ID_PROCESS_STRUCTS                        XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_STRUCTS)
 #define X_ID_PROCESS_DUMPTOFILE                     XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
