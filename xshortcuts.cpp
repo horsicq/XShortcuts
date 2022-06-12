@@ -274,7 +274,7 @@ void XShortcuts::addId(quint64 nId)
 
 void XShortcuts::addGroup(ID id) // TODO Remove
 {
-
+    Q_UNUSED(id)
 }
 
 QList<quint64> XShortcuts::getShortcutsIDs()
