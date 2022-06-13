@@ -107,6 +107,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_STACK_COPY_ADDRESS);
         addId(X_ID_DEBUGGER_STACK_COPY_VALUE);
         addId(X_ID_DEBUGGER_STACK_EDIT_HEX);
+        addId(X_ID_DEBUGGER_STACK_FOLLOWIN_DISASM);
+        addId(X_ID_DEBUGGER_STACK_FOLLOWIN_HEX);
     }
     else if(groupId==GROUPID_DEBUG)
     {
