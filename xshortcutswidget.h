@@ -40,6 +40,9 @@ public:
     void saveModel(QAbstractItemModel *pModel,QString sFileName);
     virtual void adjustView();
 
+private slots:
+    void errorMessageSlot(QString sErrorMessage);
+
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState)=0;

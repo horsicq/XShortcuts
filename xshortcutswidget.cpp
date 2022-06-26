@@ -92,3 +92,8 @@ void XShortcutsWidget::adjustView()
 {
 
 }
+
+void XShortcutsWidget::errorMessageSlot(QString sErrorMessage)
+{
+    QMessageBox::critical(XOptions::getMainWidget(this),tr("Error"),sErrorMessage);
+}
