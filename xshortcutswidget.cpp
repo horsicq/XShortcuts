@@ -92,7 +92,29 @@ void XShortcutsWidget::adjustView()
 {
 
 }
+#ifdef QT_CONCURRENT_LIB
+QFuture<void> XShortcutsWidget::deleteOldModel(QStandardItemModel **g_ppOldModel)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldModel,this,g_ppOldModel);
+#else
+    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldModel,g_ppOldModel);
+#endif
 
+    return future;
+}
+#endif
+#ifdef QT_CONCURRENT_LIB
+void XShortcutsWidget::_deleteOldModel(QStandardItemModel **g_ppOldModel)
+{
+    if(*g_ppOldModel)
+    {
+        delete (*g_ppOldModel);
+
+        (*g_ppOldModel)=0;
+    }
+}
+#endif
 void XShortcutsWidget::errorMessageSlot(QString sErrorMessage)
 {
     QMessageBox::critical(XOptions::getMainWidget(this),tr("Error"),sErrorMessage);
