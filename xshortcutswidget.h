@@ -28,6 +28,7 @@
 #ifdef QT_CONCURRENT_LIB
 #include <QFuture>
 #include <QtConcurrent>
+#include <QAbstractItemModel>
 #include <QStandardItemModel>
 #endif
 
@@ -45,11 +46,13 @@ public:
     void saveModel(QAbstractItemModel *pModel,QString sFileName);
     virtual void adjustView();
 #ifdef QT_CONCURRENT_LIB
-    QFuture<void> deleteOldModel(QStandardItemModel **g_ppOldModel);
+    QFuture<void> deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
+    QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
 #endif
 private:
 #ifdef QT_CONCURRENT_LIB
-    void _deleteOldModel(QStandardItemModel **g_ppOldModel);
+    void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
+    void _deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
 #endif
 
 private slots:

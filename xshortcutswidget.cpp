@@ -93,19 +93,42 @@ void XShortcutsWidget::adjustView()
 
 }
 #ifdef QT_CONCURRENT_LIB
-QFuture<void> XShortcutsWidget::deleteOldModel(QStandardItemModel **g_ppOldModel)
+QFuture<void> XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldModel,this,g_ppOldModel);
+    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldAbstractModel,this,g_ppOldModel);
 #else
-    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldModel,g_ppOldModel);
+    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldAbstractModel,g_ppOldModel);
 #endif
 
     return future;
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::_deleteOldModel(QStandardItemModel **g_ppOldModel)
+QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldStandardModel,this,g_ppOldModel);
+#else
+    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldStandardModel,g_ppOldModel);
+#endif
+
+    return future;
+}
+#endif
+#ifdef QT_CONCURRENT_LIB
+void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
+{
+    if(*g_ppOldModel)
+    {
+        delete (*g_ppOldModel);
+
+        (*g_ppOldModel)=0;
+    }
+}
+#endif
+#ifdef QT_CONCURRENT_LIB
+void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
 {
     if(*g_ppOldModel)
     {
