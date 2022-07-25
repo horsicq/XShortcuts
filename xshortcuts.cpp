@@ -75,7 +75,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_DEBUG_PAUSE);
         addId(X_ID_DEBUGGER_DEBUG_STEPINTO);
         addId(X_ID_DEBUGGER_DEBUG_STEPOVER);
-        addId(X_ID_DEBUGGER_DEBUG_STOP);
+        addId(X_ID_DEBUGGER_DEBUG_CLOSE);
         addId(X_ID_DEBUGGER_DEBUG_RESTART);
         addId(X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE);
         addId(X_ID_DEBUGGER_DISASM_DUMPTOFILE);
@@ -505,7 +505,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult=Qt::Key_F8;
         #endif
         }
-        else if (nId==X_ID_DEBUGGER_DEBUG_STOP)
+        else if (nId==X_ID_DEBUGGER_DEBUG_CLOSE)
         {
         #ifdef Q_OS_WIN
             ksResult=Qt::Key_F12;
@@ -725,6 +725,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_HEX)              sResult=tr("Hex");
     else if (groupId==GROUPID_DISASM)           sResult=tr("Disasm");
     else if (groupId==GROUPID_DEBUG)            sResult=tr("Debug");
+    else if (groupId==GROUPID_TRACE)            sResult=tr("Trace");
     else if (groupId==GROUPID_DEBUGGER)         sResult=tr("Debugger");
     else if (groupId==GROUPID_REGISTER)         sResult=tr("Register");
     else if (groupId==GROUPID_STACK)            sResult=tr("Stack");
@@ -800,6 +801,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId==BASEID_PAUSE)          sResult=tr("Pause");
     else if (baseId==BASEID_STEPINTO)       sResult=tr("Step into");
     else if (baseId==BASEID_STEPOVER)       sResult=tr("Step over");
+    else if (baseId==BASEID_ANIMATEINTO)    sResult=tr("Animate into");
+    else if (baseId==BASEID_ANIMATEOVER)    sResult=tr("Animate over");
     else if (baseId==BASEID_STOP)           sResult=tr("Stop");
     else if (baseId==BASEID_RESTART)        sResult=tr("Restart");
     else if (baseId==BASEID_TOGGLE)         sResult=tr("Toggle");
@@ -917,6 +920,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId==BASEID_PAUSE)          sResult=QString("Pause");
     else if (baseId==BASEID_STEPINTO)       sResult=QString("StepInto");
     else if (baseId==BASEID_STEPOVER)       sResult=QString("StepOver");
+    else if (baseId==BASEID_ANIMATEINTO)    sResult=QString("AnimateInto");
+    else if (baseId==BASEID_ANIMATEOVER)    sResult=QString("AnimateOver");
     else if (baseId==BASEID_STOP)           sResult=QString("Stop");
     else if (baseId==BASEID_RESTART)        sResult=QString("Restart");
     else if (baseId==BASEID_TOGGLE)         sResult=QString("Toggle");
@@ -943,6 +948,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_HEX)              sResult=QString("Hex");
     else if (groupId==GROUPID_DISASM)           sResult=QString("Disasm");
     else if (groupId==GROUPID_DEBUG)            sResult=QString("Debug");
+    else if (groupId==GROUPID_TRACE)            sResult=QString("Trace");
     else if (groupId==GROUPID_DEBUGGER)         sResult=QString("Debugger");
     else if (groupId==GROUPID_REGISTER)         sResult=QString("Register");
     else if (groupId==GROUPID_STACK)            sResult=QString("Stack");

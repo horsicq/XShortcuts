@@ -102,8 +102,10 @@
 #define X_ID_DEBUGGER_DEBUG_PAUSE                   XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DEBUG,XShortcuts::BASEID_PAUSE)
 #define X_ID_DEBUGGER_DEBUG_STEPINTO                XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DEBUG,XShortcuts::BASEID_STEPINTO)
 #define X_ID_DEBUGGER_DEBUG_STEPOVER                XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DEBUG,XShortcuts::BASEID_STEPOVER)
-#define X_ID_DEBUGGER_DEBUG_STOP                    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DEBUG,XShortcuts::BASEID_STOP)
+#define X_ID_DEBUGGER_DEBUG_CLOSE                   XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DEBUG,XShortcuts::BASEID_CLOSE)
 #define X_ID_DEBUGGER_DEBUG_RESTART                 XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DEBUG,XShortcuts::BASEID_RESTART)
+#define X_ID_DEBUGGER_TRACE_ANIMATEINTO             XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_TRACE,XShortcuts::BASEID_ANIMATEINTO)
+#define X_ID_DEBUGGER_TRACE_ANIMATEOVER             XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_TRACE,XShortcuts::BASEID_ANIMATEOVER)
 #define X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM<<XShortcuts::GROUPID_BREAKPOINT,XShortcuts::BASEID_TOGGLE)
 #define X_ID_DEBUGGER_DISASM_DUMPTOFILE             XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM,XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_DEBUGGER_DISASM_GOTO_ADDRESS           XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_DISASM<<XShortcuts::GROUPID_GOTO,XShortcuts::BASEID_ADDRESS)
@@ -180,6 +182,7 @@ public:
         GROUPID_VIEW,
         GROUPID_DEBUGGER,
         GROUPID_DEBUG,
+        GROUPID_TRACE,
         GROUPID_ACTION,
         GROUPID_STRING,
         GROUPID_STRINGS,
@@ -261,6 +264,8 @@ public:
         BASEID_PAUSE,
         BASEID_STEPINTO,
         BASEID_STEPOVER,
+        BASEID_ANIMATEINTO,
+        BASEID_ANIMATEOVER,
         BASEID_STOP,
         BASEID_RESTART,
         BASEID_TOGGLE,
