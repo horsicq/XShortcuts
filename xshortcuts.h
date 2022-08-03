@@ -61,6 +61,7 @@
 #define X_ID_HEX_COPY_ADDRESS                       XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_COPY,XShortcuts::BASEID_ADDRESS)
 #define X_ID_HEX_FOLLOWIN_DISASM                    XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_DISASM)
 #define X_ID_HEX_FOLLOWIN_MEMORYMAP                 XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_MEMORYMAP)
+#define X_ID_HEX_FOLLOWIN_HEX                       XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
 #define X_ID_HEX_EDIT_HEX                           XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
 
 #define X_ID_DISASM_DUMPTOFILE                      XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)

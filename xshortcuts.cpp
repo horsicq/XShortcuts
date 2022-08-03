@@ -156,6 +156,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_COPY_ADDRESS);
         addId(X_ID_HEX_FOLLOWIN_DISASM);
         addId(X_ID_HEX_FOLLOWIN_MEMORYMAP);
+        addId(X_ID_HEX_FOLLOWIN_HEX);
         addId(X_ID_HEX_EDIT_HEX);
     }
     else if(groupId==GROUPID_DISASM)
@@ -617,6 +618,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId==X_ID_HEX_COPY_ADDRESS)            ksResult=QKeySequence();
         else if (nId==X_ID_HEX_FOLLOWIN_DISASM)         ksResult=QKeySequence();
         else if (nId==X_ID_HEX_FOLLOWIN_MEMORYMAP)      ksResult=QKeySequence();
+        else if (nId==X_ID_HEX_FOLLOWIN_HEX)            ksResult=QKeySequence();
         else if (nId==X_ID_HEX_EDIT_HEX)                ksResult=QKeySequence();
     }
     else if(groupId==GROUPID_DISASM)
