@@ -94,6 +94,8 @@ void DialogShortcuts::reload()
     ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,350);        // TODO
     ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);    // TODO
 
+    ui->tableViewShortcuts->sortByColumn(COLUMN_NAME,Qt::AscendingOrder);
+
     connect(ui->tableViewShortcuts->selectionModel(),SIGNAL(selectionChanged(QItemSelection,QItemSelection)),SLOT(onCellChanged(QItemSelection,QItemSelection)));
 }
 

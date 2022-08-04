@@ -92,6 +92,18 @@ void XShortcutsWidget::adjustView()
 {
 
 }
+
+void XShortcutsWidget::_blockSignals(QObject **ppObjects, int nCount, bool bState)
+{
+    for(int i=0;i<nCount;i++)
+    {
+        if(ppObjects[i])
+        {
+            ppObjects[i]->blockSignals(bState);
+        }
+    }
+}
+
 #ifdef QT_CONCURRENT_LIB
 QFuture<void> XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 {
