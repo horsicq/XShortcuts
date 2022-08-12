@@ -24,7 +24,7 @@ XShortcutsDialog::XShortcutsDialog(QWidget *pParent): QDialog(pParent)
 {
     g_pShortcuts=&g_scEmpty;
     g_pXOptions=&g_xOptionsEmpty;
-    g_bIsFocused=false;
+    g_bIsActive=true;
 }
 
 void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
@@ -32,7 +32,7 @@ void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
     g_pShortcuts=pShortcuts;
     g_pXOptions=pXOptions;
 
-    if(g_bIsFocused)
+    if(g_bIsActive)
     {
         registerShortcuts(false);
         registerShortcuts(true);
@@ -62,12 +62,12 @@ bool XShortcutsDialog::eventFilter(QObject *pObj,QEvent *pEvent)
 
     if(pEvent->type()==QEvent::FocusIn)
     {
-        g_bIsFocused=true;
+        g_bIsActive=true;
         registerShortcuts(true);
     }
     else if(pEvent->type()==QEvent::FocusOut)
     {
-        g_bIsFocused=false;
+        g_bIsActive=false;
         registerShortcuts(false);
     }
 

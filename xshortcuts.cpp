@@ -268,6 +268,11 @@ void XShortcuts::addGroup(GROUPID groupId)
     {
 
     }
+    else if(groupId==GROUPID_SCAN)
+    {
+        addId(X_ID_SCAN_EDITOR_FIND_STRING);
+        addId(X_ID_SCAN_EDITOR_FIND_NEXT);
+    }
 }
 
 void XShortcuts::addId(quint64 nId)
@@ -729,6 +734,11 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     {
 
     }
+    else if(groupId==GROUPID_SCAN)
+    {
+        if      (nId==X_ID_SCAN_EDITOR_FIND_STRING)     ksResult=ksResult=QKeySequence::Find;
+        else if (nId==X_ID_SCAN_EDITOR_FIND_NEXT)       ksResult=ksResult=QKeySequence::FindNext;
+    }
 
     return ksResult;
 }
@@ -770,6 +780,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId==GROUPID_MODULES)          sResult=tr("Modules");
     else if (groupId==GROUPID_MEMORYMAP)        sResult=tr("Memory map");
     else if (groupId==GROUPID_VALUE)            sResult=tr("Value");
+    else if (groupId==GROUPID_SCAN)             sResult=tr("Scan");
+    else if (groupId==GROUPID_EDITOR)           sResult=tr("Editor");
 
     return sResult;
 }
@@ -1001,6 +1013,8 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId==GROUPID_MODULES)          sResult=QString("Modules");
     else if (groupId==GROUPID_MEMORYMAP)        sResult=QString("MemoryMap");
     else if (groupId==GROUPID_VALUE)            sResult=QString("Value");
+    else if (groupId==GROUPID_SCAN)             sResult=QString("Scan");
+    else if (groupId==GROUPID_EDITOR)           sResult=QString("Editor");
 
     return sResult;
 }

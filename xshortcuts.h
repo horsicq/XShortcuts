@@ -26,6 +26,7 @@
 #include <QKeySequence>
 #include <QMap>
 #include <QSettings>
+#include <QShortcut>
 
 #define X_ID_FILE_OPEN                              XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_OPEN)
 #define X_ID_FILE_SAVE                              XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_SAVE)
@@ -172,6 +173,9 @@
 #define X_ID_MEMORYMAP_DUMPTOFILE                   XShortcuts::createShortcutsId(XShortcuts::GROUPID_MEMORYMAP,QList<XShortcuts::GROUPID>(),XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_MEMORYMAP_SHOWIN_FOLDER                XShortcuts::createShortcutsId(XShortcuts::GROUPID_MEMORYMAP,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_SHOWIN,XShortcuts::BASEID_FOLDER)
 
+#define X_ID_SCAN_EDITOR_FIND_STRING                XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDITOR<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_STRING)
+#define X_ID_SCAN_EDITOR_FIND_NEXT                  XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDITOR<<XShortcuts::GROUPID_FIND,XShortcuts::BASEID_NEXT)
+
 class XShortcuts : public QObject
 {
     Q_OBJECT
@@ -180,6 +184,8 @@ public:
     enum GROUPID
     {
         GROUPID_UNKNOWN=0,
+        GROUPID_SCAN,
+        GROUPID_EDITOR,
         GROUPID_FILE,
         GROUPID_VIEW,
         GROUPID_DEBUGGER,
@@ -214,7 +220,7 @@ public:
         GROUPID_FOLLOWIN,
         GROUPID_SHOWIN,
         GROUPID_BREAKPOINT,
-        GROUPID_VALUE
+        GROUPID_VALUE,
     };
 
     enum BASEID

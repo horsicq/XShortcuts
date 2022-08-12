@@ -42,7 +42,7 @@ protected:
     virtual void registerShortcuts(bool bState);
 
 private:
-    bool g_bIsFocused;
+    bool g_bIsActive;
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
     XOptions *g_pXOptions;
