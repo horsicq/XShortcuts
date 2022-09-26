@@ -58,7 +58,6 @@ private slots:
     void onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected);
     void on_pushButtonClose_clicked();
     void on_pushButtonClear_clicked();
-
     void on_pushButtonDefault_clicked();
 
 private:
