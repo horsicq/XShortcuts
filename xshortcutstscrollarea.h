@@ -22,8 +22,8 @@
 #define XSHORTCUTSTSCROLLAREA_H
 
 #include <QAbstractScrollArea>
-#include "xshortcuts.h"
 #include "xoptions.h"
+#include "xshortcuts.h"
 
 class XShortcutstScrollArea : public QAbstractScrollArea
 {
