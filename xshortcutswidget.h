@@ -47,7 +47,7 @@ public:
     virtual void adjustView();
     void _blockSignals(QObject **ppObjects,int nCount,bool bState);
 #ifdef QT_CONCURRENT_LIB
-    QFuture<void> deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
+    void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
 #endif
 private:
