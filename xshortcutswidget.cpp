@@ -93,7 +93,7 @@ void XShortcutsWidget::adjustView()
 
 }
 
-void XShortcutsWidget::_blockSignals(QObject **ppObjects,int nCount,bool bState)
+void XShortcutsWidget::_blockSignals(QObject **ppObjects,qint32 nCount,bool bState)
 {
     for(qint32 i=0;i<nCount;i++)
     {

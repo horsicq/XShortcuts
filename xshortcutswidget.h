@@ -45,7 +45,7 @@ public:
     void setActive(bool bState);
     void saveModel(QAbstractItemModel *pModel,QString sFileName);
     virtual void adjustView();
-    void _blockSignals(QObject **ppObjects,int nCount,bool bState);
+    void _blockSignals(QObject **ppObjects,qint32 nCount,bool bState);
 #ifdef QT_CONCURRENT_LIB
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
