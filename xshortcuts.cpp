@@ -856,12 +856,6 @@ QString XShortcuts::baseIdToString(BASEID baseId)
 
 quint64 XShortcuts::createShortcutsId(GROUPID groupId,QList<GROUPID>listSubgroup,BASEID baseId)
 {
-    if(baseId==BASEID_TOGGLE)
-    {
-        int z=0;
-        z++;
-    }
-
     quint64 nResult=0;
 
     quint64 nSubgoups=0;
