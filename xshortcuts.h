@@ -82,7 +82,7 @@
 #define X_ID_DISASM_FOLLOWIN_HEX                    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FOLLOWIN,XShortcuts::BASEID_HEX)
 #define X_ID_DISASM_EDIT_HEX                        XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_EDIT,XShortcuts::BASEID_HEX)
 
-// TODO Hardware breakpoints
+// TODO Hardware breakpoints !!!
 #define X_ID_DEBUGGER_FILE_OPEN                     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_OPEN)
 #define X_ID_DEBUGGER_FILE_CLOSE                    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_CLOSE)
 #define X_ID_DEBUGGER_FILE_ATTACH                   XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,QList<XShortcuts::GROUPID>()<<XShortcuts::GROUPID_FILE,XShortcuts::BASEID_ATTACH)
