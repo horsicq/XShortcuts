@@ -22,8 +22,8 @@
 #define XSHORTCUTSDIALOG_H
 
 #include <QDialog>
-#include "xshortcuts.h"
 #include "xoptions.h"
+#include "xshortcuts.h"
 
 class XShortcutsDialog : public QDialog
 {
