@@ -76,5 +76,5 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj,QEvent *pEvent)
 
 void XShortcutstScrollArea::adjustView()
 {
-
+    // TODO
 }
