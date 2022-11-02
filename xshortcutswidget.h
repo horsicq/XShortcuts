@@ -62,6 +62,7 @@ private slots:
 protected:
     bool eventFilter(QObject *pObj,QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState)=0;
+//    QSize sizeHint() const;
 
 private:
     bool g_bIsActive;
