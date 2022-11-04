@@ -91,8 +91,8 @@ void DialogShortcuts::reload()
     g_pFilter->setSourceModel(g_pModel);
     ui->tableViewShortcuts->setModel(g_pFilter);
 
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,350);        // TODO
-    ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);    // TODO
+    ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME,350);        // TODO consts
+    ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT,200);    // TODO consts
 
     ui->tableViewShortcuts->sortByColumn(COLUMN_NAME,Qt::AscendingOrder);
 
