@@ -332,7 +332,6 @@ public:
     static QKeySequence getDefault(quint64 nId);
     static QString groupIdToString(GROUPID groupId);
     static QString baseIdToString(BASEID baseId);
-
     // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
     // TODO make defines
     static quint64 createShortcutsId(GROUPID groupId,QList<GROUPID> listSubgroup,BASEID baseId);
