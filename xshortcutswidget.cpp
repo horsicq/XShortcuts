@@ -88,17 +88,6 @@ bool XShortcutsWidget::eventFilter(QObject *pObj,QEvent *pEvent)
     return QWidget::eventFilter(pObj,pEvent);
 }
 
-//QSize XShortcutsWidget::sizeHint() const
-//{
-//    qDebug("XShortcutsWidget::sizeHint()");
-
-//    QSize sizeHint=QWidget::sizeHint();
-
-//    qDebug("height: %s %d",this->metaObject()->className(),sizeHint.height());
-
-//    return sizeHint;
-//}
-
 void XShortcutsWidget::adjustView()
 {
 
