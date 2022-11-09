@@ -288,6 +288,7 @@ public:
     static const qint32 GROUP_SH=24; // 0xFF000000 // TODO remove !!!
 
     // TODO remove !!!
+    // TODO Check projects
     enum ID
     {
         ID_UNKNOWN=0,
