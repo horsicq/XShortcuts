@@ -22,25 +22,25 @@
 #define XSHORTCUTSTSCROLLAREA_H
 
 #include <QAbstractScrollArea>
+
 #include "xoptions.h"
 #include "xshortcuts.h"
 
-class XShortcutstScrollArea : public QAbstractScrollArea
-{
+class XShortcutstScrollArea : public QAbstractScrollArea {
     Q_OBJECT
 
 public:
-    XShortcutstScrollArea(QWidget *pParent=nullptr);
+    XShortcutstScrollArea(QWidget *pParent = nullptr);
 
-    virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
+    virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     bool isFocused();
     virtual void adjustView();
 
 protected:
-    bool eventFilter(QObject *pObj,QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState)=0;
+    bool eventFilter(QObject *pObj, QEvent *pEvent) override;
+    virtual void registerShortcuts(bool bState) = 0;
 
 private:
     bool g_bIsFocused;
@@ -50,4 +50,4 @@ private:
     XOptions g_xOptionsEmpty;
 };
 
-#endif // XSHORTCUTSTSCROLLAREA_H
+#endif  // XSHORTCUTSTSCROLLAREA_H

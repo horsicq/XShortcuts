@@ -26,6 +26,7 @@
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
+
 #include "xoptions.h"
 #include "xshortcuts.h"
 
@@ -33,29 +34,24 @@ namespace Ui {
 class DialogShortcuts;
 }
 
-class DialogShortcuts : public QDialog
-{
+class DialogShortcuts : public QDialog {
     Q_OBJECT
 
-    enum COLUMN
-    {
-        COLUMN_NAME=0,
-        COLUMN_SHORTCUT
-    };
+    enum COLUMN { COLUMN_NAME = 0, COLUMN_SHORTCUT };
 
 public:
-    explicit DialogShortcuts(QWidget *pParent=nullptr);
+    explicit DialogShortcuts(QWidget *pParent = nullptr);
     ~DialogShortcuts();
 
     void setData(XShortcuts *pShortcuts);
     void reload();
 
 protected:
-    bool eventFilter(QObject *pObj,QEvent *pEvent) override;
+    bool eventFilter(QObject *pObj, QEvent *pEvent) override;
 
 private slots:
     void on_lineEditFilter_textChanged(const QString &sString);
-    void onCellChanged(const QItemSelection &itemSelected,const QItemSelection &itemDeselected);
+    void onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected);
     void on_pushButtonClose_clicked();
     void on_pushButtonClear_clicked();
     void on_pushButtonDefault_clicked();
@@ -67,4 +63,4 @@ private:
     QStandardItemModel *g_pModel;
 };
 
-#endif // DIALOGSHORTCUTS_H
+#endif  // DIALOGSHORTCUTS_H

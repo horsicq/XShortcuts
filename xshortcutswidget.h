@@ -23,29 +23,29 @@
 
 #include <QShortcut>
 #include <QWidget>
+
 #include "xoptions.h"
 #include "xshortcuts.h"
 #ifdef QT_CONCURRENT_LIB
-#include <QFuture>
-#include <QtConcurrent>
 #include <QAbstractItemModel>
+#include <QFuture>
 #include <QStandardItemModel>
+#include <QtConcurrent>
 #endif
 
-class XShortcutsWidget : public QWidget
-{
+class XShortcutsWidget : public QWidget {
     Q_OBJECT
 
 public:
-    explicit XShortcutsWidget(QWidget *pParent=nullptr);
+    explicit XShortcutsWidget(QWidget *pParent = nullptr);
 
-    virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
+    virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     void setActive(bool bState);
-    void saveModel(QAbstractItemModel *pModel,QString sFileName);
+    void saveModel(QAbstractItemModel *pModel, QString sFileName);
     virtual void adjustView();
-    void _blockSignals(QObject **ppObjects,qint32 nCount,bool bState);
+    void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
 #ifdef QT_CONCURRENT_LIB
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
@@ -60,8 +60,8 @@ private slots:
     void errorMessageSlot(QString sErrorMessage);
 
 protected:
-    bool eventFilter(QObject *pObj,QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState)=0;
+    bool eventFilter(QObject *pObj, QEvent *pEvent) override;
+    virtual void registerShortcuts(bool bState) = 0;
 
 private:
     bool g_bIsActive;
@@ -71,4 +71,4 @@ private:
     XOptions g_xOptionsEmpty;
 };
 
-#endif // XSHORTCUTSWIDGET_H
+#endif  // XSHORTCUTSWIDGET_H

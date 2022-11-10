@@ -20,20 +20,17 @@
  */
 #include "xshortcutsdialog.h"
 
-XShortcutsDialog::XShortcutsDialog(QWidget *pParent): QDialog(pParent)
-{
-    g_pShortcuts=&g_scEmpty;
-    g_pXOptions=&g_xOptionsEmpty;
-    g_bIsActive=true;
+XShortcutsDialog::XShortcutsDialog(QWidget *pParent) : QDialog(pParent) {
+    g_pShortcuts = &g_scEmpty;
+    g_pXOptions = &g_xOptionsEmpty;
+    g_bIsActive = true;
 }
 
-void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
-{
-    g_pShortcuts=pShortcuts;
-    g_pXOptions=pXOptions;
+void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions) {
+    g_pShortcuts = pShortcuts;
+    g_pXOptions = pXOptions;
 
-    if(g_bIsActive)
-    {
+    if (g_bIsActive) {
         registerShortcuts(false);
         registerShortcuts(true);
     }
@@ -41,40 +38,31 @@ void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
     adjustView();
 }
 
-XShortcuts *XShortcutsDialog::getShortcuts()
-{
+XShortcuts *XShortcutsDialog::getShortcuts() {
     return g_pShortcuts;
 }
 
-XOptions *XShortcutsDialog::getGlobalOptions()
-{
+XOptions *XShortcutsDialog::getGlobalOptions() {
     return g_pXOptions;
 }
 
-void XShortcutsDialog::adjustView()
-{
-
+void XShortcutsDialog::adjustView() {
 }
 
-bool XShortcutsDialog::eventFilter(QObject *pObj,QEvent *pEvent)
-{
+bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent) {
     Q_UNUSED(pObj)
 
-    if(pEvent->type()==QEvent::FocusIn)
-    {
-        g_bIsActive=true;
+    if (pEvent->type() == QEvent::FocusIn) {
+        g_bIsActive = true;
         registerShortcuts(true);
-    }
-    else if(pEvent->type()==QEvent::FocusOut)
-    {
-        g_bIsActive=false;
+    } else if (pEvent->type() == QEvent::FocusOut) {
+        g_bIsActive = false;
         registerShortcuts(false);
     }
 
-    return QDialog::eventFilter(pObj,pEvent);
+    return QDialog::eventFilter(pObj, pEvent);
 }
 
-void XShortcutsDialog::registerShortcuts(bool bState)
-{
+void XShortcutsDialog::registerShortcuts(bool bState) {
     Q_UNUSED(bState)
 }

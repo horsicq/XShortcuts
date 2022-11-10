@@ -20,20 +20,17 @@
  */
 #include "xshortcutswidget.h"
 
-XShortcutsWidget::XShortcutsWidget(QWidget *pParent): QWidget(pParent)
-{
-    g_pShortcuts=&g_scEmpty;
-    g_pXOptions=&g_xOptionsEmpty;
-    g_bIsActive=false;
+XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent) {
+    g_pShortcuts = &g_scEmpty;
+    g_pXOptions = &g_xOptionsEmpty;
+    g_bIsActive = false;
 }
 
-void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
-{
-    g_pShortcuts=pShortcuts;
-    g_pXOptions=pXOptions;
+void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions) {
+    g_pShortcuts = pShortcuts;
+    g_pXOptions = pXOptions;
 
-    if(g_bIsActive)
-    {
+    if (g_bIsActive) {
         registerShortcuts(false);
         registerShortcuts(true);
     }
@@ -41,124 +38,100 @@ void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions)
     adjustView();
 }
 
-XShortcuts *XShortcutsWidget::getShortcuts()
-{
+XShortcuts *XShortcutsWidget::getShortcuts() {
     return g_pShortcuts;
 }
 
-XOptions *XShortcutsWidget::getGlobalOptions()
-{
+XOptions *XShortcutsWidget::getGlobalOptions() {
     return g_pXOptions;
 }
 
-void XShortcutsWidget::setActive(bool bState)
-{
-    g_bIsActive=bState;
+void XShortcutsWidget::setActive(bool bState) {
+    g_bIsActive = bState;
 }
 
-void XShortcutsWidget::saveModel(QAbstractItemModel *pModel,QString sFileName)
-{
-    sFileName=QFileDialog::getSaveFileName(this,tr("Save"),sFileName,QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"),tr("All files")));
+void XShortcutsWidget::saveModel(QAbstractItemModel *pModel, QString sFileName) {
+    sFileName = QFileDialog::getSaveFileName(this, tr("Save"), sFileName, QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"), tr("All files")));
 
-    if(!sFileName.isEmpty())
-    {
-        if(!XOptions::saveModel(pModel,sFileName))
-        {
-            QMessageBox::critical(XOptions::getMainWidget(this),tr("Error"),QString("%1: %2").arg(tr("Cannot save file"),sFileName));
+    if (!sFileName.isEmpty()) {
+        if (!XOptions::saveModel(pModel, sFileName)) {
+            QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), QString("%1: %2").arg(tr("Cannot save file"), sFileName));
         }
     }
 }
 
-bool XShortcutsWidget::eventFilter(QObject *pObj,QEvent *pEvent)
-{
+bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent) {
     Q_UNUSED(pObj)
 
-    if(pEvent->type()==QEvent::FocusIn)
-    {
-        g_bIsActive=true;
+    if (pEvent->type() == QEvent::FocusIn) {
+        g_bIsActive = true;
         registerShortcuts(false);
         registerShortcuts(true);
-    }
-    else if(pEvent->type()==QEvent::FocusOut)
-    {
-        g_bIsActive=false;
+    } else if (pEvent->type() == QEvent::FocusOut) {
+        g_bIsActive = false;
         registerShortcuts(false);
     }
 
-    return QWidget::eventFilter(pObj,pEvent);
+    return QWidget::eventFilter(pObj, pEvent);
 }
 
-void XShortcutsWidget::adjustView()
-{
-
+void XShortcutsWidget::adjustView() {
 }
 
-void XShortcutsWidget::_blockSignals(QObject **ppObjects,qint32 nCount,bool bState)
-{
-    for(qint32 i=0;i<nCount;i++)
-    {
-        if(ppObjects[i])
-        {
+void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bState) {
+    for (qint32 i = 0; i < nCount; i++) {
+        if (ppObjects[i]) {
             ppObjects[i]->blockSignals(bState);
         }
     }
 }
 
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
-{
-//#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-//    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldAbstractModel,this,g_ppOldModel);
-//#else
-//    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldAbstractModel,g_ppOldModel);
-//#endif
+void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel) {
+    //#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    //    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldAbstractModel,this,g_ppOldModel);
+    //#else
+    //    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldAbstractModel,g_ppOldModel);
+    //#endif
 
-//    return future;
+    //    return future;
 
     _deleteOldAbstractModel(g_ppOldModel);
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
-{
-#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldStandardModel,this,g_ppOldModel);
+QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    QFuture<void> future = QtConcurrent::run(&XShortcutsWidget::_deleteOldStandardModel, this, g_ppOldModel);
 #else
-    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldStandardModel,g_ppOldModel);
+    QFuture<void> future = QtConcurrent::run(this, &XShortcutsWidget::_deleteOldStandardModel, g_ppOldModel);
 #endif
 
     return future;
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
-{
-    if(g_ppOldModel)
-    {
-        if(*g_ppOldModel)
-        {
+void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel) {
+    if (g_ppOldModel) {
+        if (*g_ppOldModel) {
             delete (*g_ppOldModel);
 
-            (*g_ppOldModel)=0;
+            (*g_ppOldModel) = 0;
         }
     }
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
-{
-    if(g_ppOldModel)
-    {
-        if(*g_ppOldModel)
-        {
+void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel) {
+    if (g_ppOldModel) {
+        if (*g_ppOldModel) {
             delete (*g_ppOldModel);
 
-            (*g_ppOldModel)=0;
+            (*g_ppOldModel) = 0;
         }
     }
 }
 #endif
-void XShortcutsWidget::errorMessageSlot(QString sErrorMessage)
-{
-    QMessageBox::critical(XOptions::getMainWidget(this),tr("Error"),sErrorMessage);
+void XShortcutsWidget::errorMessageSlot(QString sErrorMessage) {
+    QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), sErrorMessage);
 }

@@ -22,23 +22,23 @@
 #define XSHORTCUTSDIALOG_H
 
 #include <QDialog>
+
 #include "xoptions.h"
 #include "xshortcuts.h"
 
-class XShortcutsDialog : public QDialog
-{
+class XShortcutsDialog : public QDialog {
     Q_OBJECT
 
 public:
-    XShortcutsDialog(QWidget *pParent=nullptr);
+    XShortcutsDialog(QWidget *pParent = nullptr);
 
-    virtual void setGlobal(XShortcuts *pShortcuts,XOptions *pXOptions);
+    virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     virtual void adjustView();
 
 protected:
-    bool eventFilter(QObject *pObj,QEvent *pEvent) override;
+    bool eventFilter(QObject *pObj, QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState);
 
 private:
@@ -49,4 +49,4 @@ private:
     XOptions g_xOptionsEmpty;
 };
 
-#endif // XSHORTCUTSDIALOG_H
+#endif  // XSHORTCUTSDIALOG_H
