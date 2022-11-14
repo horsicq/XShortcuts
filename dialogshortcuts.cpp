@@ -89,8 +89,7 @@ void DialogShortcuts::reload() {
 
     ui->tableViewShortcuts->sortByColumn(COLUMN_NAME, Qt::AscendingOrder);
 
-    connect(ui->tableViewShortcuts->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
-            SLOT(onCellChanged(QItemSelection, QItemSelection)));
+    connect(ui->tableViewShortcuts->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), SLOT(onCellChanged(QItemSelection, QItemSelection)));
 }
 
 bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent) {
