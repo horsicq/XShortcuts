@@ -20,21 +20,25 @@
  */
 #include "xshortcuts.h"
 
-XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent) {
+XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
+{
     g_bIsNative = false;
 }
 
-void XShortcuts::setName(QString sValue) {
+void XShortcuts::setName(QString sValue)
+{
     // mb TODO different names for Windows and macOS
     // TODO Check
     this->g_sName = sValue;
 }
 
-void XShortcuts::setNative(bool bValue) {
+void XShortcuts::setNative(bool bValue)
+{
     g_bIsNative = bValue;
 }
 
-void XShortcuts::addGroup(GROUPID groupId) {
+void XShortcuts::addGroup(GROUPID groupId)
+{
     if (groupId == GROUPID_FILE) {
         addId(X_ID_FILE_OPEN);
         addId(X_ID_FILE_SAVE);
@@ -203,7 +207,8 @@ void XShortcuts::addGroup(GROUPID groupId) {
     }
 }
 
-void XShortcuts::addId(quint64 nId) {
+void XShortcuts::addId(quint64 nId)
+{
     g_mapValues.insert(nId, getDefault(nId));
 }
 
@@ -212,11 +217,13 @@ void XShortcuts::addGroup(ID id)  // TODO Remove
     Q_UNUSED(id)
 }
 
-QList<quint64> XShortcuts::getShortcutsIDs() {
+QList<quint64> XShortcuts::getShortcutsIDs()
+{
     return g_mapValues.keys();
 }
 
-void XShortcuts::load() {
+void XShortcuts::load()
+{
     QSettings *pSettings = nullptr;
 
     if (g_bIsNative) {
@@ -251,7 +258,8 @@ void XShortcuts::load() {
     }
 }
 
-void XShortcuts::save() {
+void XShortcuts::save()
+{
     QSettings *pSettings = nullptr;
 
     if (g_bIsNative) {
@@ -285,7 +293,8 @@ void XShortcuts::save() {
     }
 }
 
-QKeySequence XShortcuts::getShortcut(quint64 nId) {
+QKeySequence XShortcuts::getShortcut(quint64 nId)
+{
 #ifdef QT_DEBUG
     if (!g_mapValues.contains(nId)) {
         QString sErrorString = idToSettingsString(nId);
@@ -295,11 +304,13 @@ QKeySequence XShortcuts::getShortcut(quint64 nId) {
     return g_mapValues.value(nId);
 }
 
-void XShortcuts::setShortcut(quint64 nId, QKeySequence keyValue) {
+void XShortcuts::setShortcut(quint64 nId, QKeySequence keyValue)
+{
     g_mapValues.insert(nId, keyValue);
 }
 
-bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keyValue) {
+bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keyValue)
+{
     bool bResult = true;
 
     if (keyValue != QKeySequence()) {
@@ -327,7 +338,8 @@ bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keyValue) {
     return bResult;
 }
 
-QString XShortcuts::idToSettingsString(quint64 nId) {
+QString XShortcuts::idToSettingsString(quint64 nId)
+{
     QString sResult;
 
     GROUPID groupId = getGroupId(nId);
@@ -347,7 +359,8 @@ QString XShortcuts::idToSettingsString(quint64 nId) {
     return sResult;
 }
 
-QKeySequence XShortcuts::getDefault(quint64 nId) {
+QKeySequence XShortcuts::getDefault(quint64 nId)
+{
     // TODO use defines
     QKeySequence ksResult = QKeySequence();
 
@@ -666,7 +679,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId) {
     return ksResult;
 }
 
-QString XShortcuts::groupIdToString(GROUPID groupId) {
+QString XShortcuts::groupIdToString(GROUPID groupId)
+{
     QString sResult = "";
 
     if (groupId == GROUPID_ACTION)
@@ -743,7 +757,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId) {
     return sResult;
 }
 
-QString XShortcuts::baseIdToString(BASEID baseId) {
+QString XShortcuts::baseIdToString(BASEID baseId)
+{
     QString sResult;
 
     if (baseId == BASEID_COPY)
@@ -858,7 +873,8 @@ QString XShortcuts::baseIdToString(BASEID baseId) {
     return sResult;
 }
 
-quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgroup, BASEID baseId) {
+quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgroup, BASEID baseId)
+{
     quint64 nResult = 0;
 
     quint64 nSubgoups = 0;
@@ -878,7 +894,8 @@ quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgro
     return nResult;
 }
 
-XShortcuts::GROUPID XShortcuts::getGroupId(quint64 nShortcutId) {
+XShortcuts::GROUPID XShortcuts::getGroupId(quint64 nShortcutId)
+{
     GROUPID result = GROUPID_UNKNOWN;
 
     result = (GROUPID)(nShortcutId >> (56));
@@ -886,7 +903,8 @@ XShortcuts::GROUPID XShortcuts::getGroupId(quint64 nShortcutId) {
     return result;
 }
 
-QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId) {
+QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId)
+{
     QList<GROUPID> listResult;
 
     quint64 nSubgroups = (nShortcutId >> 8) & (0xFFFFFFFFFFFF);
@@ -902,7 +920,8 @@ QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId) {
     return listResult;
 }
 
-XShortcuts::BASEID XShortcuts::getBaseId(quint64 nShortcutId) {
+XShortcuts::BASEID XShortcuts::getBaseId(quint64 nShortcutId)
+{
     BASEID result = BASEID_UNKNOWN;
 
     result = (BASEID)(nShortcutId & 0xFF);
@@ -910,7 +929,8 @@ XShortcuts::BASEID XShortcuts::getBaseId(quint64 nShortcutId) {
     return result;
 }
 
-QString XShortcuts::baseIdToSettingsString(BASEID baseId) {
+QString XShortcuts::baseIdToSettingsString(BASEID baseId)
+{
     QString sResult;
 
     if (baseId == BASEID_COPY)
@@ -1025,7 +1045,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId) {
     return sResult;
 }
 
-QString XShortcuts::groupIdToSettingsString(GROUPID groupId) {
+QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
+{
     QString sResult = "";
 
     if (groupId == GROUPID_ACTION)

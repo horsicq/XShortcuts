@@ -20,13 +20,15 @@
  */
 #include "xshortcutstscrollarea.h"
 
-XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScrollArea(pParent) {
+XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScrollArea(pParent)
+{
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
     g_bIsFocused = false;
 }
 
-void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions) {
+void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
+{
     g_pShortcuts = pShortcuts;
     g_pXOptions = pXOptions;
 
@@ -38,19 +40,23 @@ void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOption
     adjustView();
 }
 
-XShortcuts *XShortcutstScrollArea::getShortcuts() {
+XShortcuts *XShortcutstScrollArea::getShortcuts()
+{
     return g_pShortcuts;
 }
 
-XOptions *XShortcutstScrollArea::getGlobalOptions() {
+XOptions *XShortcutstScrollArea::getGlobalOptions()
+{
     return g_pXOptions;
 }
 
-bool XShortcutstScrollArea::isFocused() {
+bool XShortcutstScrollArea::isFocused()
+{
     return g_bIsFocused;
 }
 
-bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent) {
+bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
+{
     Q_UNUSED(pObj)
 
     if (pEvent->type() == QEvent::FocusIn) {
@@ -64,6 +70,7 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent) {
     return QAbstractScrollArea::eventFilter(pObj, pEvent);
 }
 
-void XShortcutstScrollArea::adjustView() {
+void XShortcutstScrollArea::adjustView()
+{
     // TODO
 }

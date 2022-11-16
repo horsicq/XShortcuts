@@ -22,7 +22,8 @@
 
 #include "ui_dialogshortcuts.h"
 
-DialogShortcuts::DialogShortcuts(QWidget *pParent) : QDialog(pParent), ui(new Ui::DialogShortcuts) {
+DialogShortcuts::DialogShortcuts(QWidget *pParent) : QDialog(pParent), ui(new Ui::DialogShortcuts)
+{
     ui->setupUi(this);
 
     g_pShortcuts = nullptr;
@@ -34,17 +35,20 @@ DialogShortcuts::DialogShortcuts(QWidget *pParent) : QDialog(pParent), ui(new Ui
     ui->lineEditShortcut->installEventFilter(this);
 }
 
-DialogShortcuts::~DialogShortcuts() {
+DialogShortcuts::~DialogShortcuts()
+{
     delete ui;
 }
 
-void DialogShortcuts::setData(XShortcuts *pShortcuts) {
+void DialogShortcuts::setData(XShortcuts *pShortcuts)
+{
     g_pShortcuts = pShortcuts;
 
     reload();
 }
 
-void DialogShortcuts::reload() {
+void DialogShortcuts::reload()
+{
     // TODO remove old Model
     QList<quint64> listIDs = g_pShortcuts->getShortcutsIDs();
 
@@ -92,7 +96,8 @@ void DialogShortcuts::reload() {
     connect(ui->tableViewShortcuts->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), SLOT(onCellChanged(QItemSelection, QItemSelection)));
 }
 
-bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent) {
+bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
+{
     if (pObj == ui->lineEditShortcut) {
         if (pEvent->type() == QEvent::KeyPress) {
             QKeyEvent *pKeyEvent = static_cast<QKeyEvent *>(pEvent);
@@ -143,7 +148,8 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent) {
     return QObject::eventFilter(pObj, pEvent);
 }
 
-void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString) {
+void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
+{
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     g_pFilter->setFilterRegularExpression(sString);
 #else
@@ -153,7 +159,8 @@ void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString) {
     g_pFilter->setFilterKeyColumn(COLUMN_NAME);
 }
 
-void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected) {
+void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected)
+{
     Q_UNUSED(itemDeselected)
 
     QModelIndexList listSelected = itemSelected.indexes();
@@ -165,11 +172,13 @@ void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QI
     }
 }
 
-void DialogShortcuts::on_pushButtonClose_clicked() {
+void DialogShortcuts::on_pushButtonClose_clicked()
+{
     this->close();
 }
 
-void DialogShortcuts::on_pushButtonClear_clicked() {
+void DialogShortcuts::on_pushButtonClear_clicked()
+{
     ui->lineEditShortcut->clear();
 
     if (g_pModel) {
@@ -186,7 +195,8 @@ void DialogShortcuts::on_pushButtonClear_clicked() {
     }
 }
 
-void DialogShortcuts::on_pushButtonDefault_clicked() {
+void DialogShortcuts::on_pushButtonDefault_clicked()
+{
     QList<quint64> listIDs = g_pShortcuts->getShortcutsIDs();
 
     qint32 nNumberOfRecords = listIDs.count();

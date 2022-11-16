@@ -20,13 +20,15 @@
  */
 #include "xshortcutswidget.h"
 
-XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent) {
+XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent)
+{
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
     g_bIsActive = false;
 }
 
-void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions) {
+void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
+{
     g_pShortcuts = pShortcuts;
     g_pXOptions = pXOptions;
 
@@ -38,19 +40,23 @@ void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions) {
     adjustView();
 }
 
-XShortcuts *XShortcutsWidget::getShortcuts() {
+XShortcuts *XShortcutsWidget::getShortcuts()
+{
     return g_pShortcuts;
 }
 
-XOptions *XShortcutsWidget::getGlobalOptions() {
+XOptions *XShortcutsWidget::getGlobalOptions()
+{
     return g_pXOptions;
 }
 
-void XShortcutsWidget::setActive(bool bState) {
+void XShortcutsWidget::setActive(bool bState)
+{
     g_bIsActive = bState;
 }
 
-void XShortcutsWidget::saveModel(QAbstractItemModel *pModel, QString sFileName) {
+void XShortcutsWidget::saveModel(QAbstractItemModel *pModel, QString sFileName)
+{
     sFileName = QFileDialog::getSaveFileName(this, tr("Save"), sFileName, QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"), tr("All files")));
 
     if (!sFileName.isEmpty()) {
@@ -60,7 +66,8 @@ void XShortcutsWidget::saveModel(QAbstractItemModel *pModel, QString sFileName) 
     }
 }
 
-bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent) {
+bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
+{
     Q_UNUSED(pObj)
 
     if (pEvent->type() == QEvent::FocusIn) {
@@ -75,10 +82,12 @@ bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent) {
     return QWidget::eventFilter(pObj, pEvent);
 }
 
-void XShortcutsWidget::adjustView() {
+void XShortcutsWidget::adjustView()
+{
 }
 
-void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bState) {
+void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bState)
+{
     for (qint32 i = 0; i < nCount; i++) {
         if (ppObjects[i]) {
             ppObjects[i]->blockSignals(bState);
@@ -87,7 +96,8 @@ void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bS
 }
 
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel) {
+void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
+{
     //#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     //    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldAbstractModel,this,g_ppOldModel);
     //#else
@@ -100,7 +110,8 @@ void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel) {
+QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
+{
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QFuture<void> future = QtConcurrent::run(&XShortcutsWidget::_deleteOldStandardModel, this, g_ppOldModel);
 #else
@@ -111,7 +122,8 @@ QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_pp
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel) {
+void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
+{
     if (g_ppOldModel) {
         if (*g_ppOldModel) {
             delete (*g_ppOldModel);
@@ -122,7 +134,8 @@ void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel
 }
 #endif
 #ifdef QT_CONCURRENT_LIB
-void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel) {
+void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
+{
     if (g_ppOldModel) {
         if (*g_ppOldModel) {
             delete (*g_ppOldModel);
@@ -132,6 +145,7 @@ void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel
     }
 }
 #endif
-void XShortcutsWidget::errorMessageSlot(QString sErrorMessage) {
+void XShortcutsWidget::errorMessageSlot(QString sErrorMessage)
+{
     QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), sErrorMessage);
 }
