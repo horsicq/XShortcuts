@@ -22,7 +22,8 @@
 
 #include "ui_dialogshortcuts.h"
 
-DialogShortcuts::DialogShortcuts(QWidget *pParent) : QDialog(pParent), ui(new Ui::DialogShortcuts)
+DialogShortcuts::DialogShortcuts(QWidget *pParent)
+    : QDialog(pParent), ui(new Ui::DialogShortcuts)
 {
     ui->setupUi(this);
 

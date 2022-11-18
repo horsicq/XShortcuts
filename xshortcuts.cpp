@@ -20,7 +20,8 @@
  */
 #include "xshortcuts.h"
 
-XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
+XShortcuts::XShortcuts(QObject *pParent)
+    : QObject(pParent)
 {
     g_bIsNative = false;
 }
