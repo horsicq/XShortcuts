@@ -20,8 +20,7 @@
  */
 #include "xshortcutsdialog.h"
 
-XShortcutsDialog::XShortcutsDialog(QWidget *pParent)
-    : QDialog(pParent)
+XShortcutsDialog::XShortcutsDialog(QWidget *pParent) : QDialog(pParent)
 {
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;

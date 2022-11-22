@@ -20,8 +20,7 @@
  */
 #include "xshortcutstscrollarea.h"
 
-XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent)
-    : QAbstractScrollArea(pParent)
+XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScrollArea(pParent)
 {
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;

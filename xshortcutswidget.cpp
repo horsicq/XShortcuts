@@ -20,8 +20,7 @@
  */
 #include "xshortcutswidget.h"
 
-XShortcutsWidget::XShortcutsWidget(QWidget *pParent)
-    : QWidget(pParent)
+XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent)
 {
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
