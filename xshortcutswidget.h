@@ -45,6 +45,7 @@ public:
     void setActive(bool bState);
     void saveModel(QAbstractItemModel *pModel, QString sFileName);
     virtual void adjustView();
+    QString getOpenFileName(QString sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
 #ifdef QT_CONCURRENT_LIB
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);

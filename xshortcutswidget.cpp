@@ -86,6 +86,11 @@ void XShortcutsWidget::adjustView()
 {
 }
 
+QString XShortcutsWidget::getOpenFileName(QString sDirectory)
+{
+    return QFileDialog::getOpenFileName(this, tr("Open file") + QString("..."), sDirectory, tr("All files") + QString(" (*)"));
+}
+
 void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bState)
 {
     for (qint32 i = 0; i < nCount; i++) {
