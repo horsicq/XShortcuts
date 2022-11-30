@@ -39,7 +39,8 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_STRING)
 #define X_ID_STRINGS_COPY_OFFSET \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OFFSET)
-#define X_ID_STRINGS_COPY_SIZE XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_SIZE)
+#define X_ID_STRINGS_COPY_SIZE \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_SIZE)
 #define X_ID_STRINGS_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 #define X_ID_STRINGS_DEMANGLE XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DEMANGLE)
@@ -62,7 +63,8 @@
 #define X_ID_HEX_GOTO_ADDRESS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
 #define X_ID_HEX_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SIGNATURE)
 #define X_ID_HEX_FIND_STRING XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_STRING)
-#define X_ID_HEX_FIND_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_SIGNATURE)
+#define X_ID_HEX_FIND_SIGNATURE \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_SIGNATURE)
 #define X_ID_HEX_FIND_VALUE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_VALUE)
 #define X_ID_HEX_FIND_NEXT XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_NEXT)
 #define X_ID_HEX_SELECT_ALL XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECT, XShortcuts::BASEID_ALL)
@@ -77,7 +79,8 @@
 #define X_ID_HEX_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
 
 #define X_ID_DISASM_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
-#define X_ID_DISASM_GOTO_OFFSET XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_OFFSET)
+#define X_ID_DISASM_GOTO_OFFSET \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_OFFSET)
 #define X_ID_DISASM_GOTO_ADDRESS \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
 #define X_ID_DISASM_GOTO_ENTRYPOINT \
@@ -85,14 +88,18 @@
 #define X_ID_DISASM_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SIGNATURE)
 #define X_ID_DISASM_HEX_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_SIGNATURE)
-#define X_ID_DISASM_FIND_STRING XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_STRING)
+#define X_ID_DISASM_FIND_STRING \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_STRING)
 #define X_ID_DISASM_FIND_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_SIGNATURE)
-#define X_ID_DISASM_FIND_VALUE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_VALUE)
+#define X_ID_DISASM_FIND_VALUE \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_VALUE)
 #define X_ID_DISASM_FIND_NEXT XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_NEXT)
-#define X_ID_DISASM_SELECT_ALL XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECT, XShortcuts::BASEID_ALL)
+#define X_ID_DISASM_SELECT_ALL \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECT, XShortcuts::BASEID_ALL)
 #define X_ID_DISASM_COPY_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_HEX)
-#define X_ID_DISASM_COPY_OFFSET XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OFFSET)
+#define X_ID_DISASM_COPY_OFFSET \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OFFSET)
 #define X_ID_DISASM_COPY_ADDRESS \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_ADDRESS)
 #define X_ID_DISASM_FOLLOWIN_HEX \
@@ -100,16 +107,20 @@
 #define X_ID_DISASM_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
 
 // TODO Hardware breakpoints !!!
-#define X_ID_DEBUGGER_FILE_OPEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_OPEN)
+#define X_ID_DEBUGGER_FILE_OPEN \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_OPEN)
 #define X_ID_DEBUGGER_FILE_CLOSE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_CLOSE)
 #define X_ID_DEBUGGER_FILE_ATTACH \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_ATTACH)
 #define X_ID_DEBUGGER_FILE_DETACH \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_DETACH)
-#define X_ID_DEBUGGER_FILE_EXIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_EXIT)
-#define X_ID_DEBUGGER_VIEW_CPU XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_VIEW, XShortcuts::BASEID_CPU)
-#define X_ID_DEBUGGER_VIEW_LOG XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_VIEW, XShortcuts::BASEID_LOG)
+#define X_ID_DEBUGGER_FILE_EXIT \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FILE, XShortcuts::BASEID_EXIT)
+#define X_ID_DEBUGGER_VIEW_CPU \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_VIEW, XShortcuts::BASEID_CPU)
+#define X_ID_DEBUGGER_VIEW_LOG \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_VIEW, XShortcuts::BASEID_LOG)
 #define X_ID_DEBUGGER_VIEW_BREAKPOINTS \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_VIEW, XShortcuts::BASEID_BREAKPOINTS)
 #define X_ID_DEBUGGER_VIEW_MEMORYMAP \
@@ -130,7 +141,8 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_TOOLS, XShortcuts::BASEID_OPTIONS)
 #define X_ID_DEBUGGER_HELP_ABOUT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HELP, XShortcuts::BASEID_ABOUT)
-#define X_ID_DEBUGGER_DEBUG_RUN XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DEBUG, XShortcuts::BASEID_RUN)
+#define X_ID_DEBUGGER_DEBUG_RUN \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DEBUG, XShortcuts::BASEID_RUN)
 #define X_ID_DEBUGGER_DEBUG_PAUSE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DEBUG, XShortcuts::BASEID_PAUSE)
 #define X_ID_DEBUGGER_DEBUG_STEPINTO \
@@ -178,43 +190,50 @@
 #define X_ID_DEBUGGER_DISASM_FIND_NEXT                                                                                                                  \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_FIND, \
                                   XShortcuts::BASEID_NEXT)
-#define X_ID_DEBUGGER_DISASM_COPY_HEX \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_DISASM_COPY_HEX                                                                                                                   \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_COPY, \
+                                  XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_DISASM_COPY_ADDRESS                                                                                                               \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_COPY, \
                                   XShortcuts::BASEID_ADDRESS)
 #define X_ID_DEBUGGER_DISASM_SELECT_ALL \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM, XShortcuts::BASEID_DUMPTOFILE)
-#define X_ID_DEBUGGER_DISASM_EDIT_HEX \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_DISASM_EDIT_HEX                                                                                                                   \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_EDIT, \
+                                  XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_DISASM_FOLLOWIN_HEX                                                                                                                   \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_FOLLOWIN, \
                                   XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_HEX_DUMPTOFILE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_DUMPTOFILE)
-#define X_ID_DEBUGGER_HEX_FIND_STRING \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_STRING)
-#define X_ID_DEBUGGER_HEX_FIND_VALUE \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_VALUE)
+#define X_ID_DEBUGGER_HEX_FIND_STRING                                                                                                                \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, \
+                                  XShortcuts::BASEID_STRING)
+#define X_ID_DEBUGGER_HEX_FIND_VALUE                                                                                                                 \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, \
+                                  XShortcuts::BASEID_VALUE)
 #define X_ID_DEBUGGER_HEX_FIND_SIGNATURE                                                                                                             \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, \
                                   XShortcuts::BASEID_SIGNATURE)
-#define X_ID_DEBUGGER_HEX_FIND_NEXT \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_NEXT)
+#define X_ID_DEBUGGER_HEX_FIND_NEXT                                                                                                                  \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FIND, \
+                                  XShortcuts::BASEID_NEXT)
 #define X_ID_DEBUGGER_HEX_GOTO_ADDRESS                                                                                                               \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_GOTO, \
                                   XShortcuts::BASEID_ADDRESS)
 #define X_ID_DEBUGGER_HEX_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_SIGNATURE)
-#define X_ID_DEBUGGER_HEX_COPY_HEX \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_HEX_COPY_HEX                                                                                                                   \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_COPY, \
+                                  XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_HEX_COPY_ADDRESS                                                                                                               \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_COPY, \
                                   XShortcuts::BASEID_ADDRESS)
 #define X_ID_DEBUGGER_HEX_SELECT_ALL \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_DUMPTOFILE)
-#define X_ID_DEBUGGER_HEX_EDIT_HEX \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_HEX_EDIT_HEX                                                                                                                   \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_EDIT, \
+                                  XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_HEX_FOLLOWIN_DISASM                                                                                                                \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX << XShortcuts::GROUPID_FOLLOWIN, \
                                   XShortcuts::BASEID_DISASM)
@@ -227,8 +246,9 @@
 #define X_ID_DEBUGGER_STACK_COPY_VALUE                                                                                                                 \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_STACK << XShortcuts::GROUPID_COPY, \
                                   XShortcuts::BASEID_VALUE)
-#define X_ID_DEBUGGER_STACK_EDIT_HEX \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_STACK << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_STACK_EDIT_HEX                                                                                                                   \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_STACK << XShortcuts::GROUPID_EDIT, \
+                                  XShortcuts::BASEID_HEX)
 #define X_ID_DEBUGGER_STACK_FOLLOWIN_HEX                                                                                                                   \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_STACK << XShortcuts::GROUPID_FOLLOWIN, \
                                   XShortcuts::BASEID_HEX)
@@ -247,7 +267,8 @@
 
 #define X_ID_PROCESS_STRUCTS XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_STRUCTS)
 #define X_ID_PROCESS_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
-#define X_ID_PROCESS_MEMORY_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_MEMORY, XShortcuts::BASEID_HEX)
+#define X_ID_PROCESS_MEMORY_HEX \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_MEMORY, XShortcuts::BASEID_HEX)
 #define X_ID_PROCESS_MEMORY_STRINGS \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_MEMORY, XShortcuts::BASEID_STRINGS)
 #define X_ID_PROCESS_MEMORY_SIGNATURES \
@@ -261,7 +282,8 @@
 #define X_ID_PROCESS_SHOWIN_FOLDER \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SHOWIN, XShortcuts::BASEID_FOLDER)
 #define X_ID_PROCESS_COPY_PID XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_PID)
-#define X_ID_PROCESS_COPY_NAME XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_NAME)
+#define X_ID_PROCESS_COPY_NAME \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_NAME)
 #define X_ID_PROCESS_COPY_FILENAME \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_FILENAME)
 
@@ -283,10 +305,12 @@
 #define X_ID_MEMORYMAP_SHOWIN_FOLDER \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_MEMORYMAP, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SHOWIN, XShortcuts::BASEID_FOLDER)
 
-#define X_ID_SCAN_EDITOR_FIND_STRING \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDITOR << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_STRING)
-#define X_ID_SCAN_EDITOR_FIND_NEXT \
-    XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDITOR << XShortcuts::GROUPID_FIND, XShortcuts::BASEID_NEXT)
+#define X_ID_SCAN_EDITOR_FIND_STRING                                                                                                                \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDITOR << XShortcuts::GROUPID_FIND, \
+                                  XShortcuts::BASEID_STRING)
+#define X_ID_SCAN_EDITOR_FIND_NEXT                                                                                                                  \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDITOR << XShortcuts::GROUPID_FIND, \
+                                  XShortcuts::BASEID_NEXT)
 
 class XShortcuts : public QObject {
     Q_OBJECT
