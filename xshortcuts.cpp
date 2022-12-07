@@ -198,6 +198,7 @@ void XShortcuts::addGroup(GROUPID groupId)
     } else if (groupId == GROUPID_TOOLS) {
     } else if (groupId == GROUPID_HELP) {
     } else if (groupId == GROUPID_SELECT) {
+    } else if (groupId == GROUPID_SELECTION) {
     } else if (groupId == GROUPID_FOLLOWIN) {
     } else if (groupId == GROUPID_SHOWIN) {
     } else if (groupId == GROUPID_BREAKPOINT) {
@@ -666,6 +667,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     } else if (groupId == GROUPID_TOOLS) {
     } else if (groupId == GROUPID_HELP) {
     } else if (groupId == GROUPID_SELECT) {
+    } else if (groupId == GROUPID_SELECTION) {
     } else if (groupId == GROUPID_FOLLOWIN) {
     } else if (groupId == GROUPID_SHOWIN) {
     } else if (groupId == GROUPID_BREAKPOINT) {
@@ -737,6 +739,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
         sResult = tr("Help");
     else if (groupId == GROUPID_SELECT)
         sResult = tr("Select");
+    else if (groupId == GROUPID_SELECTION)
+        sResult = tr("Selection");
     else if (groupId == GROUPID_FOLLOWIN)
         sResult = tr("Follow in");
     else if (groupId == GROUPID_SHOWIN)
@@ -781,6 +785,10 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Dump to file");
     else if (baseId == BASEID_ADDRESS)
         sResult = tr("Address");
+    else if (baseId == BASEID_END)
+        sResult = tr("End");
+    else if (baseId == BASEID_START)
+        sResult = tr("Start");
     else if (baseId == BASEID_ENTRYPOINT)
         sResult = tr("Entry point");
     else if (baseId == BASEID_OFFSET)
@@ -953,6 +961,10 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("DumpToFile");
     else if (baseId == BASEID_ADDRESS)
         sResult = QString("Address");
+    else if (baseId == BASEID_END)
+        sResult = QString("End");
+    else if (baseId == BASEID_START)
+        sResult = QString("Start");
     else if (baseId == BASEID_ENTRYPOINT)
         sResult = QString("EntryPoint");
     else if (baseId == BASEID_OFFSET)
@@ -1103,6 +1115,8 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
         sResult = QString("Help");
     else if (groupId == GROUPID_SELECT)
         sResult = QString("Select");
+    else if (groupId == GROUPID_SELECTION)
+        sResult = QString("Selection");
     else if (groupId == GROUPID_FOLLOWIN)
         sResult = QString("FollowIn");
     else if (groupId == GROUPID_SHOWIN)
