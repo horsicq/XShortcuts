@@ -43,7 +43,8 @@ public:
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     void setActive(bool bState);
-    void saveModel(QAbstractItemModel *pModel, QString sFileName);
+    void saveTableModel(QAbstractItemModel *pModel, QString sFileName);
+    void saveTreeModel(QAbstractItemModel *pModel, QString sFileName);
     virtual void adjustView();
     QString getOpenFileName(QString sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
