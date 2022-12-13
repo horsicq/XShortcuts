@@ -27,6 +27,11 @@
 #include <QMap>
 #include <QSettings>
 #include <QShortcut>
+#include <QMenu>
+#include <QTableView>
+#include <QTreeView>
+#include <QHeaderView>
+#include <QClipboard>
 
 #define X_ID_FILE_OPEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_OPEN)
 #define X_ID_FILE_SAVE XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SAVE)
@@ -455,6 +460,7 @@ public:
     };
 
     explicit XShortcuts(QObject *pParent = nullptr);
+    ~XShortcuts();
 
     void setName(QString sValue);
     void setNative(bool bValue);
@@ -480,11 +486,18 @@ public:
     static QString baseIdToSettingsString(BASEID baseId);
     static QString groupIdToSettingsString(GROUPID groupId);
 
+    QMenu *getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView);
+
+private slots:
+    void copyRecord();
+
 private:
     bool g_bIsNative;
     QString g_sName;
     QString g_sFilePath;
     QMap<quint64, QKeySequence> g_mapValues;
+    QMenu *g_pRowCopyMenu;
+    QList<QAction *> g_listCopyActions;
 };
 
 #endif  // XSHORTCUTS_H

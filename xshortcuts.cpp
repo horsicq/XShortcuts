@@ -23,6 +23,14 @@
 XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
 {
     g_bIsNative = false;
+    g_pRowCopyMenu = nullptr;
+}
+
+XShortcuts::~XShortcuts()
+{
+    if (g_pRowCopyMenu) {
+        delete g_pRowCopyMenu;
+    }
 }
 
 void XShortcuts::setName(QString sValue)
@@ -1135,4 +1143,77 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
         sResult = QString("Editor");
 
     return sResult;
+}
+
+QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView)
+{
+    g_listCopyActions.clear();
+
+    if (g_pRowCopyMenu) {
+        delete g_pRowCopyMenu;
+    }
+
+    g_pRowCopyMenu = new QMenu(pParent);
+    g_pRowCopyMenu->setTitle(tr("Copy"));
+
+    int nRow = pTableView->currentIndex().row();
+
+    if (nRow != -1) {
+
+        QList<QString> listRecords;
+        QList<QString> listTitles;
+
+        QModelIndexList listSelected = pTableView->selectionModel()->selectedIndexes();
+
+        qint32 nNumberOfSelected = listSelected.count();
+
+        for (qint32 i = 0; i < nNumberOfSelected; i++) {
+            QModelIndex index = pTableView->selectionModel()->selectedIndexes().at(i);
+            QString sRecord = pTableView->model()->data(index).toString();
+            QString sTitle = pTableView->model()->headerData(i, Qt::Horizontal).toString();
+
+            listRecords.append(sRecord);
+            listTitles.append(sTitle);
+        }
+
+        for (qint32 i = 0; i < nNumberOfSelected; i++) {
+            QString sRecord = listRecords.at(i);
+            QString sTitle = listTitles.at(i);
+
+            if (sTitle != "") {
+                QString sString = QString("%1: %2").arg(sTitle, sRecord);
+
+                QAction *pActionRecord = new QAction(sString, pParent);
+                connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
+                g_pRowCopyMenu->addAction(pActionRecord);
+
+                g_listCopyActions.append(pActionRecord);
+            }
+        }
+
+        for (qint32 i = 0; i < nNumberOfSelected; i++) {
+            QString sRecord = listRecords.at(i);
+
+            if (sRecord != "") {
+                QAction *pActionRecord = new QAction(sRecord, pParent);
+                connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
+                g_pRowCopyMenu->addAction(pActionRecord);
+
+                g_listCopyActions.append(pActionRecord);
+            }
+        }
+    }
+
+    return g_pRowCopyMenu;
+}
+
+void XShortcuts::copyRecord()
+{
+    QAction *pAction = qobject_cast<QAction *>(sender());
+
+    if (pAction) {
+        QString sString = pAction->text();
+
+        QApplication::clipboard()->setText(sString);
+    }
 }
