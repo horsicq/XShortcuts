@@ -157,6 +157,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_GOTO_OFFSET);
         addId(X_ID_DISASM_GOTO_ADDRESS);
         addId(X_ID_DISASM_GOTO_ENTRYPOINT);
+        addId(X_ID_DISASM_GOTO_XREF);
         addId(X_ID_DISASM_SIGNATURE);
         addId(X_ID_DISASM_HEX_SIGNATURE);
         addId(X_ID_DISASM_FIND_STRING);
@@ -596,6 +597,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_GOTO_ENTRYPOINT)
             ksResult = QKeySequence();
+        else if (nId == X_ID_DISASM_GOTO_XREF)
+            ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_SIGNATURE)
             ksResult = Qt::SHIFT + Qt::Key_G;
         else if (nId == X_ID_DISASM_HEX_SIGNATURE)
@@ -799,6 +802,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Start");
     else if (baseId == BASEID_ENTRYPOINT)
         sResult = tr("Entry point");
+    else if (baseId == BASEID_XREF)
+        sResult = QString("XREF");
     else if (baseId == BASEID_OFFSET)
         sResult = tr("Offset");
     else if (baseId == BASEID_SIZE)
@@ -975,6 +980,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Start");
     else if (baseId == BASEID_ENTRYPOINT)
         sResult = QString("EntryPoint");
+    else if (baseId == BASEID_XREF)
+        sResult = QString("XREF");
     else if (baseId == BASEID_OFFSET)
         sResult = QString("Offset");
     else if (baseId == BASEID_SIZE)
@@ -1190,6 +1197,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
                 g_listCopyActions.append(pActionRecord);
             }
         }
+
+        g_pRowCopyMenu->addSeparator();
 
         for (qint32 i = 0; i < nNumberOfSelected; i++) {
             QString sRecord = listRecords.at(i);

@@ -96,6 +96,8 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
 #define X_ID_DISASM_GOTO_ENTRYPOINT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ENTRYPOINT)
+#define X_ID_DISASM_GOTO_XREF \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_XREF)
 #define X_ID_DISASM_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SIGNATURE)
 #define X_ID_DISASM_HEX_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_SIGNATURE)
@@ -385,6 +387,7 @@ public:
         BASEID_END,
         BASEID_START,
         BASEID_ENTRYPOINT,
+        BASEID_XREF,
         BASEID_SIZE,
         BASEID_STRING,
         BASEID_STRINGS,
