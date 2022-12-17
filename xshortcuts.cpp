@@ -1166,7 +1166,6 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
     int nRow = pTableView->currentIndex().row();
 
     if (nRow != -1) {
-
         QList<QString> listRecords;
         QList<QString> listTitles;
 
