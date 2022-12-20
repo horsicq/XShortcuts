@@ -1154,13 +1154,16 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
 
 QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView)
 {
+    Q_UNUSED(pParent);
+
     g_listCopyActions.clear();
 
     if (g_pRowCopyMenu) {
         delete g_pRowCopyMenu;
     }
 
-    g_pRowCopyMenu = new QMenu(pParent);
+    //g_pRowCopyMenu = new QMenu(pParent);
+    g_pRowCopyMenu = new QMenu;
     g_pRowCopyMenu->setTitle(tr("Copy"));
 
     int nRow = pTableView->currentIndex().row();
@@ -1189,7 +1192,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             if (sTitle != "") {
                 QString sString = QString("%1: %2").arg(sTitle, sRecord);
 
-                QAction *pActionRecord = new QAction(sString, pParent);
+               // QAction *pActionRecord = new QAction(sString, pParent);
+                QAction *pActionRecord = new QAction(sString);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
                 g_pRowCopyMenu->addAction(pActionRecord);
 
@@ -1203,7 +1207,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             QString sRecord = listRecords.at(i);
 
             if (sRecord != "") {
-                QAction *pActionRecord = new QAction(sRecord, pParent);
+                //QAction *pActionRecord = new QAction(sRecord, pParent);
+                QAction *pActionRecord = new QAction(sRecord);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
                 g_pRowCopyMenu->addAction(pActionRecord);
 
