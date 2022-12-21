@@ -323,6 +323,8 @@
 #define X_ID_SCAN_EDITOR_FIND_NEXT                                                                                                                  \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDITOR << XShortcuts::GROUPID_FIND, \
                                   XShortcuts::BASEID_NEXT)
+#define X_ID_FIND_FOLLOWIN_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_FIND, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
+#define X_ID_FIND_FOLLOWIN_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_FIND, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_DISASM)
 
 class XShortcuts : public QObject {
     Q_OBJECT

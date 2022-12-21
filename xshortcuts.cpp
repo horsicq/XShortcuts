@@ -134,6 +134,9 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_SIGNATURES_COPY_ADDRESS);
         addId(X_ID_SIGNATURES_COPY_OFFSET);
         addId(X_ID_SIGNATURES_FOLLOWIN_HEX);
+    } else if (groupId == GROUPID_FIND) {
+        addId(X_ID_FIND_FOLLOWIN_DISASM);
+        addId(X_ID_FIND_FOLLOWIN_HEX);
     } else if (groupId == GROUPID_STRUCT) {
     } else if (groupId == GROUPID_HEX) {
         addId(X_ID_HEX_DUMPTOFILE);
@@ -203,7 +206,6 @@ void XShortcuts::addGroup(GROUPID groupId)
     } else if (groupId == GROUPID_COPY) {
     } else if (groupId == GROUPID_GOTO) {
     } else if (groupId == GROUPID_EDIT) {
-    } else if (groupId == GROUPID_FIND) {
     } else if (groupId == GROUPID_TOOLS) {
     } else if (groupId == GROUPID_HELP) {
     } else if (groupId == GROUPID_SELECT) {
@@ -1190,10 +1192,11 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             QString sTitle = listTitles.at(i);
 
             if (sTitle != "") {
-                QString sString = QString("%1: %2").arg(sTitle, sRecord);
+                QString sString = sTitle;
 
                // QAction *pActionRecord = new QAction(sString, pParent);
                 QAction *pActionRecord = new QAction(sString);
+                pActionRecord->setProperty("STRING", sRecord);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
                 g_pRowCopyMenu->addAction(pActionRecord);
 
@@ -1209,6 +1212,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             if (sRecord != "") {
                 //QAction *pActionRecord = new QAction(sRecord, pParent);
                 QAction *pActionRecord = new QAction(sRecord);
+                pActionRecord->setProperty("STRING", sRecord);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
                 g_pRowCopyMenu->addAction(pActionRecord);
 
@@ -1225,7 +1229,7 @@ void XShortcuts::copyRecord()
     QAction *pAction = qobject_cast<QAction *>(sender());
 
     if (pAction) {
-        QString sString = pAction->text();
+        QString sString = pAction->property("STRING").toString();
 
         QApplication::clipboard()->setText(sString);
     }
