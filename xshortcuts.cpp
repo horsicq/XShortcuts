@@ -160,7 +160,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_GOTO_OFFSET);
         addId(X_ID_DISASM_GOTO_ADDRESS);
         addId(X_ID_DISASM_GOTO_ENTRYPOINT);
-        addId(X_ID_DISASM_GOTO_XREF);
+//        addId(X_ID_DISASM_GOTO_XREF);
         addId(X_ID_DISASM_SIGNATURE);
         addId(X_ID_DISASM_HEX_SIGNATURE);
         addId(X_ID_DISASM_FIND_STRING);
@@ -169,6 +169,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_FIND_NEXT);
         addId(X_ID_DISASM_SELECT_ALL);
         addId(X_ID_DISASM_COPY_HEX);
+        addId(X_ID_DISASM_COPY_OPCODE);
         addId(X_ID_DISASM_COPY_OFFSET);
         addId(X_ID_DISASM_COPY_ADDRESS);
         addId(X_ID_DISASM_FOLLOWIN_HEX);
@@ -599,8 +600,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_GOTO_ENTRYPOINT)
             ksResult = QKeySequence();
-        else if (nId == X_ID_DISASM_GOTO_XREF)
-            ksResult = QKeySequence();
+//        else if (nId == X_ID_DISASM_GOTO_XREF)
+//            ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_SIGNATURE)
             ksResult = Qt::SHIFT + Qt::Key_G;
         else if (nId == X_ID_DISASM_HEX_SIGNATURE)
@@ -616,6 +617,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_DISASM_SELECT_ALL)
             ksResult = QKeySequence::SelectAll;
         else if (nId == X_ID_DISASM_COPY_HEX)
+            ksResult = QKeySequence();
+        else if (nId == X_ID_DISASM_COPY_OPCODE)
             ksResult = QKeySequence::Copy;
         else if (nId == X_ID_DISASM_COPY_OFFSET)
             ksResult = QKeySequence();
@@ -820,6 +823,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Signatures");
     else if (baseId == BASEID_HEX)
         sResult = tr("Hex");
+    else if (baseId == BASEID_OPCODE)
+        sResult = tr("Opcode");
     else if (baseId == BASEID_DEMANGLE)
         sResult = tr("Demangle");
     else if (baseId == BASEID_NAME)
@@ -998,6 +1003,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Signatures");
     else if (baseId == BASEID_HEX)
         sResult = QString("Hex");
+    else if (baseId == BASEID_OPCODE)
+        sResult = QString("Opcode");
     else if (baseId == BASEID_DEMANGLE)
         sResult = QString("Demangle");
     else if (baseId == BASEID_NAME)

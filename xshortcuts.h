@@ -96,7 +96,7 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
 #define X_ID_DISASM_GOTO_ENTRYPOINT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ENTRYPOINT)
-#define X_ID_DISASM_GOTO_XREF XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_XREF)
+//#define X_ID_DISASM_GOTO_XREF XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_XREF)
 #define X_ID_DISASM_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SIGNATURE)
 #define X_ID_DISASM_HEX_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_SIGNATURE)
@@ -110,6 +110,7 @@
 #define X_ID_DISASM_SELECT_ALL \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECT, XShortcuts::BASEID_ALL)
 #define X_ID_DISASM_COPY_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_HEX)
+#define X_ID_DISASM_COPY_OPCODE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OPCODE)
 #define X_ID_DISASM_COPY_OFFSET \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OFFSET)
 #define X_ID_DISASM_COPY_ADDRESS \
@@ -395,6 +396,7 @@ public:
         BASEID_SIGNATURE,
         BASEID_SIGNATURES,
         BASEID_HEX,
+        BASEID_OPCODE,
         BASEID_DEMANGLE,
         BASEID_NAME,
         BASEID_NEXT,
