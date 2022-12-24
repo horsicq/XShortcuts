@@ -484,7 +484,6 @@ public:
     static QString groupIdToString(GROUPID groupId);
     static QString baseIdToString(BASEID baseId);
     // |quin32 main|quint32 subgroups|quint32 reserverd|quint32 nID
-    // TODO make defines
     static quint64 createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgroup, BASEID baseId);
     static GROUPID getGroupId(quint64 nShortcutId);
     static QList<GROUPID> getSubgroupIds(quint64 nShortcutId);
