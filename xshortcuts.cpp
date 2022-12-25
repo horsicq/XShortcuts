@@ -1219,7 +1219,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
 
             if (sRecord != "") {
                 //QAction *pActionRecord = new QAction(sRecord, pParent);
-                QAction *pActionRecord = new QAction(sRecord);
+                QAction *pActionRecord = new QAction;
+                pActionRecord->setText(sRecord);
                 pActionRecord->setProperty("STRING", sRecord);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
                 g_pRowCopyMenu->addAction(pActionRecord);
