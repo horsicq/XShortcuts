@@ -1202,7 +1202,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
                 QString sString = sTitle;
 
                // QAction *pActionRecord = new QAction(sString, pParent);
-                QAction *pActionRecord = new QAction;
+                QAction *pActionRecord = new QAction(0);
                 pActionRecord->setText(sString);
                 pActionRecord->setProperty("STRING", sRecord);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
@@ -1219,7 +1219,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
 
             if (sRecord != "") {
                 //QAction *pActionRecord = new QAction(sRecord, pParent);
-                QAction *pActionRecord = new QAction;
+                QAction *pActionRecord = new QAction(0);
                 pActionRecord->setText(sRecord);
                 pActionRecord->setProperty("STRING", sRecord);
                 connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
