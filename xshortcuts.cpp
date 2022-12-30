@@ -142,6 +142,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_DUMPTOFILE);
         addId(X_ID_HEX_GOTO_OFFSET);
         addId(X_ID_HEX_GOTO_ADDRESS);
+        addId(X_ID_HEX_GOTO_SELECTION_START);
+        addId(X_ID_HEX_GOTO_SELECTION_END);
         addId(X_ID_HEX_SIGNATURE);
         addId(X_ID_HEX_FIND_STRING);
         addId(X_ID_HEX_FIND_SIGNATURE);
