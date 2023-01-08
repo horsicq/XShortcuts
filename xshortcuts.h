@@ -96,7 +96,8 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
 #define X_ID_DISASM_GOTO_ENTRYPOINT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ENTRYPOINT)
-//#define X_ID_DISASM_GOTO_XREF XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_XREF)
+//#define X_ID_DISASM_GOTO_XREF XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO,
+// XShortcuts::BASEID_XREF)
 #define X_ID_DISASM_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SIGNATURE)
 #define X_ID_DISASM_HEX_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_SIGNATURE)
@@ -110,7 +111,8 @@
 #define X_ID_DISASM_SELECT_ALL \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECT, XShortcuts::BASEID_ALL)
 #define X_ID_DISASM_COPY_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_HEX)
-#define X_ID_DISASM_COPY_OPCODE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OPCODE)
+#define X_ID_DISASM_COPY_OPCODE \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OPCODE)
 #define X_ID_DISASM_COPY_OFFSET \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_COPY, XShortcuts::BASEID_OFFSET)
 #define X_ID_DISASM_COPY_ADDRESS \
@@ -324,8 +326,10 @@
 #define X_ID_SCAN_EDITOR_FIND_NEXT                                                                                                                  \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_SCAN, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDITOR << XShortcuts::GROUPID_FIND, \
                                   XShortcuts::BASEID_NEXT)
-#define X_ID_FIND_FOLLOWIN_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_FIND, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
-#define X_ID_FIND_FOLLOWIN_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_FIND, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_DISASM)
+#define X_ID_FIND_FOLLOWIN_HEX \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_FIND, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
+#define X_ID_FIND_FOLLOWIN_DISASM \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_FIND, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_DISASM)
 
 class XShortcuts : public QObject {
     Q_OBJECT

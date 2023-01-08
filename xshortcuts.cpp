@@ -162,7 +162,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_GOTO_OFFSET);
         addId(X_ID_DISASM_GOTO_ADDRESS);
         addId(X_ID_DISASM_GOTO_ENTRYPOINT);
-//        addId(X_ID_DISASM_GOTO_XREF);
+        //        addId(X_ID_DISASM_GOTO_XREF);
         addId(X_ID_DISASM_SIGNATURE);
         addId(X_ID_DISASM_HEX_SIGNATURE);
         addId(X_ID_DISASM_FIND_STRING);
@@ -602,8 +602,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_GOTO_ENTRYPOINT)
             ksResult = QKeySequence();
-//        else if (nId == X_ID_DISASM_GOTO_XREF)
-//            ksResult = QKeySequence();
+        //        else if (nId == X_ID_DISASM_GOTO_XREF)
+        //            ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_SIGNATURE)
             ksResult = Qt::SHIFT + Qt::Key_G;
         else if (nId == X_ID_DISASM_HEX_SIGNATURE)
@@ -1173,7 +1173,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
         delete g_pRowCopyMenu;
     }
 
-    //g_pRowCopyMenu = new QMenu(pParent);
+    // g_pRowCopyMenu = new QMenu(pParent);
     g_pRowCopyMenu = new QMenu;
     g_pRowCopyMenu->setTitle(tr("Copy"));
 
@@ -1203,7 +1203,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             if (sTitle != "") {
                 QString sString = sTitle;
 
-               // QAction *pActionRecord = new QAction(sString, pParent);
+                // QAction *pActionRecord = new QAction(sString, pParent);
                 QAction *pActionRecord = new QAction(0);
                 pActionRecord->setText(sString);
                 pActionRecord->setProperty("STRING", sRecord);
@@ -1220,7 +1220,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             QString sRecord = listRecords.at(i);
 
             if (sRecord != "") {
-                //QAction *pActionRecord = new QAction(sRecord, pParent);
+                // QAction *pActionRecord = new QAction(sRecord, pParent);
                 QAction *pActionRecord = new QAction(0);
                 pActionRecord->setText(sRecord);
                 pActionRecord->setProperty("STRING", sRecord);
