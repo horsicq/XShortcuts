@@ -150,7 +150,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_FIND_VALUE);
         addId(X_ID_HEX_FIND_NEXT);
         addId(X_ID_HEX_SELECT_ALL);
-        addId(X_ID_HEX_COPY_HEX);
+        addId(X_ID_HEX_COPY_DATA);
         addId(X_ID_HEX_COPY_OFFSET);
         addId(X_ID_HEX_COPY_ADDRESS);
         addId(X_ID_HEX_FOLLOWIN_DISASM);
@@ -170,8 +170,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_FIND_VALUE);
         addId(X_ID_DISASM_FIND_NEXT);
         addId(X_ID_DISASM_SELECT_ALL);
-        addId(X_ID_DISASM_COPY_HEX);
-        addId(X_ID_DISASM_COPY_OPCODE);
+        addId(X_ID_DISASM_COPY_DATA);
         addId(X_ID_DISASM_COPY_OFFSET);
         addId(X_ID_DISASM_COPY_ADDRESS);
         addId(X_ID_DISASM_FOLLOWIN_HEX);
@@ -579,7 +578,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence::FindNext;
         else if (nId == X_ID_HEX_SELECT_ALL)
             ksResult = QKeySequence::SelectAll;
-        else if (nId == X_ID_HEX_COPY_HEX)
+        else if (nId == X_ID_HEX_COPY_DATA)
             ksResult = QKeySequence();
         else if (nId == X_ID_HEX_COPY_OFFSET)
             ksResult = QKeySequence();
@@ -618,14 +617,12 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence::FindNext;
         else if (nId == X_ID_DISASM_SELECT_ALL)
             ksResult = QKeySequence::SelectAll;
-        else if (nId == X_ID_DISASM_COPY_HEX)
+        else if (nId == X_ID_DISASM_COPY_DATA)
             ksResult = QKeySequence();
-        else if (nId == X_ID_DISASM_COPY_OPCODE)
-            ksResult = QKeySequence::Copy;
         else if (nId == X_ID_DISASM_COPY_OFFSET)
             ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_COPY_ADDRESS)
-            ksResult = QKeySequence();
+            ksResult = QKeySequence::Copy;
         else if (nId == X_ID_DISASM_FOLLOWIN_HEX)
             ksResult = QKeySequence();
     } else if (groupId == GROUPID_STACK) {
@@ -833,6 +830,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Name");
     else if (baseId == BASEID_NEXT)
         sResult = tr("Next");
+    else if (baseId == BASEID_DATA)
+        sResult = tr("Data");
     else if (baseId == BASEID_VALUE)
         sResult = tr("Value");
     else if (baseId == BASEID_ALL)
@@ -1013,6 +1012,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Name");
     else if (baseId == BASEID_NEXT)
         sResult = QString("Next");
+    else if (baseId == BASEID_DATA)
+        sResult = QString("Data");
     else if (baseId == BASEID_VALUE)
         sResult = QString("Value");
     else if (baseId == BASEID_ALL)
