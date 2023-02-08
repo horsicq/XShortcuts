@@ -122,9 +122,6 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_COPY));
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_SHOW));
     } else if (groupId == GROUPID_STRINGS) {
-        addId(X_ID_STRINGS_COPY_STRING);
-        addId(X_ID_STRINGS_COPY_OFFSET);
-        addId(X_ID_STRINGS_COPY_SIZE);
         addId(X_ID_STRINGS_FOLLOWIN_HEX);
         addId(X_ID_STRINGS_DEMANGLE);
         addId(X_ID_STRINGS_EDIT_STRING);
@@ -534,14 +531,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence();
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
-    } else if (groupId == GROUPID_STRING) {
-        if (nId == X_ID_STRINGS_COPY_STRING)
-            ksResult = QKeySequence::Copy;
-        else if (nId == X_ID_STRINGS_COPY_OFFSET)
-            ksResult = QKeySequence();
-        else if (nId == X_ID_STRINGS_COPY_SIZE)
-            ksResult = QKeySequence();
-        else if (nId == X_ID_STRINGS_FOLLOWIN_HEX)
+    } else if (groupId == GROUPID_STRINGS) {
+        if (nId == X_ID_STRINGS_FOLLOWIN_HEX)
             ksResult = QKeySequence();
         else if (nId == X_ID_STRINGS_DEMANGLE)
             ksResult = QKeySequence();
