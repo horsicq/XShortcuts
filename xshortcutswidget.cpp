@@ -125,11 +125,11 @@ void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bS
 #ifdef QT_CONCURRENT_LIB
 void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 {
-    //#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    //    QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldAbstractModel,this,g_ppOldModel);
-    //#else
-    //    QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldAbstractModel,g_ppOldModel);
-    //#endif
+    // #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    //     QFuture<void> future=QtConcurrent::run(&XShortcutsWidget::_deleteOldAbstractModel,this,g_ppOldModel);
+    // #else
+    //     QFuture<void> future=QtConcurrent::run(this,&XShortcutsWidget::_deleteOldAbstractModel,g_ppOldModel);
+    // #endif
 
     //    return future;
 
