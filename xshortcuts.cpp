@@ -159,6 +159,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_GOTO_OFFSET);
         addId(X_ID_DISASM_GOTO_ADDRESS);
         addId(X_ID_DISASM_GOTO_ENTRYPOINT);
+        addId(X_ID_DISASM_GOTO_REFERENCES);
         //        addId(X_ID_DISASM_GOTO_XREF);
         addId(X_ID_DISASM_SIGNATURE);
         addId(X_ID_DISASM_HEX_SIGNATURE);
@@ -220,7 +221,7 @@ void XShortcuts::addGroup(GROUPID groupId)
 
 void XShortcuts::addId(quint64 nId)
 {
-    g_mapValues.insert(nId, getDefault(nId));
+    setShortcut(nId, getDefault(nId));
 }
 
 void XShortcuts::addGroup(ID id)  // TODO Remove
@@ -228,9 +229,9 @@ void XShortcuts::addGroup(ID id)  // TODO Remove
     Q_UNUSED(id)
 }
 
-QList<quint64> XShortcuts::getShortcutsIDs()
+QList<XShortcuts::RECORD> XShortcuts::getRecords()
 {
-    return g_mapValues.keys();
+    return g_listRecords;
 }
 
 void XShortcuts::load()
@@ -250,17 +251,15 @@ void XShortcuts::load()
 #endif
 
     if (pSettings) {
-        QList<quint64> listKeys = g_mapValues.keys();
-
-        qint32 nNumberOfRecords = listKeys.count();
+        qint32 nNumberOfRecords = g_listRecords.count();
 
         for (qint32 i = 0; i < nNumberOfRecords; i++) {
-            quint64 nId = listKeys.at(i);
+            quint64 nId = g_listRecords.at(i).nId;
             QKeySequence ksDefault = getDefault(nId);
 
-            QString sPath = idToSettingsString(nId);
+            QString sString = idToSettingsString(nId);
 
-            g_mapValues.insert(nId, QKeySequence::fromString(pSettings->value(sPath, ksDefault).toString()));
+            setShortcut(nId, QKeySequence::fromString(pSettings->value(sString, ksDefault).toString()));
         }
     }
 
@@ -286,16 +285,14 @@ void XShortcuts::save()
 #endif
 
     if (pSettings) {
-        QList<quint64> listKeys = g_mapValues.keys();
-
-        qint32 nNumberOfRecords = listKeys.count();
+        qint32 nNumberOfRecords = g_listRecords.count();
 
         for (qint32 i = 0; i < nNumberOfRecords; i++) {
-            quint64 nId = listKeys.at(i);
+            quint64 nId = g_listRecords.at(i).nId;
 
-            QString sPath = idToSettingsString(nId);
+            QString sString = idToSettingsString(nId);
 
-            pSettings->setValue(sPath, g_mapValues.value(nId).toString());
+            pSettings->setValue(sString, g_listRecords.at(i).keySequence.toString());
         }
     }
 
@@ -307,37 +304,77 @@ void XShortcuts::save()
 QKeySequence XShortcuts::getShortcut(quint64 nId)
 {
 #ifdef QT_DEBUG
-    if (!g_mapValues.contains(nId)) {
+    if (!isIdPresent(nId)) {
         QString sErrorString = idToSettingsString(nId);
         qDebug("%s", sErrorString.toLatin1().data());
     }
 #endif
-    return g_mapValues.value(nId);
+
+    QKeySequence result;
+
+    qint32 nNumberOfRecord = g_listRecords.count();
+
+    for (qint32 i = 0; i < nNumberOfRecord; i++) {
+        if (g_listRecords.at(i).nId == nId) {
+            result = g_listRecords.at(i).keySequence;
+            break;
+        }
+    }
+
+    return result;
 }
 
-void XShortcuts::setShortcut(quint64 nId, QKeySequence keyValue)
+bool XShortcuts::isIdPresent(quint64 nId)
 {
-    g_mapValues.insert(nId, keyValue);
+    bool bResult = false;
+
+    qint32 nNumberOfRecord = g_listRecords.count();
+
+    for (qint32 i = 0; i < nNumberOfRecord; i++) {
+        if (g_listRecords.at(i).nId == nId) {
+            bResult = true;
+            break;
+        }
+    }
+
+    return bResult;
 }
 
-bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keyValue)
+void XShortcuts::setShortcut(quint64 nId, QKeySequence keySequence)
+{
+    if (isIdPresent(nId)) {
+        qint32 nNumberOfRecord = g_listRecords.count();
+
+        for (qint32 i = 0; i < nNumberOfRecord; i++) {
+            if (g_listRecords.at(i).nId == nId) {
+                g_listRecords[i].keySequence = keySequence;
+                break;
+            }
+        }
+    } else {
+        RECORD record = {};
+        record.nId = nId;
+        record.keySequence = keySequence;
+        g_listRecords.append(record);
+    }
+}
+
+bool XShortcuts::checkShortcut(quint64 nId, QKeySequence keySequence)
 {
     bool bResult = true;
 
-    if (keyValue != QKeySequence()) {
+    if (keySequence != QKeySequence()) {
         GROUPID idGroup = getGroupId(nId);
 
-        QList<quint64> listIds = g_mapValues.keys();
-
-        qint32 nNumberOfRecords = listIds.count();
+        qint32 nNumberOfRecords = g_listRecords.count();
 
         for (qint32 i = 0; i < nNumberOfRecords; i++) {
-            quint64 _nId = listIds.at(i);
+            quint64 _nId = g_listRecords.at(i).nId;
 
             if (_nId != nId) {
                 if (getGroupId(_nId) == idGroup) {
-                    QKeySequence _keyValue = getShortcut(_nId);
-                    if (_keyValue == keyValue) {
+                    QKeySequence _keySequence = g_listRecords.at(i).keySequence;
+                    if (_keySequence == keySequence) {
                         bResult = false;
                         break;
                     }
@@ -379,7 +416,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
 
     if (groupId == GROUPID_FILE) {
         if (nId == X_ID_FILE_OPEN)
-            ksResult = QKeySequence();
+            ksResult = Qt::CTRL + Qt::Key_O;
         else if (nId == X_ID_FILE_SAVE)
             ksResult = QKeySequence();
         else if (nId == X_ID_FILE_SAVEAS)
@@ -389,8 +426,10 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_FILE_PRINT)
             ksResult = QKeySequence();
         else if (nId == X_ID_FILE_EXIT)
-            ksResult = QKeySequence();
+            ksResult = Qt::ALT + Qt::Key_X;
     } else if (groupId == GROUPID_VIEW) {
+        if (nId == X_ID_VIEW_FULLSCREEN)
+            ksResult = Qt::CTRL + Qt::Key_E;
     } else if (groupId == GROUPID_DEBUGGER) {
         if (nId == X_ID_DEBUGGER_FILE_OPEN)
             ksResult = QKeySequence::Open;
@@ -587,13 +626,13 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         if (nId == X_ID_DISASM_DUMPTOFILE)
             ksResult = Qt::CTRL + Qt::Key_D;
         else if (nId == X_ID_DISASM_GOTO_OFFSET)
-            ksResult = Qt::CTRL + Qt::Key_G;
+            ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_GOTO_ADDRESS)
-            ksResult = QKeySequence();
+            ksResult = Qt::CTRL + Qt::Key_G;
         else if (nId == X_ID_DISASM_GOTO_ENTRYPOINT)
-            ksResult = QKeySequence();
-        //        else if (nId == X_ID_DISASM_GOTO_XREF)
-        //            ksResult = QKeySequence();
+            ksResult = Qt::Key_E;
+        else if (nId == X_ID_DISASM_GOTO_REFERENCES)
+            ksResult = Qt::Key_X;
         else if (nId == X_ID_DISASM_SIGNATURE)
             ksResult = Qt::SHIFT + Qt::Key_G;
         else if (nId == X_ID_DISASM_HEX_SIGNATURE)
@@ -889,6 +928,10 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Hash");
     else if (baseId == BASEID_STACK)
         sResult = tr("Stack");
+    else if (baseId == BASEID_FULLSCREEN)
+        sResult = tr("Full screen");
+    else if (baseId == BASEID_REFERENCES)
+        sResult = tr("References");
 
     return sResult;
 }
@@ -1071,6 +1114,10 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Hash");
     else if (baseId == BASEID_STACK)
         sResult = QString("Stack");
+    else if (baseId == BASEID_FULLSCREEN)
+        sResult = QString("Full screen");
+    else if (baseId == BASEID_REFERENCES)
+        sResult = QString("References");
 
     return sResult;
 }

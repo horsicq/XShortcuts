@@ -50,9 +50,9 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 void DialogShortcuts::reload()
 {
     // TODO remove old Model
-    QList<quint64> listIDs = g_pShortcuts->getShortcutsIDs();
+    QList<XShortcuts::RECORD> listShortcuts = g_pShortcuts->getRecords();
 
-    qint32 nNumberOfRecords = listIDs.count();
+    qint32 nNumberOfRecords = listShortcuts.count();
 
     g_pModel = new QStandardItemModel(nNumberOfRecords, 2);
 
@@ -60,7 +60,7 @@ void DialogShortcuts::reload()
     g_pModel->setHeaderData(COLUMN_SHORTCUT, Qt::Horizontal, tr("Shortcut"));
 
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
-        quint64 nId = listIDs.at(i);
+        quint64 nId = listShortcuts.at(i).nId;
 
         XShortcuts::GROUPID groupId = XShortcuts::getGroupId(nId);
         QList<XShortcuts::GROUPID> listSubgroups = XShortcuts::getSubgroupIds(nId);
@@ -80,7 +80,7 @@ void DialogShortcuts::reload()
         g_pModel->setItem(i, COLUMN_NAME, pTypeName);
 
         QStandardItem *pTypeShortcut = new QStandardItem;
-        pTypeShortcut->setText(g_pShortcuts->getShortcut(nId).toString(QKeySequence::NativeText));
+        pTypeShortcut->setText(listShortcuts.at(i).keySequence.toString(QKeySequence::NativeText));
         pTypeShortcut->setData(nId);
         g_pModel->setItem(i, COLUMN_SHORTCUT, pTypeShortcut);
     }
@@ -91,7 +91,7 @@ void DialogShortcuts::reload()
     ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME, 350);      // TODO consts
     ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT, 200);  // TODO consts
 
-    ui->tableViewShortcuts->sortByColumn(COLUMN_NAME, Qt::AscendingOrder);
+   // ui->tableViewShortcuts->sortByColumn(COLUMN_NAME, Qt::AscendingOrder);
 
     connect(ui->tableViewShortcuts->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), SLOT(onCellChanged(QItemSelection, QItemSelection)));
 }
@@ -125,11 +125,12 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
                 qint32 nRow = ui->tableViewShortcuts->currentIndex().row();
 
                 if (nRow < g_pModel->rowCount()) {
-                    QStandardItem *pItem = g_pModel->item(nRow, COLUMN_SHORTCUT);
-                    quint64 nId = (quint64)(pItem->data().toULongLong());
+                    QModelIndex index = ui->tableViewShortcuts->model()->index(nRow, COLUMN_SHORTCUT);
+
+                    quint64 nId = ui->tableViewShortcuts->model()->data(index, Qt::UserRole + 1).toULongLong();
 
                     if (g_pShortcuts->checkShortcut(nId, keyValue)) {
-                        pItem->setText(sText);
+                        ui->tableViewShortcuts->model()->setData(index, sText, Qt::DisplayRole);
                         g_pShortcuts->setShortcut(nId, keyValue);
                         ui->lineEditShortcut->setText(sText);
                     } else {
@@ -185,10 +186,11 @@ void DialogShortcuts::on_pushButtonClear_clicked()
         qint32 nRow = ui->tableViewShortcuts->currentIndex().row();
 
         if (nRow < g_pModel->rowCount()) {
-            QStandardItem *pItem = g_pModel->item(nRow, COLUMN_SHORTCUT);
-            quint64 nId = (quint64)(pItem->data().toULongLong());
+            QModelIndex index = ui->tableViewShortcuts->model()->index(nRow, COLUMN_SHORTCUT);
 
-            pItem->setText("");
+            quint64 nId = ui->tableViewShortcuts->model()->data(index, Qt::UserRole + 1).toULongLong();
+
+            ui->tableViewShortcuts->model()->setData(index, "", Qt::DisplayRole);
             ui->lineEditShortcut->setText("");
             g_pShortcuts->setShortcut(nId, QKeySequence());
         }
@@ -197,12 +199,12 @@ void DialogShortcuts::on_pushButtonClear_clicked()
 
 void DialogShortcuts::on_pushButtonDefault_clicked()
 {
-    QList<quint64> listIDs = g_pShortcuts->getShortcutsIDs();
+    QList<XShortcuts::RECORD> listShortcuts = g_pShortcuts->getRecords();
 
-    qint32 nNumberOfRecords = listIDs.count();
+    qint32 nNumberOfRecords = listShortcuts.count();
 
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
-        quint64 nId = listIDs.at(i);
+        quint64 nId = listShortcuts.at(i).nId;
 
         g_pShortcuts->setShortcut(nId, g_pShortcuts->getDefault(nId));
     }

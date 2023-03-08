@@ -40,6 +40,8 @@
 #define X_ID_FILE_PRINT XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_PRINT)
 #define X_ID_FILE_EXIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EXIT)
 
+#define X_ID_VIEW_FULLSCREEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_VIEW, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_FULLSCREEN)
+
 #define X_ID_STRINGS_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 #define X_ID_STRINGS_DEMANGLE XShortcuts::createShortcutsId(XShortcuts::GROUPID_STRINGS, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DEMANGLE)
@@ -90,9 +92,12 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
 #define X_ID_DISASM_GOTO_ENTRYPOINT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ENTRYPOINT)
+#define X_ID_DISASM_GOTO_REFERENCES \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_REFERENCES)
 // #define X_ID_DISASM_GOTO_XREF XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO,
 //  XShortcuts::BASEID_XREF)
 #define X_ID_DISASM_SIGNATURE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SIGNATURE)
+
 #define X_ID_DISASM_HEX_SIGNATURE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_HEX, XShortcuts::BASEID_SIGNATURE)
 #define X_ID_DISASM_FIND_STRING \
@@ -430,10 +435,17 @@ public:
         BASEID_ENTROPY,
         BASEID_HASH,
         BASEID_DATA,
-        BASEID_STACK
+        BASEID_STACK,
+        BASEID_FULLSCREEN,
+        BASEID_REFERENCES
     };
 
     static const qint32 GROUP_SH = 24;  // 0xFF000000 // TODO remove !!!
+
+    struct RECORD {
+        quint64 nId;
+        QKeySequence keySequence;
+    };
 
     // TODO remove !!!
     // TODO Check projects
@@ -471,12 +483,13 @@ public:
     void addGroup(GROUPID groupId);
     void addId(quint64 nId);
     void addGroup(ID id);  // TODO remove Check all projects
-    QList<quint64> getShortcutsIDs();
+    QList<RECORD> getRecords();
     void load();
     void save();
     QKeySequence getShortcut(quint64 nId);
-    void setShortcut(quint64 nId, QKeySequence keyValue);
-    bool checkShortcut(quint64 nId, QKeySequence keyValue);
+    bool isIdPresent(quint64 nId);
+    void setShortcut(quint64 nId, QKeySequence keySequence);
+    bool checkShortcut(quint64 nId, QKeySequence keySequence);
     static QString idToSettingsString(quint64 nId);
     static QKeySequence getDefault(quint64 nId);
     static QString groupIdToString(GROUPID groupId);
@@ -498,7 +511,7 @@ private:
     bool g_bIsNative;
     QString g_sName;
     QString g_sFilePath;
-    QMap<quint64, QKeySequence> g_mapValues;
+    QList<RECORD> g_listRecords;
     QMenu *g_pRowCopyMenu;
     QList<QAction *> g_listCopyActions;
 };
