@@ -34,6 +34,7 @@
 #include <QClipboard>
 
 #define X_ID_FILE_OPEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_OPEN)
+#define X_ID_FILE_NEW XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_NEW)
 #define X_ID_FILE_SAVE XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SAVE)
 #define X_ID_FILE_SAVEAS XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SAVEAS)
 #define X_ID_FILE_CLOSE XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_CLOSE)
@@ -381,6 +382,7 @@ public:
         BASEID_COPY,
         BASEID_SHOW,
         BASEID_OPEN,
+        BASEID_NEW,
         BASEID_SAVE,
         BASEID_SAVEAS,
         BASEID_CLOSE,

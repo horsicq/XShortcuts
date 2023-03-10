@@ -49,6 +49,7 @@ void XShortcuts::addGroup(GROUPID groupId)
 {
     if (groupId == GROUPID_FILE) {
         addId(X_ID_FILE_OPEN);
+        addId(X_ID_FILE_NEW);
         addId(X_ID_FILE_SAVE);
         addId(X_ID_FILE_SAVEAS);
         addId(X_ID_FILE_CLOSE);
@@ -816,6 +817,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Show");
     else if (baseId == BASEID_OPEN)
         sResult = tr("Open");
+    else if (baseId == BASEID_NEW)
+        sResult = tr("New");
     else if (baseId == BASEID_SAVE)
         sResult = tr("Save");
     else if (baseId == BASEID_SAVEAS)
@@ -1002,6 +1005,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Show");
     else if (baseId == BASEID_OPEN)
         sResult = QString("Open");
+    else if (baseId == BASEID_NEW)
+        sResult = QString("New");
     else if (baseId == BASEID_SAVE)
         sResult = QString("Save");
     else if (baseId == BASEID_SAVEAS)
