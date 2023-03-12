@@ -429,8 +429,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_FILE_EXIT)
             ksResult = Qt::ALT + Qt::Key_X;
     } else if (groupId == GROUPID_VIEW) {
-        if (nId == X_ID_VIEW_FULLSCREEN)
-            ksResult = Qt::CTRL + Qt::Key_E;
+        if (nId == X_ID_VIEW_FULLSCREEN) ksResult = Qt::CTRL + Qt::Key_E;
     } else if (groupId == GROUPID_DEBUGGER) {
         if (nId == X_ID_DEBUGGER_FILE_OPEN)
             ksResult = QKeySequence::Open;
