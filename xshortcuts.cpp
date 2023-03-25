@@ -802,6 +802,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
         sResult = tr("Scan");
     else if (groupId == GROUPID_EDITOR)
         sResult = tr("Editor");
+    else if (groupId == GROUPID_BOOKMARKS)
+        sResult = tr("Bookmarks");
 
     return sResult;
 }
@@ -934,6 +936,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Full screen");
     else if (baseId == BASEID_REFERENCES)
         sResult = tr("References");
+    else if (baseId == BASEID_BOOKMARK)
+        sResult = tr("Bookmark");
 
     return sResult;
 }
@@ -1122,6 +1126,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Full screen");
     else if (baseId == BASEID_REFERENCES)
         sResult = QString("References");
+    else if (baseId == BASEID_BOOKMARK)
+        sResult = QString("Bookmark");
 
     return sResult;
 }
@@ -1202,6 +1208,8 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
         sResult = QString("Scan");
     else if (groupId == GROUPID_EDITOR)
         sResult = QString("Editor");
+    else if (groupId == GROUPID_BOOKMARKS)
+        sResult = QString("Bookmarks");
 
     return sResult;
 }
