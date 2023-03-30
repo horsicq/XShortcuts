@@ -155,7 +155,7 @@ void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel
         if (*g_ppOldModel) {
             delete (*g_ppOldModel);
 
-            (*g_ppOldModel) = 0;
+            (*g_ppOldModel) = nullptr;
         }
     }
 }
@@ -167,7 +167,7 @@ void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel
         if (*g_ppOldModel) {
             delete (*g_ppOldModel);
 
-            (*g_ppOldModel) = 0;
+            (*g_ppOldModel) = nullptr;
         }
     }
 }
