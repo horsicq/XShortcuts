@@ -35,7 +35,7 @@ XShortcuts::~XShortcuts()
 
 void XShortcuts::setName(QString sValue)
 {
-    // mb TODO different names for Windows and macOS
+    // TODO different names for Windows and macOS
     // TODO Check
     this->g_sName = sValue;
 }
