@@ -155,6 +155,9 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_FOLLOWIN_MEMORYMAP);
         addId(X_ID_HEX_FOLLOWIN_HEX);
         addId(X_ID_HEX_EDIT_HEX);
+#ifdef QT_SQL_LIB
+        addId(X_ID_HEX_BOOKMARKS_NEW);
+#endif
     } else if (groupId == GROUPID_DISASM) {
         addId(X_ID_DISASM_DUMPTOFILE);
         addId(X_ID_DISASM_GOTO_OFFSET);
