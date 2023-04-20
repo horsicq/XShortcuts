@@ -157,6 +157,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_EDIT_HEX);
 #ifdef QT_SQL_LIB
         addId(X_ID_HEX_BOOKMARKS_NEW);
+        addId(X_ID_HEX_BOOKMARKS_LIST);
 #endif
     } else if (groupId == GROUPID_DISASM) {
         addId(X_ID_DISASM_DUMPTOFILE);
@@ -941,6 +942,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("References");
     else if (baseId == BASEID_BOOKMARK)
         sResult = tr("Bookmark");
+    else if (baseId == BASEID_LIST)
+        sResult = tr("List");
 
     return sResult;
 }
@@ -1131,6 +1134,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("References");
     else if (baseId == BASEID_BOOKMARK)
         sResult = QString("Bookmark");
+    else if (baseId == BASEID_LIST)
+        sResult = QString("List");
 
     return sResult;
 }

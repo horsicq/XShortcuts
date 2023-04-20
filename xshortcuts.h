@@ -88,6 +88,8 @@
 #define X_ID_HEX_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
 #define X_ID_HEX_BOOKMARKS_NEW \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BOOKMARKS, XShortcuts::BASEID_NEW)
+#define X_ID_HEX_BOOKMARKS_LIST \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BOOKMARKS, XShortcuts::BASEID_LIST)
 
 #define X_ID_DISASM_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_DISASM_GOTO_OFFSET \
@@ -444,7 +446,8 @@ public:
         BASEID_STACK,
         BASEID_FULLSCREEN,
         BASEID_REFERENCES,
-        BASEID_BOOKMARK
+        BASEID_BOOKMARK,
+        BASEID_LIST
     };
 
     static const qint32 GROUP_SH = 24;  // 0xFF000000 // TODO remove !!!
