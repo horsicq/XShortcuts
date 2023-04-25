@@ -450,7 +450,7 @@ public:
         BASEID_LIST
     };
 
-    static const qint32 GROUP_SH = 24;  // 0xFF000000 // TODO remove !!!
+    static const qint32 GROUP_SH = 24;  // 0xFF000000 TODO remove !!!
 
     struct RECORD {
         quint64 nId;
