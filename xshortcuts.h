@@ -488,7 +488,7 @@ public:
     explicit XShortcuts(QObject *pParent = nullptr);
     ~XShortcuts();
 
-    void setName(QString sValue);
+    void setName(const QString &sValue);
     void setNative(bool bValue);
     void addGroup(GROUPID groupId);
     void addId(quint64 nId);

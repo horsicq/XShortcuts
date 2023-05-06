@@ -33,7 +33,7 @@ XShortcuts::~XShortcuts()
     }
 }
 
-void XShortcuts::setName(QString sValue)
+void XShortcuts::setName(const QString &sValue)
 {
     // TODO different names for Windows and macOS
     // TODO Check
