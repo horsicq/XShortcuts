@@ -43,7 +43,7 @@ public:
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     void setActive(bool bState);
-    void saveTableModel(QAbstractItemModel *pModel, QString sFileName);
+    void saveTableModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTreeModel(QAbstractItemModel *pModel, QString sFileName);
     void saveTextEdit(QTextEdit *pTextEdit, QString sFileName);
     virtual void adjustView();

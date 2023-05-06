@@ -55,13 +55,13 @@ void XShortcutsWidget::setActive(bool bState)
     g_bIsActive = bState;
 }
 
-void XShortcutsWidget::saveTableModel(QAbstractItemModel *pModel, QString sFileName)
+void XShortcutsWidget::saveTableModel(QAbstractItemModel *pModel, const QString &sFileName)
 {
-    sFileName = QFileDialog::getSaveFileName(this, tr("Save"), sFileName, QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"), tr("All files")));
+    QString _sFileName = QFileDialog::getSaveFileName(this, tr("Save"), sFileName, QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"), tr("All files")));
 
-    if (!sFileName.isEmpty()) {
-        if (!XOptions::saveTableModel(pModel, sFileName)) {
-            QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), QString("%1: %2").arg(tr("Cannot save file"), sFileName));
+    if (!_sFileName.isEmpty()) {
+        if (!XOptions::saveTableModel(pModel, _sFileName)) {
+            QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), QString("%1: %2").arg(tr("Cannot save file"), _sFileName));
         }
     }
 }
