@@ -123,6 +123,8 @@
 #define X_ID_DISASM_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 #define X_ID_DISASM_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
+#define X_ID_DISASM_ANALYZE_DISASM \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_DISASM)
 
 // TODO Hardware breakpoints !!!
 #define X_ID_DEBUGGER_FILE_OPEN \
@@ -379,7 +381,8 @@ public:
         GROUPID_SHOWIN,
         GROUPID_BREAKPOINT,
         GROUPID_VALUE,
-        GROUPID_BOOKMARKS
+        GROUPID_BOOKMARKS,
+        GROUPID_ANALYZE
     };
 
     enum BASEID {

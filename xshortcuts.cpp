@@ -178,6 +178,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_COPY_ADDRESS);
         addId(X_ID_DISASM_FOLLOWIN_HEX);
         addId(X_ID_DISASM_EDIT_HEX);
+        addId(X_ID_DISASM_ANALYZE_DISASM);
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
@@ -659,6 +660,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence::Copy;
         else if (nId == X_ID_DISASM_FOLLOWIN_HEX)
             ksResult = QKeySequence();
+        else if (nId == X_ID_DISASM_ANALYZE_DISASM)
+            ksResult = Qt::Key_D;
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
@@ -808,6 +811,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
         sResult = tr("Editor");
     else if (groupId == GROUPID_BOOKMARKS)
         sResult = tr("Bookmarks");
+    else if (groupId == GROUPID_ANALYZE)
+        sResult = tr("Analyze");
 
     return sResult;
 }
@@ -951,9 +956,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
 quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgroup, BASEID baseId)
 {
     quint64 nResult = 0;
-
     quint64 nSubgoups = 0;
-
     qint32 nNumberOfRecords = listSubgroup.count();
 
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
@@ -1218,6 +1221,8 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
         sResult = QString("Editor");
     else if (groupId == GROUPID_BOOKMARKS)
         sResult = QString("Bookmarks");
+    else if (groupId == GROUPID_ANALYZE)
+        sResult = QString("Analyze");
 
     return sResult;
 }
