@@ -77,7 +77,7 @@ void XShortcutsWidget::saveTreeModel(QAbstractItemModel *pModel, const QString &
     }
 }
 
-void XShortcutsWidget::saveTextEdit(QTextEdit *pTextEdit, QString sFileName)
+void XShortcutsWidget::saveTextEdit(QTextEdit *pTextEdit, const QString &sFileName)
 {
     QString _sFileName = QFileDialog::getSaveFileName(this, tr("Save"), sFileName, QString("%1 (*.txt);;%2 (*)").arg(tr("Text files"), tr("All files")));
 
