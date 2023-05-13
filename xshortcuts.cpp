@@ -179,6 +179,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_FOLLOWIN_HEX);
         addId(X_ID_DISASM_EDIT_HEX);
         addId(X_ID_DISASM_ANALYZE_DISASM);
+        addId(X_ID_DISASM_ANALYZE_REMOVE);
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
@@ -662,6 +663,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
             ksResult = QKeySequence();
         else if (nId == X_ID_DISASM_ANALYZE_DISASM)
             ksResult = Qt::Key_D;
+        else if (nId == X_ID_DISASM_ANALYZE_REMOVE)
+            ksResult = Qt::Key_Delete;
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
@@ -949,6 +952,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("Bookmark");
     else if (baseId == BASEID_LIST)
         sResult = tr("List");
+    else if (baseId == BASEID_REMOVE)
+        sResult = tr("Remove");
 
     return sResult;
 }
@@ -1139,6 +1144,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("Bookmark");
     else if (baseId == BASEID_LIST)
         sResult = QString("List");
+    else if (baseId == BASEID_REMOVE)
+        sResult = QString("Remove");
 
     return sResult;
 }

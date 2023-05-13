@@ -47,7 +47,7 @@ public:
     void saveTreeModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTextEdit(QTextEdit *pTextEdit, const QString &sFileName);
     virtual void adjustView();
-    QString getOpenFileName(QString sDirectory);
+    QString getOpenFileName(const QString &sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
 #ifdef QT_CONCURRENT_LIB
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);

@@ -108,7 +108,7 @@ void XShortcutsWidget::adjustView()
 {
 }
 
-QString XShortcutsWidget::getOpenFileName(QString sDirectory)
+QString XShortcutsWidget::getOpenFileName(const QString &sDirectory)
 {
     return QFileDialog::getOpenFileName(this, tr("Open file") + QString("..."), sDirectory, tr("All files") + QString(" (*)"));
 }

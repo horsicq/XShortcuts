@@ -125,6 +125,8 @@
 #define X_ID_DISASM_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
 #define X_ID_DISASM_ANALYZE_DISASM \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_DISASM)
+#define X_ID_DISASM_ANALYZE_REMOVE \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_REMOVE)
 
 // TODO Hardware breakpoints !!!
 #define X_ID_DEBUGGER_FILE_OPEN \
@@ -450,7 +452,8 @@ public:
         BASEID_FULLSCREEN,
         BASEID_REFERENCES,
         BASEID_BOOKMARK,
-        BASEID_LIST
+        BASEID_LIST,
+        BASEID_REMOVE
     };
 
     static const qint32 GROUP_SH = 24;  // 0xFF000000 TODO remove !!!
