@@ -954,6 +954,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
         sResult = tr("List");
     else if (baseId == BASEID_REMOVE)
         sResult = tr("Remove");
+    else if (baseId == BASEID_ANALYZE)
+        sResult = tr("Analyze");
 
     return sResult;
 }
@@ -1146,6 +1148,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
         sResult = QString("List");
     else if (baseId == BASEID_REMOVE)
         sResult = QString("Remove");
+    else if (baseId == BASEID_ANALYZE)
+        sResult = QString("Analyze");
 
     return sResult;
 }

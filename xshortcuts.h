@@ -123,6 +123,8 @@
 #define X_ID_DISASM_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 #define X_ID_DISASM_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
+#define X_ID_DISASM_ANALYZE_ANALYZE \
+XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_ANALYZE)
 #define X_ID_DISASM_ANALYZE_DISASM \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_DISASM)
 #define X_ID_DISASM_ANALYZE_REMOVE \
@@ -453,7 +455,8 @@ public:
         BASEID_REFERENCES,
         BASEID_BOOKMARK,
         BASEID_LIST,
-        BASEID_REMOVE
+        BASEID_REMOVE,
+        BASEID_ANALYZE
     };
 
     static const qint32 GROUP_SH = 24;  // 0xFF000000 TODO remove !!!
