@@ -180,6 +180,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_EDIT_HEX);
         addId(X_ID_DISASM_ANALYZE_DISASM);
         addId(X_ID_DISASM_ANALYZE_REMOVE);
+        addId(X_ID_DISASM_ANALYZE_ANALYZE);
+        addId(X_ID_DISASM_ANALYZE_SYMBOLS);
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
