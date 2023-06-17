@@ -47,9 +47,9 @@ XShortcuts *XShortcutsWidget::getShortcuts()
 
 XOptions *XShortcutsWidget::getGlobalOptions()
 {
-//#ifdef QT_DEBUG
-//    qDebug("getGlobalOptions: %X", (unsigned long long)g_pXOptions);
-//#endif
+    // #ifdef QT_DEBUG
+    //     qDebug("getGlobalOptions: %X", (unsigned long long)g_pXOptions);
+    // #endif
     return g_pXOptions;
 }
 
