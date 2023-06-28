@@ -500,7 +500,7 @@ public:
     ~XShortcuts();
 
     void setName(const QString &sValue);
-    void setNative(bool bValue);
+    void setNative(bool bValue, const QString &sApplicationDataPath = "");
     void addGroup(GROUPID groupId);
     void addId(quint64 nId);
     void addGroup(ID id);  // TODO remove Check all projects
@@ -530,6 +530,7 @@ private slots:
 
 private:
     bool g_bIsNative;
+    QString g_sApplicationDataPath;
     QString g_sName;
     QString g_sFilePath;
     QList<RECORD> g_listRecords;

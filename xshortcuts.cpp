@@ -40,9 +40,14 @@ void XShortcuts::setName(const QString &sValue)
     this->g_sName = sValue;
 }
 
-void XShortcuts::setNative(bool bValue)
+void XShortcuts::setNative(bool bValue, const QString &sApplicationDataPath)
 {
     g_bIsNative = bValue;
+    g_sApplicationDataPath = sApplicationDataPath;
+
+    if (g_sApplicationDataPath == "") {
+        g_sApplicationDataPath = qApp->applicationDirPath();
+    }
 }
 
 void XShortcuts::addGroup(GROUPID groupId)
@@ -250,7 +255,7 @@ void XShortcuts::load()
     if (g_bIsNative) {
         pSettings = new QSettings;
     } else if (g_sName != "") {
-        pSettings = new QSettings(qApp->applicationDirPath() + QDir::separator() + QString("%1").arg(g_sName), QSettings::IniFormat);  // TODO more options
+        pSettings = new QSettings(g_sApplicationDataPath + QDir::separator() + QString("%1").arg(g_sName), QSettings::IniFormat);  // TODO more options
     }
 
 #ifdef QT_DEBUG
@@ -284,7 +289,7 @@ void XShortcuts::save()
     if (g_bIsNative) {
         pSettings = new QSettings;
     } else if (g_sName != "") {
-        pSettings = new QSettings(qApp->applicationDirPath() + QDir::separator() + QString("%1").arg(g_sName), QSettings::IniFormat);  // TODO more options
+        pSettings = new QSettings(g_sApplicationDataPath + QDir::separator() + QString("%1").arg(g_sName), QSettings::IniFormat);  // TODO more options
     }
 
 #ifdef QT_DEBUG
