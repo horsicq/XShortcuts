@@ -503,7 +503,6 @@ public:
     void setNative(bool bValue, const QString &sApplicationDataPath = "");
     void addGroup(GROUPID groupId);
     void addId(quint64 nId);
-    void addGroup(ID id);  // TODO remove Check all projects
     QList<RECORD> getRecords();
     void load();
     void save();

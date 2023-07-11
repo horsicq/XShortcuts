@@ -238,11 +238,6 @@ void XShortcuts::addId(quint64 nId)
     setShortcut(nId, getDefault(nId));
 }
 
-void XShortcuts::addGroup(ID id)  // TODO Remove
-{
-    Q_UNUSED(id)
-}
-
 QList<XShortcuts::RECORD> XShortcuts::getRecords()
 {
     return g_listRecords;
