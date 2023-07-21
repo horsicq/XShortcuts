@@ -49,6 +49,7 @@ public:
     virtual void adjustView();
     QString getOpenFileName(const QString &sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
+    virtual void reloadShortcuts();
 #ifdef QT_CONCURRENT_LIB
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);

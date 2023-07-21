@@ -35,15 +35,17 @@ public:
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
-    bool isFocused();
+    bool isActive();
+    void setActive(bool bState);
     virtual void adjustView();
+    virtual void reloadShortcuts();
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState) = 0;
 
 private:
-    bool g_bIsFocused;
+    bool g_bIsActive;
     XShortcuts *g_pShortcuts;
     XShortcuts g_scEmpty;
     XOptions *g_pXOptions;

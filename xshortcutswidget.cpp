@@ -33,8 +33,7 @@ void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
     g_pXOptions = pXOptions;
 
     if (g_bIsActive) {
-        registerShortcuts(false);
-        registerShortcuts(true);
+        reloadShortcuts();
     }
 
     adjustView();
@@ -97,8 +96,7 @@ bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
 
     if (pEvent->type() == QEvent::FocusIn) {
         g_bIsActive = true;
-        registerShortcuts(false);
-        registerShortcuts(true);
+        reloadShortcuts();
     } else if (pEvent->type() == QEvent::FocusOut) {
         g_bIsActive = false;
         registerShortcuts(false);
@@ -123,6 +121,12 @@ void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bS
             ppObjects[i]->blockSignals(bState);
         }
     }
+}
+
+void XShortcutsWidget::reloadShortcuts()
+{
+    registerShortcuts(false);
+    registerShortcuts(true);
 }
 
 #ifdef QT_CONCURRENT_LIB

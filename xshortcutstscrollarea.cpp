@@ -24,7 +24,7 @@ XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScroll
 {
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
-    g_bIsFocused = false;
+    g_bIsActive = false;
 }
 
 void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
@@ -32,9 +32,8 @@ void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOption
     g_pShortcuts = pShortcuts;
     g_pXOptions = pXOptions;
 
-    if (g_bIsFocused) {
-        registerShortcuts(false);
-        registerShortcuts(true);
+    if (g_bIsActive) {
+        reloadShortcuts();
     }
 
     adjustView();
@@ -50,9 +49,14 @@ XOptions *XShortcutstScrollArea::getGlobalOptions()
     return g_pXOptions;
 }
 
-bool XShortcutstScrollArea::isFocused()
+bool XShortcutstScrollArea::isActive()
 {
-    return g_bIsFocused;
+    return g_bIsActive;
+}
+
+void XShortcutstScrollArea::setActive(bool bState)
+{
+    g_bIsActive = bState;
 }
 
 bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
@@ -60,10 +64,10 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
     Q_UNUSED(pObj)
 
     if (pEvent->type() == QEvent::FocusIn) {
-        g_bIsFocused = true;
-        registerShortcuts(true);
+        g_bIsActive = true;
+        reloadShortcuts();
     } else if (pEvent->type() == QEvent::FocusOut) {
-        g_bIsFocused = false;
+        g_bIsActive = false;
         registerShortcuts(false);
     }
 
@@ -73,4 +77,10 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
 void XShortcutstScrollArea::adjustView()
 {
     // TODO
+}
+
+void XShortcutstScrollArea::reloadShortcuts()
+{
+    registerShortcuts(false);
+    registerShortcuts(true);
 }

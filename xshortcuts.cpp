@@ -123,6 +123,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_STACK_EDIT_HEX);
         addId(X_ID_DEBUGGER_STACK_FOLLOWIN_DISASM);
         addId(X_ID_DEBUGGER_STACK_FOLLOWIN_HEX);
+        addId(X_ID_DEBUGGER_REGISTERS_EDIT);
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_COPY));
@@ -526,6 +527,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_DEBUGGER_STACK_COPY_ADDRESS) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_STACK_COPY_VALUE) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_STACK_EDIT_HEX) ksResult = QKeySequence();
+        else if (nId == X_ID_DEBUGGER_REGISTERS_EDIT) ksResult = Qt::Key_Enter;
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
     } else if (groupId == GROUPID_STRINGS) {
@@ -642,6 +644,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId == GROUPID_TRACE) sResult = tr("Trace");
     else if (groupId == GROUPID_ANIMATE) sResult = tr("Animate");
     else if (groupId == GROUPID_DEBUGGER) sResult = tr("Debugger");
+    else if (groupId == GROUPID_REGISTERS) sResult = tr("Registers");
     else if (groupId == GROUPID_REGISTER) sResult = tr("Register");
     else if (groupId == GROUPID_STACK) sResult = tr("Stack");
     else if (groupId == GROUPID_ARCHIVE) sResult = tr("Archive");
@@ -740,6 +743,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_LIST) sResult = tr("List");
     else if (baseId == BASEID_REMOVE) sResult = tr("Remove");
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
+    else if (baseId == BASEID_EDIT) sResult = tr("Edit");
 
     return sResult;
 }
@@ -868,6 +872,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_LIST) sResult = QString("List");
     else if (baseId == BASEID_REMOVE) sResult = QString("Remove");
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
+    else if (baseId == BASEID_EDIT) sResult = QString("Edit");
 
     return sResult;
 }
@@ -890,6 +895,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId == GROUPID_TRACE) sResult = QString("Trace");
     else if (groupId == GROUPID_ANIMATE) sResult = QString("Animate");
     else if (groupId == GROUPID_DEBUGGER) sResult = QString("Debugger");
+    else if (groupId == GROUPID_REGISTERS) sResult = QString("Registers");
     else if (groupId == GROUPID_REGISTER) sResult = QString("Register");
     else if (groupId == GROUPID_STACK) sResult = QString("Stack");
     else if (groupId == GROUPID_ARCHIVE) sResult = QString("Archive");
