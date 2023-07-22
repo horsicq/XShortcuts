@@ -289,7 +289,6 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER,                                                                                           \
                                   QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_STACK << XShortcuts::GROUPID_VALUE << XShortcuts::GROUPID_FOLLOWIN, \
                                   XShortcuts::BASEID_DISASM)
-// TODO Registers
 #define X_ID_DEBUGGER_REGISTERS_EDIT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS, XShortcuts::BASEID_EDIT)
 
