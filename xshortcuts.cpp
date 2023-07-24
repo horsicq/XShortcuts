@@ -124,6 +124,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_STACK_FOLLOWIN_DISASM);
         addId(X_ID_DEBUGGER_STACK_FOLLOWIN_HEX);
         addId(X_ID_DEBUGGER_REGISTERS_EDIT);
+        addId(X_ID_DEBUGGER_REGISTERS_FOLLOWIN_DISASM);
+        addId(X_ID_DEBUGGER_REGISTERS_FOLLOWIN_HEX);
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_COPY));
@@ -527,7 +529,9 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_DEBUGGER_STACK_COPY_ADDRESS) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_STACK_COPY_VALUE) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_STACK_EDIT_HEX) ksResult = QKeySequence();
-        else if (nId == X_ID_DEBUGGER_REGISTERS_EDIT) ksResult = Qt::Key_Enter;
+        else if (nId == X_ID_DEBUGGER_REGISTERS_EDIT) ksResult = Qt::Key_Return; // mb Enter
+        else if (nId == X_ID_DEBUGGER_REGISTERS_FOLLOWIN_DISASM) ksResult = QKeySequence();
+        else if (nId == X_ID_DEBUGGER_REGISTERS_FOLLOWIN_HEX) ksResult = QKeySequence();
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
     } else if (groupId == GROUPID_STRINGS) {
