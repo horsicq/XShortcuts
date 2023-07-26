@@ -295,6 +295,8 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_DISASM)
 #define X_ID_DEBUGGER_REGISTERS_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
+#define X_ID_DEBUGGER_REGISTERS_COPY \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS, XShortcuts::BASEID_COPY)
 
 #define X_ID_PROCESS_STRUCTS XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_STRUCTS)
 #define X_ID_PROCESS_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_PROCESS, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)

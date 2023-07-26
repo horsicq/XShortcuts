@@ -126,6 +126,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_REGISTERS_EDIT);
         addId(X_ID_DEBUGGER_REGISTERS_FOLLOWIN_DISASM);
         addId(X_ID_DEBUGGER_REGISTERS_FOLLOWIN_HEX);
+        addId(X_ID_DEBUGGER_REGISTERS_COPY);
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_COPY));
