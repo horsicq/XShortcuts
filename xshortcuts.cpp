@@ -530,7 +530,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_DEBUGGER_STACK_COPY_ADDRESS) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_STACK_COPY_VALUE) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_STACK_EDIT_HEX) ksResult = QKeySequence();
-        else if (nId == X_ID_DEBUGGER_REGISTERS_EDIT) ksResult = Qt::Key_Return; // mb Enter
+        else if (nId == X_ID_DEBUGGER_REGISTERS_EDIT) ksResult = Qt::Key_Return;  // mb Enter
         else if (nId == X_ID_DEBUGGER_REGISTERS_FOLLOWIN_DISASM) ksResult = QKeySequence();
         else if (nId == X_ID_DEBUGGER_REGISTERS_FOLLOWIN_HEX) ksResult = QKeySequence();
     } else if (groupId == GROUPID_DEBUG) {
