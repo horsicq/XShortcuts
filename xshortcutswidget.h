@@ -61,7 +61,7 @@ private:
 #endif
 
 private slots:
-    void errorMessageSlot(QString sErrorMessage);
+    void errorMessageSlot(const QString &sErrorMessage);
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;

@@ -179,7 +179,7 @@ void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel
     }
 }
 #endif
-void XShortcutsWidget::errorMessageSlot(QString sErrorMessage)
+void XShortcutsWidget::errorMessageSlot(const QString &sErrorMessage)
 {
     QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), sErrorMessage);
 }
