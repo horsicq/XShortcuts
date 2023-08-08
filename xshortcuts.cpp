@@ -943,7 +943,7 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
     g_pRowCopyMenu = new QMenu;
     g_pRowCopyMenu->setTitle(tr("Copy"));
 
-    int nRow = pTableView->currentIndex().row();
+    qint32 nRow = pTableView->currentIndex().row();
 
     if (nRow != -1) {
         QList<QString> listRecords;
