@@ -25,6 +25,10 @@ XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScroll
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
     g_bIsActive = false;
+
+    g_color[TCLOLOR_SELECTED] = getColorSelected(viewport());
+    g_color[TCLOLOR_BREAKPOINT] = Qt::red;              // mb TODO
+    g_color[TCLOLOR_ANALYSED] = QColor(100, 0, 0, 10);  // TODO
 }
 
 void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
@@ -83,4 +87,28 @@ void XShortcutstScrollArea::reloadShortcuts()
 {
     registerShortcuts(false);
     registerShortcuts(true);
+}
+
+QColor XShortcutstScrollArea::getColor(TCLOLOR tcolor)
+{
+    return g_color[tcolor];
+}
+
+void XShortcutstScrollArea::setColor(TCLOLOR tcolor, QColor color)
+{
+    g_color[tcolor] = color;
+}
+
+QColor XShortcutstScrollArea::getColorSelected(QColor color)
+{
+    color.setAlpha(50);
+    color = color.darker(150);
+
+    return color;
+}
+
+QColor XShortcutstScrollArea::getColorSelected(QWidget *pWidget)
+{
+    QColor colorBackground = pWidget->palette().window().color();
+    return getColorSelected(colorBackground);
 }

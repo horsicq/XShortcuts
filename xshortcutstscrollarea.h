@@ -30,6 +30,13 @@ class XShortcutstScrollArea : public QAbstractScrollArea {
     Q_OBJECT
 
 public:
+    enum TCLOLOR {
+        TCLOLOR_SELECTED = 0,
+        TCLOLOR_BREAKPOINT,
+        TCLOLOR_ANALYSED,
+        TCLOLOR_SIZE
+    };
+
     XShortcutstScrollArea(QWidget *pParent = nullptr);
 
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
@@ -39,6 +46,10 @@ public:
     void setActive(bool bState);
     virtual void adjustView();
     virtual void reloadShortcuts();
+    QColor getColor(TCLOLOR tcolor);
+    void setColor(TCLOLOR tcolor, QColor color);
+    static QColor getColorSelected(QColor color);
+    static QColor getColorSelected(QWidget *pWidget);
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
@@ -50,6 +61,7 @@ private:
     XShortcuts g_scEmpty;
     XOptions *g_pXOptions;
     XOptions g_xOptionsEmpty;
+    QColor g_color[TCLOLOR_SIZE];
 };
 
 #endif  // XSHORTCUTSTSCROLLAREA_H
