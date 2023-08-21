@@ -146,6 +146,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_FIND_FOLLOWIN_HEX);
     } else if (groupId == GROUPID_STRUCT) {
     } else if (groupId == GROUPID_HEX) {
+        addId(X_ID_HEX_DATAINSPECTOR);
         addId(X_ID_HEX_DUMPTOFILE);
         addId(X_ID_HEX_GOTO_OFFSET);
         addId(X_ID_HEX_GOTO_ADDRESS);
@@ -547,7 +548,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_SIGNATURES_FOLLOWIN_HEX) ksResult = QKeySequence();
     } else if (groupId == GROUPID_STRUCT) {
     } else if (groupId == GROUPID_HEX) {
-        if (nId == X_ID_HEX_DUMPTOFILE) ksResult = Qt::CTRL + Qt::Key_D;
+        if (nId == X_ID_HEX_DATAINSPECTOR) ksResult = QKeySequence();
+        else if (nId == X_ID_HEX_DUMPTOFILE) ksResult = Qt::CTRL + Qt::Key_D;
         else if (nId == X_ID_HEX_GOTO_OFFSET) ksResult = Qt::CTRL + Qt::Key_G;
         else if (nId == X_ID_HEX_GOTO_ADDRESS) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_SIGNATURE) ksResult = QKeySequence();
@@ -749,6 +751,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_REMOVE) sResult = tr("Remove");
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
+    else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
 
     return sResult;
 }
@@ -871,13 +874,14 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_ENTROPY) sResult = QString("Entropy");
     else if (baseId == BASEID_HASH) sResult = QString("Hash");
     else if (baseId == BASEID_STACK) sResult = QString("Stack");
-    else if (baseId == BASEID_FULLSCREEN) sResult = QString("Full screen");
+    else if (baseId == BASEID_FULLSCREEN) sResult = QString("FullScreen");
     else if (baseId == BASEID_REFERENCES) sResult = QString("References");
     else if (baseId == BASEID_BOOKMARK) sResult = QString("Bookmark");
     else if (baseId == BASEID_LIST) sResult = QString("List");
     else if (baseId == BASEID_REMOVE) sResult = QString("Remove");
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
+    else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
 
     return sResult;
 }

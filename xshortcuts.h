@@ -61,6 +61,7 @@
 #define X_ID_SIGNATURES_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURES, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 
+#define X_ID_HEX_DATAINSPECTOR XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DATAINSPECTOR)
 #define X_ID_HEX_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_HEX_GOTO_OFFSET XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_OFFSET)
 #define X_ID_HEX_GOTO_ADDRESS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
@@ -468,7 +469,8 @@ public:
         BASEID_LIST,
         BASEID_REMOVE,
         BASEID_ANALYZE,
-        BASEID_EDIT
+        BASEID_EDIT,
+        BASEID_DATAINSPECTOR
     };
 
     static const qint32 GROUP_SH = 24;  // 0xFF000000 TODO remove !!!
