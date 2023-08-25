@@ -190,6 +190,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_EDIT_HEX);
         addId(X_ID_DISASM_ANALYZE_DISASM);
         addId(X_ID_DISASM_ANALYZE_REMOVE);
+        addId(X_ID_DISASM_ANALYZE_ALL);
         addId(X_ID_DISASM_ANALYZE_ANALYZE);
         addId(X_ID_DISASM_ANALYZE_SYMBOLS);
         addId(X_ID_DISASM_ANALYZE_FUNCTIONS);
