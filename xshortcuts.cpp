@@ -192,6 +192,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_ANALYZE_REMOVE);
         addId(X_ID_DISASM_ANALYZE_ANALYZE);
         addId(X_ID_DISASM_ANALYZE_SYMBOLS);
+        addId(X_ID_DISASM_ANALYZE_FUNCTIONS);
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
@@ -725,6 +726,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_HANDLES) sResult = tr("Handles");
     else if (baseId == BASEID_MODULES) sResult = tr("Modules");
     else if (baseId == BASEID_SYMBOLS) sResult = tr("Symbols");
+    else if (baseId == BASEID_FUNCTIONS) sResult = tr("Functions");
     else if (baseId == BASEID_SHORTCUTS) sResult = tr("Shortcuts");
     else if (baseId == BASEID_OPTIONS) sResult = tr("Options");
     else if (baseId == BASEID_ABOUT) sResult = tr("About");
@@ -855,6 +857,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_HANDLES) sResult = QString("Handles");
     else if (baseId == BASEID_MODULES) sResult = QString("Modules");
     else if (baseId == BASEID_SYMBOLS) sResult = QString("Symbols");
+    else if (baseId == BASEID_FUNCTIONS) sResult = QString("Functions");
     else if (baseId == BASEID_SHORTCUTS) sResult = QString("Shortcuts");
     else if (baseId == BASEID_OPTIONS) sResult = QString("Options");
     else if (baseId == BASEID_ABOUT) sResult = QString("About");
