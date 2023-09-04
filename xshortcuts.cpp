@@ -678,6 +678,12 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId == GROUPID_EDITOR) sResult = tr("Editor");
     else if (groupId == GROUPID_BOOKMARKS) sResult = tr("Bookmarks");
     else if (groupId == GROUPID_ANALYZE) sResult = tr("Analyze");
+    else {
+#ifdef QT_DEBUG
+        qDebug("Unknown groupId");
+#endif
+    }
+
 
     return sResult;
 }
@@ -755,11 +761,16 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
+    else {
+#ifdef QT_DEBUG
+        qDebug("Unknown baseId");
+#endif
+    }
 
     return sResult;
 }
 
-quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgroup, BASEID baseId)
+quint64 XShortcuts::createShortcutsId(GROUPID groupId, const QList<GROUPID> &listSubgroup, BASEID baseId)
 {
     quint64 nResult = 0;
     quint64 nSubgoups = 0;
@@ -771,9 +782,9 @@ quint64 XShortcuts::createShortcutsId(GROUPID groupId, QList<GROUPID> listSubgro
 
     nResult = (((quint64)groupId) << (56)) | (((quint64)nSubgoups) << (8)) | ((quint64)baseId);
 
-    if (baseId == BASEID_TOGGLE) {
-        groupId = getGroupId(nResult);
-    }
+//    if (baseId == BASEID_TOGGLE) {
+//        groupId = getGroupId(nResult);
+//    }
 
     return nResult;
 }
@@ -886,6 +897,11 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
+    else {
+#ifdef QT_DEBUG
+        qDebug("Unknown baseId");
+#endif
+    }
 
     return sResult;
 }
