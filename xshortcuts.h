@@ -298,6 +298,8 @@
                                   XShortcuts::BASEID_DISASM)
 #define X_ID_DEBUGGER_REGISTERS_EDIT \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS, XShortcuts::BASEID_EDIT)
+#define X_ID_DEBUGGER_REGISTERS_CLEAR \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS, XShortcuts::BASEID_CLEAR)
 #define X_ID_DEBUGGER_REGISTERS_FOLLOWIN_DISASM                                                                                                                \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_REGISTERS << XShortcuts::GROUPID_FOLLOWIN, \
                                   XShortcuts::BASEID_DISASM)
