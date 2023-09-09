@@ -686,7 +686,6 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
 #endif
     }
 
-
     return sResult;
 }
 
@@ -785,9 +784,9 @@ quint64 XShortcuts::createShortcutsId(GROUPID groupId, const QList<GROUPID> &lis
 
     nResult = (((quint64)groupId) << (56)) | (((quint64)nSubgoups) << (8)) | ((quint64)baseId);
 
-//    if (baseId == BASEID_TOGGLE) {
-//        groupId = getGroupId(nResult);
-//    }
+    //    if (baseId == BASEID_TOGGLE) {
+    //        groupId = getGroupId(nResult);
+    //    }
 
     return nResult;
 }
