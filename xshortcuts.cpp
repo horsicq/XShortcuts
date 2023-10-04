@@ -223,8 +223,10 @@ void XShortcuts::addGroup(GROUPID groupId)
     } else if (groupId == GROUPID_MEMORY) {
     } else if (groupId == GROUPID_MEMORYMAP) {
         addId(X_ID_MEMORYMAP_DUMPTOFILE);
+        addId(X_ID_MEMORYMAP_SHOWIN_FOLDER);
     } else if (groupId == GROUPID_MODULES) {
         addId(X_ID_MODULES_DUMPTOFILE);
+        addId(X_ID_MODULES_SHOWIN_FOLDER);
     } else if (groupId == GROUPID_COPY) {
     } else if (groupId == GROUPID_GOTO) {
     } else if (groupId == GROUPID_EDIT) {
@@ -616,8 +618,10 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     } else if (groupId == GROUPID_MEMORY) {
     } else if (groupId == GROUPID_MEMORYMAP) {
         if (nId == X_ID_MEMORYMAP_DUMPTOFILE) ksResult = QKeySequence();
+        else if (nId == X_ID_MEMORYMAP_SHOWIN_FOLDER) ksResult = QKeySequence();
     } else if (groupId == GROUPID_MODULES) {
         if (nId == X_ID_MODULES_DUMPTOFILE) ksResult = QKeySequence();
+        else if (nId == X_ID_MODULES_SHOWIN_FOLDER) ksResult = QKeySequence();
     } else if (groupId == GROUPID_COPY) {
     } else if (groupId == GROUPID_GOTO) {
     } else if (groupId == GROUPID_EDIT) {
