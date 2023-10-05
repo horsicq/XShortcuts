@@ -128,6 +128,10 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_REGISTERS_FOLLOWIN_DISASM);
         addId(X_ID_DEBUGGER_REGISTERS_FOLLOWIN_HEX);
         addId(X_ID_DEBUGGER_REGISTERS_COPY);
+        addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_0);
+        addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_1);
+        addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_2);
+        addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_3);
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_COPY));
@@ -684,6 +688,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId == GROUPID_EDITOR) sResult = tr("Editor");
     else if (groupId == GROUPID_BOOKMARKS) sResult = tr("Bookmarks");
     else if (groupId == GROUPID_ANALYZE) sResult = tr("Analyze");
+    else if (groupId == GROUPID_HARDWARE) sResult = tr("Hardware");
     else {
 #ifdef QT_DEBUG
         qDebug("Unknown groupId");
@@ -767,6 +772,10 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
+    else if (baseId == BASEID_0) sResult = QString("0");
+    else if (baseId == BASEID_1) sResult = QString("1");
+    else if (baseId == BASEID_2) sResult = QString("2");
+    else if (baseId == BASEID_3) sResult = QString("3");
     else {
 #ifdef QT_DEBUG
         qDebug("Unknown baseId");
@@ -904,6 +913,10 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
+    else if (baseId == BASEID_0) sResult = QString("0");
+    else if (baseId == BASEID_1) sResult = QString("1");
+    else if (baseId == BASEID_2) sResult = QString("2");
+    else if (baseId == BASEID_3) sResult = QString("3");
     else {
 #ifdef QT_DEBUG
         qDebug("Unknown baseId");
@@ -956,6 +969,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId == GROUPID_EDITOR) sResult = QString("Editor");
     else if (groupId == GROUPID_BOOKMARKS) sResult = QString("Bookmarks");
     else if (groupId == GROUPID_ANALYZE) sResult = QString("Analyze");
+    else if (groupId == GROUPID_HARDWARE) sResult = QString("Hardware");
 
     return sResult;
 }

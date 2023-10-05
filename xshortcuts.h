@@ -198,6 +198,10 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_TRACE, XShortcuts::BASEID_STEPOVER)
 #define X_ID_DEBUGGER_TRACE_STOP \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_TRACE, XShortcuts::BASEID_STOP)
+#define X_ID_DEBUGGER_BREAKPOINT_HARDWARE_0 XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BREAKPOINT << XShortcuts::GROUPID_HARDWARE, XShortcuts::BASEID_0)
+#define X_ID_DEBUGGER_BREAKPOINT_HARDWARE_1 XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BREAKPOINT << XShortcuts::GROUPID_HARDWARE, XShortcuts::BASEID_1)
+#define X_ID_DEBUGGER_BREAKPOINT_HARDWARE_2 XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BREAKPOINT << XShortcuts::GROUPID_HARDWARE, XShortcuts::BASEID_2)
+#define X_ID_DEBUGGER_BREAKPOINT_HARDWARE_3 XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BREAKPOINT << XShortcuts::GROUPID_HARDWARE, XShortcuts::BASEID_3)
 #define X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE                                                                                                                \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_BREAKPOINT, \
                                   XShortcuts::BASEID_TOGGLE)
@@ -406,7 +410,8 @@ public:
         GROUPID_BREAKPOINT,
         GROUPID_VALUE,
         GROUPID_BOOKMARKS,
-        GROUPID_ANALYZE
+        GROUPID_ANALYZE,
+        GROUPID_HARDWARE
     };
 
     enum BASEID {
@@ -480,7 +485,11 @@ public:
         BASEID_REMOVE,
         BASEID_ANALYZE,
         BASEID_EDIT,
-        BASEID_DATAINSPECTOR
+        BASEID_DATAINSPECTOR,
+        BASEID_0,
+        BASEID_1,
+        BASEID_2,
+        BASEID_3
     };
 
     static const qint32 GROUP_SH = 24;  // 0xFF000000 TODO remove !!!
