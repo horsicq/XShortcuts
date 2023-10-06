@@ -132,6 +132,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_1);
         addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_2);
         addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_3);
+        addId(X_ID_DEBUGGER_BREAKPOINT_HARDWARE_SHOW);
     } else if (groupId == GROUPID_DEBUG) {
     } else if (groupId == GROUPID_ACTION) {
         addId(createShortcutsId(groupId, QList<GROUPID>(), BASEID_COPY));
