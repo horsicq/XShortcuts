@@ -789,14 +789,14 @@ QString XShortcuts::baseIdToString(BASEID baseId)
 quint64 XShortcuts::createShortcutsId(GROUPID groupId, const QList<GROUPID> &listSubgroup, BASEID baseId)
 {
     quint64 nResult = 0;
-    quint64 nSubgoups = 0;
+    quint64 nSubgroups = 0;
     qint32 nNumberOfRecords = listSubgroup.count();
 
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
-        nSubgoups |= (((quint64)1) << (listSubgroup.at(i)));
+        nSubgroups |= (((quint64)1) << (listSubgroup.at(i)));
     }
 
-    nResult = (((quint64)groupId) << (56)) | (((quint64)nSubgoups) << (8)) | ((quint64)baseId);
+    nResult = (((quint64)groupId) << (56)) | (((quint64)nSubgroups) << (8)) | ((quint64)baseId);
 
     //    if (baseId == BASEID_TOGGLE) {
     //        groupId = getGroupId(nResult);
