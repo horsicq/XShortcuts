@@ -7,3 +7,4 @@ Shortcuts for projects:
 * XMACHOViewer: https://github.com/horsicq/XMACHOViewer
 * PDBRipper: https://github.com/horsicq/PDBRipper
 * XNTSV: https://github.com/horsicq/xntsv
+* trkdbg: https://github.com/horsicq/trkdbg

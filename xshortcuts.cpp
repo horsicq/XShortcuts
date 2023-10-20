@@ -175,6 +175,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_BOOKMARKS_NEW);
         addId(X_ID_HEX_BOOKMARKS_LIST);
 #endif
+        addId(X_ID_HEX_STRINGS);
     } else if (groupId == GROUPID_DISASM) {
         addId(X_ID_DISASM_DUMPTOFILE);
         addId(X_ID_DISASM_GOTO_OFFSET);
