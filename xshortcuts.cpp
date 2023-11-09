@@ -171,6 +171,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_FOLLOWIN_MEMORYMAP);
         addId(X_ID_HEX_FOLLOWIN_HEX);
         addId(X_ID_HEX_EDIT_HEX);
+        addId(X_ID_HEX_EDIT_REMOVE);
+        addId(X_ID_HEX_EDIT_RESIZE);
 #ifdef QT_SQL_LIB
         addId(X_ID_HEX_BOOKMARKS_NEW);
         addId(X_ID_HEX_BOOKMARKS_LIST);
@@ -577,6 +579,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_HEX_FOLLOWIN_MEMORYMAP) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_FOLLOWIN_HEX) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_EDIT_HEX) ksResult = QKeySequence();
+        else if (nId == X_ID_HEX_EDIT_REMOVE) ksResult = QKeySequence();
+        else if (nId == X_ID_HEX_EDIT_RESIZE) ksResult = QKeySequence();
     } else if (groupId == GROUPID_DISASM) {
         if (nId == X_ID_DISASM_DUMPTOFILE) ksResult = Qt::CTRL + Qt::Key_D;
         else if (nId == X_ID_DISASM_GOTO_OFFSET) ksResult = QKeySequence();
@@ -771,6 +775,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_BOOKMARK) sResult = tr("Bookmark");
     else if (baseId == BASEID_LIST) sResult = tr("List");
     else if (baseId == BASEID_REMOVE) sResult = tr("Remove");
+    else if (baseId == BASEID_RESIZE) sResult = tr("Resize");
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
@@ -912,6 +917,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_BOOKMARK) sResult = QString("Bookmark");
     else if (baseId == BASEID_LIST) sResult = QString("List");
     else if (baseId == BASEID_REMOVE) sResult = QString("Remove");
+    else if (baseId == BASEID_RESIZE) sResult = QString("Resize");
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
