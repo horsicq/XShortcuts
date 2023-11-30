@@ -60,7 +60,7 @@ private:
     void _deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
 #endif
 
-private slots:
+protected slots:
     void errorMessageSlot(const QString &sErrorMessage);
 
 protected:
