@@ -154,6 +154,7 @@ void XShortcuts::addGroup(GROUPID groupId)
     } else if (groupId == GROUPID_HEX) {
         addId(X_ID_HEX_DATAINSPECTOR);
         addId(X_ID_HEX_DATACONVERTOR);
+        addId(X_ID_HEX_MULTISEARCH);
         addId(X_ID_HEX_DUMPTOFILE);
         addId(X_ID_HEX_GOTO_OFFSET);
         addId(X_ID_HEX_GOTO_ADDRESS);
@@ -782,6 +783,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
     else if (baseId == BASEID_DATACONVERTOR) sResult = tr("Data convertor");
+    else if (baseId == BASEID_MULTISEARCH) sResult = tr("Multisearch");
     else if (baseId == BASEID_0) sResult = QString("0");
     else if (baseId == BASEID_1) sResult = QString("1");
     else if (baseId == BASEID_2) sResult = QString("2");
@@ -925,6 +927,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
     else if (baseId == BASEID_DATACONVERTOR) sResult = QString("DataConvertor");
+    else if (baseId == BASEID_MULTISEARCH) sResult = QString("Multisearch");
     else if (baseId == BASEID_0) sResult = QString("0");
     else if (baseId == BASEID_1) sResult = QString("1");
     else if (baseId == BASEID_2) sResult = QString("2");

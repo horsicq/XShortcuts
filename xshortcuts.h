@@ -63,6 +63,7 @@
 
 #define X_ID_HEX_DATAINSPECTOR XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DATAINSPECTOR)
 #define X_ID_HEX_DATACONVERTOR XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DATACONVERTOR)
+#define X_ID_HEX_MULTISEARCH XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_MULTISEARCH)
 #define X_ID_HEX_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_HEX_GOTO_OFFSET XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_OFFSET)
 #define X_ID_HEX_GOTO_ADDRESS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_ADDRESS)
@@ -503,6 +504,7 @@ public:
         BASEID_EDIT,
         BASEID_DATAINSPECTOR,
         BASEID_DATACONVERTOR,
+        BASEID_MULTISEARCH,
         BASEID_0,
         BASEID_1,
         BASEID_2,
