@@ -92,6 +92,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DEBUGGER_TRACE_STEPOVER);
         addId(X_ID_DEBUGGER_TRACE_STOP);
         addId(X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE);
+        addId(X_ID_DEBUGGER_DISASM_BREAKPOINT_REMOVE);
+        addId(X_ID_DEBUGGER_DISASM_BREAKPOINT_CONDITIONAL);
         addId(X_ID_DEBUGGER_DISASM_DUMPTOFILE);
         addId(X_ID_DEBUGGER_DISASM_GOTO_ADDRESS);
         addId(X_ID_DEBUGGER_DISASM_HEX_SIGNATURE);
@@ -780,6 +782,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_REMOVE) sResult = tr("Remove");
     else if (baseId == BASEID_RESIZE) sResult = tr("Resize");
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
+    else if (baseId == BASEID_CONDITIONAL) sResult = tr("Conditional");
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
     else if (baseId == BASEID_DATACONVERTOR) sResult = tr("Data convertor");
@@ -924,6 +927,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_REMOVE) sResult = QString("Remove");
     else if (baseId == BASEID_RESIZE) sResult = QString("Resize");
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
+    else if (baseId == BASEID_CONDITIONAL) sResult = QString("Conditional");
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
     else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
     else if (baseId == BASEID_DATACONVERTOR) sResult = QString("DataConvertor");

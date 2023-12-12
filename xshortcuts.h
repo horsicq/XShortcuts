@@ -221,6 +221,12 @@
 #define X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE                                                                                                                \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_BREAKPOINT, \
                                   XShortcuts::BASEID_TOGGLE)
+#define X_ID_DEBUGGER_DISASM_BREAKPOINT_REMOVE                                                                                                                \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_BREAKPOINT, \
+                                  XShortcuts::BASEID_REMOVE)
+#define X_ID_DEBUGGER_DISASM_BREAKPOINT_CONDITIONAL                                                                                                                \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_BREAKPOINT, \
+                                  XShortcuts::BASEID_CONDITIONAL)
 #define X_ID_DEBUGGER_DISASM_DUMPTOFILE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM, XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_DEBUGGER_DISASM_GOTO_ADDRESS                                                                                                               \
@@ -501,6 +507,7 @@ public:
         BASEID_REMOVE,
         BASEID_RESIZE,
         BASEID_ANALYZE,
+        BASEID_CONDITIONAL,
         BASEID_EDIT,
         BASEID_DATAINSPECTOR,
         BASEID_DATACONVERTOR,
