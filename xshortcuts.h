@@ -224,7 +224,7 @@
 #define X_ID_DEBUGGER_DISASM_BREAKPOINT_REMOVE                                                                                                                \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_BREAKPOINT, \
                                   XShortcuts::BASEID_REMOVE)
-#define X_ID_DEBUGGER_DISASM_BREAKPOINT_CONDITIONAL                                                                                                                \
+#define X_ID_DEBUGGER_DISASM_BREAKPOINT_CONDITIONAL                                                                                                           \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DEBUGGER, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DISASM << XShortcuts::GROUPID_BREAKPOINT, \
                                   XShortcuts::BASEID_CONDITIONAL)
 #define X_ID_DEBUGGER_DISASM_DUMPTOFILE \
