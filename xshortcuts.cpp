@@ -207,6 +207,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_ANALYZE_ANALYZE);
         addId(X_ID_DISASM_ANALYZE_SYMBOLS);
         addId(X_ID_DISASM_ANALYZE_FUNCTIONS);
+        addId(X_ID_DISASM_ANALYZE_CLEAR);
     } else if (groupId == GROUPID_STACK) {
     } else if (groupId == GROUPID_REGISTERS) {
     } else if (groupId == GROUPID_ARCHIVE) {
