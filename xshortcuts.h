@@ -89,6 +89,7 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_MEMORYMAP)
 #define X_ID_HEX_FOLLOWIN_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 #define X_ID_HEX_EDIT_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_HEX)
+#define X_ID_HEX_EDIT_PATCH XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_PATCH)
 #define X_ID_HEX_EDIT_REMOVE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_REMOVE)
 #define X_ID_HEX_EDIT_RESIZE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_RESIZE)
 #define X_ID_HEX_BOOKMARKS_NEW \
@@ -460,6 +461,7 @@ public:
         BASEID_SIGNATURE,
         BASEID_SIGNATURES,
         BASEID_HEX,
+        BASEID_PATCH,
         BASEID_OPCODE,
         BASEID_DEMANGLE,
         BASEID_NAME,

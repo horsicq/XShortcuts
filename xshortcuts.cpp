@@ -175,6 +175,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_FOLLOWIN_MEMORYMAP);
         addId(X_ID_HEX_FOLLOWIN_HEX);
         addId(X_ID_HEX_EDIT_HEX);
+        addId(X_ID_HEX_EDIT_PATCH);
         addId(X_ID_HEX_EDIT_REMOVE);
         addId(X_ID_HEX_EDIT_RESIZE);
 #ifdef QT_SQL_LIB
@@ -736,6 +737,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_SIGNATURE) sResult = tr("Signature");
     else if (baseId == BASEID_SIGNATURES) sResult = tr("Signatures");
     else if (baseId == BASEID_HEX) sResult = tr("Hex");
+    else if (baseId == BASEID_PATCH) sResult = tr("Patch");
     else if (baseId == BASEID_OPCODE) sResult = tr("Opcode");
     else if (baseId == BASEID_DEMANGLE) sResult = tr("Demangle");
     else if (baseId == BASEID_NAME) sResult = tr("Name");
@@ -881,6 +883,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_SIGNATURE) sResult = QString("Signature");
     else if (baseId == BASEID_SIGNATURES) sResult = QString("Signatures");
     else if (baseId == BASEID_HEX) sResult = QString("Hex");
+    else if (baseId == BASEID_PATCH) sResult = QString("Patch");
     else if (baseId == BASEID_OPCODE) sResult = QString("Opcode");
     else if (baseId == BASEID_DEMANGLE) sResult = QString("Demangle");
     else if (baseId == BASEID_NAME) sResult = QString("Name");
