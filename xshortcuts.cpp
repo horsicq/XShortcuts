@@ -183,6 +183,9 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_BOOKMARKS_LIST);
 #endif
         addId(X_ID_HEX_STRINGS);
+#if defined(QT_SCRIPT_LIB) || defined(QT_QML_LIB)
+        addId(X_ID_HEX_SCRIPTS);
+#endif
     } else if (groupId == GROUPID_DISASM) {
         addId(X_ID_DISASM_DUMPTOFILE);
         addId(X_ID_DISASM_GOTO_OFFSET);
@@ -734,6 +737,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_SIZE) sResult = tr("Size");
     else if (baseId == BASEID_STRING) sResult = tr("String");
     else if (baseId == BASEID_STRINGS) sResult = tr("Strings");
+    else if (baseId == BASEID_SCRIPTS) sResult = tr("Scripts");
     else if (baseId == BASEID_SIGNATURE) sResult = tr("Signature");
     else if (baseId == BASEID_SIGNATURES) sResult = tr("Signatures");
     else if (baseId == BASEID_HEX) sResult = tr("Hex");
@@ -880,6 +884,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_SIZE) sResult = QString("Size");
     else if (baseId == BASEID_STRING) sResult = QString("String");
     else if (baseId == BASEID_STRINGS) sResult = QString("Strings");
+    else if (baseId == BASEID_SCRIPTS) sResult = QString("Scripts");
     else if (baseId == BASEID_SIGNATURE) sResult = QString("Signature");
     else if (baseId == BASEID_SIGNATURES) sResult = QString("Signatures");
     else if (baseId == BASEID_HEX) sResult = QString("Hex");

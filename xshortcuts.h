@@ -97,6 +97,7 @@
 #define X_ID_HEX_BOOKMARKS_LIST \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BOOKMARKS, XShortcuts::BASEID_LIST)
 #define X_ID_HEX_STRINGS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_STRINGS)
+#define X_ID_HEX_SCRIPTS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SCRIPTS)
 
 #define X_ID_DISASM_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_DISASM_GOTO_OFFSET \
@@ -458,6 +459,7 @@ public:
         BASEID_SIZE,
         BASEID_STRING,
         BASEID_STRINGS,
+        BASEID_SCRIPTS,
         BASEID_SIGNATURE,
         BASEID_SIGNATURES,
         BASEID_HEX,
