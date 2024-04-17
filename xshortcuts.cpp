@@ -35,9 +35,17 @@ XShortcuts::~XShortcuts()
 
 void XShortcuts::setName(const QString &sValue)
 {
-    // TODO different names for Windows and macOS
-    // TODO Check
     this->g_sName = sValue;
+
+#ifdef Q_OS_WIN
+    g_sName += "win.ini";
+#endif
+#ifdef Q_OS_LINUX
+    g_sName += "linux.ini";
+#endif
+#ifdef Q_OS_MACOS
+    g_sName += "macos.ini";
+#endif
 }
 
 void XShortcuts::setNative(bool bValue, const QString &sApplicationDataPath)
