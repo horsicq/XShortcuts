@@ -26,6 +26,8 @@ DialogShortcuts::DialogShortcuts(QWidget *pParent) : QDialog(pParent), ui(new Ui
 {
     ui->setupUi(this);
 
+    setWindowFlags(Qt::Window);
+
     g_pShortcuts = nullptr;
     g_pModel = nullptr;
     g_pFilter = new QSortFilterProxyModel(this);
