@@ -80,7 +80,9 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
 
 void XShortcutstScrollArea::adjustView()
 {
-    // TODO
+    if (g_pXOptions) {
+        g_pXOptions->adjustWidget(this);
+    }
 }
 
 void XShortcutstScrollArea::reloadShortcuts()

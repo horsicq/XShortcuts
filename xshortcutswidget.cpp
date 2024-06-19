@@ -107,6 +107,9 @@ bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
 
 void XShortcutsWidget::adjustView()
 {
+    if (g_pXOptions) {
+        g_pXOptions->adjustWidget(this);
+    }
 }
 
 QString XShortcutsWidget::getOpenFileName(const QString &sDirectory)
