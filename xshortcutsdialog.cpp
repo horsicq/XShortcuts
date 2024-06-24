@@ -52,9 +52,9 @@ XOptions *XShortcutsDialog::getGlobalOptions()
 
 void XShortcutsDialog::adjustView()
 {
-    if (g_pXOptions) {
-        g_pXOptions->adjustWidget(this);
-    }
+    // if (g_pXOptions) {
+    //     g_pXOptions->adjustWidget(this);
+    // }
 }
 
 bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
