@@ -44,7 +44,7 @@ public:
     XOptions *getGlobalOptions();
     bool isActive();
     void setActive(bool bState);
-    virtual void adjustView();
+    virtual void adjustView() = 0;
     virtual void reloadShortcuts();
     QColor getColor(TCLOLOR tcolor);
     void setColor(TCLOLOR tcolor, QColor color);

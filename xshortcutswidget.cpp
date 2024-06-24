@@ -105,13 +105,6 @@ bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
     return QWidget::eventFilter(pObj, pEvent);
 }
 
-void XShortcutsWidget::adjustView()
-{
-    // if (g_pXOptions) {
-    //     g_pXOptions->adjustWidget(this);
-    // }
-}
-
 QString XShortcutsWidget::getOpenFileName(const QString &sDirectory)
 {
     return QFileDialog::getOpenFileName(this, tr("Open file") + QString("..."), sDirectory, tr("All files") + QString(" (*)"));

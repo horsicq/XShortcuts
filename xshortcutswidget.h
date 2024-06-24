@@ -46,7 +46,7 @@ public:
     void saveTableModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTreeModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTextEdit(QTextEdit *pTextEdit, const QString &sFileName);
-    virtual void adjustView();
+    virtual void adjustView() = 0;
     QString getOpenFileName(const QString &sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
     virtual void reloadShortcuts();
