@@ -27,6 +27,15 @@ XShortcutsDialog::XShortcutsDialog(QWidget *pParent) : QDialog(pParent)
     g_bIsActive = true;
 }
 
+XShortcutsDialog::~XShortcutsDialog()
+{
+#ifdef QT_DEBUG
+    if (g_pXOptions == &g_xOptionsEmpty) {
+        qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
+    }
+#endif
+}
+
 void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
 {
     g_pShortcuts = pShortcuts;
@@ -50,11 +59,6 @@ XOptions *XShortcutsDialog::getGlobalOptions()
     return g_pXOptions;
 }
 
-void XShortcutsDialog::adjustView()
-{
-
-}
-
 bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)
@@ -68,9 +72,4 @@ bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
     }
 
     return QDialog::eventFilter(pObj, pEvent);
-}
-
-void XShortcutsDialog::registerShortcuts(bool bState)
-{
-    // TODO
 }

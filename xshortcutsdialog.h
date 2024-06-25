@@ -31,15 +31,16 @@ class XShortcutsDialog : public QDialog {
 
 public:
     XShortcutsDialog(QWidget *pParent = nullptr);
+    ~XShortcutsDialog();
 
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
-    virtual void adjustView();
+    virtual void adjustView() = 0;
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState);
+    virtual void registerShortcuts(bool bState) = 0;
 
 private:
     bool g_bIsActive;
