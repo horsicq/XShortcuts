@@ -31,6 +31,15 @@ XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScroll
     g_color[TCLOLOR_ANALYSED] = QColor(100, 0, 0, 10);  // TODO
 }
 
+XShortcutstScrollArea::~XShortcutstScrollArea()
+{
+#ifdef QT_DEBUG
+    if (g_pXOptions == &g_xOptionsEmpty) {
+        qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
+    }
+#endif
+}
+
 void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
 {
     g_pShortcuts = pShortcuts;

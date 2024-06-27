@@ -38,6 +38,7 @@ class XShortcutsWidget : public QWidget {
 
 public:
     explicit XShortcutsWidget(QWidget *pParent = nullptr);
+    ~XShortcutsWidget();
 
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();

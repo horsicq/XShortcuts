@@ -21,7 +21,7 @@
 #ifndef DIALOGSHORTCUTS_H
 #define DIALOGSHORTCUTS_H
 
-#include <QDialog>
+#include "xshortcutsdialog.h"
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
@@ -34,7 +34,7 @@ namespace Ui {
 class DialogShortcuts;
 }
 
-class DialogShortcuts : public QDialog {
+class DialogShortcuts : public XShortcutsDialog {
     Q_OBJECT
 
     enum COLUMN {
@@ -45,6 +45,8 @@ class DialogShortcuts : public QDialog {
 public:
     explicit DialogShortcuts(QWidget *pParent = nullptr);
     ~DialogShortcuts();
+
+    virtual void adjustView() {}
 
     void setData(XShortcuts *pShortcuts);
     void reload();
@@ -58,6 +60,9 @@ private slots:
     void on_pushButtonClose_clicked();
     void on_pushButtonClear_clicked();
     void on_pushButtonDefault_clicked();
+
+protected:
+    virtual void registerShortcuts(bool bState) { Q_UNUSED(bState) }
 
 private:
     Ui::DialogShortcuts *ui;

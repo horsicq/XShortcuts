@@ -38,6 +38,7 @@ public:
     };
 
     XShortcutstScrollArea(QWidget *pParent = nullptr);
+    ~XShortcutstScrollArea();
 
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();

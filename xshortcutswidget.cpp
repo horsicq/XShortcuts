@@ -27,6 +27,15 @@ XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent)
     g_bIsActive = false;
 }
 
+XShortcutsWidget::~XShortcutsWidget()
+{
+#ifdef QT_DEBUG
+    if (g_pXOptions == &g_xOptionsEmpty) {
+        qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
+    }
+#endif
+}
+
 void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
 {
     g_pShortcuts = pShortcuts;

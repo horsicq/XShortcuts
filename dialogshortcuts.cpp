@@ -22,11 +22,9 @@
 
 #include "ui_dialogshortcuts.h"
 
-DialogShortcuts::DialogShortcuts(QWidget *pParent) : QDialog(pParent), ui(new Ui::DialogShortcuts)
+DialogShortcuts::DialogShortcuts(QWidget *pParent) : XShortcutsDialog(pParent), ui(new Ui::DialogShortcuts)
 {
     ui->setupUi(this);
-
-    setWindowFlags(Qt::Window);
 
     g_pShortcuts = nullptr;
     g_pModel = nullptr;
