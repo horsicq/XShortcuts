@@ -99,6 +99,36 @@ void XShortcutsWidget::saveTextEdit(QTextEdit *pTextEdit, const QString &sFileNa
     }
 }
 
+void XShortcutsWidget::adjustViewChildren(QWidget *pWidget)
+{
+    QList<XShortcutsWidget *> listWidgets = pWidget->findChildren<XShortcutsWidget *>();
+
+    qint32 nNumberOfWidgets = listWidgets.count();
+
+    for (qint32 i = 0; i < nNumberOfWidgets; i++) {
+        XShortcutsWidget *pChild = dynamic_cast<XShortcutsWidget *>(listWidgets.at(i));
+
+        if (pChild) {
+            pChild->adjustView();
+        }
+    }
+}
+
+void XShortcutsWidget::setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions)
+{
+    QList<XShortcutsWidget *> listWidgets = pWidget->findChildren<XShortcutsWidget *>();
+
+    qint32 nNumberOfWidgets = listWidgets.count();
+
+    for (qint32 i = 0; i < nNumberOfWidgets; i++) {
+        XShortcutsWidget *pChild = dynamic_cast<XShortcutsWidget *>(listWidgets.at(i));
+
+        if (pChild) {
+            pChild->setGlobal(pShortcuts, pXOptions);
+        }
+    }
+}
+
 bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)

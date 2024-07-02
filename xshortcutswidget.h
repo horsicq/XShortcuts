@@ -48,6 +48,8 @@ public:
     void saveTreeModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTextEdit(QTextEdit *pTextEdit, const QString &sFileName);
     virtual void adjustView() = 0;
+    void adjustViewChildren(QWidget *pWidget);
+    void setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions);
     QString getOpenFileName(const QString &sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
     virtual void reloadShortcuts();

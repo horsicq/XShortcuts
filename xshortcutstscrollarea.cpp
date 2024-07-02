@@ -72,6 +72,21 @@ void XShortcutstScrollArea::setActive(bool bState)
     g_bIsActive = bState;
 }
 
+void XShortcutstScrollArea::adjustViewChildren(QWidget *pWidget)
+{
+    QList<XShortcutstScrollArea *> listAreas = pWidget->findChildren<XShortcutstScrollArea *>();
+
+    qint32 nNumberOfAreas = listAreas.count();
+
+    for (qint32 i = 0; i < nNumberOfAreas; i++) {
+        XShortcutstScrollArea *pChild = dynamic_cast<XShortcutstScrollArea *>(listAreas.at(i));
+
+        if (pChild) {
+            pChild->adjustView();
+        }
+    }
+}
+
 bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)

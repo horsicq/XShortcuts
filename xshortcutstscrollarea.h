@@ -46,6 +46,7 @@ public:
     bool isActive();
     void setActive(bool bState);
     virtual void adjustView() = 0;
+    void adjustViewChildren(QWidget *pWidget);
     virtual void reloadShortcuts();
     QColor getColor(TCLOLOR tcolor);
     void setColor(TCLOLOR tcolor, QColor color);
