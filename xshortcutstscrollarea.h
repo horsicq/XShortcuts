@@ -41,12 +41,13 @@ public:
     ~XShortcutstScrollArea();
 
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
+    static void setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions);
     XShortcuts *getShortcuts();
     XOptions *getGlobalOptions();
     bool isActive();
     void setActive(bool bState);
     virtual void adjustView() = 0;
-    void adjustViewChildren(QWidget *pWidget);
+    static void adjustViewChildren(QWidget *pWidget);
     virtual void reloadShortcuts();
     QColor getColor(TCLOLOR tcolor);
     void setColor(TCLOLOR tcolor, QColor color);

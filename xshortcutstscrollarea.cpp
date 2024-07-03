@@ -52,6 +52,21 @@ void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOption
     adjustView();
 }
 
+void XShortcutstScrollArea::setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions)
+{
+    QList<XShortcutstScrollArea *> listAreas = pWidget->findChildren<XShortcutstScrollArea *>();
+
+    qint32 nNumberOfAreas = listAreas.count();
+
+    for (qint32 i = 0; i < nNumberOfAreas; i++) {
+        XShortcutstScrollArea *pChild = dynamic_cast<XShortcutstScrollArea *>(listAreas.at(i));
+
+        if (pChild) {
+            pChild->setGlobal(pShortcuts, pXOptions);
+        }
+    }
+}
+
 XShortcuts *XShortcutstScrollArea::getShortcuts()
 {
     return g_pShortcuts;
