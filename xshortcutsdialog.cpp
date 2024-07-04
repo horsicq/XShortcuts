@@ -22,9 +22,9 @@
 
 XShortcutsDialog::XShortcutsDialog(QWidget *pParent) : QDialog(pParent)
 {
-    Qt::WindowFlags flags = windowFlags();
-    flags &= ~Qt::WindowContextHelpButtonHint;
-    setWindowFlags(flags);
+    Qt::WindowFlags _winFlags = windowFlags();
+    _winFlags &= ~Qt::WindowContextHelpButtonHint;
+    setWindowFlags(_winFlags);
 
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
