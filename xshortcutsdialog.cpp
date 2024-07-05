@@ -20,10 +20,13 @@
  */
 #include "xshortcutsdialog.h"
 
-XShortcutsDialog::XShortcutsDialog(QWidget *pParent) : QDialog(pParent)
+XShortcutsDialog::XShortcutsDialog(QWidget *pParent, bool bMaxMinHint) : QDialog(pParent)
 {
     Qt::WindowFlags _winFlags = windowFlags();
     _winFlags &= ~Qt::WindowContextHelpButtonHint;
+    if (bMaxMinHint) {
+        _winFlags |= Qt::WindowMinMaxButtonsHint;
+    }
     setWindowFlags(_winFlags);
 
     g_pShortcuts = &g_scEmpty;

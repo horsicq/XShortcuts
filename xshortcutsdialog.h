@@ -30,7 +30,7 @@ class XShortcutsDialog : public QDialog {
     Q_OBJECT
 
 public:
-    XShortcutsDialog(QWidget *pParent);
+    XShortcutsDialog(QWidget *pParent, bool bMaxMinHint);
     ~XShortcutsDialog();
 
     virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
