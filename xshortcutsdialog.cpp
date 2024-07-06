@@ -22,8 +22,8 @@
 
 XShortcutsDialog::XShortcutsDialog(QWidget *pParent, bool bMaxMinHint) : QDialog(pParent)
 {
-    Qt::WindowFlags _winFlags = windowFlags();
-    _winFlags &= ~Qt::WindowContextHelpButtonHint;
+    Qt::WindowFlags _winFlags = (Qt::Window | Qt::WindowCloseButtonHint); // TODO Check
+
     if (bMaxMinHint) {
         _winFlags |= Qt::WindowMinMaxButtonsHint;
     }
