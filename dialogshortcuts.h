@@ -46,9 +46,7 @@ public:
     explicit DialogShortcuts(QWidget *pParent = nullptr);
     ~DialogShortcuts();
 
-    virtual void adjustView()
-    {
-    }
+    virtual void adjustView();
 
     void setData(XShortcuts *pShortcuts);
     void reload();

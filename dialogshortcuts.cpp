@@ -39,6 +39,11 @@ DialogShortcuts::~DialogShortcuts()
     delete ui;
 }
 
+void DialogShortcuts::adjustView()
+{
+
+}
+
 void DialogShortcuts::setData(XShortcuts *pShortcuts)
 {
     g_pShortcuts = pShortcuts;
