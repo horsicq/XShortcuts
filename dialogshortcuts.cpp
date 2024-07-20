@@ -41,7 +41,6 @@ DialogShortcuts::~DialogShortcuts()
 
 void DialogShortcuts::adjustView()
 {
-
 }
 
 void DialogShortcuts::setData(XShortcuts *pShortcuts)
