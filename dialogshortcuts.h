@@ -62,10 +62,7 @@ private slots:
     void on_pushButtonDefault_clicked();
 
 protected:
-    virtual void registerShortcuts(bool bState)
-    {
-        Q_UNUSED(bState)
-    }
+    virtual void registerShortcuts(bool bState);
 
 private:
     Ui::DialogShortcuts *ui;

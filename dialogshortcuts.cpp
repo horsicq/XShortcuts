@@ -214,3 +214,8 @@ void DialogShortcuts::on_pushButtonDefault_clicked()
 
     reload();
 }
+
+void DialogShortcuts::registerShortcuts(bool bState)
+{
+    Q_UNUSED(bState)
+}
