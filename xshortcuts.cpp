@@ -459,14 +459,14 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     GROUPID groupId = getGroupId(nId);
 
     if (groupId == GROUPID_FILE) {
-        if (nId == X_ID_FILE_OPEN) ksResult = Qt::CTRL + Qt::Key_O;
+        if (nId == X_ID_FILE_OPEN) ksResult = Qt::CTRL | Qt::Key_O;
         else if (nId == X_ID_FILE_SAVE) ksResult = QKeySequence();
         else if (nId == X_ID_FILE_SAVEAS) ksResult = QKeySequence();
         else if (nId == X_ID_FILE_CLOSE) ksResult = QKeySequence();
         else if (nId == X_ID_FILE_PRINT) ksResult = QKeySequence();
-        else if (nId == X_ID_FILE_EXIT) ksResult = Qt::ALT + Qt::Key_X;
+        else if (nId == X_ID_FILE_EXIT) ksResult = Qt::ALT | Qt::Key_X;
     } else if (groupId == GROUPID_VIEW) {
-        if (nId == X_ID_VIEW_FULLSCREEN) ksResult = Qt::CTRL + Qt::Key_E;
+        if (nId == X_ID_VIEW_FULLSCREEN) ksResult = Qt::CTRL | Qt::Key_E;
     } else if (groupId == GROUPID_DEBUGGER) {
         if (nId == X_ID_DEBUGGER_FILE_OPEN) ksResult = QKeySequence::Open;
         else if (nId == X_ID_DEBUGGER_FILE_CLOSE) ksResult = QKeySequence::Close;
@@ -522,10 +522,10 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
 #endif
         } else if (nId == X_ID_DEBUGGER_DEBUG_RESTART) {
 #ifdef Q_OS_WIN
-            ksResult = Qt::CTRL + Qt::Key_F2;
+            ksResult = Qt::CTRL | Qt::Key_F2;
 #endif
 #ifdef Q_OS_LINUX
-            ksResult = Qt::CTRL + Qt::Key_F2;
+            ksResult = Qt::CTRL | Qt::Key_F2;
 #endif
         } else if (nId == X_ID_DEBUGGER_DISASM_BREAKPOINT_TOGGLE) {
 #ifdef Q_OS_WIN
@@ -581,8 +581,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     } else if (groupId == GROUPID_HEX) {
         if (nId == X_ID_HEX_DATAINSPECTOR) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_DATACONVERTOR) ksResult = QKeySequence();
-        else if (nId == X_ID_HEX_DUMPTOFILE) ksResult = Qt::CTRL + Qt::Key_D;
-        else if (nId == X_ID_HEX_GOTO_OFFSET) ksResult = Qt::CTRL + Qt::Key_G;
+        else if (nId == X_ID_HEX_DUMPTOFILE) ksResult = Qt::CTRL | Qt::Key_D;
+        else if (nId == X_ID_HEX_GOTO_OFFSET) ksResult = Qt::CTRL | Qt::Key_G;
         else if (nId == X_ID_HEX_GOTO_ADDRESS) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_SIGNATURE) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_FIND_STRING) ksResult = QKeySequence::Find;
@@ -600,12 +600,12 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_HEX_EDIT_REMOVE) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_EDIT_RESIZE) ksResult = QKeySequence();
     } else if (groupId == GROUPID_DISASM) {
-        if (nId == X_ID_DISASM_DUMPTOFILE) ksResult = Qt::CTRL + Qt::Key_D;
+        if (nId == X_ID_DISASM_DUMPTOFILE) ksResult = Qt::CTRL | Qt::Key_D;
         else if (nId == X_ID_DISASM_GOTO_OFFSET) ksResult = QKeySequence();
-        else if (nId == X_ID_DISASM_GOTO_ADDRESS) ksResult = Qt::CTRL + Qt::Key_G;
+        else if (nId == X_ID_DISASM_GOTO_ADDRESS) ksResult = Qt::CTRL | Qt::Key_G;
         else if (nId == X_ID_DISASM_GOTO_ENTRYPOINT) ksResult = Qt::Key_E;
         else if (nId == X_ID_DISASM_GOTO_REFERENCES) ksResult = Qt::Key_X;
-        else if (nId == X_ID_DISASM_SIGNATURE) ksResult = Qt::SHIFT + Qt::Key_G;
+        else if (nId == X_ID_DISASM_SIGNATURE) ksResult = Qt::SHIFT | Qt::Key_G;
         else if (nId == X_ID_DISASM_HEX_SIGNATURE) ksResult = Qt::Key_S;
         else if (nId == X_ID_DISASM_FIND_STRING) ksResult = QKeySequence::Find;
         else if (nId == X_ID_DISASM_FIND_SIGNATURE) ksResult = QKeySequence();
