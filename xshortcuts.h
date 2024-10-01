@@ -33,6 +33,8 @@
 #include <QHeaderView>
 #include <QClipboard>
 
+#include "xoptions.h"
+
 #define X_ID_FILE_OPEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_OPEN)
 #define X_ID_FILE_NEW XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_NEW)
 #define X_ID_FILE_SAVE XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SAVE)
@@ -96,6 +98,7 @@
 #define X_ID_HEX_BOOKMARKS_LIST \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BOOKMARKS, XShortcuts::BASEID_LIST)
 #define X_ID_HEX_STRINGS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_STRINGS)
+#define X_ID_HEX_VISUALIZATION XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_VISUALIZATION)
 #define X_ID_HEX_SCRIPTS XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SCRIPTS)
 
 #define X_ID_DISASM_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
@@ -515,6 +518,7 @@ public:
         BASEID_DATAINSPECTOR,
         BASEID_DATACONVERTOR,
         BASEID_MULTISEARCH,
+        BASEID_VISUALIZATION,
         BASEID_0,
         BASEID_1,
         BASEID_2,
@@ -583,6 +587,10 @@ public:
     static QString groupIdToSettingsString(GROUPID groupId);
 
     QMenu *getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView);
+
+    void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
+    void adjustAction(QMenu *pParentMenu, QAction *pAction, QString sText, const QObject *pSender, const char *pMethod);
+    void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pSender, const char *pMethod, QString sText = "");
 
 private slots:
     void copyRecord();

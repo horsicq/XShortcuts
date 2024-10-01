@@ -802,6 +802,7 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
     else if (baseId == BASEID_DATACONVERTOR) sResult = tr("Data convertor");
     else if (baseId == BASEID_MULTISEARCH) sResult = tr("Multisearch");
+    else if (baseId == BASEID_VISUALIZATION) sResult = tr("Visualization");
     else if (baseId == BASEID_0) sResult = QString("0");
     else if (baseId == BASEID_1) sResult = QString("1");
     else if (baseId == BASEID_2) sResult = QString("2");
@@ -949,6 +950,7 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
     else if (baseId == BASEID_DATACONVERTOR) sResult = QString("DataConvertor");
     else if (baseId == BASEID_MULTISEARCH) sResult = QString("Multisearch");
+    else if (baseId == BASEID_VISUALIZATION) sResult = QString("Visualization");
     else if (baseId == BASEID_0) sResult = QString("0");
     else if (baseId == BASEID_1) sResult = QString("1");
     else if (baseId == BASEID_2) sResult = QString("2");
@@ -1080,6 +1082,42 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
     }
 
     return g_pRowCopyMenu;
+}
+
+void XShortcuts::adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId)
+{
+    pMenu->setTitle(groupIdToString(groupId));
+
+    if (pParentMenu) {
+        pParentMenu->addMenu(pMenu);
+    }
+}
+
+void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, QString sText, const QObject *pSender, const char *pMethod)
+{
+    connect(pAction, SIGNAL(triggered()), pSender, pMethod);
+
+    pAction->setText(sText);
+
+    if (pParentMenu) {
+        pParentMenu->addAction(pAction);
+    }
+}
+
+void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pSender, const char *pMethod, QString sText)
+{
+    pAction->setShortcut(getShortcut(nId));
+
+    QString sTitle = baseIdToString(getBaseId(nId));
+
+    if (sText != "") {
+        if (sTitle != "") {
+            sTitle += " ";
+        }
+        sTitle += sText;
+    }
+
+    adjustAction(pParentMenu, pAction, sTitle, pSender, pMethod);
 }
 
 void XShortcuts::copyRecord()
