@@ -43,6 +43,14 @@
 #define X_ID_FILE_PRINT XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_PRINT)
 #define X_ID_FILE_EXIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EXIT)
 
+#define X_ID_TABLE_EDIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EDIT)
+#define X_ID_TABLE_COPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_COPY)
+#define X_ID_TABLE_DEMANGLE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DEMANGLE)
+#define X_ID_TABLE_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_HEX)
+#define X_ID_TABLE_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DISASM)
+#define X_ID_TABLE_ENTROPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_ENTROPY)
+#define X_ID_TABLE_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
+
 #define X_ID_VIEW_FULLSCREEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_VIEW, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_FULLSCREEN)
 
 #define X_ID_STRINGS_FOLLOWIN_HEX \
@@ -589,8 +597,9 @@ public:
     QMenu *getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView);
 
     void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
-    void adjustAction(QMenu *pParentMenu, QAction *pAction, QString sText, const QObject *pSender, const char *pMethod);
-    void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pSender, const char *pMethod, QString sText = "");
+    void adjustAction(QMenu *pParentMenu, QAction *pAction, QString sText, const QObject *pRecv, const char *pMethod, XOptions::ICONTYPE iconType);
+    void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText = "");
+    XOptions::ICONTYPE getIconType(quint64 nId);
 
 private slots:
     void copyRecord();
