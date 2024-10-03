@@ -597,9 +597,10 @@ public:
     QMenu *getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView);
 
     void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
-    void adjustAction(QMenu *pParentMenu, QAction *pAction, QString sText, const QObject *pRecv, const char *pMethod, XOptions::ICONTYPE iconType);
     void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText = "");
-    XOptions::ICONTYPE getIconType(quint64 nId);
+
+    XOptions::ICONTYPE getIconTypeById(quint64 nId);
+    XOptions::ICONTYPE getIconTypeByGroupId(GROUPID groupId);
 
 private slots:
     void copyRecord();

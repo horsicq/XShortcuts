@@ -1092,30 +1092,10 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
 
 void XShortcuts::adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId)
 {
-    pMenu->setTitle(groupIdToString(groupId));
+    QString sTitle = groupIdToString(groupId);
+    XOptions::ICONTYPE iconType = getIconTypeByGroupId(groupId);
 
-    if (pParentMenu) {
-        pParentMenu->addMenu(pMenu);
-    }
-}
-
-void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, QString sText, const QObject *pRecv, const char *pMethod, XOptions::ICONTYPE iconType)
-{
-    connect(pAction, SIGNAL(triggered()), pRecv, pMethod);
-
-    pAction->setText(sText);
-
-    QString sIconPath = XOptions::getIconPath(iconType);
-
-    if (sIconPath != "") {
-        QIcon icon;
-        icon.addFile(sIconPath, QSize(), QIcon::Normal, QIcon::Off);
-        pAction->setIcon(icon);
-    }
-
-    if (pParentMenu) {
-        pParentMenu->addAction(pAction);
-    }
+    XOptions::adjustMenu(pParentMenu, pMenu, sTitle, iconType);
 }
 
 void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText)
@@ -1131,12 +1111,12 @@ void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId,
         sTitle += sText;
     }
 
-    XOptions::ICONTYPE iconType = getIconType(nId);
+    XOptions::ICONTYPE iconType = getIconTypeById(nId);
 
-    adjustAction(pParentMenu, pAction, sTitle, pRecv, pMethod, iconType);
+    XOptions::adjustAction(pParentMenu, pAction, sTitle, pRecv, pMethod, iconType);
 }
 
-XOptions::ICONTYPE XShortcuts::getIconType(quint64 nId)
+XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
 {
     XOptions::ICONTYPE result = XOptions::ICONTYPE_NONE;
 
@@ -1189,7 +1169,7 @@ XOptions::ICONTYPE XShortcuts::getIconType(quint64 nId)
     // else if (baseId == BASEID_CLEAR) result = XOptions::ICONTYPE_CLEAR;
     // else if (baseId == BASEID_SHORTCUTS) result = XOptions::ICONTYPE_SHORTCUTS;
     // else if (baseId == BASEID_OPTIONS) result = XOptions::ICONTYPE_OPTIONS;
-    // else if (baseId == BASEID_ABOUT) result = XOptions::ICONTYPE_ABOUT;
+    else if (baseId == BASEID_ABOUT) result = XOptions::ICONTYPE_INFO;
     // else if (baseId == BASEID_FILENAME) result = XOptions::ICONTYPE_FILENAME;
     // else if (baseId == BASEID_STRUCTS) result = XOptions::ICONTYPE_STRUCTS;
     // else if (baseId == BASEID_VIEWER) result = XOptions::ICONTYPE_VIEWER;
@@ -1217,7 +1197,7 @@ XOptions::ICONTYPE XShortcuts::getIconType(quint64 nId)
     // else if (baseId == BASEID_EDIT) result = XOptions::ICONTYPE_EDIT;
     else if (baseId == BASEID_DATAINSPECTOR) result = XOptions::ICONTYPE_DATAINSPECTOR;
     // else if (baseId == BASEID_DATACONVERTOR) result = XOptions::ICONTYPE_DATACONVERTOR;
-    // else if (baseId == BASEID_MULTISEARCH) result = XOptions::ICONTYPE_MULTISEARCH;
+    else if (baseId == BASEID_MULTISEARCH) result = XOptions::ICONTYPE_SEARCH;
     else if (baseId == BASEID_VISUALIZATION) result = XOptions::ICONTYPE_VISUALIZATION;
     // else if (baseId == BASEID_0) result = XOptions::ICONTYPE_0;
     // else if (baseId == BASEID_1) result = XOptions::ICONTYPE_1;
@@ -1226,6 +1206,54 @@ XOptions::ICONTYPE XShortcuts::getIconType(quint64 nId)
     else {
         result = XOptions::ICONTYPE_NONE;
     }
+
+    return result;
+}
+
+XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
+{
+    XOptions::ICONTYPE result = XOptions::ICONTYPE_NONE;
+
+    if (groupId == GROUPID_ACTION) result = XOptions::ICONTYPE_ACTION;
+    else if (groupId == GROUPID_FILE) result = XOptions::ICONTYPE_FILE;
+    // else if (groupId == GROUPID_VIEW) result = XOptions::ICONTYPE_VIEW;
+    else if (groupId == GROUPID_STRING) result = XOptions::ICONTYPE_STRING;
+    else if (groupId == GROUPID_STRINGS) result = XOptions::ICONTYPE_STRING;
+    else if (groupId == GROUPID_SIGNATURE) result = XOptions::ICONTYPE_SIGNATURE;
+    else if (groupId == GROUPID_SIGNATURES) result = XOptions::ICONTYPE_SIGNATURE;
+    // else if (groupId == GROUPID_STRUCT) result = XOptions::ICONTYPE_STRUCT;
+    else if (groupId == GROUPID_HEX) result = XOptions::ICONTYPE_HEX;
+    else if (groupId == GROUPID_DISASM) result = XOptions::ICONTYPE_DISASM;
+    // else if (groupId == GROUPID_DEBUG) result = XOptions::ICONTYPE_DEBUG;
+    // else if (groupId == GROUPID_TRACE) result = XOptions::ICONTYPE_TRACE;
+    // else if (groupId == GROUPID_ANIMATE) result = XOptions::ICONTYPE_ANIMATE;
+    // else if (groupId == GROUPID_DEBUGGER) result = XOptions::ICONTYPE_DEBUGGER;
+    // else if (groupId == GROUPID_REGISTERS) result = XOptions::ICONTYPE_REGISTERS;
+    // else if (groupId == GROUPID_REGISTER) result = XOptions::ICONTYPE_REGISTER;
+    // else if (groupId == GROUPID_STACK) result = XOptions::ICONTYPE_STACK;
+    // else if (groupId == GROUPID_ARCHIVE) result = XOptions::ICONTYPE_ARCHIVE;
+    // else if (groupId == GROUPID_TABLE) result = XOptions::ICONTYPE_TABLE;
+    // else if (groupId == GROUPID_PROCESS) result = XOptions::ICONTYPE_PROCESS;
+    // else if (groupId == GROUPID_MEMORY) result = XOptions::ICONTYPE_MEMORY;
+    else if (groupId == GROUPID_COPY) result = XOptions::ICONTYPE_COPY;
+    else if (groupId == GROUPID_EDIT) result = XOptions::ICONTYPE_EDIT;
+    else if (groupId == GROUPID_FIND) result = XOptions::ICONTYPE_SEARCH;
+    else if (groupId == GROUPID_GOTO) result = XOptions::ICONTYPE_GOTO;
+    // else if (groupId == GROUPID_TOOLS) result = XOptions::ICONTYPE_TOOLS;
+    else if (groupId == GROUPID_HELP) result = XOptions::ICONTYPE_INFO;
+    // else if (groupId == GROUPID_SELECT) result = XOptions::ICONTYPE_SELECT;
+    // else if (groupId == GROUPID_SELECTION) result = XOptions::ICONTYPE_SELECTION;
+    else if (groupId == GROUPID_FOLLOWIN) result = XOptions::ICONTYPE_FOLLOWIN;
+    // else if (groupId == GROUPID_SHOWIN) result = XOptions::ICONTYPE_SHOWIN;
+    // else if (groupId == GROUPID_BREAKPOINT) result = XOptions::ICONTYPE_BREAKPOINT;
+    // else if (groupId == GROUPID_MODULES) result = XOptions::ICONTYPE_MODULES;
+    else if (groupId == GROUPID_MEMORYMAP) result = XOptions::ICONTYPE_MEMORYMAP;
+    else if (groupId == GROUPID_VALUE) result = XOptions::ICONTYPE_VALUE;
+    else if (groupId == GROUPID_SCAN) result = XOptions::ICONTYPE_SCAN;
+    // else if (groupId == GROUPID_EDITOR) result = XOptions::ICONTYPE_EDITOR;
+    // else if (groupId == GROUPID_BOOKMARKS) result = XOptions::ICONTYPE_BOOKMARKS;
+    // else if (groupId == GROUPID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
+    // else if (groupId == GROUPID_HARDWARE) result = XOptions::ICONTYPE_HARDWARE;
 
     return result;
 }
