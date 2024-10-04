@@ -1030,7 +1030,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
 
     // g_pRowCopyMenu = new QMenu(pParent);
     g_pRowCopyMenu = new QMenu;
-    g_pRowCopyMenu->setTitle(tr("Copy"));
+
+    adjustMenu(0, g_pRowCopyMenu, GROUPID_COPY);
 
     qint32 nRow = pTableView->currentIndex().row();
 
@@ -1060,10 +1061,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
 
                 // QAction *pActionRecord = new QAction(sString, pParent);
                 QAction *pActionRecord = new QAction(0);
-                pActionRecord->setText(sString);
-                pActionRecord->setProperty("STRING", sRecord);
-                connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
-                g_pRowCopyMenu->addAction(pActionRecord);
+                XOptions::adjustAction(g_pRowCopyMenu, pActionRecord, sString, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
+                pActionRecord->setProperty("VALUE", sRecord);
 
                 g_listCopyActions.append(pActionRecord);
             }
@@ -1077,10 +1076,8 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             if (sRecord != "") {
                 // QAction *pActionRecord = new QAction(sRecord, pParent);
                 QAction *pActionRecord = new QAction(0);
-                pActionRecord->setText(sRecord);
-                pActionRecord->setProperty("STRING", sRecord);
-                connect(pActionRecord, SIGNAL(triggered()), this, SLOT(copyRecord()));
-                g_pRowCopyMenu->addAction(pActionRecord);
+                XOptions::adjustAction(g_pRowCopyMenu, pActionRecord, sRecord, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
+                pActionRecord->setProperty("VALUE", sRecord);
 
                 g_listCopyActions.append(pActionRecord);
             }
@@ -1125,7 +1122,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     if (baseId == BASEID_COPY) result = XOptions::ICONTYPE_COPY;
     // else if (baseId == BASEID_SHOW) result = XOptions::ICONTYPE_SHOW;
     // else if (baseId == BASEID_OPEN) result = XOptions::ICONTYPE_OPEN;
-    // else if (baseId == BASEID_NEW) result = XOptions::ICONTYPE_NEW;
+    else if (baseId == BASEID_NEW) result = XOptions::ICONTYPE_NEW;
     else if (baseId == BASEID_SAVE) result = XOptions::ICONTYPE_SAVE;
     // else if (baseId == BASEID_SAVEAS) result = XOptions::ICONTYPE_SAVEAS;
     // else if (baseId == BASEID_CLOSE) result = XOptions::ICONTYPE_CLOSE;
@@ -1147,7 +1144,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     else if (baseId == BASEID_HEX) result = XOptions::ICONTYPE_HEX;
     // else if (baseId == BASEID_PATCH) result = XOptions::ICONTYPE_PATCH;
     // else if (baseId == BASEID_OPCODE) result = XOptions::ICONTYPE_OPCODE;
-    // else if (baseId == BASEID_DEMANGLE) result = XOptions::ICONTYPE_DEMANGLE;
+    else if (baseId == BASEID_DEMANGLE) result = XOptions::ICONTYPE_DEMANGLE;
     // else if (baseId == BASEID_NAME) result = XOptions::ICONTYPE_NAME;
     // else if (baseId == BASEID_NEXT) result = XOptions::ICONTYPE_NEXT;
     // else if (baseId == BASEID_DATA) result = XOptions::ICONTYPE_DATA;
@@ -1189,7 +1186,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_FULLSCREEN) result = XOptions::ICONTYPE_FULLSCREEN;
     // else if (baseId == BASEID_REFERENCES) result = XOptions::ICONTYPE_REFERENCES;
     // else if (baseId == BASEID_BOOKMARK) result = XOptions::ICONTYPE_BOOKMARK;
-    // else if (baseId == BASEID_LIST) result = XOptions::ICONTYPE_LIST;
+    else if (baseId == BASEID_LIST) result = XOptions::ICONTYPE_LIST;
     // else if (baseId == BASEID_REMOVE) result = XOptions::ICONTYPE_REMOVE;
     // else if (baseId == BASEID_RESIZE) result = XOptions::ICONTYPE_RESIZE;
     // else if (baseId == BASEID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
@@ -1263,7 +1260,7 @@ void XShortcuts::copyRecord()
     QAction *pAction = qobject_cast<QAction *>(sender());
 
     if (pAction) {
-        QString sString = pAction->property("STRING").toString();
+        QString sString = pAction->property("VALUE").toString();
 
         QApplication::clipboard()->setText(sString);
     }
