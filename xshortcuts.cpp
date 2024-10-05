@@ -1236,7 +1236,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     else if (groupId == GROUPID_EDIT) result = XOptions::ICONTYPE_EDIT;
     else if (groupId == GROUPID_FIND) result = XOptions::ICONTYPE_SEARCH;
     else if (groupId == GROUPID_GOTO) result = XOptions::ICONTYPE_GOTO;
-    // else if (groupId == GROUPID_TOOLS) result = XOptions::ICONTYPE_TOOLS;
+    else if (groupId == GROUPID_TOOLS) result = XOptions::ICONTYPE_TOOLS;
     else if (groupId == GROUPID_HELP) result = XOptions::ICONTYPE_INFO;
     // else if (groupId == GROUPID_SELECT) result = XOptions::ICONTYPE_SELECT;
     // else if (groupId == GROUPID_SELECTION) result = XOptions::ICONTYPE_SELECTION;
