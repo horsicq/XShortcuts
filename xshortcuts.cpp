@@ -1238,8 +1238,8 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     else if (groupId == GROUPID_GOTO) result = XOptions::ICONTYPE_GOTO;
     else if (groupId == GROUPID_TOOLS) result = XOptions::ICONTYPE_TOOL;
     else if (groupId == GROUPID_HELP) result = XOptions::ICONTYPE_INFO;
-    // else if (groupId == GROUPID_SELECT) result = XOptions::ICONTYPE_SELECT;
-    // else if (groupId == GROUPID_SELECTION) result = XOptions::ICONTYPE_SELECTION;
+    else if (groupId == GROUPID_SELECT) result = XOptions::ICONTYPE_SELECT;
+    else if (groupId == GROUPID_SELECTION) result = XOptions::ICONTYPE_SELECT;
     else if (groupId == GROUPID_FOLLOWIN) result = XOptions::ICONTYPE_FOLLOWIN;
     // else if (groupId == GROUPID_SHOWIN) result = XOptions::ICONTYPE_SHOWIN;
     // else if (groupId == GROUPID_BREAKPOINT) result = XOptions::ICONTYPE_BREAKPOINT;
