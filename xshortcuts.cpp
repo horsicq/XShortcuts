@@ -1127,14 +1127,14 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_SAVEAS) result = XOptions::ICONTYPE_SAVEAS;
     // else if (baseId == BASEID_CLOSE) result = XOptions::ICONTYPE_CLOSE;
     // else if (baseId == BASEID_PRINT) result = XOptions::ICONTYPE_PRINT;
-    // else if (baseId == BASEID_EXIT) result = XOptions::ICONTYPE_EXIT;
+    else if (baseId == BASEID_EXIT) result = XOptions::ICONTYPE_EXIT;
     else if (baseId == BASEID_DUMPTOFILE) result = XOptions::ICONTYPE_DUMPTOFILE;
-    // else if (baseId == BASEID_ADDRESS) result = XOptions::ICONTYPE_ADDRESS;
+    else if (baseId == BASEID_ADDRESS) result = XOptions::ICONTYPE_ADDRESS;
     // else if (baseId == BASEID_END) result = XOptions::ICONTYPE_END;
     // else if (baseId == BASEID_START) result = XOptions::ICONTYPE_START;
-    // else if (baseId == BASEID_ENTRYPOINT) result = XOptions::ICONTYPE_ENTRYPOINT;
+    else if (baseId == BASEID_ENTRYPOINT) result = XOptions::ICONTYPE_ENTRY;
     // else if (baseId == BASEID_XREF) result = XOptions::ICONTYPE_XREF;
-    // else if (baseId == BASEID_OFFSET) result = XOptions::ICONTYPE_OFFSET;
+    else if (baseId == BASEID_OFFSET) result = XOptions::ICONTYPE_OFFSET;
     // else if (baseId == BASEID_SIZE) result = XOptions::ICONTYPE_SIZE;
     else if (baseId == BASEID_STRING) result = XOptions::ICONTYPE_STRING;
     else if (baseId == BASEID_STRINGS) result = XOptions::ICONTYPE_STRING;
@@ -1191,7 +1191,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_RESIZE) result = XOptions::ICONTYPE_RESIZE;
     // else if (baseId == BASEID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
     // else if (baseId == BASEID_CONDITIONAL) result = XOptions::ICONTYPE_CONDITIONAL;
-    // else if (baseId == BASEID_EDIT) result = XOptions::ICONTYPE_EDIT;
+    else if (baseId == BASEID_EDIT) result = XOptions::ICONTYPE_EDIT;
     else if (baseId == BASEID_DATAINSPECTOR) result = XOptions::ICONTYPE_DATAINSPECTOR;
     // else if (baseId == BASEID_DATACONVERTOR) result = XOptions::ICONTYPE_DATACONVERTOR;
     else if (baseId == BASEID_MULTISEARCH) result = XOptions::ICONTYPE_SEARCH;
