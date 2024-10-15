@@ -1121,7 +1121,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
 
     if (baseId == BASEID_COPY) result = XOptions::ICONTYPE_COPY;
     // else if (baseId == BASEID_SHOW) result = XOptions::ICONTYPE_SHOW;
-    // else if (baseId == BASEID_OPEN) result = XOptions::ICONTYPE_OPEN;
+    else if (baseId == BASEID_OPEN) result = XOptions::ICONTYPE_OPENFILE;
     else if (baseId == BASEID_NEW) result = XOptions::ICONTYPE_NEW;
     else if (baseId == BASEID_SAVE) result = XOptions::ICONTYPE_SAVE;
     // else if (baseId == BASEID_SAVEAS) result = XOptions::ICONTYPE_SAVEAS;
@@ -1167,7 +1167,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     else if (baseId == BASEID_SHORTCUTS) result = XOptions::ICONTYPE_SHORTCUT;
     else if (baseId == BASEID_OPTIONS) result = XOptions::ICONTYPE_OPTION;
     else if (baseId == BASEID_ABOUT) result = XOptions::ICONTYPE_INFO;
-    // else if (baseId == BASEID_FILENAME) result = XOptions::ICONTYPE_FILENAME;
+    else if (baseId == BASEID_FILENAME) result = XOptions::ICONTYPE_FILE;
     // else if (baseId == BASEID_STRUCTS) result = XOptions::ICONTYPE_STRUCTS;
     // else if (baseId == BASEID_VIEWER) result = XOptions::ICONTYPE_VIEWER;
     // else if (baseId == BASEID_FOLDER) result = XOptions::ICONTYPE_FOLDER;
