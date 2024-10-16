@@ -23,13 +23,14 @@
 XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
 {
     g_bIsNative = false;
-    g_pRowCopyMenu = nullptr;
 }
 
 XShortcuts::~XShortcuts()
 {
-    if (g_pRowCopyMenu) {
-        delete g_pRowCopyMenu;
+    qint32 nNumberOfActions = g_listCopyActions.count();
+
+    for (qint32 i = 0; i < nNumberOfActions; i++) {
+        g_listCopyActions.at(i)->deleteLater();
     }
 }
 
@@ -843,7 +844,7 @@ quint64 XShortcuts::createShortcutsId(GROUPID groupId, const QList<GROUPID> &lis
 
 XShortcuts::GROUPID XShortcuts::getGroupId(quint64 nShortcutId)
 {
-    GROUPID result = GROUPID_UNKNOWN;
+    GROUPID result = GROUPID_NONE;
 
     result = (GROUPID)(nShortcutId >> (56));
 
@@ -865,6 +866,56 @@ QList<XShortcuts::GROUPID> XShortcuts::getSubgroupIds(quint64 nShortcutId)
     }
 
     return listResult;
+}
+
+quint64 XShortcuts::getParentId(quint64 nId)
+{
+    quint64 nResult = 0;
+
+    BASEID baseId = getBaseId(nId);
+    QList<GROUPID> listSubgroups = getSubgroupIds(nId);
+    GROUPID groupId = getGroupId(nId);
+
+    qint32 nNumberOfRecords = listSubgroups.count();
+
+    if (baseId != BASEID_UNKNOWN) {
+        nResult = nId & 0xFFFFFFFFFFFFFF00;
+    } else {
+        if (nNumberOfRecords) {
+            nResult = ((nId & 0xFFFFFFFFFF0000) >> 8) | ((groupId & 0xFF) << 56);
+        } else {
+            nResult = nId & 0xFF00000000000000;
+        }
+    }
+
+    return nResult;
+}
+
+XShortcuts::GROUPID XShortcuts::getParentGroupId(quint64 nId)
+{
+    GROUPID result = GROUPID_NONE;
+
+    BASEID baseId = getBaseId(nId);
+    QList<GROUPID> listSubgroups = getSubgroupIds(nId);
+    GROUPID groupId = getGroupId(nId);
+
+    qint32 nNumberOfRecords = listSubgroups.count();
+
+    if (baseId != BASEID_UNKNOWN) {
+        if (nNumberOfRecords) {
+            result = listSubgroups.at(nNumberOfRecords - 1);
+        } else {
+            result = groupId;
+        }
+    } else {
+        if (nNumberOfRecords > 1) {
+            result = listSubgroups.at(nNumberOfRecords - 2);
+        } else {
+            result = groupId;
+        }
+    }
+
+    return result;
 }
 
 XShortcuts::BASEID XShortcuts::getBaseId(quint64 nShortcutId)
@@ -1018,20 +1069,17 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     return sResult;
 }
 
-QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView)
+void XShortcuts::adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView)
 {
-    Q_UNUSED(pParent);
+    qint32 nNumberOfActions = g_listCopyActions.count();
+
+    for (qint32 i = 0; i < nNumberOfActions; i++) {
+        g_listCopyActions.at(i)->deleteLater();
+    }
 
     g_listCopyActions.clear();
 
-    if (g_pRowCopyMenu) {
-        delete g_pRowCopyMenu;
-    }
-
-    // g_pRowCopyMenu = new QMenu(pParent);
-    g_pRowCopyMenu = new QMenu;
-
-    adjustMenu(0, g_pRowCopyMenu, GROUPID_COPY);
+    adjustMenu(pParentMenu, pMenu, GROUPID_COPY);
 
     qint32 nRow = pTableView->currentIndex().row();
 
@@ -1061,14 +1109,14 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
 
                 // QAction *pActionRecord = new QAction(sString, pParent);
                 QAction *pActionRecord = new QAction(0);
-                XOptions::adjustAction(g_pRowCopyMenu, pActionRecord, sString, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
+                XOptions::adjustAction(pMenu, pActionRecord, sString, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
                 pActionRecord->setProperty("VALUE", sRecord);
 
                 g_listCopyActions.append(pActionRecord);
             }
         }
 
-        g_pRowCopyMenu->addSeparator();
+        pMenu->addSeparator();
 
         for (qint32 i = 0; i < nNumberOfSelected; i++) {
             QString sRecord = listRecords.at(i);
@@ -1076,15 +1124,13 @@ QMenu *XShortcuts::getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableVie
             if (sRecord != "") {
                 // QAction *pActionRecord = new QAction(sRecord, pParent);
                 QAction *pActionRecord = new QAction(0);
-                XOptions::adjustAction(g_pRowCopyMenu, pActionRecord, sRecord, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
+                XOptions::adjustAction(pMenu, pActionRecord, sRecord, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
                 pActionRecord->setProperty("VALUE", sRecord);
 
                 g_listCopyActions.append(pActionRecord);
             }
         }
     }
-
-    return g_pRowCopyMenu;
 }
 
 void XShortcuts::adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId)
@@ -1121,7 +1167,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
 
     if (baseId == BASEID_COPY) result = XOptions::ICONTYPE_COPY;
     // else if (baseId == BASEID_SHOW) result = XOptions::ICONTYPE_SHOW;
-    else if (baseId == BASEID_OPEN) result = XOptions::ICONTYPE_OPENFILE;
+    else if (baseId == BASEID_OPEN) result = XOptions::ICONTYPE_OPEN;
     else if (baseId == BASEID_NEW) result = XOptions::ICONTYPE_NEW;
     else if (baseId == BASEID_SAVE) result = XOptions::ICONTYPE_SAVE;
     // else if (baseId == BASEID_SAVEAS) result = XOptions::ICONTYPE_SAVEAS;
@@ -1147,7 +1193,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     else if (baseId == BASEID_DEMANGLE) result = XOptions::ICONTYPE_DEMANGLE;
     // else if (baseId == BASEID_NAME) result = XOptions::ICONTYPE_NAME;
     // else if (baseId == BASEID_NEXT) result = XOptions::ICONTYPE_NEXT;
-    // else if (baseId == BASEID_DATA) result = XOptions::ICONTYPE_DATA;
+    else if (baseId == BASEID_DATA) result = XOptions::ICONTYPE_DATA;
     else if (baseId == BASEID_VALUE) result = XOptions::ICONTYPE_VALUE;
     // else if (baseId == BASEID_ALL) result = XOptions::ICONTYPE_ALL;
     else if (baseId == BASEID_DISASM) result = XOptions::ICONTYPE_DISASM;
@@ -1192,7 +1238,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
     // else if (baseId == BASEID_CONDITIONAL) result = XOptions::ICONTYPE_CONDITIONAL;
     else if (baseId == BASEID_EDIT) result = XOptions::ICONTYPE_EDIT;
-    else if (baseId == BASEID_DATAINSPECTOR) result = XOptions::ICONTYPE_DATAINSPECTOR;
+    else if (baseId == BASEID_DATAINSPECTOR) result = XOptions::ICONTYPE_DATA;
     // else if (baseId == BASEID_DATACONVERTOR) result = XOptions::ICONTYPE_DATACONVERTOR;
     else if (baseId == BASEID_MULTISEARCH) result = XOptions::ICONTYPE_SEARCH;
     else if (baseId == BASEID_VISUALIZATION) result = XOptions::ICONTYPE_VISUALIZATION;
@@ -1240,7 +1286,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     else if (groupId == GROUPID_HELP) result = XOptions::ICONTYPE_INFO;
     else if (groupId == GROUPID_SELECT) result = XOptions::ICONTYPE_SELECT;
     else if (groupId == GROUPID_SELECTION) result = XOptions::ICONTYPE_SELECT;
-    else if (groupId == GROUPID_FOLLOWIN) result = XOptions::ICONTYPE_FOLLOWIN;
+    else if (groupId == GROUPID_FOLLOWIN) result = XOptions::ICONTYPE_FOLLOW;
     // else if (groupId == GROUPID_SHOWIN) result = XOptions::ICONTYPE_SHOWIN;
     // else if (groupId == GROUPID_BREAKPOINT) result = XOptions::ICONTYPE_BREAKPOINT;
     // else if (groupId == GROUPID_MODULES) result = XOptions::ICONTYPE_MODULES;
@@ -1253,6 +1299,11 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     // else if (groupId == GROUPID_HARDWARE) result = XOptions::ICONTYPE_HARDWARE;
 
     return result;
+}
+
+void XShortcuts::createMainMenu(QWidget *pWidget, QMenuBar *pMenuBar, const QList<MENUITEM> &listMenuItems)
+{
+
 }
 
 void XShortcuts::copyRecord()

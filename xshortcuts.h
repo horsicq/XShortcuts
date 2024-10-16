@@ -28,6 +28,7 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QMenu>
+#include <QMenuBar>
 #include <QTableView>
 #include <QTreeView>
 #include <QHeaderView>
@@ -403,7 +404,7 @@ class XShortcuts : public QObject {
 
 public:
     enum GROUPID {
-        GROUPID_UNKNOWN = 0,
+        GROUPID_NONE = 0,
         GROUPID_SCAN,
         GROUPID_EDITOR,
         GROUPID_FILE,
@@ -590,17 +591,29 @@ public:
     static quint64 createShortcutsId(GROUPID groupId, const QList<GROUPID> &listSubgroup, BASEID baseId);
     static GROUPID getGroupId(quint64 nShortcutId);
     static QList<GROUPID> getSubgroupIds(quint64 nShortcutId);
+    static quint64 getParentId(quint64 nId);
+    static GROUPID getParentGroupId(quint64 nId);
     static BASEID getBaseId(quint64 nShortcutId);
     static QString baseIdToSettingsString(BASEID baseId);
     static QString groupIdToSettingsString(GROUPID groupId);
 
-    QMenu *getRowCopyMenu(QWidget *pParent, QAbstractItemView *pTableView);
+    void adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView);
 
     void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
     void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText = "");
 
     XOptions::ICONTYPE getIconTypeById(quint64 nId);
     XOptions::ICONTYPE getIconTypeByGroupId(GROUPID groupId);
+
+    struct MENUITEM {
+        QString sText;
+        quint64 nId;
+        const QObject *pRecv;
+        const char *pMethod;
+        XOptions::ICONTYPE iconType;
+    };
+
+    void createMainMenu(QWidget *pWidget, QMenuBar *pMenuBar, const QList<MENUITEM> &listMenuItems);
 
 private slots:
     void copyRecord();
@@ -611,7 +624,6 @@ private:
     QString g_sName;
     QString g_sFilePath;
     QList<RECORD> g_listRecords;
-    QMenu *g_pRowCopyMenu;
     QList<QAction *> g_listCopyActions;
 };
 
