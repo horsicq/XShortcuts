@@ -27,10 +27,22 @@ XShortcuts::XShortcuts(QObject *pParent) : QObject(pParent)
 
 XShortcuts::~XShortcuts()
 {
-    qint32 nNumberOfActions = g_listCopyActions.count();
+    qint32 nNumberOfCopyActions = g_listCopyActions.count();
+
+    for (qint32 i = 0; i < nNumberOfCopyActions; i++) {
+        g_listCopyActions.at(i)->deleteLater();
+    }
+
+    qint32 nNumberOfActions = g_listActions.count();
 
     for (qint32 i = 0; i < nNumberOfActions; i++) {
-        g_listCopyActions.at(i)->deleteLater();
+        g_listActions.at(i)->deleteLater();
+    }
+
+    qint32 nNumberOfMenus = g_listMenus.count();
+
+    for (qint32 i = 0; i < nNumberOfMenus; i++) {
+        g_listMenus.at(i)->deleteLater();
     }
 }
 
@@ -233,12 +245,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_ARCHIVE_COPY_FILENAME);
         addId(X_ID_ARCHIVE_DUMPTOFILE);
     } else if (groupId == GROUPID_TABLE) {
-        addId(X_ID_TABLE_COPY);
         addId(X_ID_TABLE_DEMANGLE);
-        addId(X_ID_TABLE_HEX);
-        addId(X_ID_TABLE_DISASM);
-        addId(X_ID_TABLE_ENTROPY);
-        addId(X_ID_TABLE_DUMPTOFILE);
+        addId(X_ID_TABLE_EDIT);
     } else if (groupId == GROUPID_PROCESS) {
         addId(X_ID_PROCESS_STRUCTS);
         addId(X_ID_PROCESS_DUMPTOFILE);
@@ -266,6 +274,10 @@ void XShortcuts::addGroup(GROUPID groupId)
     } else if (groupId == GROUPID_HELP) {
     } else if (groupId == GROUPID_SELECT) {
     } else if (groupId == GROUPID_SELECTION) {
+        addId(X_ID_SELECTION_HEX);
+        addId(X_ID_SELECTION_DISASM);
+        addId(X_ID_SELECTION_ENTROPY);
+        addId(X_ID_SELECTION_DUMPTOFILE);
     } else if (groupId == GROUPID_FOLLOWIN) {
     } else if (groupId == GROUPID_SHOWIN) {
     } else if (groupId == GROUPID_BREAKPOINT) {
@@ -883,8 +895,6 @@ quint64 XShortcuts::getParentId(quint64 nId)
     } else {
         if (nNumberOfRecords) {
             nResult = ((nId & 0xFFFFFFFFFF0000) >> 8) | ((groupId & 0xFF) << 56);
-        } else {
-            nResult = nId & 0xFF00000000000000;
         }
     }
 
@@ -1304,6 +1314,131 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
 void XShortcuts::createMainMenu(QWidget *pWidget, QMenuBar *pMenuBar, const QList<MENUITEM> &listMenuItems)
 {
 
+}
+
+void XShortcuts::_addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod)
+{
+    MENUITEM record = {};
+    record.nShortcutId = nShortcutId;
+    record.pRecv = pRecv;
+    record.pMethod = pMethod;
+
+    pListMenuItems->append(record);
+}
+
+void XShortcuts::_addMenuItem_CopyRow(QList<MENUITEM> *pListMenuItems, QAbstractItemView *pTableView)
+{
+    MENUITEM record = {};
+    record.bCopyRow = true;
+    record.pTableView = pTableView;
+
+    pListMenuItems->append(record);
+}
+
+QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems)
+{
+    QList<QObject *> listResults;
+
+    qint32 nNumberOfRecords = plistMenuItems->count();
+
+    for (qint32 j = 0; j < nNumberOfRecords; j++) {
+        MENUITEM record = plistMenuItems->at(j);
+
+        if (record.bCopyRow) {
+            QMenu *pMenuCopy = new QMenu(0);
+            adjustMenu(pMenu, pMenuCopy, GROUPID_COPY);
+
+            listResults.append(pMenuCopy);
+
+            qint32 nRow = record.pTableView->currentIndex().row();
+
+            if (nRow != -1) {
+                QList<QString> listRecords;
+                QList<QString> listTitles;
+
+                QModelIndexList listSelected = record.pTableView->selectionModel()->selectedIndexes();
+
+                qint32 nNumberOfSelected = listSelected.count();
+
+                for (qint32 i = 0; i < nNumberOfSelected; i++) {
+                    QModelIndex index = record.pTableView->selectionModel()->selectedIndexes().at(i);
+                    QString sRecord = record.pTableView->model()->data(index).toString();
+                    QString sTitle = record.pTableView->model()->headerData(i, Qt::Horizontal).toString();
+
+                    listRecords.append(sRecord);
+                    listTitles.append(sTitle);
+                }
+
+                for (qint32 i = 0; i < nNumberOfSelected; i++) {
+                    QString sRecord = listRecords.at(i);
+                    QString sTitle = listTitles.at(i);
+
+                    if (sTitle != "") {
+                        QString sString = sTitle;
+
+                        QAction *pActionRecord = new QAction(0);
+                        XOptions::adjustAction(pMenuCopy, pActionRecord, sString, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
+                        pActionRecord->setProperty("VALUE", sRecord);
+
+                        listResults.append(pActionRecord);
+                    }
+                }
+
+                pMenuCopy->addSeparator();
+
+                for (qint32 i = 0; i < nNumberOfSelected; i++) {
+                    QString sRecord = listRecords.at(i);
+
+                    if (sRecord != "") {
+                        QAction *pActionRecord = new QAction(0);
+                        XOptions::adjustAction(pMenuCopy, pActionRecord, sRecord, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
+                        pActionRecord->setProperty("VALUE", sRecord);
+
+                        listResults.append(pActionRecord);
+                    }
+                }
+            }
+        } else {
+            QMap<quint64, QMenu *> mapMenus;
+            mapMenus.insert(GROUPID_NONE, pMenu);
+
+            {
+                quint64 nId = getParentId(record.nShortcutId);
+
+                while (nId) {
+                    QMenu *pNewMenu = new QMenu(0);
+                    mapMenus.insert(nId, pNewMenu);
+                    nId = getParentId(nId);
+                }
+            }
+            {
+                quint64 nId = getParentId(record.nShortcutId);
+                GROUPID groupId = getParentGroupId(record.nShortcutId);
+
+                while (nId) {
+                    quint64 nParentId = getParentId(nId);
+                    QMenu *_pMenu = mapMenus.value(nId);
+                    QMenu *_pParentMenu = mapMenus.value(nParentId);
+
+                    adjustMenu(_pParentMenu, _pMenu, groupId);
+
+                    groupId = getParentGroupId(nId);
+                    nId = nParentId;
+                }
+            }
+
+            QMenu *pMenuGroup = mapMenus.value(getParentId(record.nShortcutId));
+
+            if (pMenuGroup) {
+                QAction *pAction = new QAction(0);
+                adjustAction(pMenuGroup, pAction, record.nShortcutId, record.pRecv, record.pMethod);
+
+                listResults.append(pAction);
+            }
+        }
+    }
+
+    return listResults;
 }
 
 void XShortcuts::copyRecord()

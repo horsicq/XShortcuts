@@ -45,12 +45,12 @@
 #define X_ID_FILE_EXIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EXIT)
 
 #define X_ID_TABLE_EDIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EDIT)
-#define X_ID_TABLE_COPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_COPY)
 #define X_ID_TABLE_DEMANGLE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DEMANGLE)
-#define X_ID_TABLE_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_HEX)
-#define X_ID_TABLE_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DISASM)
-#define X_ID_TABLE_ENTROPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_ENTROPY)
-#define X_ID_TABLE_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
+
+#define X_ID_SELECTION_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_HEX)
+#define X_ID_SELECTION_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DISASM)
+#define X_ID_SELECTION_ENTROPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_ENTROPY)
+#define X_ID_SELECTION_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
 
 #define X_ID_VIEW_FULLSCREEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_VIEW, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_FULLSCREEN)
 
@@ -597,7 +597,7 @@ public:
     static QString baseIdToSettingsString(BASEID baseId);
     static QString groupIdToSettingsString(GROUPID groupId);
 
-    void adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView);
+    void adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView); // TODO remove
 
     void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
     void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText = "");
@@ -607,13 +607,18 @@ public:
 
     struct MENUITEM {
         QString sText;
-        quint64 nId;
+        quint64 nShortcutId;
         const QObject *pRecv;
         const char *pMethod;
         XOptions::ICONTYPE iconType;
+        bool bCopyRow;
+        QAbstractItemView *pTableView;
     };
 
     void createMainMenu(QWidget *pWidget, QMenuBar *pMenuBar, const QList<MENUITEM> &listMenuItems);
+    void _addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod);
+    void _addMenuItem_CopyRow(QList<MENUITEM> *pListMenuItems, QAbstractItemView *pTableView);
+    QList<QObject *> adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems);
 
 private slots:
     void copyRecord();
@@ -625,6 +630,8 @@ private:
     QString g_sFilePath;
     QList<RECORD> g_listRecords;
     QList<QAction *> g_listCopyActions;
+    QList<QAction *> g_listActions;
+    QList<QMenu *> g_listMenus;
 };
 
 #endif  // XSHORTCUTS_H
