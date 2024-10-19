@@ -597,7 +597,7 @@ public:
     static QString baseIdToSettingsString(BASEID baseId);
     static QString groupIdToSettingsString(GROUPID groupId);
 
-    void adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView); // TODO remove
+    void adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView);  // TODO remove
 
     void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
     void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText = "");
