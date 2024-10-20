@@ -894,7 +894,7 @@ quint64 XShortcuts::getParentId(quint64 nId)
         nResult = nId & 0xFFFFFFFFFFFFFF00;
     } else {
         if (nNumberOfRecords) {
-            nResult = ((nId & 0xFFFFFFFFFF0000) >> 8) | ((groupId & 0xFF) << 56);
+            nResult = ((nId & 0xFFFFFFFFFF0000) >> 8) | (((quint64)groupId & 0xFF) << 56);
         }
     }
 
@@ -1303,7 +1303,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     else if (groupId == GROUPID_MEMORYMAP) result = XOptions::ICONTYPE_MEMORYMAP;
     else if (groupId == GROUPID_VALUE) result = XOptions::ICONTYPE_VALUE;
     else if (groupId == GROUPID_SCAN) result = XOptions::ICONTYPE_SCAN;
-    // else if (groupId == GROUPID_EDITOR) result = XOptions::ICONTYPE_EDITOR;
+    else if (groupId == GROUPID_EDITOR) result = XOptions::ICONTYPE_EDIT;
     // else if (groupId == GROUPID_BOOKMARKS) result = XOptions::ICONTYPE_BOOKMARKS;
     // else if (groupId == GROUPID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
     // else if (groupId == GROUPID_HARDWARE) result = XOptions::ICONTYPE_HARDWARE;
