@@ -1202,10 +1202,10 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_OPCODE) result = XOptions::ICONTYPE_OPCODE;
     else if (baseId == BASEID_DEMANGLE) result = XOptions::ICONTYPE_DEMANGLE;
     // else if (baseId == BASEID_NAME) result = XOptions::ICONTYPE_NAME;
-    // else if (baseId == BASEID_NEXT) result = XOptions::ICONTYPE_NEXT;
+    else if (baseId == BASEID_NEXT) result = XOptions::ICONTYPE_NEXT;
     else if (baseId == BASEID_DATA) result = XOptions::ICONTYPE_DATA;
     else if (baseId == BASEID_VALUE) result = XOptions::ICONTYPE_VALUE;
-    // else if (baseId == BASEID_ALL) result = XOptions::ICONTYPE_ALL;
+    else if (baseId == BASEID_ALL) result = XOptions::ICONTYPE_ALL;
     else if (baseId == BASEID_DISASM) result = XOptions::ICONTYPE_DISASM;
     else if (baseId == BASEID_MEMORYMAP) result = XOptions::ICONTYPE_MEMORYMAP;
     // else if (baseId == BASEID_ATTACH) result = XOptions::ICONTYPE_ATTACH;
@@ -1321,6 +1321,7 @@ void XShortcuts::createMainMenu(QWidget *pWidget, QMenuBar *pMenuBar, const QLis
 void XShortcuts::_addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups)
 {
     MENUITEM record = {};
+
     record.nShortcutId = nShortcutId;
     record.pRecv = pRecv;
     record.pMethod = pMethod;
@@ -1332,6 +1333,7 @@ void XShortcuts::_addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcut
 void XShortcuts::_addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups, bool bIsChecked)
 {
     MENUITEM record = {};
+
     record.nShortcutId = nShortcutId;
     record.pRecv = pRecv;
     record.pMethod = pMethod;
@@ -1345,17 +1347,20 @@ void XShortcuts::_addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 n
 void XShortcuts::_addMenuItem_CopyRow(QList<MENUITEM> *pListMenuItems, QAbstractItemView *pTableView)
 {
     MENUITEM record = {};
+
     record.bCopyRow = true;
     record.pTableView = pTableView;
 
     pListMenuItems->append(record);
 }
 
-void XShortcuts::_addMenuSeparator(QList<MENUITEM> *pListMenuItems)
+void XShortcuts::_addMenuSeparator(QList<MENUITEM> *pListMenuItems, quint64 nSubgroups)
 {
     MENUITEM record = {};
 
     record.bIsMenuSeparator = true;
+    record.nSubgroups = nSubgroups;
+
     pListMenuItems->append(record);
 }
 
@@ -1364,15 +1369,47 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
     QList<QObject *> listResults;
 
     QMap<quint64, QMenu *> mapMenus;
+    mapMenus.insert(GROUPID_NONE, pMenu);
 
     qint32 nNumberOfRecords = plistMenuItems->count();
 
     for (qint32 j = 0; j < nNumberOfRecords; j++) {
         MENUITEM record = plistMenuItems->at(j);
 
+        QMenu *pCurrentMenu = mapMenus.value(0);
+
+        if (record.nSubgroups) {
+            QMenu *pParentMenu = nullptr;
+
+            for (qint32 i = 0; i < 8; i++) {
+                pParentMenu = pCurrentMenu;
+
+                GROUPID groupId = (GROUPID)(((record.nSubgroups) >> (8 * i)) & 0xFF);
+
+                if (groupId == GROUPID_NONE) {
+                    break;
+                }
+
+                quint64 nCurrentGroup = record.nSubgroups;
+
+                for (int j = 7; j > i; j--) {
+                    nCurrentGroup = nCurrentGroup & ~(((quint64)0xFF) << (8 * j));
+                }
+
+                pCurrentMenu = mapMenus.value(nCurrentGroup);
+
+                if (!pCurrentMenu) {
+                    pCurrentMenu = new QMenu(0);
+                    mapMenus.insert(nCurrentGroup, pCurrentMenu);
+                }
+
+                adjustMenu(pParentMenu, pCurrentMenu, groupId);
+            }
+        }
+
         if (record.bCopyRow) {
             QMenu *pMenuCopy = new QMenu(0);
-            adjustMenu(pMenu, pMenuCopy, GROUPID_COPY);
+            adjustMenu(pCurrentMenu, pMenuCopy, GROUPID_COPY);
 
             listResults.append(pMenuCopy);
 
@@ -1426,41 +1463,13 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
                 }
             }
         } else if (record.bIsMenuSeparator) {
-            pMenu->addSeparator();
-        } else {
-            mapMenus.insert(GROUPID_NONE, pMenu);
-
-            quint64 nSubgroups = record.nSubgroups;
-
-            while (nSubgroups) {
-                GROUPID groupId = (GROUPID)(nSubgroups & 0xFF);
-                GROUPID groupParentId = (GROUPID)((nSubgroups >> 8) & 0xFF);
-
-                QMenu *_pMenu = mapMenus.value(nSubgroups);
-                QMenu *_pParentMenu = mapMenus.value((nSubgroups >> 8));
-
-                if (!_pMenu) {
-                    _pMenu = new QMenu(0);
-                    mapMenus.insert(nSubgroups, _pMenu);
-                }
-
-                if (!_pParentMenu) {
-                    _pParentMenu = new QMenu(0);
-                    mapMenus.insert((nSubgroups >> 8), _pParentMenu);
-                }
-
-                adjustMenu(_pParentMenu, _pMenu, groupId);
-
-                nSubgroups >>= 8;
+            if (pCurrentMenu) {
+                pCurrentMenu->addSeparator();
             }
-
-            nSubgroups = record.nSubgroups;
-
-            QMenu *pMenu = mapMenus.value((GROUPID)(nSubgroups & 0xFF));
-
-            if (pMenu) {
+        } else {
+            if (pCurrentMenu) {
                 QAction *pAction = new QAction(0);
-                adjustAction(pMenu, pAction, record.nShortcutId, record.pRecv, record.pMethod);
+                adjustAction(pCurrentMenu, pAction, record.nShortcutId, record.pRecv, record.pMethod);
 
                 if (record.bIsCheckable) {
                     pAction->setCheckable(true);
