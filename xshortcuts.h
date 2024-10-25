@@ -46,11 +46,11 @@
 
 #define X_ID_TABLE_EDIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EDIT)
 #define X_ID_TABLE_DEMANGLE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DEMANGLE)
-
-#define X_ID_SELECTION_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_HEX)
-#define X_ID_SELECTION_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DISASM)
-#define X_ID_SELECTION_ENTROPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_ENTROPY)
-#define X_ID_SELECTION_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_SELECTION, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
+#define X_ID_TABLE_FOLLOWIN_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_DEMANGLE)
+#define X_ID_TABLE_SELECTION_HEX XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECTION, XShortcuts::BASEID_HEX)
+#define X_ID_TABLE_SELECTION_DISASM XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECTION, XShortcuts::BASEID_DISASM)
+#define X_ID_TABLE_SELECTION_ENTROPY XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECTION, XShortcuts::BASEID_ENTROPY)
+#define X_ID_TABLE_SELECTION_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECTION, XShortcuts::BASEID_DUMPTOFILE)
 
 #define X_ID_VIEW_FULLSCREEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_VIEW, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_FULLSCREEN)
 
@@ -612,12 +612,18 @@ public:
         const char *pMethod;
         XOptions::ICONTYPE iconType;
         bool bCopyRow;
+        bool bIsMenuSeparator;
         QAbstractItemView *pTableView;
+        quint64 nSubgroups;
+        bool bIsCheckable;
+        bool bIsChecked;
     };
 
     void createMainMenu(QWidget *pWidget, QMenuBar *pMenuBar, const QList<MENUITEM> &listMenuItems);
-    void _addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod);
+    void _addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups);
+    void _addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups, bool bIsChecked);
     void _addMenuItem_CopyRow(QList<MENUITEM> *pListMenuItems, QAbstractItemView *pTableView);
+    void _addMenuSeparator(QList<MENUITEM> *pListMenuItems);
     QList<QObject *> adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems);
 
 private slots:
