@@ -1330,7 +1330,8 @@ void XShortcuts::_addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcut
     pListMenuItems->append(record);
 }
 
-void XShortcuts::_addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups, bool bIsChecked)
+void XShortcuts::_addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups,
+                                      bool bIsChecked)
 {
     MENUITEM record = {};
 
