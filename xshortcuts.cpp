@@ -1218,7 +1218,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_HANDLES) result = XOptions::ICONTYPE_HANDLES;
     // else if (baseId == BASEID_MODULES) result = XOptions::ICONTYPE_MODULES;
     else if (baseId == BASEID_SYMBOLS) result = XOptions::ICONTYPE_SYMBOL;
-    // else if (baseId == BASEID_FUNCTIONS) result = XOptions::ICONTYPE_FUNCTIONS;
+    else if (baseId == BASEID_FUNCTIONS) result = XOptions::ICONTYPE_FUNCTION;
     // else if (baseId == BASEID_CLEAR) result = XOptions::ICONTYPE_CLEAR;
     else if (baseId == BASEID_SHORTCUTS) result = XOptions::ICONTYPE_SHORTCUT;
     else if (baseId == BASEID_OPTIONS) result = XOptions::ICONTYPE_OPTION;
