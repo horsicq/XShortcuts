@@ -452,7 +452,7 @@ public:
         GROUPID_VALUE,
         GROUPID_BOOKMARKS,
         GROUPID_ANALYZE,
-        GROUPID_HARDWARE
+        GROUPID_HARDWARE,
     };
 
     enum BASEID {

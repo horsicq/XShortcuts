@@ -1198,7 +1198,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     else if (baseId == BASEID_SIGNATURE) result = XOptions::ICONTYPE_SIGNATURE;
     else if (baseId == BASEID_SIGNATURES) result = XOptions::ICONTYPE_SIGNATURE;
     else if (baseId == BASEID_HEX) result = XOptions::ICONTYPE_HEX;
-    // else if (baseId == BASEID_PATCH) result = XOptions::ICONTYPE_PATCH;
+    else if (baseId == BASEID_PATCH) result = XOptions::ICONTYPE_PATCH;
     // else if (baseId == BASEID_OPCODE) result = XOptions::ICONTYPE_OPCODE;
     else if (baseId == BASEID_DEMANGLE) result = XOptions::ICONTYPE_DEMANGLE;
     // else if (baseId == BASEID_NAME) result = XOptions::ICONTYPE_NAME;
@@ -1243,8 +1243,8 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_REFERENCES) result = XOptions::ICONTYPE_REFERENCES;
     // else if (baseId == BASEID_BOOKMARK) result = XOptions::ICONTYPE_BOOKMARK;
     else if (baseId == BASEID_LIST) result = XOptions::ICONTYPE_LIST;
-    // else if (baseId == BASEID_REMOVE) result = XOptions::ICONTYPE_REMOVE;
-    // else if (baseId == BASEID_RESIZE) result = XOptions::ICONTYPE_RESIZE;
+    else if (baseId == BASEID_REMOVE) result = XOptions::ICONTYPE_REMOVE;
+    else if (baseId == BASEID_RESIZE) result = XOptions::ICONTYPE_RESIZE;
     // else if (baseId == BASEID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
     // else if (baseId == BASEID_CONDITIONAL) result = XOptions::ICONTYPE_CONDITIONAL;
     else if (baseId == BASEID_EDIT) result = XOptions::ICONTYPE_EDIT;

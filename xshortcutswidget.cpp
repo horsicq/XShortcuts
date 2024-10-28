@@ -166,6 +166,11 @@ void XShortcutsWidget::reloadShortcuts()
     registerShortcuts(true);
 }
 
+void XShortcutsWidget::setWidgetFocus()
+{
+
+}
+
 #ifdef QT_CONCURRENT_LIB
 void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 {
