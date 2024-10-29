@@ -1330,6 +1330,19 @@ void XShortcuts::_addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcut
     pListMenuItems->append(record);
 }
 
+void XShortcuts::_addMenuItem_Text(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups, QString sText)
+{
+    MENUITEM record = {};
+
+    record.nShortcutId = nShortcutId;
+    record.pRecv = pRecv;
+    record.pMethod = pMethod;
+    record.nSubgroups = nSubgroups;
+    record.sText = sText;
+
+    pListMenuItems->append(record);
+}
+
 void XShortcuts::_addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups,
                                       bool bIsChecked)
 {
@@ -1470,7 +1483,16 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
         } else {
             if (pCurrentMenu) {
                 QAction *pAction = new QAction(0);
-                adjustAction(pCurrentMenu, pAction, record.nShortcutId, record.pRecv, record.pMethod);
+
+                if (record.nShortcutId) {
+                    adjustAction(pCurrentMenu, pAction, record.nShortcutId, record.pRecv, record.pMethod, record.sText);
+                } else {
+                    XOptions::adjustAction(pCurrentMenu, pAction, record.sText, record.pRecv, record.pMethod, record.iconType);
+                }
+
+                if (record.sPropertyName != "") {
+                    pAction->setProperty(record.sPropertyName.toLatin1().data(), record.varProperty);
+                }
 
                 if (record.bIsCheckable) {
                     pAction->setCheckable(true);
