@@ -1240,8 +1240,8 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     else if (baseId == BASEID_HASH) result = XOptions::ICONTYPE_HASH;
     // else if (baseId == BASEID_STACK) result = XOptions::ICONTYPE_STACK;
     // else if (baseId == BASEID_FULLSCREEN) result = XOptions::ICONTYPE_FULLSCREEN;
-    // else if (baseId == BASEID_REFERENCES) result = XOptions::ICONTYPE_REFERENCES;
-    // else if (baseId == BASEID_BOOKMARK) result = XOptions::ICONTYPE_BOOKMARK;
+    else if (baseId == BASEID_REFERENCES) result = XOptions::ICONTYPE_REFERENCE;
+    else if (baseId == BASEID_BOOKMARK) result = XOptions::ICONTYPE_BOOKMARK;
     else if (baseId == BASEID_LIST) result = XOptions::ICONTYPE_LIST;
     else if (baseId == BASEID_REMOVE) result = XOptions::ICONTYPE_REMOVE;
     else if (baseId == BASEID_RESIZE) result = XOptions::ICONTYPE_RESIZE;
