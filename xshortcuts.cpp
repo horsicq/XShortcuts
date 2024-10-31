@@ -226,6 +226,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_DISASM_COPY_ADDRESS);
         addId(X_ID_DISASM_FOLLOWIN_HEX);
         addId(X_ID_DISASM_EDIT_HEX);
+        addId(X_ID_DISASM_EDIT_PATCH);
         addId(X_ID_DISASM_ANALYZE_DISASM);
         addId(X_ID_DISASM_ANALYZE_REMOVE);
         addId(X_ID_DISASM_ANALYZE_ALL);
@@ -1285,7 +1286,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     // else if (groupId == GROUPID_REGISTER) result = XOptions::ICONTYPE_REGISTER;
     // else if (groupId == GROUPID_STACK) result = XOptions::ICONTYPE_STACK;
     // else if (groupId == GROUPID_ARCHIVE) result = XOptions::ICONTYPE_ARCHIVE;
-    // else if (groupId == GROUPID_TABLE) result = XOptions::ICONTYPE_TABLE;
+    else if (groupId == GROUPID_TABLE) result = XOptions::ICONTYPE_TABLE;
     // else if (groupId == GROUPID_PROCESS) result = XOptions::ICONTYPE_PROCESS;
     // else if (groupId == GROUPID_MEMORY) result = XOptions::ICONTYPE_MEMORY;
     else if (groupId == GROUPID_COPY) result = XOptions::ICONTYPE_COPY;
@@ -1304,7 +1305,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     else if (groupId == GROUPID_VALUE) result = XOptions::ICONTYPE_VALUE;
     else if (groupId == GROUPID_SCAN) result = XOptions::ICONTYPE_SCAN;
     else if (groupId == GROUPID_EDITOR) result = XOptions::ICONTYPE_EDIT;
-    // else if (groupId == GROUPID_BOOKMARKS) result = XOptions::ICONTYPE_BOOKMARKS;
+    else if (groupId == GROUPID_BOOKMARKS) result = XOptions::ICONTYPE_BOOKMARK;
     // else if (groupId == GROUPID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
     // else if (groupId == GROUPID_HARDWARE) result = XOptions::ICONTYPE_HARDWARE;
 
