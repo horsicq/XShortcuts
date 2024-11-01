@@ -168,7 +168,6 @@ void XShortcutsWidget::reloadShortcuts()
 
 void XShortcutsWidget::setWidgetFocus()
 {
-
 }
 
 #ifdef QT_CONCURRENT_LIB
