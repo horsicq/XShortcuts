@@ -733,6 +733,8 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId == GROUPID_BOOKMARKS) sResult = tr("Bookmarks");
     else if (groupId == GROUPID_ANALYZE) sResult = tr("Analyze");
     else if (groupId == GROUPID_HARDWARE) sResult = tr("Hardware");
+    else if (groupId == GROUPID_LOCATION) sResult = tr("Location");
+    else if (groupId == GROUPID_MODE) sResult = tr("Mode");
     else {
 #ifdef QT_DEBUG
         qDebug("Unknown groupId");
@@ -1076,6 +1078,8 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId == GROUPID_BOOKMARKS) sResult = QString("Bookmarks");
     else if (groupId == GROUPID_ANALYZE) sResult = QString("Analyze");
     else if (groupId == GROUPID_HARDWARE) sResult = QString("Hardware");
+    else if (groupId == GROUPID_LOCATION) sResult = QString("Location");
+    else if (groupId == GROUPID_MODE) sResult = QString("Mode");
 
     return sResult;
 }

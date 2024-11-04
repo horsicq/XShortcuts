@@ -456,6 +456,8 @@ public:
         GROUPID_BOOKMARKS,
         GROUPID_ANALYZE,
         GROUPID_HARDWARE,
+        GROUPID_LOCATION,
+        GROUPID_MODE
     };
 
     enum BASEID {
