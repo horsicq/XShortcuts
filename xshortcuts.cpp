@@ -175,8 +175,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_FIND_FOLLOWIN_HEX);
     } else if (groupId == GROUPID_STRUCT) {
     } else if (groupId == GROUPID_HEX) {
-        addId(X_ID_HEX_DATAINSPECTOR);
-        addId(X_ID_HEX_DATACONVERTOR);
+        addId(X_ID_HEX_DATA_INSPECTOR);
+        addId(X_ID_HEX_DATA_CONVERTOR);
         addId(X_ID_HEX_MULTISEARCH);
         addId(X_ID_HEX_DUMPTOFILE);
         addId(X_ID_HEX_GOTO_OFFSET);
@@ -599,8 +599,8 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_SIGNATURES_FOLLOWIN_HEX) ksResult = QKeySequence();
     } else if (groupId == GROUPID_STRUCT) {
     } else if (groupId == GROUPID_HEX) {
-        if (nId == X_ID_HEX_DATAINSPECTOR) ksResult = QKeySequence();
-        else if (nId == X_ID_HEX_DATACONVERTOR) ksResult = QKeySequence();
+        if (nId == X_ID_HEX_DATA_INSPECTOR) ksResult = QKeySequence();
+        else if (nId == X_ID_HEX_DATA_CONVERTOR) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_DUMPTOFILE) ksResult = Qt::CTRL | Qt::Key_D;
         else if (nId == X_ID_HEX_GOTO_OFFSET) ksResult = Qt::CTRL | Qt::Key_G;
         else if (nId == X_ID_HEX_GOTO_ADDRESS) ksResult = QKeySequence();
@@ -735,6 +735,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId == GROUPID_HARDWARE) sResult = tr("Hardware");
     else if (groupId == GROUPID_LOCATION) sResult = tr("Location");
     else if (groupId == GROUPID_MODE) sResult = tr("Mode");
+    else if (groupId == GROUPID_WIDTH) sResult = tr("Width");
     else {
 #ifdef QT_DEBUG
         qDebug("Unknown groupId");
@@ -821,8 +822,8 @@ QString XShortcuts::baseIdToString(BASEID baseId)
     else if (baseId == BASEID_ANALYZE) sResult = tr("Analyze");
     else if (baseId == BASEID_CONDITIONAL) sResult = tr("Conditional");
     else if (baseId == BASEID_EDIT) sResult = tr("Edit");
-    else if (baseId == BASEID_DATAINSPECTOR) sResult = tr("Data inspector");
-    else if (baseId == BASEID_DATACONVERTOR) sResult = tr("Data convertor");
+    else if (baseId == BASEID_INSPECTOR) sResult = tr("Inspector");
+    else if (baseId == BASEID_CONVERTOR) sResult = tr("Convertor");
     else if (baseId == BASEID_MULTISEARCH) sResult = tr("Multisearch");
     else if (baseId == BASEID_VISUALIZATION) sResult = tr("Visualization");
     else if (baseId == BASEID_0) sResult = QString("0");
@@ -1017,8 +1018,8 @@ QString XShortcuts::baseIdToSettingsString(BASEID baseId)
     else if (baseId == BASEID_ANALYZE) sResult = QString("Analyze");
     else if (baseId == BASEID_CONDITIONAL) sResult = QString("Conditional");
     else if (baseId == BASEID_EDIT) sResult = QString("Edit");
-    else if (baseId == BASEID_DATAINSPECTOR) sResult = QString("DataInspector");
-    else if (baseId == BASEID_DATACONVERTOR) sResult = QString("DataConvertor");
+    else if (baseId == BASEID_INSPECTOR) sResult = QString("Inspector");
+    else if (baseId == BASEID_CONVERTOR) sResult = QString("Convertor");
     else if (baseId == BASEID_MULTISEARCH) sResult = QString("Multisearch");
     else if (baseId == BASEID_VISUALIZATION) sResult = QString("Visualization");
     else if (baseId == BASEID_0) sResult = QString("0");
@@ -1080,6 +1081,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId == GROUPID_HARDWARE) sResult = QString("Hardware");
     else if (groupId == GROUPID_LOCATION) sResult = QString("Location");
     else if (groupId == GROUPID_MODE) sResult = QString("Mode");
+    else if (groupId == GROUPID_WIDTH) sResult = QString("Width");
 
     return sResult;
 }
@@ -1253,7 +1255,8 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     // else if (baseId == BASEID_ANALYZE) result = XOptions::ICONTYPE_ANALYZE;
     // else if (baseId == BASEID_CONDITIONAL) result = XOptions::ICONTYPE_CONDITIONAL;
     else if (baseId == BASEID_EDIT) result = XOptions::ICONTYPE_EDIT;
-    else if (baseId == BASEID_DATAINSPECTOR) result = XOptions::ICONTYPE_DATA;
+    else if (baseId == BASEID_INSPECTOR) result = XOptions::ICONTYPE_INSPECTOR;
+    else if (baseId == BASEID_CONVERTOR) result = XOptions::ICONTYPE_CONVERTOR;
     // else if (baseId == BASEID_DATACONVERTOR) result = XOptions::ICONTYPE_DATACONVERTOR;
     else if (baseId == BASEID_MULTISEARCH) result = XOptions::ICONTYPE_SEARCH;
     else if (baseId == BASEID_VISUALIZATION) result = XOptions::ICONTYPE_VISUALIZATION;
