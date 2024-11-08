@@ -641,7 +641,7 @@ public:
     void _addMenuSeparator(QList<MENUITEM> *pListMenuItems, quint64 nSubgroups);
     QList<QObject *> adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems);
 
-private slots:
+public slots:
     void copyRecord();
 
 private:
