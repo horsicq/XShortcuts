@@ -78,8 +78,10 @@
 #define X_ID_SIGNATURES_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_SIGNATURES, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
 
-#define X_ID_HEX_DATA_INSPECTOR XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DATA, XShortcuts::BASEID_INSPECTOR)
-#define X_ID_HEX_DATA_CONVERTOR XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DATA, XShortcuts::BASEID_CONVERTOR)
+#define X_ID_HEX_DATA_INSPECTOR \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DATA, XShortcuts::BASEID_INSPECTOR)
+#define X_ID_HEX_DATA_CONVERTOR \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_DATA, XShortcuts::BASEID_CONVERTOR)
 #define X_ID_HEX_MULTISEARCH XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_MULTISEARCH)
 #define X_ID_HEX_DUMPTOFILE XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DUMPTOFILE)
 #define X_ID_HEX_GOTO_OFFSET XShortcuts::createShortcutsId(XShortcuts::GROUPID_HEX, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_GOTO, XShortcuts::BASEID_OFFSET)
