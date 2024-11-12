@@ -178,6 +178,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_DATA_INSPECTOR);
         addId(X_ID_HEX_DATA_CONVERTOR);
         addId(X_ID_HEX_MULTISEARCH);
+        addId(X_ID_HEX_VISUALIZATION);
         addId(X_ID_HEX_DUMPTOFILE);
         addId(X_ID_HEX_GOTO_OFFSET);
         addId(X_ID_HEX_GOTO_ADDRESS);
