@@ -460,7 +460,8 @@ public:
         GROUPID_HARDWARE,
         GROUPID_LOCATION,
         GROUPID_MODE,
-        GROUPID_WIDTH
+        GROUPID_WIDTH,
+        GROUPID_BASE
     };
 
     enum BASEID {
