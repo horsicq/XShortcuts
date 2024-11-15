@@ -26,12 +26,8 @@
 
 #include "xoptions.h"
 #include "xshortcuts.h"
-#ifdef QT_CONCURRENT_LIB
 #include <QAbstractItemModel>
-#include <QFuture>
 #include <QStandardItemModel>
-#include <QtConcurrent>
-#endif
 
 class XShortcutsWidget : public QWidget {
     Q_OBJECT
@@ -54,15 +50,11 @@ public:
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
     virtual void reloadShortcuts();
     void setWidgetFocus();
-#ifdef QT_CONCURRENT_LIB
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
-    QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
-#endif
+    // QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
 private:
-#ifdef QT_CONCURRENT_LIB
     void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     void _deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
-#endif
 
 protected slots:
     void errorMessageSlot(const QString &sErrorMessage);

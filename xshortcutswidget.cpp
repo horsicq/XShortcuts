@@ -170,7 +170,6 @@ void XShortcutsWidget::setWidgetFocus()
 {
 }
 
-#ifdef QT_CONCURRENT_LIB
 void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 {
     // #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
@@ -183,20 +182,18 @@ void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 
     _deleteOldAbstractModel(g_ppOldModel);
 }
-#endif
-#ifdef QT_CONCURRENT_LIB
-QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
-{
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QFuture<void> future = QtConcurrent::run(&XShortcutsWidget::_deleteOldStandardModel, this, g_ppOldModel);
-#else
-    QFuture<void> future = QtConcurrent::run(this, &XShortcutsWidget::_deleteOldStandardModel, g_ppOldModel);
-#endif
+// #ifdef QT_CONCURRENT_LIB
+// QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
+// {
+// #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+//     QFuture<void> future = QtConcurrent::run(&XShortcutsWidget::_deleteOldStandardModel, this, g_ppOldModel);
+// #else
+//     QFuture<void> future = QtConcurrent::run(this, &XShortcutsWidget::_deleteOldStandardModel, g_ppOldModel);
+// #endif
 
-    return future;
-}
-#endif
-#ifdef QT_CONCURRENT_LIB
+//     return future;
+// }
+// #endif
 void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
 {
     if (g_ppOldModel) {
@@ -207,8 +204,7 @@ void XShortcutsWidget::_deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel
         }
     }
 }
-#endif
-#ifdef QT_CONCURRENT_LIB
+
 void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
 {
     if (g_ppOldModel) {
@@ -219,7 +215,7 @@ void XShortcutsWidget::_deleteOldStandardModel(QStandardItemModel **g_ppOldModel
         }
     }
 }
-#endif
+
 void XShortcutsWidget::errorMessageSlot(const QString &sErrorMessage)
 {
     QMessageBox::critical(XOptions::getMainWidget(this), tr("Error"), sErrorMessage);
