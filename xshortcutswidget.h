@@ -56,6 +56,10 @@ private:
     void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     void _deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
 
+signals:
+    void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
+    void currentLocationChanged(quint64 nLocation, qint32 nLocationType, qint64 nSize);
+
 protected slots:
     void errorMessageSlot(const QString &sErrorMessage);
 

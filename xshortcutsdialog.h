@@ -42,6 +42,10 @@ protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
     virtual void registerShortcuts(bool bState) = 0;
 
+signals:
+    void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
+    void currentLocationChanged(quint64 nLocation, qint32 nLocationType, qint64 nSize);
+
 private:
     bool g_bIsActive;
     XShortcuts *g_pShortcuts;
