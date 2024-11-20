@@ -25,6 +25,7 @@ XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent)
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
     g_bIsActive = false;
+    g_bIsReadonly = false;
 }
 
 XShortcutsWidget::~XShortcutsWidget()
@@ -181,6 +182,24 @@ void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
     //    return future;
 
     _deleteOldAbstractModel(g_ppOldModel);
+}
+
+void XShortcutsWidget::setReadonly(bool bState)
+{
+    g_bIsReadonly = bState;
+}
+
+bool XShortcutsWidget::isReadonly()
+{
+    return g_bIsReadonly;
+}
+
+void XShortcutsWidget::reloadData(bool bSaveSelection)
+{
+    Q_UNUSED(bSaveSelection)
+#ifdef QT_DEBUG
+    qDebug("reloadData");
+#endif
 }
 // #ifdef QT_CONCURRENT_LIB
 // QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)

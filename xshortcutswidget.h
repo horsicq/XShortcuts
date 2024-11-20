@@ -52,6 +52,9 @@ public:
     void setWidgetFocus();
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     // QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
+    virtual void setReadonly(bool bState);
+    virtual bool isReadonly();
+    virtual void reloadData(bool bSaveSelection);
 private:
     void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     void _deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
@@ -73,6 +76,7 @@ private:
     XShortcuts g_scEmpty;
     XOptions *g_pXOptions;
     XOptions g_xOptionsEmpty;
+    bool g_bIsReadonly;
 };
 
 #endif  // XSHORTCUTSWIDGET_H

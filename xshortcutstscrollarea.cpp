@@ -25,6 +25,7 @@ XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScroll
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
     g_bIsActive = false;
+    g_bIsReadonly = false;
 
     g_color[TCLOLOR_SELECTED] = getColorSelected(viewport());
     g_color[TCLOLOR_BREAKPOINT] = Qt::red;              // mb TODO
@@ -145,4 +146,14 @@ QColor XShortcutstScrollArea::getColorSelected(QWidget *pWidget)
 {
     QColor colorBackground = pWidget->palette().window().color();
     return getColorSelected(colorBackground);
+}
+
+void XShortcutstScrollArea::setReadonly(bool bState)
+{
+    g_bIsReadonly = bState;
+}
+
+bool XShortcutstScrollArea::isReadonly()
+{
+    return g_bIsReadonly;
 }

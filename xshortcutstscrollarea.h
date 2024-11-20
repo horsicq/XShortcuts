@@ -53,6 +53,8 @@ public:
     void setColor(TCLOLOR tcolor, QColor color);
     static QColor getColorSelected(QColor color);
     static QColor getColorSelected(QWidget *pWidget);
+    virtual void setReadonly(bool bState);
+    virtual bool isReadonly();
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
@@ -69,6 +71,7 @@ private:
     XOptions *g_pXOptions;
     XOptions g_xOptionsEmpty;
     QColor g_color[TCLOLOR_SIZE];
+    bool g_bIsReadonly;
 };
 
 #endif  // XSHORTCUTSTSCROLLAREA_H
