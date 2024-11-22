@@ -55,6 +55,7 @@ public:
     virtual void setReadonly(bool bState);
     virtual bool isReadonly();
     virtual void reloadData(bool bSaveSelection);
+
 private:
     void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     void _deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
