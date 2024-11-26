@@ -703,6 +703,7 @@ QString XShortcuts::groupIdToString(GROUPID groupId)
     else if (groupId == GROUPID_SIGNATURES) sResult = tr("Signatures");
     else if (groupId == GROUPID_STRUCT) sResult = tr("Struct");
     else if (groupId == GROUPID_HEX) sResult = tr("Hex");
+    else if (groupId == GROUPID_DATA) sResult = tr("Data");
     else if (groupId == GROUPID_DISASM) sResult = tr("Disasm");
     else if (groupId == GROUPID_DEBUG) sResult = tr("Debug");
     else if (groupId == GROUPID_TRACE) sResult = tr("Trace");
@@ -1050,6 +1051,7 @@ QString XShortcuts::groupIdToSettingsString(GROUPID groupId)
     else if (groupId == GROUPID_SIGNATURES) sResult = QString("Signatures");
     else if (groupId == GROUPID_STRUCT) sResult = QString("Struct");
     else if (groupId == GROUPID_HEX) sResult = QString("Hex");
+    else if (groupId == GROUPID_DATA) sResult = QString("Data");
     else if (groupId == GROUPID_DISASM) sResult = QString("Disasm");
     else if (groupId == GROUPID_DEBUG) sResult = QString("Debug");
     else if (groupId == GROUPID_TRACE) sResult = QString("Trace");
@@ -1287,6 +1289,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeByGroupId(GROUPID groupId)
     else if (groupId == GROUPID_SIGNATURES) result = XOptions::ICONTYPE_SIGNATURE;
     // else if (groupId == GROUPID_STRUCT) result = XOptions::ICONTYPE_STRUCT;
     else if (groupId == GROUPID_HEX) result = XOptions::ICONTYPE_HEX;
+    else if (groupId == GROUPID_DATA) result = XOptions::ICONTYPE_DATA;
     else if (groupId == GROUPID_DISASM) result = XOptions::ICONTYPE_DISASM;
     // else if (groupId == GROUPID_DEBUG) result = XOptions::ICONTYPE_DEBUG;
     // else if (groupId == GROUPID_TRACE) result = XOptions::ICONTYPE_TRACE;
