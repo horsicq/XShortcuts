@@ -1,9 +1,12 @@
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
-include(${CMAKE_CURRENT_LIST_DIR}/../XOptions/xoptions.cmake)
+if (NOT DEFINED XOPTIONS_SOURCES)
+    include(${CMAKE_CURRENT_LIST_DIR}/../XOptions/xoptions.cmake)
+    set(XSHORTCUTS_SOURCES ${XSHORTCUTS_SOURCES} ${XOPTIONS_SOURCES})
+endif()
 
 set(XSHORTCUTS_SOURCES
-    ${XOPTIONS_SOURCES}
+    ${XSHORTCUTS_SOURCES}
     ${CMAKE_CURRENT_LIST_DIR}/dialogshortcuts.cpp
     ${CMAKE_CURRENT_LIST_DIR}/dialogshortcuts.h
     ${CMAKE_CURRENT_LIST_DIR}/dialogshortcuts.ui
