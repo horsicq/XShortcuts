@@ -45,6 +45,7 @@
 #define X_ID_FILE_EXIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_FILE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EXIT)
 
 #define X_ID_TABLE_EDIT XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_EDIT)
+#define X_ID_TABLE_SHOW XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_SHOW)
 #define X_ID_TABLE_DEMANGLE XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_DEMANGLE)
 #define X_ID_TABLE_FOLLOWIN_HEX \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_FOLLOWIN, XShortcuts::BASEID_HEX)
