@@ -1236,7 +1236,7 @@ XOptions::ICONTYPE XShortcuts::getIconTypeById(quint64 nId)
     else if (baseId == BASEID_OPTIONS) result = XOptions::ICONTYPE_OPTION;
     else if (baseId == BASEID_ABOUT) result = XOptions::ICONTYPE_INFO;
     else if (baseId == BASEID_FILENAME) result = XOptions::ICONTYPE_FILE;
-    // else if (baseId == BASEID_STRUCTS) result = XOptions::ICONTYPE_STRUCTS;
+    else if (baseId == BASEID_STRUCTS) result = XOptions::ICONTYPE_STRUCTS;
     // else if (baseId == BASEID_VIEWER) result = XOptions::ICONTYPE_VIEWER;
     // else if (baseId == BASEID_FOLDER) result = XOptions::ICONTYPE_FOLDER;
     // else if (baseId == BASEID_PID) result = XOptions::ICONTYPE_PID;
