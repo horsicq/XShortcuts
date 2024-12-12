@@ -55,6 +55,7 @@ public:
     virtual void setReadonly(bool bState);
     virtual bool isReadonly();
     virtual void reloadData(bool bSaveSelection);
+    virtual void setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize);
 
 private:
     void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
@@ -63,6 +64,7 @@ private:
 signals:
     void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
     void currentLocationChanged(quint64 nLocation, qint32 nLocationType, qint64 nSize);
+    void followLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize, qint32 nWidgetType);
 
 protected slots:
     void errorMessageSlot(const QString &sErrorMessage);

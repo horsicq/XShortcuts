@@ -45,6 +45,7 @@ protected:
 signals:
     void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
     void currentLocationChanged(quint64 nLocation, qint32 nLocationType, qint64 nSize);
+    void followLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize, qint32 nWidgetType);
 
 private:
     bool g_bIsActive;

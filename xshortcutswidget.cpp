@@ -201,6 +201,16 @@ void XShortcutsWidget::reloadData(bool bSaveSelection)
     qDebug("reloadData");
 #endif
 }
+
+void XShortcutsWidget::setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize)
+{
+    Q_UNUSED(nLocation)
+    Q_UNUSED(nLocationType)
+    Q_UNUSED(nSize)
+#ifdef QT_DEBUG
+    qDebug("setLocation");
+#endif
+}
 // #ifdef QT_CONCURRENT_LIB
 // QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
 // {
