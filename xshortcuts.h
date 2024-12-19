@@ -646,6 +646,15 @@ public:
     void _addMenuSeparator(QList<MENUITEM> *pListMenuItems, quint64 nSubgroups);
     QList<QObject *> adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems);
 
+    struct SHORTCUTITEM {
+        quint64 nShortcutId;
+        QWidget *pRecv;
+        const char *pMethod;
+        QShortcut *pShortCut;
+    };
+
+    void registerShortcuts(QList<SHORTCUTITEM> *pListShortcutItems, bool bState);
+
 public slots:
     void copyRecord();
 

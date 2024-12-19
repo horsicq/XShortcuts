@@ -200,6 +200,7 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_EDIT_PATCH);
         addId(X_ID_HEX_EDIT_REMOVE);
         addId(X_ID_HEX_EDIT_RESIZE);
+        addId(X_ID_HEX_STRUCTS);
 #ifdef QT_SQL_LIB
         addId(X_ID_HEX_BOOKMARKS_NEW);
         addId(X_ID_HEX_BOOKMARKS_LIST);
@@ -620,6 +621,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         else if (nId == X_ID_HEX_EDIT_HEX) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_EDIT_REMOVE) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_EDIT_RESIZE) ksResult = QKeySequence();
+        else if (nId == X_ID_HEX_STRUCTS) ksResult = Qt::Key_H;
     } else if (groupId == GROUPID_DISASM) {
         if (nId == X_ID_DISASM_DUMPTOFILE) ksResult = Qt::CTRL | Qt::Key_D;
         else if (nId == X_ID_DISASM_GOTO_OFFSET) ksResult = QKeySequence();
@@ -1522,6 +1524,22 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
     }
 
     return listResults;
+}
+
+void XShortcuts::registerShortcuts(QList<SHORTCUTITEM> *pListShortcutItems, bool bState)
+{
+    qint32 nNumberOfRecords = pListShortcutItems->count();
+
+    for (qint32 i = 0; i < nNumberOfRecords; i++) {
+        if (bState) {
+            if (!pListShortcutItems->at(i).pShortCut) {
+                (*pListShortcutItems)[i].pShortCut = new QShortcut(getShortcut(pListShortcutItems->at(i).nShortcutId), pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
+            }
+        } else {
+            delete pListShortcutItems->at(i).pShortCut;
+            (*pListShortcutItems)[i].pShortCut = 0;
+        }
+    }
 }
 
 void XShortcuts::copyRecord()

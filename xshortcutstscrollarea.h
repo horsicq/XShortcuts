@@ -56,9 +56,11 @@ public:
     virtual void setReadonly(bool bState);
     virtual bool isReadonly();
 
+    void addShortcut(quint64 nShortcutId, QWidget *pWidget, const char *pMethod);
+
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState) = 0;
+    virtual void registerShortcuts(bool bState);
 
 signals:
     void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
@@ -73,6 +75,7 @@ private:
     XOptions g_xOptionsEmpty;
     QColor g_color[TCLOLOR_SIZE];
     bool g_bIsReadonly;
+    QList<XShortcuts::SHORTCUTITEM> g_listShortCuts;
 };
 
 #endif  // XSHORTCUTSTSCROLLAREA_H

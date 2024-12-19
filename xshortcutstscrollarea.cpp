@@ -118,6 +118,11 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
     return QAbstractScrollArea::eventFilter(pObj, pEvent);
 }
 
+void XShortcutstScrollArea::registerShortcuts(bool bState)
+{
+    g_pShortcuts->registerShortcuts(&g_listShortCuts, bState);
+}
+
 void XShortcutstScrollArea::reloadShortcuts()
 {
     registerShortcuts(false);
@@ -156,4 +161,14 @@ void XShortcutstScrollArea::setReadonly(bool bState)
 bool XShortcutstScrollArea::isReadonly()
 {
     return g_bIsReadonly;
+}
+
+void XShortcutstScrollArea::addShortcut(quint64 nShortcutId, QWidget *pRecv, const char *pMethod)
+{
+    XShortcuts::SHORTCUTITEM record ={};
+    record.nShortcutId = nShortcutId;
+    record.pRecv = pRecv;
+    record.pMethod = pMethod;
+
+    g_listShortCuts.append(record);
 }
