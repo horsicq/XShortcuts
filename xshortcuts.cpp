@@ -1533,7 +1533,8 @@ void XShortcuts::registerShortcuts(QList<SHORTCUTITEM> *pListShortcutItems, bool
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
         if (bState) {
             if (!pListShortcutItems->at(i).pShortCut) {
-                (*pListShortcutItems)[i].pShortCut = new QShortcut(getShortcut(pListShortcutItems->at(i).nShortcutId), pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
+                (*pListShortcutItems)[i].pShortCut =
+                    new QShortcut(getShortcut(pListShortcutItems->at(i).nShortcutId), pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
             }
         } else {
             delete pListShortcutItems->at(i).pShortCut;

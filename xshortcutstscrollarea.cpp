@@ -165,7 +165,7 @@ bool XShortcutstScrollArea::isReadonly()
 
 void XShortcutstScrollArea::addShortcut(quint64 nShortcutId, QWidget *pRecv, const char *pMethod)
 {
-    XShortcuts::SHORTCUTITEM record ={};
+    XShortcuts::SHORTCUTITEM record = {};
     record.nShortcutId = nShortcutId;
     record.pRecv = pRecv;
     record.pMethod = pMethod;
