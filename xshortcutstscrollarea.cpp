@@ -172,3 +172,13 @@ void XShortcutstScrollArea::addShortcut(quint64 nShortcutId, QWidget *pRecv, con
 
     g_listShortCuts.append(record);
 }
+
+void XShortcutstScrollArea::setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize)
+{
+    Q_UNUSED(nLocation)
+    Q_UNUSED(nLocationType)
+    Q_UNUSED(nSize)
+#ifdef QT_DEBUG
+    qDebug("setLocation");
+#endif
+}

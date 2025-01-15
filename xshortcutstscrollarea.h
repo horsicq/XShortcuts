@@ -57,6 +57,7 @@ public:
     virtual bool isReadonly();
 
     void addShortcut(quint64 nShortcutId, QWidget *pWidget, const char *pMethod);
+    virtual void setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize);
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
