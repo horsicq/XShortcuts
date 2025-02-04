@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/xshortcuts.h \
     $$PWD/xshortcutsdialog.h \
     $$PWD/xshortcutstscrollarea.h \
+    $$PWD/xshortcutsobject.h \
     $$PWD/xshortcutswidget.h
 
 SOURCES += \
@@ -13,6 +14,7 @@ SOURCES += \
     $$PWD/xshortcuts.cpp \
     $$PWD/xshortcutsdialog.cpp \
     $$PWD/xshortcutstscrollarea.cpp \
+    $$PWD/xshortcutsobject.cpp \
     $$PWD/xshortcutswidget.cpp
 
 FORMS += \

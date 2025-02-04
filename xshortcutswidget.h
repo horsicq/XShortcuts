@@ -21,41 +21,28 @@
 #ifndef XSHORTCUTSWIDGET_H
 #define XSHORTCUTSWIDGET_H
 
-#include <QShortcut>
-#include <QWidget>
-
-#include "xoptions.h"
-#include "xshortcuts.h"
 #include <QAbstractItemModel>
 #include <QStandardItemModel>
 
-class XShortcutsWidget : public QWidget {
+#include "xshortcutsobject.h"
+
+class XShortcutsWidget : public QWidget, public XShortcutsObject {
     Q_OBJECT
 
 public:
     explicit XShortcutsWidget(QWidget *pParent = nullptr);
     ~XShortcutsWidget();
 
-    virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
-    XShortcuts *getShortcuts();
-    XOptions *getGlobalOptions();
-    void setActive(bool bState);
     void saveTableModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTreeModel(QAbstractItemModel *pModel, const QString &sFileName);
     void saveTextEdit(QTextEdit *pTextEdit, const QString &sFileName);
-    virtual void adjustView() = 0;
     void adjustViewChildren(QWidget *pWidget);
     void setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions);
     QString getOpenFileName(const QString &sDirectory);
     void _blockSignals(QObject **ppObjects, qint32 nCount, bool bState);
-    virtual void reloadShortcuts();
     void setWidgetFocus();
     void deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
     // QFuture<void> deleteOldStandardModel(QStandardItemModel **g_ppOldModel);
-    virtual void setReadonly(bool bState);
-    virtual bool isReadonly();
-    virtual void reloadData(bool bSaveSelection);
-    virtual void setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize);
 
 private:
     void _deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel);
@@ -71,15 +58,6 @@ protected slots:
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState) = 0;
-
-private:
-    bool g_bIsActive;
-    XShortcuts *g_pShortcuts;
-    XShortcuts g_scEmpty;
-    XOptions *g_pXOptions;
-    XOptions g_xOptionsEmpty;
-    bool g_bIsReadonly;
 };
 
 #endif  // XSHORTCUTSWIDGET_H

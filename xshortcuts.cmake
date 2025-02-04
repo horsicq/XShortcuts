@@ -18,4 +18,6 @@ set(XSHORTCUTS_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/xshortcutstscrollarea.h
     ${CMAKE_CURRENT_LIST_DIR}/xshortcutswidget.cpp
     ${CMAKE_CURRENT_LIST_DIR}/xshortcutswidget.h
+    ${CMAKE_CURRENT_LIST_DIR}/xshortcutsobject.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/xshortcutsobject.h
     )

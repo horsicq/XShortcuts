@@ -23,36 +23,22 @@
 
 #include <QDialog>
 
-#include "xoptions.h"
-#include "xshortcuts.h"
+#include "xshortcutsobject.h"
 
-class XShortcutsDialog : public QDialog {
+class XShortcutsDialog : public QDialog, public XShortcutsObject {
     Q_OBJECT
 
 public:
     XShortcutsDialog(QWidget *pParent, bool bMaxMinHint = false);
     ~XShortcutsDialog();
 
-    virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
-    XShortcuts *getShortcuts();
-    XOptions *getGlobalOptions();
-    virtual void adjustView() = 0;
-
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState) = 0;
 
 signals:
     void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
     void currentLocationChanged(quint64 nLocation, qint32 nLocationType, qint64 nSize);
     void followLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize, qint32 nWidgetType);
-
-private:
-    bool g_bIsActive;
-    XShortcuts *g_pShortcuts;
-    XShortcuts g_scEmpty;
-    XOptions *g_pXOptions;
-    XOptions g_xOptionsEmpty;
 };
 
 #endif  // XSHORTCUTSDIALOG_H

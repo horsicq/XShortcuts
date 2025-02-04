@@ -22,11 +22,9 @@
 #define XSHORTCUTSTSCROLLAREA_H
 
 #include <QAbstractScrollArea>
+#include "xshortcutsobject.h"
 
-#include "xoptions.h"
-#include "xshortcuts.h"
-
-class XShortcutstScrollArea : public QAbstractScrollArea {
+class XShortcutstScrollArea : public QAbstractScrollArea, public XShortcutsObject  {
     Q_OBJECT
 
 public:
@@ -40,28 +38,15 @@ public:
     XShortcutstScrollArea(QWidget *pParent = nullptr);
     ~XShortcutstScrollArea();
 
-    virtual void setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions);
     static void setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions);
-    XShortcuts *getShortcuts();
-    XOptions *getGlobalOptions();
-    bool isActive();
-    void setActive(bool bState);
-    virtual void adjustView() = 0;
     static void adjustViewChildren(QWidget *pWidget);
-    virtual void reloadShortcuts();
     QColor getColor(TCLOLOR tcolor);
     void setColor(TCLOLOR tcolor, QColor color);
     static QColor getColorSelected(QColor color);
     static QColor getColorSelected(QWidget *pWidget);
-    virtual void setReadonly(bool bState);
-    virtual bool isReadonly();
-
-    void addShortcut(quint64 nShortcutId, QWidget *pWidget, const char *pMethod);
-    virtual void setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize);
 
 protected:
     bool eventFilter(QObject *pObj, QEvent *pEvent) override;
-    virtual void registerShortcuts(bool bState);
 
 signals:
     void dataChanged(qint64 nDeviceOffset, qint64 nDeviceSize);
@@ -69,14 +54,7 @@ signals:
     void followLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize, qint32 nWidgetType);
 
 private:
-    bool g_bIsActive;
-    XShortcuts *g_pShortcuts;
-    XShortcuts g_scEmpty;
-    XOptions *g_pXOptions;
-    XOptions g_xOptionsEmpty;
     QColor g_color[TCLOLOR_SIZE];
-    bool g_bIsReadonly;
-    QList<XShortcuts::SHORTCUTITEM> g_listShortCuts;
 };
 
 #endif  // XSHORTCUTSTSCROLLAREA_H

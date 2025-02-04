@@ -22,49 +22,12 @@
 
 XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent)
 {
-    g_pShortcuts = &g_scEmpty;
-    g_pXOptions = &g_xOptionsEmpty;
-    g_bIsActive = false;
-    g_bIsReadonly = false;
+    installEventFilter(this);
 }
 
 XShortcutsWidget::~XShortcutsWidget()
 {
-#ifdef QT_DEBUG
-    if (g_pXOptions == &g_xOptionsEmpty) {
-        qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
-    }
-#endif
-}
 
-void XShortcutsWidget::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
-{
-    g_pShortcuts = pShortcuts;
-    g_pXOptions = pXOptions;
-
-    if (g_bIsActive) {
-        reloadShortcuts();
-    }
-
-    adjustView();
-}
-
-XShortcuts *XShortcutsWidget::getShortcuts()
-{
-    return g_pShortcuts;
-}
-
-XOptions *XShortcutsWidget::getGlobalOptions()
-{
-    // #ifdef QT_DEBUG
-    //     qDebug("getGlobalOptions: %X", (unsigned long long)g_pXOptions);
-    // #endif
-    return g_pXOptions;
-}
-
-void XShortcutsWidget::setActive(bool bState)
-{
-    g_bIsActive = bState;
 }
 
 void XShortcutsWidget::saveTableModel(QAbstractItemModel *pModel, const QString &sFileName)
@@ -136,11 +99,13 @@ bool XShortcutsWidget::eventFilter(QObject *pObj, QEvent *pEvent)
 {
     Q_UNUSED(pObj)
 
-    if (pEvent->type() == QEvent::FocusIn) {
-        g_bIsActive = true;
+    // qDebug("%s Event: %d",pObj->objectName().toLatin1().data(), pEvent->type());
+
+    if (pEvent->type() == QEvent::WindowActivate) {
+        setActive(true);
         reloadShortcuts();
-    } else if (pEvent->type() == QEvent::FocusOut) {
-        g_bIsActive = false;
+    } else if (pEvent->type() == QEvent::WindowDeactivate) {
+        setActive(false);
         registerShortcuts(false);
     }
 
@@ -161,12 +126,6 @@ void XShortcutsWidget::_blockSignals(QObject **ppObjects, qint32 nCount, bool bS
     }
 }
 
-void XShortcutsWidget::reloadShortcuts()
-{
-    registerShortcuts(false);
-    registerShortcuts(true);
-}
-
 void XShortcutsWidget::setWidgetFocus()
 {
 }
@@ -184,33 +143,6 @@ void XShortcutsWidget::deleteOldAbstractModel(QAbstractItemModel **g_ppOldModel)
     _deleteOldAbstractModel(g_ppOldModel);
 }
 
-void XShortcutsWidget::setReadonly(bool bState)
-{
-    g_bIsReadonly = bState;
-}
-
-bool XShortcutsWidget::isReadonly()
-{
-    return g_bIsReadonly;
-}
-
-void XShortcutsWidget::reloadData(bool bSaveSelection)
-{
-    Q_UNUSED(bSaveSelection)
-#ifdef QT_DEBUG
-    qDebug("reloadData");
-#endif
-}
-
-void XShortcutsWidget::setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize)
-{
-    Q_UNUSED(nLocation)
-    Q_UNUSED(nLocationType)
-    Q_UNUSED(nSize)
-#ifdef QT_DEBUG
-    qDebug("setLocation");
-#endif
-}
 // #ifdef QT_CONCURRENT_LIB
 // QFuture<void> XShortcutsWidget::deleteOldStandardModel(QStandardItemModel **g_ppOldModel)
 // {

@@ -28,42 +28,10 @@ XShortcutsDialog::XShortcutsDialog(QWidget *pParent, bool bMaxMinHint) : QDialog
         _winFlags |= Qt::WindowMinMaxButtonsHint;
     }
     setWindowFlags(_winFlags);
-
-    g_pShortcuts = &g_scEmpty;
-    g_pXOptions = &g_xOptionsEmpty;
-    g_bIsActive = true;
 }
 
 XShortcutsDialog::~XShortcutsDialog()
 {
-#ifdef QT_DEBUG
-    if (g_pXOptions == &g_xOptionsEmpty) {
-        qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
-    }
-#endif
-}
-
-void XShortcutsDialog::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
-{
-    g_pShortcuts = pShortcuts;
-    g_pXOptions = pXOptions;
-
-    if (g_bIsActive) {
-        registerShortcuts(false);
-        registerShortcuts(true);
-    }
-
-    adjustView();
-}
-
-XShortcuts *XShortcutsDialog::getShortcuts()
-{
-    return g_pShortcuts;
-}
-
-XOptions *XShortcutsDialog::getGlobalOptions()
-{
-    return g_pXOptions;
 }
 
 bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
@@ -71,10 +39,10 @@ bool XShortcutsDialog::eventFilter(QObject *pObj, QEvent *pEvent)
     Q_UNUSED(pObj)
 
     if (pEvent->type() == QEvent::FocusIn) {
-        g_bIsActive = true;
+        setActive(true);
         registerShortcuts(true);
     } else if (pEvent->type() == QEvent::FocusOut) {
-        g_bIsActive = false;
+        setActive(false);
         registerShortcuts(false);
     }
 

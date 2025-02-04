@@ -22,11 +22,6 @@
 
 XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScrollArea(pParent)
 {
-    g_pShortcuts = &g_scEmpty;
-    g_pXOptions = &g_xOptionsEmpty;
-    g_bIsActive = false;
-    g_bIsReadonly = false;
-
     g_color[TCLOLOR_SELECTED] = getColorSelected(viewport());
     g_color[TCLOLOR_BREAKPOINT] = Qt::red;              // mb TODO
     g_color[TCLOLOR_ANALYSED] = QColor(100, 0, 0, 10);  // TODO
@@ -35,22 +30,10 @@ XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScroll
 XShortcutstScrollArea::~XShortcutstScrollArea()
 {
 #ifdef QT_DEBUG
-    if (g_pXOptions == &g_xOptionsEmpty) {
-        qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
-    }
+    // if (g_pXOptions == &g_xOptionsEmpty) {
+    //     qDebug("NO OPTIONS: %s", this->objectName().toLatin1().data());
+    // }
 #endif
-}
-
-void XShortcutstScrollArea::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
-{
-    g_pShortcuts = pShortcuts;
-    g_pXOptions = pXOptions;
-
-    if (g_bIsActive) {
-        reloadShortcuts();
-    }
-
-    adjustView();
 }
 
 void XShortcutstScrollArea::setGlobalChildren(QWidget *pWidget, XShortcuts *pShortcuts, XOptions *pXOptions)
@@ -66,26 +49,6 @@ void XShortcutstScrollArea::setGlobalChildren(QWidget *pWidget, XShortcuts *pSho
             pChild->setGlobal(pShortcuts, pXOptions);
         }
     }
-}
-
-XShortcuts *XShortcutstScrollArea::getShortcuts()
-{
-    return g_pShortcuts;
-}
-
-XOptions *XShortcutstScrollArea::getGlobalOptions()
-{
-    return g_pXOptions;
-}
-
-bool XShortcutstScrollArea::isActive()
-{
-    return g_bIsActive;
-}
-
-void XShortcutstScrollArea::setActive(bool bState)
-{
-    g_bIsActive = bState;
 }
 
 void XShortcutstScrollArea::adjustViewChildren(QWidget *pWidget)
@@ -108,25 +71,14 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
     Q_UNUSED(pObj)
 
     if (pEvent->type() == QEvent::FocusIn) {
-        g_bIsActive = true;
+        setActive(true);
         reloadShortcuts();
     } else if (pEvent->type() == QEvent::FocusOut) {
-        g_bIsActive = false;
+        setActive(false);
         registerShortcuts(false);
     }
 
     return QAbstractScrollArea::eventFilter(pObj, pEvent);
-}
-
-void XShortcutstScrollArea::registerShortcuts(bool bState)
-{
-    g_pShortcuts->registerShortcuts(&g_listShortCuts, bState);
-}
-
-void XShortcutstScrollArea::reloadShortcuts()
-{
-    registerShortcuts(false);
-    registerShortcuts(true);
 }
 
 QColor XShortcutstScrollArea::getColor(TCLOLOR tcolor)
@@ -151,34 +103,4 @@ QColor XShortcutstScrollArea::getColorSelected(QWidget *pWidget)
 {
     QColor colorBackground = pWidget->palette().window().color();
     return getColorSelected(colorBackground);
-}
-
-void XShortcutstScrollArea::setReadonly(bool bState)
-{
-    g_bIsReadonly = bState;
-}
-
-bool XShortcutstScrollArea::isReadonly()
-{
-    return g_bIsReadonly;
-}
-
-void XShortcutstScrollArea::addShortcut(quint64 nShortcutId, QWidget *pRecv, const char *pMethod)
-{
-    XShortcuts::SHORTCUTITEM record = {};
-    record.nShortcutId = nShortcutId;
-    record.pRecv = pRecv;
-    record.pMethod = pMethod;
-
-    g_listShortCuts.append(record);
-}
-
-void XShortcutstScrollArea::setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize)
-{
-    Q_UNUSED(nLocation)
-    Q_UNUSED(nLocationType)
-    Q_UNUSED(nSize)
-#ifdef QT_DEBUG
-    qDebug("setLocation");
-#endif
 }
