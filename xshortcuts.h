@@ -59,6 +59,8 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECTION, XShortcuts::BASEID_ENTROPY)
 #define X_ID_TABLE_SELECTION_DUMPTOFILE \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_SELECTION, XShortcuts::BASEID_DUMPTOFILE)
+#define X_ID_TABLE_EDIT_STRING \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_TABLE, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_EDIT, XShortcuts::BASEID_STRING)
 
 #define X_ID_VIEW_FULLSCREEN XShortcuts::createShortcutsId(XShortcuts::GROUPID_VIEW, QList<XShortcuts::GROUPID>(), XShortcuts::BASEID_FULLSCREEN)
 

@@ -254,6 +254,9 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_TABLE_SELECTION_DISASM);
         addId(X_ID_TABLE_SELECTION_ENTROPY);
         addId(X_ID_TABLE_SELECTION_DUMPTOFILE);
+        addId(X_ID_TABLE_FOLLOWIN_DISASM);
+        addId(X_ID_TABLE_FOLLOWIN_HEX);
+        addId(X_ID_TABLE_EDIT_STRING);
     } else if (groupId == GROUPID_PROCESS) {
         addId(X_ID_PROCESS_STRUCTS);
         addId(X_ID_PROCESS_DUMPTOFILE);
