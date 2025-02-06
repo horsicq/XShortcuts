@@ -201,10 +201,8 @@ void XShortcuts::addGroup(GROUPID groupId)
         addId(X_ID_HEX_EDIT_REMOVE);
         addId(X_ID_HEX_EDIT_RESIZE);
         addId(X_ID_HEX_STRUCTS);
-#ifdef QT_SQL_LIB
         addId(X_ID_HEX_BOOKMARKS_NEW);
         addId(X_ID_HEX_BOOKMARKS_LIST);
-#endif
         addId(X_ID_HEX_STRINGS);
 #if defined(QT_SCRIPT_LIB) || defined(QT_QML_LIB)
         addId(X_ID_HEX_SCRIPTS);
