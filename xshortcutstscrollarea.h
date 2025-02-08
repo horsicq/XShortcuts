@@ -24,7 +24,7 @@
 #include <QAbstractScrollArea>
 #include "xshortcutsobject.h"
 
-class XShortcutstScrollArea : public QAbstractScrollArea, public XShortcutsObject  {
+class XShortcutstScrollArea : public QAbstractScrollArea, public XShortcutsObject {
     Q_OBJECT
 
 public:

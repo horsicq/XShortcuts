@@ -27,7 +27,6 @@ XShortcutsWidget::XShortcutsWidget(QWidget *pParent) : QWidget(pParent)
 
 XShortcutsWidget::~XShortcutsWidget()
 {
-
 }
 
 void XShortcutsWidget::saveTableModel(QAbstractItemModel *pModel, const QString &sFileName)

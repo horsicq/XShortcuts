@@ -25,8 +25,7 @@
 #include "xoptions.h"
 #include "xshortcuts.h"
 
-class XShortcutsObject
-{
+class XShortcutsObject {
 public:
     explicit XShortcutsObject();
 
@@ -54,4 +53,4 @@ private:
     QList<XShortcuts::SHORTCUTITEM> g_listShortCuts;
 };
 
-#endif // XSHORTCUTSOBJECT_H
+#endif  // XSHORTCUTSOBJECT_H
