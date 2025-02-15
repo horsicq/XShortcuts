@@ -1,4 +1,4 @@
-/* Copyright (c) 2021-2024 hors<horsicq@gmail.com>
+/* Copyright (c) 2021-2025 hors<horsicq@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,8 @@ XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScroll
     g_color[TCLOLOR_SELECTED] = getColorSelected(viewport());
     g_color[TCLOLOR_BREAKPOINT] = Qt::red;              // mb TODO
     g_color[TCLOLOR_ANALYSED] = QColor(100, 0, 0, 10);  // TODO
+
+    installEventFilter(this);
 }
 
 XShortcutstScrollArea::~XShortcutstScrollArea()
