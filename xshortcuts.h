@@ -171,6 +171,10 @@
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_FUNCTIONS)
 #define X_ID_DISASM_ANALYZE_CLEAR \
     XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_ANALYZE, XShortcuts::BASEID_CLEAR)
+#define X_ID_DISASM_BOOKMARKS_NEW \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BOOKMARKS, XShortcuts::BASEID_NEW)
+#define X_ID_DISASM_BOOKMARKS_LIST \
+    XShortcuts::createShortcutsId(XShortcuts::GROUPID_DISASM, QList<XShortcuts::GROUPID>() << XShortcuts::GROUPID_BOOKMARKS, XShortcuts::BASEID_LIST)
 
 // TODO Hardware breakpoints !!!
 #define X_ID_DEBUGGER_FILE_OPEN \
