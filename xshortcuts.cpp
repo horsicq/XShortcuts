@@ -605,7 +605,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
         if (nId == X_ID_HEX_DATA_INSPECTOR) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_DATA_CONVERTOR) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_DUMPTOFILE) ksResult = Qt::CTRL | Qt::Key_D;
-        else if (nId == X_ID_HEX_GOTO_OFFSET) ksResult = Qt::CTRL | Qt::Key_G;
+        else if (nId == X_ID_HEX_GOTO_OFFSET) ksResult = Qt::Key_G;
         else if (nId == X_ID_HEX_GOTO_ADDRESS) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_SIGNATURE) ksResult = QKeySequence();
         else if (nId == X_ID_HEX_FIND_STRING) ksResult = QKeySequence::Find;
@@ -626,7 +626,7 @@ QKeySequence XShortcuts::getDefault(quint64 nId)
     } else if (groupId == GROUPID_DISASM) {
         if (nId == X_ID_DISASM_DUMPTOFILE) ksResult = Qt::CTRL | Qt::Key_D;
         else if (nId == X_ID_DISASM_GOTO_OFFSET) ksResult = QKeySequence();
-        else if (nId == X_ID_DISASM_GOTO_ADDRESS) ksResult = Qt::CTRL | Qt::Key_G;
+        else if (nId == X_ID_DISASM_GOTO_ADDRESS) ksResult = Qt::Key_G;
         else if (nId == X_ID_DISASM_GOTO_ENTRYPOINT) ksResult = Qt::Key_E;
         else if (nId == X_ID_DISASM_GOTO_REFERENCES) ksResult = Qt::Key_X;
         else if (nId == X_ID_DISASM_SIGNATURE) ksResult = Qt::SHIFT | Qt::Key_G;
@@ -1534,8 +1534,10 @@ void XShortcuts::registerShortcuts(QList<SHORTCUTITEM> *pListShortcutItems, bool
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
         if (bState) {
             if (!pListShortcutItems->at(i).pShortCut) {
+                QKeySequence keySequence = getShortcut(pListShortcutItems->at(i).nShortcutId);
+                // qDebug("%d) %s", i, keySequence.toString(QKeySequence::NativeText).toLatin1().data());
                 (*pListShortcutItems)[i].pShortCut =
-                    new QShortcut(getShortcut(pListShortcutItems->at(i).nShortcutId), pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
+                    new QShortcut(keySequence, pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
             }
         } else {
             delete pListShortcutItems->at(i).pShortCut;

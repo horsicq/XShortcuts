@@ -73,9 +73,11 @@ bool XShortcutstScrollArea::eventFilter(QObject *pObj, QEvent *pEvent)
     Q_UNUSED(pObj)
 
     if (pEvent->type() == QEvent::FocusIn) {
+        // qDebug("QEvent::FocusIn");
         setActive(true);
         reloadShortcuts();
     } else if (pEvent->type() == QEvent::FocusOut) {
+        // qDebug("QEvent::FocusOut");
         setActive(false);
         registerShortcuts(false);
     }
