@@ -1536,8 +1536,7 @@ void XShortcuts::registerShortcuts(QList<SHORTCUTITEM> *pListShortcutItems, bool
             if (!pListShortcutItems->at(i).pShortCut) {
                 QKeySequence keySequence = getShortcut(pListShortcutItems->at(i).nShortcutId);
                 // qDebug("%d) %s", i, keySequence.toString(QKeySequence::NativeText).toLatin1().data());
-                (*pListShortcutItems)[i].pShortCut =
-                    new QShortcut(keySequence, pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
+                (*pListShortcutItems)[i].pShortCut = new QShortcut(keySequence, pListShortcutItems->at(i).pRecv, pListShortcutItems->at(i).pMethod);
             }
         } else {
             delete pListShortcutItems->at(i).pShortCut;
