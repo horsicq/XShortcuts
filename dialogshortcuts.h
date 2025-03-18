@@ -46,7 +46,7 @@ public:
     explicit DialogShortcuts(QWidget *pParent = nullptr);
     ~DialogShortcuts();
 
-    virtual void adjustView();
+    virtual void adjustView() override;
 
     void setData(XShortcuts *pShortcuts);
     void reload();
@@ -62,7 +62,7 @@ private slots:
     void on_pushButtonDefault_clicked();
 
 protected:
-    virtual void registerShortcuts(bool bState);
+    virtual void registerShortcuts(bool bState) override;
 
 private:
     Ui::DialogShortcuts *ui;

@@ -623,7 +623,7 @@ public:
     void adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractItemView *pTableView);  // TODO remove
 
     void adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId);
-    void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText = "");
+    void adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, const QString &sText = "");
 
     XOptions::ICONTYPE getIconTypeById(quint64 nId);
     XOptions::ICONTYPE getIconTypeByGroupId(GROUPID groupId);

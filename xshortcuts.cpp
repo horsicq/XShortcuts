@@ -1166,7 +1166,7 @@ void XShortcuts::adjustMenu(QMenu *pParentMenu, QMenu *pMenu, GROUPID groupId)
     XOptions::adjustMenu(pParentMenu, pMenu, sTitle, iconType);
 }
 
-void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, QString sText)
+void XShortcuts::adjustAction(QMenu *pParentMenu, QAction *pAction, quint64 nId, const QObject *pRecv, const char *pMethod, const QString &sText)
 {
     pAction->setShortcut(getShortcut(nId));
 
