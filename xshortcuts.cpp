@@ -1347,7 +1347,8 @@ void XShortcuts::_addMenuItem(QList<MENUITEM> *pListMenuItems, quint64 nShortcut
     pListMenuItems->append(record);
 }
 
-void XShortcuts::_addMenuItem_Text(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups, const QString &sText)
+void XShortcuts::_addMenuItem_Text(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups,
+                                   const QString &sText)
 {
     MENUITEM record = {};
 
