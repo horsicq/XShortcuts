@@ -21,10 +21,10 @@
 #ifndef XSHORTCUTSTSCROLLAREA_H
 #define XSHORTCUTSTSCROLLAREA_H
 
-#include <QAbstractScrollArea>
+#include <QScrollArea>
 #include "xshortcutsobject.h"
 
-class XShortcutstScrollArea : public QAbstractScrollArea, public XShortcutsObject {
+class XShortcutstScrollArea : public QScrollArea, public XShortcutsObject {
     Q_OBJECT
 
 public:

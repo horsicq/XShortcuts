@@ -20,7 +20,7 @@
  */
 #include "xshortcutstscrollarea.h"
 
-XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QAbstractScrollArea(pParent)
+XShortcutstScrollArea::XShortcutstScrollArea(QWidget *pParent) : QScrollArea(pParent)
 {
     g_color[TCLOLOR_SELECTED] = getColorSelected(viewport());
     g_color[TCLOLOR_BREAKPOINT] = Qt::red;              // mb TODO
