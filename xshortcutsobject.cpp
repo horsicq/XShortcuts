@@ -25,7 +25,7 @@ XShortcutsObject::XShortcutsObject()
     g_pShortcuts = &g_scEmpty;
     g_pXOptions = &g_xOptionsEmpty;
     g_bIsActive = false;
-    g_bIsReadonly = false;
+    m_bIsReadonly = false;
 }
 
 void XShortcutsObject::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
@@ -73,12 +73,12 @@ void XShortcutsObject::registerShortcuts(bool bState)
 
 void XShortcutsObject::setReadonly(bool bState)
 {
-    g_bIsReadonly = bState;
+    m_bIsReadonly = bState;
 }
 
 bool XShortcutsObject::isReadonly()
 {
-    return g_bIsReadonly;
+    return m_bIsReadonly;
 }
 
 void XShortcutsObject::addShortcut(quint64 nShortcutId, QWidget *pRecv, const char *pMethod)

@@ -49,7 +49,7 @@ private:
     XShortcuts g_scEmpty;
     XOptions *g_pXOptions;
     XOptions g_xOptionsEmpty;
-    bool g_bIsReadonly;
+    bool m_bIsReadonly;
     QList<XShortcuts::SHORTCUTITEM> g_listShortCuts;
 };
 
