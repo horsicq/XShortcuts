@@ -66,9 +66,9 @@ protected:
 
 private:
     Ui::DialogShortcuts *ui;
-    XShortcuts *g_pShortcuts;
-    QSortFilterProxyModel *g_pFilter;
-    QStandardItemModel *g_pModel;
+    XShortcuts *m_pShortcuts;
+    QSortFilterProxyModel *m_pFilter;
+    QStandardItemModel *m_pModel;
 };
 
 #endif  // DIALOGSHORTCUTS_H

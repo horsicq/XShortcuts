@@ -26,9 +26,9 @@ DialogShortcuts::DialogShortcuts(QWidget *pParent) : XShortcutsDialog(pParent, t
 {
     ui->setupUi(this);
 
-    g_pShortcuts = nullptr;
-    g_pModel = nullptr;
-    g_pFilter = new QSortFilterProxyModel(this);
+    m_pShortcuts = nullptr;
+    m_pModel = nullptr;
+    m_pFilter = new QSortFilterProxyModel(this);
 
     ui->lineEditShortcut->setEnabled(false);
     ui->lineEditShortcut->installEventFilter(this);
@@ -45,7 +45,7 @@ void DialogShortcuts::adjustView()
 
 void DialogShortcuts::setData(XShortcuts *pShortcuts)
 {
-    g_pShortcuts = pShortcuts;
+    m_pShortcuts = pShortcuts;
 
     reload();
 }
@@ -53,14 +53,14 @@ void DialogShortcuts::setData(XShortcuts *pShortcuts)
 void DialogShortcuts::reload()
 {
     // TODO remove old Model
-    QList<XShortcuts::RECORD> listShortcuts = g_pShortcuts->getRecords();
+    QList<XShortcuts::RECORD> listShortcuts = m_pShortcuts->getRecords();
 
     qint32 nNumberOfRecords = listShortcuts.count();
 
-    g_pModel = new QStandardItemModel(nNumberOfRecords, 2);
+    m_pModel = new QStandardItemModel(nNumberOfRecords, 2);
 
-    g_pModel->setHeaderData(COLUMN_NAME, Qt::Horizontal, tr("Name"));
-    g_pModel->setHeaderData(COLUMN_SHORTCUT, Qt::Horizontal, tr("Shortcut"));
+    m_pModel->setHeaderData(COLUMN_NAME, Qt::Horizontal, tr("Name"));
+    m_pModel->setHeaderData(COLUMN_SHORTCUT, Qt::Horizontal, tr("Shortcut"));
 
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
         quint64 nId = listShortcuts.at(i).nId;
@@ -80,16 +80,16 @@ void DialogShortcuts::reload()
 
         QStandardItem *pTypeName = new QStandardItem;
         pTypeName->setText(sName);
-        g_pModel->setItem(i, COLUMN_NAME, pTypeName);
+        m_pModel->setItem(i, COLUMN_NAME, pTypeName);
 
         QStandardItem *pTypeShortcut = new QStandardItem;
         pTypeShortcut->setText(listShortcuts.at(i).keySequence.toString(QKeySequence::NativeText));
         pTypeShortcut->setData(nId);
-        g_pModel->setItem(i, COLUMN_SHORTCUT, pTypeShortcut);
+        m_pModel->setItem(i, COLUMN_SHORTCUT, pTypeShortcut);
     }
 
-    g_pFilter->setSourceModel(g_pModel);
-    ui->tableViewShortcuts->setModel(g_pFilter);
+    m_pFilter->setSourceModel(m_pModel);
+    ui->tableViewShortcuts->setModel(m_pFilter);
 
     ui->tableViewShortcuts->setColumnWidth(COLUMN_NAME, 350);      // TODO consts
     ui->tableViewShortcuts->setColumnWidth(COLUMN_SHORTCUT, 200);  // TODO consts
@@ -124,17 +124,17 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 
             QString sText = keyValue.toString(QKeySequence::NativeText);
 
-            if (g_pModel) {
+            if (m_pModel) {
                 qint32 nRow = ui->tableViewShortcuts->currentIndex().row();
 
-                if (nRow < g_pModel->rowCount()) {
+                if (nRow < m_pModel->rowCount()) {
                     QModelIndex index = ui->tableViewShortcuts->model()->index(nRow, COLUMN_SHORTCUT);
 
                     quint64 nId = ui->tableViewShortcuts->model()->data(index, Qt::UserRole + 1).toULongLong();
 
-                    if (g_pShortcuts->checkShortcut(nId, keyValue)) {
+                    if (m_pShortcuts->checkShortcut(nId, keyValue)) {
                         ui->tableViewShortcuts->model()->setData(index, sText, Qt::DisplayRole);
-                        g_pShortcuts->setShortcut(nId, keyValue);
+                        m_pShortcuts->setShortcut(nId, keyValue);
                         ui->lineEditShortcut->setText(sText);
                     } else {
                         QString sGroup = XShortcuts::groupIdToString(XShortcuts::getGroupId(nId));
@@ -155,12 +155,12 @@ bool DialogShortcuts::eventFilter(QObject *pObj, QEvent *pEvent)
 void DialogShortcuts::on_lineEditFilter_textChanged(const QString &sString)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-    g_pFilter->setFilterRegularExpression(sString);
+    m_pFilter->setFilterRegularExpression(sString);
 #else
-    g_pFilter->setFilterRegExp(sString);
+    m_pFilter->setFilterRegExp(sString);
 #endif
-    g_pFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    g_pFilter->setFilterKeyColumn(COLUMN_NAME);
+    m_pFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    m_pFilter->setFilterKeyColumn(COLUMN_NAME);
 }
 
 void DialogShortcuts::onCellChanged(const QItemSelection &itemSelected, const QItemSelection &itemDeselected)
@@ -185,31 +185,31 @@ void DialogShortcuts::on_pushButtonClear_clicked()
 {
     ui->lineEditShortcut->clear();
 
-    if (g_pModel) {
+    if (m_pModel) {
         qint32 nRow = ui->tableViewShortcuts->currentIndex().row();
 
-        if (nRow < g_pModel->rowCount()) {
+        if (nRow < m_pModel->rowCount()) {
             QModelIndex index = ui->tableViewShortcuts->model()->index(nRow, COLUMN_SHORTCUT);
 
             quint64 nId = ui->tableViewShortcuts->model()->data(index, Qt::UserRole + 1).toULongLong();
 
             ui->tableViewShortcuts->model()->setData(index, "", Qt::DisplayRole);
             ui->lineEditShortcut->setText("");
-            g_pShortcuts->setShortcut(nId, QKeySequence());
+            m_pShortcuts->setShortcut(nId, QKeySequence());
         }
     }
 }
 
 void DialogShortcuts::on_pushButtonDefault_clicked()
 {
-    QList<XShortcuts::RECORD> listShortcuts = g_pShortcuts->getRecords();
+    QList<XShortcuts::RECORD> listShortcuts = m_pShortcuts->getRecords();
 
     qint32 nNumberOfRecords = listShortcuts.count();
 
     for (qint32 i = 0; i < nNumberOfRecords; i++) {
         quint64 nId = listShortcuts.at(i).nId;
 
-        g_pShortcuts->setShortcut(nId, g_pShortcuts->getDefault(nId));
+        m_pShortcuts->setShortcut(nId, m_pShortcuts->getDefault(nId));
     }
 
     reload();
