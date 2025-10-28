@@ -665,14 +665,14 @@ public slots:
     void copyRecord();
 
 private:
-    bool g_bIsNative;
-    QString g_sApplicationDataPath;
-    QString g_sName;
-    QString g_sFilePath;
-    QList<RECORD> g_listRecords;
-    QList<QAction *> g_listCopyActions;
-    QList<QAction *> g_listActions;
-    QList<QMenu *> g_listMenus;
+    bool m_bIsNative;
+    QString m_sApplicationDataPath;
+    QString m_sName;
+    QString m_sFilePath;
+    QList<RECORD> m_listRecords;
+    QList<QAction *> m_listCopyActions;
+    QList<QAction *> m_listActions;
+    QList<QMenu *> m_listMenus;
 };
 
 #endif  // XSHORTCUTS_H

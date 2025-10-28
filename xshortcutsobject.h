@@ -44,13 +44,13 @@ public:
     virtual void setLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize);
 
 private:
-    bool g_bIsActive;
-    XShortcuts *g_pShortcuts;
-    XShortcuts g_scEmpty;
-    XOptions *g_pXOptions;
-    XOptions g_xOptionsEmpty;
+    bool m_bIsActive;
+    XShortcuts *m_pShortcuts;
+    XShortcuts m_scEmpty;
+    XOptions *m_pXOptions;
+    XOptions m_xOptionsEmpty;
     bool m_bIsReadonly;
-    QList<XShortcuts::SHORTCUTITEM> g_listShortCuts;
+    QList<XShortcuts::SHORTCUTITEM> m_listShortCuts;
 };
 
 #endif  // XSHORTCUTSOBJECT_H

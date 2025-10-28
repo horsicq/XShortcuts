@@ -22,18 +22,18 @@
 
 XShortcutsObject::XShortcutsObject()
 {
-    g_pShortcuts = &g_scEmpty;
-    g_pXOptions = &g_xOptionsEmpty;
-    g_bIsActive = false;
+    m_pShortcuts = &m_scEmpty;
+    m_pXOptions = &m_xOptionsEmpty;
+    m_bIsActive = false;
     m_bIsReadonly = false;
 }
 
 void XShortcutsObject::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
 {
-    g_pShortcuts = pShortcuts;
-    g_pXOptions = pXOptions;
+    m_pShortcuts = pShortcuts;
+    m_pXOptions = pXOptions;
 
-    if (g_bIsActive) {
+    if (m_bIsActive) {
         reloadShortcuts();
     }
 
@@ -42,22 +42,22 @@ void XShortcutsObject::setGlobal(XShortcuts *pShortcuts, XOptions *pXOptions)
 
 XShortcuts *XShortcutsObject::getShortcuts()
 {
-    return g_pShortcuts;
+    return m_pShortcuts;
 }
 
 XOptions *XShortcutsObject::getGlobalOptions()
 {
-    return g_pXOptions;
+    return m_pXOptions;
 }
 
 bool XShortcutsObject::isActive()
 {
-    return g_bIsActive;
+    return m_bIsActive;
 }
 
 void XShortcutsObject::setActive(bool bState)
 {
-    g_bIsActive = bState;
+    m_bIsActive = bState;
 }
 
 void XShortcutsObject::reloadShortcuts()
@@ -68,7 +68,7 @@ void XShortcutsObject::reloadShortcuts()
 
 void XShortcutsObject::registerShortcuts(bool bState)
 {
-    g_pShortcuts->registerShortcuts(&g_listShortCuts, bState);
+    m_pShortcuts->registerShortcuts(&m_listShortCuts, bState);
 }
 
 void XShortcutsObject::setReadonly(bool bState)
@@ -88,7 +88,7 @@ void XShortcutsObject::addShortcut(quint64 nShortcutId, QWidget *pRecv, const ch
     record.pRecv = pRecv;
     record.pMethod = pMethod;
 
-    g_listShortCuts.append(record);
+    m_listShortCuts.append(record);
 }
 
 void XShortcutsObject::reloadData(bool bSaveSelection)
