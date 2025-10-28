@@ -54,7 +54,7 @@ signals:
     void followLocation(quint64 nLocation, qint32 nLocationType, qint64 nSize, qint32 nWidgetType);
 
 private:
-    QColor g_color[TCLOLOR_SIZE];
+    QColor m_color[TCLOLOR_SIZE];
 };
 
 #endif  // XSHORTCUTSTSCROLLAREA_H
