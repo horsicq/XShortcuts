@@ -1133,7 +1133,7 @@ void XShortcuts::adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractIt
                 QString sString = sTitle;
 
                 // QAction *pActionRecord = new QAction(sString, pParent);
-                QAction *pActionRecord = new QAction(0);
+                QAction *pActionRecord = new QAction(pParentMenu);
                 XOptions::adjustAction(pMenu, pActionRecord, sString, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
                 pActionRecord->setProperty("VALUE", sRecord);
 
@@ -1148,7 +1148,7 @@ void XShortcuts::adjustRowCopyMenu(QMenu *pParentMenu, QMenu *pMenu, QAbstractIt
 
             if (sRecord != "") {
                 // QAction *pActionRecord = new QAction(sRecord, pParent);
-                QAction *pActionRecord = new QAction(0);
+                QAction *pActionRecord = new QAction(pParentMenu);
                 XOptions::adjustAction(pMenu, pActionRecord, sRecord, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
                 pActionRecord->setProperty("VALUE", sRecord);
 
@@ -1396,10 +1396,8 @@ void XShortcuts::_addMenuSeparator(QList<MENUITEM> *pListMenuItems, quint64 nSub
     pListMenuItems->append(record);
 }
 
-QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems)
+void XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems)
 {
-    QList<QObject *> listResults;
-
     QMap<quint64, QMenu *> mapMenus;
     mapMenus.insert(GROUPID_NONE, pMenu);
 
@@ -1440,10 +1438,8 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
         }
 
         if (record.bCopyRow) {
-            QMenu *pMenuCopy = new QMenu(0);
+            QMenu *pMenuCopy = new QMenu(pMenu);
             adjustMenu(pCurrentMenu, pMenuCopy, GROUPID_COPY);
-
-            listResults.append(pMenuCopy);
 
             qint32 nRow = record.pTableView->currentIndex().row();
 
@@ -1471,11 +1467,9 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
                     if (sTitle != "") {
                         QString sString = sTitle;
 
-                        QAction *pActionRecord = new QAction(0);
+                        QAction *pActionRecord = new QAction(pMenu);
                         XOptions::adjustAction(pMenuCopy, pActionRecord, sString, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
                         pActionRecord->setProperty("VALUE", sRecord);
-
-                        listResults.append(pActionRecord);
                     }
                 }
 
@@ -1485,12 +1479,10 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
                     QString sRecord = listRecords.at(i);
 
                     if (sRecord != "") {
-                        QAction *pActionRecord = new QAction(0);
+                        QAction *pActionRecord = new QAction(pMenu);
 
                         XOptions::adjustAction(pMenuCopy, pActionRecord, sRecord, this, SLOT(copyRecord()), XOptions::ICONTYPE_COPY);
                         pActionRecord->setProperty("VALUE", sRecord);
-
-                        listResults.append(pActionRecord);
                     }
                 }
             }
@@ -1500,7 +1492,7 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
             }
         } else {
             if (pCurrentMenu) {
-                QAction *pAction = new QAction(0);
+                QAction *pAction = new QAction(pMenu);
 
                 if (record.nShortcutId) {
                     adjustAction(pCurrentMenu, pAction, record.nShortcutId, record.pRecv, record.pMethod, record.sText);
@@ -1519,13 +1511,9 @@ QList<QObject *> XShortcuts::adjustContextMenu(QMenu *pMenu, const QList<MENUITE
                         pAction->setChecked(true);
                     }
                 }
-
-                listResults.append(pAction);
             }
         }
     }
-
-    return listResults;
 }
 
 void XShortcuts::registerShortcuts(QList<SHORTCUTITEM> *pListShortcutItems, bool bState)

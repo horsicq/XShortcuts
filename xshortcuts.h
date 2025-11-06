@@ -650,7 +650,7 @@ public:
     void _addMenuItem_Checked(QList<MENUITEM> *pListMenuItems, quint64 nShortcutId, const QObject *pRecv, const char *pMethod, quint64 nSubgroups, bool bIsChecked);
     void _addMenuItem_CopyRow(QList<MENUITEM> *pListMenuItems, QAbstractItemView *pTableView);
     void _addMenuSeparator(QList<MENUITEM> *pListMenuItems, quint64 nSubgroups);
-    QList<QObject *> adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems);
+    void adjustContextMenu(QMenu *pMenu, const QList<MENUITEM> *plistMenuItems);
 
     struct SHORTCUTITEM {
         quint64 nShortcutId;
